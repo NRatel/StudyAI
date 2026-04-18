@@ -94,7 +94,7 @@ $$\text{输出} = \text{LayerNorm}(\text{中间} + \text{FFN}(\text{中间}))$$
 
 $$x_{l+1} = x_l + F_l(x_l) \quad \Rightarrow \quad \frac{\partial x_{l+1}}{\partial x_l} = I + \frac{\partial F_l(x_l)}{\partial x_l}$$
 
-即使 $\frac{\partial F_l}{\partial x_l}$ 很小，梯度仍然至少是单位矩阵 $I$，保证了梯度能有效流动。6 层甚至几十层的 Transformer 能稳定训练，残差连接功不可没。
+即使 $\frac{\partial F_l}{\partial x_l}$ 很小，梯度中仍包含 identity 项 $I$，为梯度提供了直接传播路径，通常显著缓解深层网络的梯度衰减问题（注意这不是绝对的数学保证，而是实践中非常有效的机制）。6 层甚至几十层的 Transformer 能稳定训练，残差连接功不可没。
 
 #### Layer Normalization
 
