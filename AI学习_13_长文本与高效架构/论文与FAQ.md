@@ -47,7 +47,7 @@
 **简评**：让 SSM 首次在语言建模上比肩同规模 Transformer，是 SSM 领域最具影响力的工作。
 
 - **核心贡献**：（1）提出**选择性 SSM**——让 $B$、$C$、$\Delta$ 成为输入的函数（而非 S4 中的固定参数），使模型能根据输入内容动态决定记忆和遗忘；（2）设计了高效的**选择性扫描**（selective scan）GPU 算法，采用类似 FlashAttention 的 IO-aware 策略，在 SRAM 中完成递归计算；（3）将选择性 SSM 与门控 MLP 结合为 "Mamba Block"，无需注意力和 MLP 的分离设计。
-- **关键性能**：Mamba-1.4B 在语言建模上超越了同规模的 Transformer++（配备了 FlashAttention、RoPE 等现代技巧的 Transformer）。推理吞吐量是 Transformer 的 5 倍（序列长度 1M 时更为显著）。
+- **关键性能**：Mamba-3B 在语言建模上超越了同规模的 Transformer++（配备了 FlashAttention、RoPE 等现代技巧的 Transformer），并匹配 2 倍规模的 Transformer。推理吞吐量是 Transformer 的 5 倍（序列长度越长优势越大）。
 - **局限**：在需要精确检索序列中特定位置信息的任务（如 in-context learning 的精确复制、多跳推理）上，Mamba 仍不如 Transformer。这催生了 Mamba+Attention 混合架构的研究方向。
 
 ### 6. Munkhdalai, Faruqui & Gopal, 2024 — *Leave No Context Behind: Efficient Infinite Context Transformers with Infini-attention*
