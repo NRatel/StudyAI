@@ -1,0 +1,29 @@
+# AI学习：06 生成模型与扩散模型
+
+## 本模块导读
+
+**学什么**：生成模型的完整谱系（VAE → GAN → Flow → Diffusion），重点深入扩散模型——当前图像/视频生成的核心技术。扩散模型与 Transformer 并列为现代 AI 两大核心技术路线。
+
+**为什么学**：Stable Diffusion、DALL-E、Sora 等模型都基于扩散模型。理解扩散模型的原理是理解多模态 AI 的前提。
+
+**学完能做什么**：
+- 理解四大生成模型（VAE/GAN/Flow/Diffusion）的核心思想和区别
+- 完整理解扩散模型的前向噪声过程和反向去噪过程
+- 理解 DDPM/DDIM 的训练目标和采样算法
+- 理解条件生成（Classifier-Free Guidance）
+- 理解 Stable Diffusion 的完整管线（文本编码→潜空间扩散→VAE 解码）
+- 理解 U-Net 到 DiT 的架构演进
+
+**前置知识**：[02 经典网络架构](../AI学习_02_经典网络架构/README.md)（CNN 基础），[附录：数学基础速览](../附录_数学基础速览.md)（概率分布、KL 散度）
+
+**预估学习时间**：10~12 小时
+
+## 目录
+
+| 序号 | 文件 | 内容 |
+|------|------|------|
+| 1 | [生成模型谱系](1_生成模型谱系.md) | VAE、GAN、Flow 的核心思想与对比 |
+| 2 | [扩散模型原理](2_扩散模型原理.md) | 前向过程、反向过程、训练目标、DDPM/DDIM |
+| 3 | [条件生成与引导](3_条件生成与引导.md) | Classifier Guidance、Classifier-Free Guidance |
+| 4 | [架构与应用](4_架构与应用.md) | U-Net、DiT、Stable Diffusion 管线、与 Transformer 的融合 |
+| - | [论文与FAQ](论文与FAQ.md) | 关键论文、常见误区、延伸资源 |
