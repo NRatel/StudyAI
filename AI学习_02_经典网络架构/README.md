@@ -13,6 +13,8 @@
 - 理解 Seq2Seq 编码器-解码器框架，为学习 Transformer 做准备
 - 看懂 PyTorch 中 nn.Conv2d, nn.LSTM, nn.GRU 等模块的使用
 
+**建议学习顺序**：CNN → RNN → LSTM/GRU → Seq2Seq，本模块最终目的是为 Transformer 做铺垫。
+
 **前置知识**：[01 神经网络基础](../AI学习_01_神经网络基础/README.md)（前向传播、反向传播、优化器、正则化）
 
 **预估学习时间**：8~10 小时

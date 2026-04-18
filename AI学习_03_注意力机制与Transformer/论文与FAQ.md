@@ -10,6 +10,8 @@
 
 以下论文构成了从注意力机制诞生到 Transformer 架构成熟、再到高效注意力与位置编码优化的核心脉络。建议按时间顺序阅读，体会这条"注意力即一切"的技术演化路线。
 
+> **阅读建议**：建议通读 Vaswani et al. 2017（*Attention Is All You Need*），这是 Transformer 的奠基论文，理解它等于理解整个架构的设计动机和全局蓝图。其余论文按需查阅核心结论即可——每篇论文的"核心贡献"部分已在下方总结，足以支撑后续模块的学习。
+
 ### 1. Bahdanau, Cho & Bengio, 2014 — *Neural Machine Translation by Jointly Learning to Align and Translate*
 
 **简评：** 注意力机制的开山之作，让解码器学会"在正确的时间关注正确的位置"，彻底突破了 Seq2Seq 固定长度上下文向量的信息瓶颈。

@@ -8,6 +8,12 @@
 
 ## 一、关键论文
 
+### 论文按三组分类
+
+- **词表示**：Word2Vec、GloVe、ELMo —— 从静态词向量到上下文相关表示
+- **预训练范式**：BERT、GPT-1、RoBERTa、T5 —— Encoder-only / Decoder-only / Encoder-Decoder 三条路线
+- **微调范式**：LoRA —— 参数高效微调的事实标准
+
 ### 时间线总览
 
 | 年份 | 作者 | 模型/方法 | 核心关键词 |

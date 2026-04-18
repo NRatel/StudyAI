@@ -206,6 +206,8 @@ $$\text{Attention}(Q, K, V) = \text{softmax}\left(\frac{QK^T}{\sqrt{d_k}} + \tex
 | 解码器 Masked Self-Attention | 目标序列 | 目标序列 | 因果掩码 | 已生成序列内部建模依赖 |
 | Cross-Attention | 解码器表示 | 编码器输出 | 无 | 解码器从编码器获取信息 |
 
+> **建议**：对照完整架构图（本节开头的"整体架构鸟瞰"）再看一遍这张表，把三种注意力在架构中的位置与它们的 Q/K/V 来源对应起来，会更容易形成整体画面。
+
 ---
 
 ## Python 代码示例
@@ -555,6 +557,8 @@ Post-LN: LN(x + Sublayer(x))       Pre-LN: x + Sublayer(LN(x))
 | 层数扩展 | 超过 12 层容易不稳定 | 100+ 层仍然稳定 |
 
 实际选择：**用 Pre-LN**。GPT-3、LLaMA、Mistral 等几乎所有 LLM 都使用 Pre-LN。
+
+> **工程说明：Pre-LN 为什么成为现代大模型标配？** 核心原因是**训练初期的梯度稳定性**。在 Pre-LN 中，残差路径是完全"干净"的（$x + \text{Sublayer}(\text{LN}(x))$），梯度可以无阻碍地沿残差路径直接回传，不被 LayerNorm 的缩放所干扰。这意味着：（1）训练初期各层梯度范数保持在同一量级，参数更新更均衡；（2）允许使用更大的学习率，加速收敛；（3）对 warmup 步数不敏感，甚至可以不做 warmup。相比之下，Post-LN 的梯度在深层网络（24 层以上）中会出现显著的放大效应，必须依赖精心调校的 warmup 策略才能稳定训练。对于动辄 32\~96 层的现代大模型，Pre-LN 带来的训练稳定性优势是决定性的。
 
 ### Encoder-only vs Decoder-only vs Encoder-Decoder
 

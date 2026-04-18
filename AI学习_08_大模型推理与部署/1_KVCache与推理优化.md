@@ -116,6 +116,8 @@ $$\text{KV Cache 大小} = 2 \times n_{\text{layers}} \times n_{\text{heads}} \t
 
 #### Prefill 与 Decode 两个阶段
 
+> **关键认知**：Prefill（处理整个 prompt）是**计算密集型**（Compute-bound），Decode（逐 token 生成）是**内存带宽密集型**（Memory-bound），两个阶段的性能瓶颈完全不同。这意味着优化策略也完全不同：Prefill 需要更强的算力（如 Flash Attention 减少计算冗余），Decode 需要更高的内存带宽或更小的模型体积（如量化、更大 batch）。理解这个区别是理解所有推理优化的基础。
+
 自回归推理分为两个截然不同的阶段：
 
 | 阶段 | Prefill（预填充） | Decode（解码） |

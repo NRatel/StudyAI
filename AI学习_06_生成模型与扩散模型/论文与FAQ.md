@@ -194,6 +194,12 @@ output = unconditional + s * (conditional - unconditional)
 
 ---
 
+## 阅读建议
+
+初次接触扩散模型，建议**先读 Ho et al. 2020（DDPM）**，这是最清晰的入门论文。它把扩散模型的训练目标简化为"预测噪声 + MSE 损失"，数学推导自洽且工程实现直观，是后续所有工作的基础。读完 DDPM 后，再按需阅读 DDIM（加速采样）→ Classifier-Free Guidance（条件生成）→ LDM（潜空间扩散）→ DiT（Transformer 骨干）的顺序，逐步构建完整知识体系。
+
+---
+
 ## 延伸资源
 
 1. **Lilian Weng 的博客 — "What are Diffusion Models?"**

@@ -26,3 +26,7 @@
 | 3 | [BERT与GPT](3_BERT与GPT.md) | 两大路线的架构、训练、应用对比 |
 | 4 | [微调与迁移学习](4_微调与迁移学习.md) | Fine-tuning、Prompt Tuning、三大架构路线对比 |
 | - | [论文与FAQ](论文与FAQ.md) | 关键论文、常见误区、延伸资源 |
+
+## 下一步
+
+学完本模块后进入 [05_GPT系列](../AI学习_05_GPT系列/README.md)，深入了解 Decoder-only 路线如何从 GPT-1 演进到 GPT-4。

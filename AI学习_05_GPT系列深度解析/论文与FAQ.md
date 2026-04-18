@@ -8,6 +8,8 @@
 
 ## 一、关键论文
 
+> **建议阅读顺序**：如果时间有限，建议先读 **Brown et al., 2020（GPT-3）** 和 **Ouyang et al., 2022（InstructGPT）** 这两篇。前者定义了 In-Context Learning 和 Few-shot 范式，后者确立了 SFT -> RLHF 的对齐流程——理解这两篇，就抓住了从"预训练大模型"到"可用AI助手"这整条技术路线的核心。
+
 ### 论文列表
 
 #### 1. Radford et al., 2018 — GPT-1

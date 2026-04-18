@@ -64,6 +64,8 @@
 
 ### 10. Vaswani et al., 2017 — *Attention Is All You Need*
 
+> **说明**：此处提前列出 Transformer 论文，是为模块 03（Transformer 与注意力机制）做铺垫。在本模块中只需了解其历史地位和与前序架构的衔接关系，详细原理将在模块 03 中展开。
+
 - **一句话简评**：抛弃循环和卷积，纯注意力架构横空出世——这篇论文改变了一切。
 - **核心贡献**：提出 Transformer 架构，设计了多头自注意力（Multi-Head Self-Attention）机制和位置编码（Positional Encoding）；完全基于注意力实现并行化训练，训练速度远超 RNN。
 - **历史意义**：Transformer 催生了 BERT、GPT 系列、Vision Transformer 等划时代模型，成为当今几乎所有大语言模型和多模态模型的基础架构。可以毫不夸张地说，Transformer 开启了 AI 的新纪元。（虽然严格来说 Transformer 属于"下一代架构"，但它与经典网络架构的演进一脉相承，是理解架构演化不可或缺的一环。）

@@ -87,6 +87,8 @@ $$L(C) = \left(\frac{C_c}{C}\right)^{\alpha_C}, \quad \alpha_C \approx 0.050$$
 
 ### Chinchilla Scaling Laws (2022, Hoffmann et al.)
 
+> **Kaplan 与 Chinchilla 的关系**：Chinchilla 并非推翻 Kaplan，而是对其做了关键修正——Kaplan 偏好"优先增大模型"，Chinchilla 则证明参数量和数据量应等比例增长（D/N $\approx$ 20），此前的大模型（如 GPT-3、Gopher）其实都"训练不足"。可以把 Kaplan 看作 v1，Chinchilla 看作 v2。
+
 #### Kaplan 的问题
 
 Kaplan 的"优先增大模型"直接影响了 GPT-3（175B, 300B tokens）和 Gopher（280B, 300B tokens）。但 DeepMind 发现 **Kaplan 严重低估了数据的重要性**——因为实验中未充分调整大模型的学习率调度，高估了大模型的训练效率。

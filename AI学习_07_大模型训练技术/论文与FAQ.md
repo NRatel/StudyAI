@@ -8,6 +8,13 @@
 
 ## 关键论文
 
+> **论文分三组理解**：
+> 1. **分布式训练**：ZeRO (Rajbhandari 2020) → Megatron-LM (Shoeybi 2019) → 3D 并行 (Narayanan 2021)，解决"怎么把大模型分到多卡上训练"
+> 2. **混合精度**：Mixed Precision Training (Micikevicius 2018)，解决"怎么用半精度省显存加速而不损失精度"
+> 3. **对齐训练**：InstructGPT (Ouyang 2022)，解决"怎么让训出来的模型听话"
+>
+> 建议按这三组分别阅读，每组内部按发表时间顺序。
+
 ### 1. ZeRO: Memory Optimizations Toward Training Trillion Parameter Models
 
 - **作者**: Rajbhandari, Rasley, Ruwase, He (Microsoft, 2020)

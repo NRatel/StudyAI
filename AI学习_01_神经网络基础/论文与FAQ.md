@@ -6,7 +6,7 @@
 
 ## 一、关键论文与里程碑（延伸阅读）
 
-以下论文构成了现代神经网络基础理论与工程实践的核心脉络。建议按时间顺序阅读，体会这个领域从概念萌芽到工程成熟的演进过程。
+以下论文构成了现代神经网络基础理论与工程实践的核心脉络。建议初学者优先阅读 Rumelhart et al. 1986（反向传播）和 Kingma & Ba 2015（Adam），这两篇分别奠定了"怎么训练"和"怎么优化"的基础，其余论文可按兴趣和需要选读。整体上建议按时间顺序阅读，体会这个领域从概念萌芽到工程成熟的演进过程。
 
 ### 1. Rosenblatt, 1958 — *The Perceptron: A Probabilistic Model for Information Storage and Organization in the Brain*
 

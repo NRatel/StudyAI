@@ -132,6 +132,8 @@ $$\text{MultiHead}(X) = \text{Concat}(\text{head}_1, \dots, \text{head}_h) \, W^
 
 **免费的午餐**：Multi-Head 的参数量和计算量与等效的 Single-Head（$d_k = d_{\text{model}}$）几乎完全相同。拆分不增加成本，却增加表达多样性。
 
+> **参数量直觉**：拆头后参数量基本不变。$d_{\text{model}}$ 被拆成 $h$ 个 $d_k$（$d_k = d_{\text{model}} / h$），每个头的投影矩阵 $W^Q_i, W^K_i, W^V_i$ 变小但一共有 $h$ 组。总参数 = $h \times 3 \times d_k \times d_{\text{model}} = 3 \times d_{\text{model}}^2$，加上输出投影 $W^O$ 的 $d_{\text{model}}^2$，合计 $4 \times d_{\text{model}}^2$，与单头完全一致。拆头只改变了计算结构，没有改变参数规模。
+
 ### 2.5 掩码注意力（Masked / Causal Attention）
 
 在 softmax 之前，将未来位置的分数设为 $-\infty$：
