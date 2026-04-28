@@ -120,14 +120,14 @@
 <a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_10_%E5%A4%9A%E6%A8%A1%E6%80%81%E6%A8%A1%E5%9E%8B/%E8%AE%BA%E6%96%87%E4%B8%8EFAQ.html">论文与FAQ<small>论文与FAQ</small></a>
 <a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_10_%E5%A4%9A%E6%A8%A1%E6%80%81%E6%A8%A1%E5%9E%8B/%E6%97%B6%E6%95%88%E6%80%A7%E8%AF%B4%E6%98%8E.html">时效性说明<small>时效性说明</small></a>
 </details>
-<details>
+<details open>
 <summary>11 推理与思维链</summary>
 <a class="doc-link" href="README.html">README<small>11 推理与思维链</small></a>
 <a class="doc-link" href="1_%E6%80%9D%E7%BB%B4%E9%93%BE%E6%8F%90%E7%A4%BA.html">1_思维链提示<small>思维链提示</small></a>
 <a class="doc-link" href="2_%E9%AB%98%E7%BA%A7%E6%8E%A8%E7%90%86%E6%96%B9%E6%B3%95.html">2_高级推理方法<small>高级推理方法</small></a>
 <a class="doc-link" href="3_%E6%8E%A8%E7%90%86%E6%A8%A1%E5%9E%8B%E4%B8%8ETTC.html">3_推理模型与TTC<small>推理模型与 Test-time Compute Scaling</small></a>
 <a class="doc-link" href="%E8%AE%BA%E6%96%87%E4%B8%8EFAQ.html">论文与FAQ<small>论文与FAQ</small></a>
-<a class="doc-link active" href="%E6%97%B6%E6%95%88%E6%80%A7%E8%AF%B4%E6%98%8E.html">时效性说明<small>时效性说明</small></a>
+<a class="doc-link active" aria-current="page" href="%E6%97%B6%E6%95%88%E6%80%A7%E8%AF%B4%E6%98%8E.html">时效性说明<small>时效性说明</small></a>
 </details>
 <details>
 <summary>12 Agent与工具使用</summary>
@@ -188,6 +188,18 @@
     body.classList.toggle("sidebar-open", open);
     if (toggle) {
       toggle.setAttribute("aria-expanded", open ? "true" : "false");
+    }
+    if (open) {
+      const activeLink = document.querySelector(".doc-link.active");
+      if (activeLink) {
+        const activeSection = activeLink.closest("details");
+        if (activeSection) {
+          activeSection.open = true;
+        }
+        requestAnimationFrame(() => {
+          activeLink.scrollIntoView({ block: "nearest" });
+        });
+      }
     }
   }
 

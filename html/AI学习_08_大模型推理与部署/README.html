@@ -95,9 +95,9 @@
 <a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_07_%E5%A4%A7%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83%E6%8A%80%E6%9C%AF/4_%E5%AF%B9%E9%BD%90%E8%AE%AD%E7%BB%83%E5%AE%9E%E8%B7%B5.html">4_对齐训练实践<small>对齐训练实践</small></a>
 <a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_07_%E5%A4%A7%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83%E6%8A%80%E6%9C%AF/%E8%AE%BA%E6%96%87%E4%B8%8EFAQ.html">论文与FAQ<small>论文与 FAQ</small></a>
 </details>
-<details>
+<details open>
 <summary>08 大模型推理与部署</summary>
-<a class="doc-link active" href="README.html">README<small>08 大模型推理与部署</small></a>
+<a class="doc-link active" aria-current="page" href="README.html">README<small>08 大模型推理与部署</small></a>
 <a class="doc-link" href="1_KVCache%E4%B8%8E%E6%8E%A8%E7%90%86%E4%BC%98%E5%8C%96.html">1_KVCache与推理优化<small>KV Cache 与推理优化</small></a>
 <a class="doc-link" href="2_%E9%87%8F%E5%8C%96%E6%8A%80%E6%9C%AF.html">2_量化技术<small>量化技术</small></a>
 <a class="doc-link" href="3_%E6%8E%A8%E7%90%86%E6%A1%86%E6%9E%B6%E4%B8%8E%E9%83%A8%E7%BD%B2.html">3_推理框架与部署<small>推理框架与部署</small></a>
@@ -202,6 +202,18 @@
     body.classList.toggle("sidebar-open", open);
     if (toggle) {
       toggle.setAttribute("aria-expanded", open ? "true" : "false");
+    }
+    if (open) {
+      const activeLink = document.querySelector(".doc-link.active");
+      if (activeLink) {
+        const activeSection = activeLink.closest("details");
+        if (activeSection) {
+          activeSection.open = true;
+        }
+        requestAnimationFrame(() => {
+          activeLink.scrollIntoView({ block: "nearest" });
+        });
+      }
     }
   }
 

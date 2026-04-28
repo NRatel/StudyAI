@@ -138,11 +138,11 @@
 <a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_12_Agent%E4%B8%8E%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/%E8%AE%BA%E6%96%87%E4%B8%8EFAQ.html">论文与FAQ<small>论文与FAQ</small></a>
 <a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_12_Agent%E4%B8%8E%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/%E6%97%B6%E6%95%88%E6%80%A7%E8%AF%B4%E6%98%8E.html">时效性说明<small>时效性说明</small></a>
 </details>
-<details>
+<details open>
 <summary>13 长文本与高效架构</summary>
 <a class="doc-link" href="README.html">README<small>13 长文本与高效架构</small></a>
 <a class="doc-link" href="1_%E9%95%BF%E6%96%87%E6%9C%AC%E6%8A%80%E6%9C%AF.html">1_长文本技术<small>长文本技术</small></a>
-<a class="doc-link active" href="2_MoE%E6%9E%B6%E6%9E%84.html">2_MoE架构<small>Mixture of Experts（MoE）架构</small></a>
+<a class="doc-link active" aria-current="page" href="2_MoE%E6%9E%B6%E6%9E%84.html">2_MoE架构<small>Mixture of Experts（MoE）架构</small></a>
 <a class="doc-link" href="3_%E9%AB%98%E6%95%88Transformer.html">3_高效Transformer<small>高效 Transformer 变体</small></a>
 <a class="doc-link" href="%E8%AE%BA%E6%96%87%E4%B8%8EFAQ.html">论文与FAQ<small>论文与FAQ</small></a>
 <a class="doc-link" href="%E6%97%B6%E6%95%88%E6%80%A7%E8%AF%B4%E6%98%8E.html">时效性说明<small>时效性说明</small></a>
@@ -286,6 +286,18 @@ DeepSeek-V2: 160 个小专家, 选 6 个 → 组合方式 C(160,6) ≈ 2.1 亿�
     body.classList.toggle("sidebar-open", open);
     if (toggle) {
       toggle.setAttribute("aria-expanded", open ? "true" : "false");
+    }
+    if (open) {
+      const activeLink = document.querySelector(".doc-link.active");
+      if (activeLink) {
+        const activeSection = activeLink.closest("details");
+        if (activeSection) {
+          activeSection.open = true;
+        }
+        requestAnimationFrame(() => {
+          activeLink.scrollIntoView({ block: "nearest" });
+        });
+      }
     }
   }
 

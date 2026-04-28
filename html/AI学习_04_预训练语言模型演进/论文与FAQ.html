@@ -59,14 +59,14 @@
 <a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_03_%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%9C%BA%E5%88%B6%E4%B8%8ETransformer/4_%E4%BD%8D%E7%BD%AE%E7%BC%96%E7%A0%81.html">4_位置编码<small>位置编码</small></a>
 <a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_03_%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%9C%BA%E5%88%B6%E4%B8%8ETransformer/%E8%AE%BA%E6%96%87%E4%B8%8EFAQ.html">论文与FAQ<small>论文与FAQ</small></a>
 </details>
-<details>
+<details open>
 <summary>04 预训练语言模型演进</summary>
 <a class="doc-link" href="README.html">README<small>04 预训练语言模型演进</small></a>
 <a class="doc-link" href="1_%E8%AF%8D%E8%A1%A8%E7%A4%BA%E7%9A%84%E6%BC%94%E8%BF%9B.html">1_词表示的演进<small>词表示的演进</small></a>
 <a class="doc-link" href="2_%E8%87%AA%E7%9B%91%E7%9D%A3%E9%A2%84%E8%AE%AD%E7%BB%83%E8%8C%83%E5%BC%8F.html">2_自监督预训练范式<small>自监督预训练范式</small></a>
 <a class="doc-link" href="3_BERT%E4%B8%8EGPT.html">3_BERT与GPT<small>BERT 与 GPT：两大路线</small></a>
 <a class="doc-link" href="4_%E5%BE%AE%E8%B0%83%E4%B8%8E%E8%BF%81%E7%A7%BB%E5%AD%A6%E4%B9%A0.html">4_微调与迁移学习<small>微调与迁移学习</small></a>
-<a class="doc-link active" href="%E8%AE%BA%E6%96%87%E4%B8%8EFAQ.html">论文与FAQ<small>论文与FAQ</small></a>
+<a class="doc-link active" aria-current="page" href="%E8%AE%BA%E6%96%87%E4%B8%8EFAQ.html">论文与FAQ<small>论文与FAQ</small></a>
 </details>
 <details>
 <summary>05 GPT系列深度解析</summary>
@@ -251,6 +251,18 @@
     body.classList.toggle("sidebar-open", open);
     if (toggle) {
       toggle.setAttribute("aria-expanded", open ? "true" : "false");
+    }
+    if (open) {
+      const activeLink = document.querySelector(".doc-link.active");
+      if (activeLink) {
+        const activeSection = activeLink.closest("details");
+        if (activeSection) {
+          activeSection.open = true;
+        }
+        requestAnimationFrame(() => {
+          activeLink.scrollIntoView({ block: "nearest" });
+        });
+      }
     }
   }
 

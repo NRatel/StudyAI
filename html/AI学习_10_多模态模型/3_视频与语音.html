@@ -111,12 +111,12 @@
 <a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_09_RAG%E4%B8%8E%E5%BA%94%E7%94%A8%E6%9E%B6%E6%9E%84/3_%E9%AB%98%E7%BA%A7RAG%E6%8A%80%E6%9C%AF.html">3_高级RAG技术<small>高级 RAG 技术</small></a>
 <a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_09_RAG%E4%B8%8E%E5%BA%94%E7%94%A8%E6%9E%B6%E6%9E%84/%E8%AE%BA%E6%96%87%E4%B8%8EFAQ.html">论文与FAQ<small>论文与FAQ</small></a>
 </details>
-<details>
+<details open>
 <summary>10 多模态模型</summary>
 <a class="doc-link" href="README.html">README<small>10 多模态模型</small></a>
 <a class="doc-link" href="1_ViT%E4%B8%8ECLIP.html">1_ViT与CLIP<small>ViT 与 CLIP</small></a>
 <a class="doc-link" href="2_%E5%A4%9A%E6%A8%A1%E6%80%81%E5%A4%A7%E6%A8%A1%E5%9E%8B.html">2_多模态大模型<small>多模态大模型</small></a>
-<a class="doc-link active" href="3_%E8%A7%86%E9%A2%91%E4%B8%8E%E8%AF%AD%E9%9F%B3.html">3_视频与语音<small>视频与语音</small></a>
+<a class="doc-link active" aria-current="page" href="3_%E8%A7%86%E9%A2%91%E4%B8%8E%E8%AF%AD%E9%9F%B3.html">3_视频与语音<small>视频与语音</small></a>
 <a class="doc-link" href="%E8%AE%BA%E6%96%87%E4%B8%8EFAQ.html">论文与FAQ<small>论文与FAQ</small></a>
 <a class="doc-link" href="%E6%97%B6%E6%95%88%E6%80%A7%E8%AF%B4%E6%98%8E.html">时效性说明<small>时效性说明</small></a>
 </details>
@@ -473,6 +473,18 @@ Hello, how are you?      ← 生成的文本
     body.classList.toggle("sidebar-open", open);
     if (toggle) {
       toggle.setAttribute("aria-expanded", open ? "true" : "false");
+    }
+    if (open) {
+      const activeLink = document.querySelector(".doc-link.active");
+      if (activeLink) {
+        const activeSection = activeLink.closest("details");
+        if (activeSection) {
+          activeSection.open = true;
+        }
+        requestAnimationFrame(() => {
+          activeLink.scrollIntoView({ block: "nearest" });
+        });
+      }
     }
   }
 

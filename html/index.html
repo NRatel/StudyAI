@@ -163,6 +163,18 @@
     if (toggle) {
       toggle.setAttribute("aria-expanded", open ? "true" : "false");
     }
+    if (open) {
+      const activeLink = document.querySelector(".doc-link.active");
+      if (activeLink) {
+        const activeSection = activeLink.closest("details");
+        if (activeSection) {
+          activeSection.open = true;
+        }
+        requestAnimationFrame(() => {
+          activeLink.scrollIntoView({ block: "nearest" });
+        });
+      }
+    }
   }
 
   if (toggle) {

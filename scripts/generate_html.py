@@ -842,15 +842,19 @@ def render_sidebar(
     for doc in docs:
         modules.setdefault(doc.module, []).append(doc)
 
+    current_module = current_doc.module if current_doc else None
     module_parts: list[str] = []
     for module, module_docs in modules.items():
-        module_parts.append("<details>")
+        is_current_module = module == current_module
+        module_parts.append(f'<details{" open" if is_current_module else ""}>')
         module_parts.append(f"<summary>{html.escape(display_module_name(module))}</summary>")
         for doc in module_docs:
             active = current_doc is not None and doc.source == current_doc.source
             href = relative_link(current_output, doc.output)
+            active_class = " active" if active else ""
+            current_attr = ' aria-current="page"' if active else ""
             module_parts.append(
-                f'<a class="doc-link{" active" if active else ""}" href="{href}">'
+                f'<a class="doc-link{active_class}"{current_attr} href="{href}">'
                 f"{html.escape(doc.source.stem)}"
                 f"<small>{html.escape(display_title(doc.title))}</small>"
                 "</a>"
@@ -1052,6 +1056,18 @@ def sidebar_script() -> str:
     body.classList.toggle("sidebar-open", open);
     if (toggle) {
       toggle.setAttribute("aria-expanded", open ? "true" : "false");
+    }
+    if (open) {
+      const activeLink = document.querySelector(".doc-link.active");
+      if (activeLink) {
+        const activeSection = activeLink.closest("details");
+        if (activeSection) {
+          activeSection.open = true;
+        }
+        requestAnimationFrame(() => {
+          activeLink.scrollIntoView({ block: "nearest" });
+        });
+      }
     }
   }
 
