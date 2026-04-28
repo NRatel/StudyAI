@@ -15,11 +15,14 @@
 </head>
 <body>
   <header class="topbar">
-    <a class="brand" href="../index.html"><span class="brand-mark">AI</span><span>AI学习 HTML 预览</span></a>
+    <button class="sidebar-toggle" type="button" aria-controls="site-toc" aria-expanded="false" data-sidebar-toggle>
+      <span class="sidebar-toggle-icon" aria-hidden="true"></span><span>目录</span>
+    </button>
+    <a class="brand" href="../index.html"><span class="brand-mark">AI</span><span>AI学习</span></a>
     <span class="crumb">06 生成模型与扩散模型 / 1_生成模型谱系.md</span>
   </header>
   <div class="shell doc-shell">
-    <aside class="toc"><div class="toc-title">完整目录</div><nav class="site-tree"><details>
+    <aside class="toc" id="site-toc" aria-label="完整目录"><div class="toc-header"><div class="toc-title">完整目录</div><button class="toc-close" type="button" aria-label="收起目录" data-sidebar-close>&times;</button></div><nav class="site-tree"><details>
 <summary>总览与附录</summary>
 <a class="doc-link" href="../README.html">README<small>StudyAI — AI 及大模型原理系统学习教材</small></a>
 <a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0%E7%9B%AE%E5%BD%95%E7%B4%A2%E5%BC%95.html">AI学习目录索引<small>AI 及大模型原理 — 学习目录索引</small></a>
@@ -74,7 +77,7 @@
 <a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_05_GPT%E7%B3%BB%E5%88%97%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90/4_GPT4%E4%B9%8B%E5%90%8E%E7%9A%84%E6%BC%94%E8%BF%9B.html">4_GPT4之后的演进<small>GPT-4 之后的演进（截至 2026.4）</small></a>
 <a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_05_GPT%E7%B3%BB%E5%88%97%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90/%E8%AE%BA%E6%96%87%E4%B8%8EFAQ.html">论文与FAQ<small>论文与FAQ</small></a>
 </details>
-<details open>
+<details>
 <summary>06 生成模型与扩散模型</summary>
 <a class="doc-link" href="README.html">README<small>06 生成模型与扩散模型</small></a>
 <a class="doc-link active" href="1_%E7%94%9F%E6%88%90%E6%A8%A1%E5%9E%8B%E8%B0%B1%E7%B3%BB.html">1_生成模型谱系<small>生成模型谱系</small></a>
@@ -143,7 +146,7 @@
 <a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_13_%E9%95%BF%E6%96%87%E6%9C%AC%E4%B8%8E%E9%AB%98%E6%95%88%E6%9E%B6%E6%9E%84/3_%E9%AB%98%E6%95%88Transformer.html">3_高效Transformer<small>高效 Transformer 变体</small></a>
 <a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_13_%E9%95%BF%E6%96%87%E6%9C%AC%E4%B8%8E%E9%AB%98%E6%95%88%E6%9E%B6%E6%9E%84/%E8%AE%BA%E6%96%87%E4%B8%8EFAQ.html">论文与FAQ<small>论文与FAQ</small></a>
 <a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_13_%E9%95%BF%E6%96%87%E6%9C%AC%E4%B8%8E%E9%AB%98%E6%95%88%E6%9E%B6%E6%9E%84/%E6%97%B6%E6%95%88%E6%80%A7%E8%AF%B4%E6%98%8E.html">时效性说明<small>时效性说明</small></a>
-</details></nav><div class="sidebar-rule"></div><details class="page-toc" open><summary>当前页目录</summary><a class="depth-2" href="#1-生成模型到底在学什么">1. 生成模型到底在学什么</a>
+</details></nav><div class="sidebar-rule"></div><details class="page-toc"><summary>当前页目录</summary><a class="depth-2" href="#1-生成模型到底在学什么">1. 生成模型到底在学什么</a>
 <a class="depth-3" href="#11-判别模型-vs-生成模型">1.1 判别模型 vs 生成模型</a>
 <a class="depth-3" href="#12-为什么生成模型重要">1.2 为什么生成模型重要？</a>
 <a class="depth-3" href="#13-四大生成模型流派">1.3 四大生成模型流派</a>
@@ -166,6 +169,7 @@
 <a class="depth-3" href="#24-对比总结表">2.4 对比总结表</a>
 <a class="depth-2" href="#本节小结">本节小结</a>
 <a class="depth-3" href="#为什么扩散模型最终成为主线">为什么扩散模型最终成为主线</a></details></aside>
+    <div class="toc-backdrop" data-sidebar-backdrop></div>
     <main class="page">
       <article class="markdown-body">
 <h1 id="生成模型谱系">生成模型谱系</h1>
@@ -278,5 +282,44 @@
       <nav class="doc-nav"><a href="README.html">← 06 生成模型与扩散模型</a><a href="2_%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B%E5%8E%9F%E7%90%86.html">扩散模型原理 →</a></nav>
     </main>
   </div>
+  <script>
+(() => {
+  const body = document.body;
+  const toggle = document.querySelector("[data-sidebar-toggle]");
+  const closeButton = document.querySelector("[data-sidebar-close]");
+  const backdrop = document.querySelector("[data-sidebar-backdrop]");
+  const links = document.querySelectorAll(".toc a");
+  const mobileQuery = window.matchMedia("(max-width: 920px)");
+
+  function setSidebar(open) {
+    body.classList.toggle("sidebar-open", open);
+    if (toggle) {
+      toggle.setAttribute("aria-expanded", open ? "true" : "false");
+    }
+  }
+
+  if (toggle) {
+    toggle.addEventListener("click", () => setSidebar(!body.classList.contains("sidebar-open")));
+  }
+  if (closeButton) {
+    closeButton.addEventListener("click", () => setSidebar(false));
+  }
+  if (backdrop) {
+    backdrop.addEventListener("click", () => setSidebar(false));
+  }
+  links.forEach((link) => {
+    link.addEventListener("click", () => {
+      if (mobileQuery.matches) {
+        setSidebar(false);
+      }
+    });
+  });
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") {
+      setSidebar(false);
+    }
+  });
+})();
+</script>
 </body>
 </html>

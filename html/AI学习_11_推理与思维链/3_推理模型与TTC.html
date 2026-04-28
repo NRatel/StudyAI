@@ -15,11 +15,14 @@
 </head>
 <body>
   <header class="topbar">
-    <a class="brand" href="../index.html"><span class="brand-mark">AI</span><span>AI学习 HTML 预览</span></a>
+    <button class="sidebar-toggle" type="button" aria-controls="site-toc" aria-expanded="false" data-sidebar-toggle>
+      <span class="sidebar-toggle-icon" aria-hidden="true"></span><span>目录</span>
+    </button>
+    <a class="brand" href="../index.html"><span class="brand-mark">AI</span><span>AI学习</span></a>
     <span class="crumb">11 推理与思维链 / 3_推理模型与TTC.md</span>
   </header>
   <div class="shell doc-shell">
-    <aside class="toc"><div class="toc-title">完整目录</div><nav class="site-tree"><details>
+    <aside class="toc" id="site-toc" aria-label="完整目录"><div class="toc-header"><div class="toc-title">完整目录</div><button class="toc-close" type="button" aria-label="收起目录" data-sidebar-close>&times;</button></div><nav class="site-tree"><details>
 <summary>总览与附录</summary>
 <a class="doc-link" href="../README.html">README<small>StudyAI — AI 及大模型原理系统学习教材</small></a>
 <a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0%E7%9B%AE%E5%BD%95%E7%B4%A2%E5%BC%95.html">AI学习目录索引<small>AI 及大模型原理 — 学习目录索引</small></a>
@@ -117,7 +120,7 @@
 <a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_10_%E5%A4%9A%E6%A8%A1%E6%80%81%E6%A8%A1%E5%9E%8B/%E8%AE%BA%E6%96%87%E4%B8%8EFAQ.html">论文与FAQ<small>论文与FAQ</small></a>
 <a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_10_%E5%A4%9A%E6%A8%A1%E6%80%81%E6%A8%A1%E5%9E%8B/%E6%97%B6%E6%95%88%E6%80%A7%E8%AF%B4%E6%98%8E.html">时效性说明<small>时效性说明</small></a>
 </details>
-<details open>
+<details>
 <summary>11 推理与思维链</summary>
 <a class="doc-link" href="README.html">README<small>11 推理与思维链</small></a>
 <a class="doc-link" href="1_%E6%80%9D%E7%BB%B4%E9%93%BE%E6%8F%90%E7%A4%BA.html">1_思维链提示<small>思维链提示</small></a>
@@ -143,7 +146,7 @@
 <a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_13_%E9%95%BF%E6%96%87%E6%9C%AC%E4%B8%8E%E9%AB%98%E6%95%88%E6%9E%B6%E6%9E%84/3_%E9%AB%98%E6%95%88Transformer.html">3_高效Transformer<small>高效 Transformer 变体</small></a>
 <a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_13_%E9%95%BF%E6%96%87%E6%9C%AC%E4%B8%8E%E9%AB%98%E6%95%88%E6%9E%B6%E6%9E%84/%E8%AE%BA%E6%96%87%E4%B8%8EFAQ.html">论文与FAQ<small>论文与FAQ</small></a>
 <a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_13_%E9%95%BF%E6%96%87%E6%9C%AC%E4%B8%8E%E9%AB%98%E6%95%88%E6%9E%B6%E6%9E%84/%E6%97%B6%E6%95%88%E6%80%A7%E8%AF%B4%E6%98%8E.html">时效性说明<small>时效性说明</small></a>
-</details></nav><div class="sidebar-rule"></div><details class="page-toc" open><summary>当前页目录</summary><a class="depth-2" href="#一直觉两种-scaling-路线">一、直觉：两种 Scaling 路线</a>
+</details></nav><div class="sidebar-rule"></div><details class="page-toc"><summary>当前页目录</summary><a class="depth-2" href="#一直觉两种-scaling-路线">一、直觉：两种 Scaling 路线</a>
 <a class="depth-3" href="#11-回顾传统-scaling训练时计算">1.1 回顾：传统 Scaling（训练时计算）</a>
 <a class="depth-3" href="#12-新路线test-time-compute-scaling">1.2 新路线：Test-time Compute Scaling</a>
 <a class="depth-2" href="#二openai-o-系列推理模型">二、OpenAI o 系列推理模型</a>
@@ -176,6 +179,7 @@
 <a class="depth-2" href="#六推理技术全景图">六、推理技术全景图</a>
 <a class="depth-2" href="#本节小结">本节小结</a>
 <a class="depth-2" href="#时效性说明">时效性说明</a></details></aside>
+    <div class="toc-backdrop" data-sidebar-backdrop></div>
     <main class="page">
       <article class="markdown-body">
 <h1 id="推理模型与-test-time-compute-scaling">推理模型与 Test-time Compute Scaling</h1>
@@ -439,5 +443,44 @@ PRM:  问题 → 步骤1 → 步骤2 → 步骤3 → ... → 最终答案
       <nav class="doc-nav"><a href="2_%E9%AB%98%E7%BA%A7%E6%8E%A8%E7%90%86%E6%96%B9%E6%B3%95.html">← 高级推理方法</a><a href="%E8%AE%BA%E6%96%87%E4%B8%8EFAQ.html">论文与FAQ →</a></nav>
     </main>
   </div>
+  <script>
+(() => {
+  const body = document.body;
+  const toggle = document.querySelector("[data-sidebar-toggle]");
+  const closeButton = document.querySelector("[data-sidebar-close]");
+  const backdrop = document.querySelector("[data-sidebar-backdrop]");
+  const links = document.querySelectorAll(".toc a");
+  const mobileQuery = window.matchMedia("(max-width: 920px)");
+
+  function setSidebar(open) {
+    body.classList.toggle("sidebar-open", open);
+    if (toggle) {
+      toggle.setAttribute("aria-expanded", open ? "true" : "false");
+    }
+  }
+
+  if (toggle) {
+    toggle.addEventListener("click", () => setSidebar(!body.classList.contains("sidebar-open")));
+  }
+  if (closeButton) {
+    closeButton.addEventListener("click", () => setSidebar(false));
+  }
+  if (backdrop) {
+    backdrop.addEventListener("click", () => setSidebar(false));
+  }
+  links.forEach((link) => {
+    link.addEventListener("click", () => {
+      if (mobileQuery.matches) {
+        setSidebar(false);
+      }
+    });
+  });
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") {
+      setSidebar(false);
+    }
+  });
+})();
+</script>
 </body>
 </html>

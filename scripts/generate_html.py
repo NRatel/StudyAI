@@ -118,6 +118,55 @@ a:hover {
   white-space: nowrap;
 }
 
+.sidebar-toggle {
+  display: none;
+  align-items: center;
+  gap: 0.42rem;
+  min-height: 36px;
+  padding: 0 0.68rem;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  color: var(--ink);
+  background: #fff;
+  font: inherit;
+  font-size: 0.9rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.sidebar-toggle:hover {
+  background: #f3f6fb;
+}
+
+.sidebar-toggle-icon,
+.sidebar-toggle-icon::before,
+.sidebar-toggle-icon::after {
+  display: block;
+  width: 15px;
+  height: 2px;
+  border-radius: 999px;
+  background: currentColor;
+}
+
+.sidebar-toggle-icon {
+  position: relative;
+}
+
+.sidebar-toggle-icon::before,
+.sidebar-toggle-icon::after {
+  position: absolute;
+  left: 0;
+  content: "";
+}
+
+.sidebar-toggle-icon::before {
+  top: -5px;
+}
+
+.sidebar-toggle-icon::after {
+  top: 5px;
+}
+
 .shell {
   display: grid;
   grid-template-columns: minmax(0, 1fr);
@@ -142,13 +191,45 @@ a:hover {
   background: rgba(255, 255, 255, 0.82);
 }
 
-.toc-title {
+.toc-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
   margin-bottom: 0.55rem;
+}
+
+.toc-title {
+  margin: 0;
   color: var(--muted);
   font-size: 0.8rem;
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
+}
+
+.toc-close {
+  display: none;
+  width: 32px;
+  height: 32px;
+  place-items: center;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  color: var(--muted);
+  background: #fff;
+  font: inherit;
+  font-size: 1.15rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.toc-close:hover {
+  color: var(--ink);
+  background: #f3f6fb;
+}
+
+.toc-backdrop {
+  display: none;
 }
 
 .site-tree details,
@@ -482,13 +563,69 @@ tr:last-child td {
 }
 
 @media (max-width: 920px) {
+  body.sidebar-open {
+    overflow: hidden;
+  }
+
+  .sidebar-toggle {
+    display: inline-flex;
+  }
+
+  .brand {
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+
+  .brand span:last-child,
+  .crumb {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
   .doc-shell {
     grid-template-columns: 1fr;
   }
 
   .toc {
-    position: static;
+    position: fixed;
+    inset: 0 auto 0 0;
+    z-index: 40;
+    width: min(84vw, 340px);
+    height: 100dvh;
     max-height: none;
+    padding: 1rem;
+    border: 0;
+    border-right: 1px solid var(--line);
+    border-radius: 0;
+    background: rgba(255, 255, 255, 0.98);
+    box-shadow: 18px 0 46px rgba(17, 24, 39, 0.16);
+    transform: translateX(-100%);
+    transition: transform 180ms ease;
+  }
+
+  body.sidebar-open .toc {
+    transform: translateX(0);
+  }
+
+  .toc-close {
+    display: grid;
+  }
+
+  .toc-backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 35;
+    display: block;
+    background: rgba(15, 23, 42, 0.36);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 180ms ease;
+  }
+
+  body.sidebar-open .toc-backdrop {
+    opacity: 1;
+    pointer-events: auto;
   }
 
   .page {
@@ -705,11 +842,9 @@ def render_sidebar(
     for doc in docs:
         modules.setdefault(doc.module, []).append(doc)
 
-    current_module = current_doc.module if current_doc else None
     module_parts: list[str] = []
     for module, module_docs in modules.items():
-        is_open = current_module is None or module == current_module
-        module_parts.append(f'<details{" open" if is_open else ""}>')
+        module_parts.append("<details>")
         module_parts.append(f"<summary>{html.escape(display_module_name(module))}</summary>")
         for doc in module_docs:
             active = current_doc is not None and doc.source == current_doc.source
@@ -735,15 +870,18 @@ def render_sidebar(
         if toc_links:
             page_toc = (
                 '<div class="sidebar-rule"></div>'
-                '<details class="page-toc" open>'
+                '<details class="page-toc">'
                 "<summary>当前页目录</summary>"
                 + "\n".join(toc_links)
                 + "</details>"
             )
 
     return (
-        '<aside class="toc">'
+        '<aside class="toc" id="site-toc" aria-label="完整目录">'
+        '<div class="toc-header">'
         '<div class="toc-title">完整目录</div>'
+        '<button class="toc-close" type="button" aria-label="收起目录" data-sidebar-close>&times;</button>'
+        "</div>"
         '<nav class="site-tree">'
         + "\n".join(module_parts)
         + "</nav>"
@@ -900,6 +1038,48 @@ def relative_link(from_path: Path, to_path: Path) -> str:
     return quote(os.path.relpath(to_path, from_path.parent).replace(os.sep, "/"), safe="/#:._-%")
 
 
+def sidebar_script() -> str:
+    return """<script>
+(() => {
+  const body = document.body;
+  const toggle = document.querySelector("[data-sidebar-toggle]");
+  const closeButton = document.querySelector("[data-sidebar-close]");
+  const backdrop = document.querySelector("[data-sidebar-backdrop]");
+  const links = document.querySelectorAll(".toc a");
+  const mobileQuery = window.matchMedia("(max-width: 920px)");
+
+  function setSidebar(open) {
+    body.classList.toggle("sidebar-open", open);
+    if (toggle) {
+      toggle.setAttribute("aria-expanded", open ? "true" : "false");
+    }
+  }
+
+  if (toggle) {
+    toggle.addEventListener("click", () => setSidebar(!body.classList.contains("sidebar-open")));
+  }
+  if (closeButton) {
+    closeButton.addEventListener("click", () => setSidebar(false));
+  }
+  if (backdrop) {
+    backdrop.addEventListener("click", () => setSidebar(false));
+  }
+  links.forEach((link) => {
+    link.addEventListener("click", () => {
+      if (mobileQuery.matches) {
+        setSidebar(false);
+      }
+    });
+  });
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") {
+      setSidebar(false);
+    }
+  });
+})();
+</script>"""
+
+
 def render_doc(doc: Document, docs: list[Document], output_root: Path) -> None:
     body, headings = markdown_to_html(doc.source, doc.output, output_root)
     css_href = relative_link(doc.output, output_root / "assets" / "study.css")
@@ -938,11 +1118,15 @@ def render_doc(doc: Document, docs: list[Document], output_root: Path) -> None:
 </head>
 <body>
   <header class="topbar">
-    <a class="brand" href="{index_href}"><span class="brand-mark">AI</span><span>AI学习 HTML 预览</span></a>
+    <button class="sidebar-toggle" type="button" aria-controls="site-toc" aria-expanded="false" data-sidebar-toggle>
+      <span class="sidebar-toggle-icon" aria-hidden="true"></span><span>目录</span>
+    </button>
+    <a class="brand" href="{index_href}"><span class="brand-mark">AI</span><span>AI学习</span></a>
     <span class="crumb">{html.escape(display_module_name(doc.module))} / {html.escape(doc.source.name)}</span>
   </header>
   <div class="shell doc-shell">
     {sidebar}
+    <div class="toc-backdrop" data-sidebar-backdrop></div>
     <main class="page">
       <article class="markdown-body">
 {body}
@@ -950,6 +1134,7 @@ def render_doc(doc: Document, docs: list[Document], output_root: Path) -> None:
       {''.join(nav)}
     </main>
   </div>
+  {sidebar_script()}
 </body>
 </html>
 """
@@ -981,24 +1166,29 @@ def render_index(docs: list[Document], output_root: Path) -> None:
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>AI学习 HTML 预览</title>
+  <title>AI学习</title>
   <link rel="stylesheet" href="assets/study.css">
 </head>
 <body>
   <header class="topbar">
-    <a class="brand" href="index.html"><span class="brand-mark">AI</span><span>AI学习 HTML 预览</span></a>
+    <button class="sidebar-toggle" type="button" aria-controls="site-toc" aria-expanded="false" data-sidebar-toggle>
+      <span class="sidebar-toggle-icon" aria-hidden="true"></span><span>目录</span>
+    </button>
+    <a class="brand" href="index.html"><span class="brand-mark">AI</span><span>AI学习</span></a>
     <span class="crumb">已生成 {module_count} 个模块 + 总览附录，{len(docs)} 个文档</span>
   </header>
   <div class="shell doc-shell">
     {render_sidebar(docs, None, output_root / "index.html", output_root)}
+    <div class="toc-backdrop" data-sidebar-backdrop></div>
     <main>
       <section class="index-hero">
-        <h1>AI学习 HTML 预览</h1>
+        <h1>AI学习</h1>
         <p>这是从 Markdown 生成的 HTML 版本。可通过左侧完整目录浏览总览、附录和各学习模块。</p>
       </section>
       {''.join(cards)}
     </main>
   </div>
+  {sidebar_script()}
 </body>
 </html>
 """

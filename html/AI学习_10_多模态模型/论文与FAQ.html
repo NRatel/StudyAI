@@ -15,11 +15,14 @@
 </head>
 <body>
   <header class="topbar">
-    <a class="brand" href="../index.html"><span class="brand-mark">AI</span><span>AI学习 HTML 预览</span></a>
+    <button class="sidebar-toggle" type="button" aria-controls="site-toc" aria-expanded="false" data-sidebar-toggle>
+      <span class="sidebar-toggle-icon" aria-hidden="true"></span><span>目录</span>
+    </button>
+    <a class="brand" href="../index.html"><span class="brand-mark">AI</span><span>AI学习</span></a>
     <span class="crumb">10 多模态模型 / 论文与FAQ.md</span>
   </header>
   <div class="shell doc-shell">
-    <aside class="toc"><div class="toc-title">完整目录</div><nav class="site-tree"><details>
+    <aside class="toc" id="site-toc" aria-label="完整目录"><div class="toc-header"><div class="toc-title">完整目录</div><button class="toc-close" type="button" aria-label="收起目录" data-sidebar-close>&times;</button></div><nav class="site-tree"><details>
 <summary>总览与附录</summary>
 <a class="doc-link" href="../README.html">README<small>StudyAI — AI 及大模型原理系统学习教材</small></a>
 <a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0%E7%9B%AE%E5%BD%95%E7%B4%A2%E5%BC%95.html">AI学习目录索引<small>AI 及大模型原理 — 学习目录索引</small></a>
@@ -108,7 +111,7 @@
 <a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_09_RAG%E4%B8%8E%E5%BA%94%E7%94%A8%E6%9E%B6%E6%9E%84/3_%E9%AB%98%E7%BA%A7RAG%E6%8A%80%E6%9C%AF.html">3_高级RAG技术<small>高级 RAG 技术</small></a>
 <a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_09_RAG%E4%B8%8E%E5%BA%94%E7%94%A8%E6%9E%B6%E6%9E%84/%E8%AE%BA%E6%96%87%E4%B8%8EFAQ.html">论文与FAQ<small>论文与FAQ</small></a>
 </details>
-<details open>
+<details>
 <summary>10 多模态模型</summary>
 <a class="doc-link" href="README.html">README<small>10 多模态模型</small></a>
 <a class="doc-link" href="1_ViT%E4%B8%8ECLIP.html">1_ViT与CLIP<small>ViT 与 CLIP</small></a>
@@ -143,7 +146,7 @@
 <a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_13_%E9%95%BF%E6%96%87%E6%9C%AC%E4%B8%8E%E9%AB%98%E6%95%88%E6%9E%B6%E6%9E%84/3_%E9%AB%98%E6%95%88Transformer.html">3_高效Transformer<small>高效 Transformer 变体</small></a>
 <a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_13_%E9%95%BF%E6%96%87%E6%9C%AC%E4%B8%8E%E9%AB%98%E6%95%88%E6%9E%B6%E6%9E%84/%E8%AE%BA%E6%96%87%E4%B8%8EFAQ.html">论文与FAQ<small>论文与FAQ</small></a>
 <a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_13_%E9%95%BF%E6%96%87%E6%9C%AC%E4%B8%8E%E9%AB%98%E6%95%88%E6%9E%B6%E6%9E%84/%E6%97%B6%E6%95%88%E6%80%A7%E8%AF%B4%E6%98%8E.html">时效性说明<small>时效性说明</small></a>
-</details></nav><div class="sidebar-rule"></div><details class="page-toc" open><summary>当前页目录</summary><a class="depth-2" href="#一关键论文">一、关键论文</a>
+</details></nav><div class="sidebar-rule"></div><details class="page-toc"><summary>当前页目录</summary><a class="depth-2" href="#一关键论文">一、关键论文</a>
 <a class="depth-3" href="#主线论文脉络">主线论文脉络</a>
 <a class="depth-3" href="#时间线总览">时间线总览</a>
 <a class="depth-3" href="#逐篇简评">逐篇简评</a>
@@ -168,6 +171,7 @@
 <a class="depth-3" href="#4-sora-技术报告">4. Sora 技术报告</a>
 <a class="depth-3" href="#5-faster-whisper">5. faster-whisper</a>
 <a class="depth-2" href="#四本模块知识总图">四、本模块知识总图</a></details></aside>
+    <div class="toc-backdrop" data-sidebar-backdrop></div>
     <main class="page">
       <article class="markdown-body">
 <h1 id="论文与faq">论文与FAQ</h1>
@@ -416,5 +420,44 @@
       <nav class="doc-nav"><a href="3_%E8%A7%86%E9%A2%91%E4%B8%8E%E8%AF%AD%E9%9F%B3.html">← 视频与语音</a><a href="%E6%97%B6%E6%95%88%E6%80%A7%E8%AF%B4%E6%98%8E.html">时效性说明 →</a></nav>
     </main>
   </div>
+  <script>
+(() => {
+  const body = document.body;
+  const toggle = document.querySelector("[data-sidebar-toggle]");
+  const closeButton = document.querySelector("[data-sidebar-close]");
+  const backdrop = document.querySelector("[data-sidebar-backdrop]");
+  const links = document.querySelectorAll(".toc a");
+  const mobileQuery = window.matchMedia("(max-width: 920px)");
+
+  function setSidebar(open) {
+    body.classList.toggle("sidebar-open", open);
+    if (toggle) {
+      toggle.setAttribute("aria-expanded", open ? "true" : "false");
+    }
+  }
+
+  if (toggle) {
+    toggle.addEventListener("click", () => setSidebar(!body.classList.contains("sidebar-open")));
+  }
+  if (closeButton) {
+    closeButton.addEventListener("click", () => setSidebar(false));
+  }
+  if (backdrop) {
+    backdrop.addEventListener("click", () => setSidebar(false));
+  }
+  links.forEach((link) => {
+    link.addEventListener("click", () => {
+      if (mobileQuery.matches) {
+        setSidebar(false);
+      }
+    });
+  });
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") {
+      setSidebar(false);
+    }
+  });
+})();
+</script>
 </body>
 </html>
