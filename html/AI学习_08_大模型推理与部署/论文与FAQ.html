@@ -1,0 +1,393 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>论文与FAQ · AI学习</title>
+  <link rel="stylesheet" href="../assets/study.css">
+  <script>
+    window.MathJax = {
+      tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], displayMath: [['$$', '$$'], ['\\[', '\\]']] },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="../index.html"><span class="brand-mark">AI</span><span>AI学习 HTML 预览</span></a>
+    <span class="crumb">08 大模型推理与部署 / 论文与FAQ.md</span>
+  </header>
+  <div class="shell doc-shell">
+    <aside class="toc"><div class="toc-title">完整目录</div><nav class="site-tree"><details>
+<summary>总览与附录</summary>
+<a class="doc-link" href="../README.html">README<small>StudyAI — AI 及大模型原理系统学习教材</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0%E7%9B%AE%E5%BD%95%E7%B4%A2%E5%BC%95.html">AI学习目录索引<small>AI 及大模型原理 — 学习目录索引</small></a>
+<a class="doc-link" href="../%E6%95%B4%E4%BD%93%E7%9F%A5%E8%AF%86%E4%BD%93%E7%B3%BB%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE.html">整体知识体系思维导图<small>AI 及大模型原理 — 整体知识体系思维导图</small></a>
+<a class="doc-link" href="../%E9%99%84%E5%BD%95_%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%80%E9%80%9F%E8%A7%88.html">附录_数学基础速览<small>附录：数学基础速览</small></a>
+<a class="doc-link" href="../%E9%99%84%E5%BD%95_%E4%BB%A3%E7%A0%81%E7%A4%BA%E4%BE%8B%E9%9B%86.html">附录_代码示例集<small>附录：代码示例集（精选版）</small></a>
+</details>
+<details>
+<summary>01 神经网络基础</summary>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_01_%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/README.html">README<small>01 神经网络基础</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_01_%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/1_%E6%84%9F%E7%9F%A5%E6%9C%BA%E4%B8%8E%E5%A4%9A%E5%B1%82%E7%BD%91%E7%BB%9C.html">1_感知机与多层网络<small>感知机与多层网络</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_01_%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/2_%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0.html">2_激活函数<small>激活函数</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_01_%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/3_%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0.html">3_损失函数<small>损失函数</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_01_%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/4_%E5%8F%8D%E5%90%91%E4%BC%A0%E6%92%AD.html">4_反向传播<small>反向传播</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_01_%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/5_%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D%E4%B8%8E%E4%BC%98%E5%8C%96%E5%99%A8.html">5_梯度下降与优化器<small>梯度下降与优化器</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_01_%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/6_%E6%AD%A3%E5%88%99%E5%8C%96.html">6_正则化<small>正则化（Regularization）</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_01_%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/%E8%AE%BA%E6%96%87%E4%B8%8EFAQ.html">论文与FAQ<small>论文与FAQ</small></a>
+</details>
+<details>
+<summary>02 经典网络架构</summary>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_02_%E7%BB%8F%E5%85%B8%E7%BD%91%E7%BB%9C%E6%9E%B6%E6%9E%84/README.html">README<small>02 经典网络架构</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_02_%E7%BB%8F%E5%85%B8%E7%BD%91%E7%BB%9C%E6%9E%B6%E6%9E%84/1_CNN%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C.html">1_CNN卷积神经网络<small>CNN 卷积神经网络</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_02_%E7%BB%8F%E5%85%B8%E7%BD%91%E7%BB%9C%E6%9E%B6%E6%9E%84/2_RNN%E5%BE%AA%E7%8E%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C.html">2_RNN循环神经网络<small>RNN 循环神经网络</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_02_%E7%BB%8F%E5%85%B8%E7%BD%91%E7%BB%9C%E6%9E%B6%E6%9E%84/3_LSTM%E4%B8%8EGRU.html">3_LSTM与GRU<small>LSTM 与 GRU</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_02_%E7%BB%8F%E5%85%B8%E7%BD%91%E7%BB%9C%E6%9E%B6%E6%9E%84/4_%E7%BC%96%E7%A0%81%E5%99%A8%E8%A7%A3%E7%A0%81%E5%99%A8%E6%A1%86%E6%9E%B6.html">4_编码器解码器框架<small>编码器-解码器框架（Seq2Seq）</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_02_%E7%BB%8F%E5%85%B8%E7%BD%91%E7%BB%9C%E6%9E%B6%E6%9E%84/%E8%AE%BA%E6%96%87%E4%B8%8EFAQ.html">论文与FAQ<small>论文与FAQ</small></a>
+</details>
+<details>
+<summary>03 注意力机制与Transformer</summary>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_03_%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%9C%BA%E5%88%B6%E4%B8%8ETransformer/README.html">README<small>03 注意力机制与 Transformer</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_03_%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%9C%BA%E5%88%B6%E4%B8%8ETransformer/1_%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%9C%BA%E5%88%B6.html">1_注意力机制<small>注意力机制</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_03_%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%9C%BA%E5%88%B6%E4%B8%8ETransformer/2_SelfAttention%E4%B8%8EMultiHead.html">2_SelfAttention与MultiHead<small>Self-Attention 与 Multi-Head Attention</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_03_%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%9C%BA%E5%88%B6%E4%B8%8ETransformer/3_Transformer%E6%9E%B6%E6%9E%84.html">3_Transformer架构<small>Transformer 完整架构</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_03_%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%9C%BA%E5%88%B6%E4%B8%8ETransformer/4_%E4%BD%8D%E7%BD%AE%E7%BC%96%E7%A0%81.html">4_位置编码<small>位置编码</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_03_%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%9C%BA%E5%88%B6%E4%B8%8ETransformer/%E8%AE%BA%E6%96%87%E4%B8%8EFAQ.html">论文与FAQ<small>论文与FAQ</small></a>
+</details>
+<details>
+<summary>04 预训练语言模型演进</summary>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_04_%E9%A2%84%E8%AE%AD%E7%BB%83%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%BC%94%E8%BF%9B/README.html">README<small>04 预训练语言模型演进</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_04_%E9%A2%84%E8%AE%AD%E7%BB%83%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%BC%94%E8%BF%9B/1_%E8%AF%8D%E8%A1%A8%E7%A4%BA%E7%9A%84%E6%BC%94%E8%BF%9B.html">1_词表示的演进<small>词表示的演进</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_04_%E9%A2%84%E8%AE%AD%E7%BB%83%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%BC%94%E8%BF%9B/2_%E8%87%AA%E7%9B%91%E7%9D%A3%E9%A2%84%E8%AE%AD%E7%BB%83%E8%8C%83%E5%BC%8F.html">2_自监督预训练范式<small>自监督预训练范式</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_04_%E9%A2%84%E8%AE%AD%E7%BB%83%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%BC%94%E8%BF%9B/3_BERT%E4%B8%8EGPT.html">3_BERT与GPT<small>BERT 与 GPT：两大路线</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_04_%E9%A2%84%E8%AE%AD%E7%BB%83%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%BC%94%E8%BF%9B/4_%E5%BE%AE%E8%B0%83%E4%B8%8E%E8%BF%81%E7%A7%BB%E5%AD%A6%E4%B9%A0.html">4_微调与迁移学习<small>微调与迁移学习</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_04_%E9%A2%84%E8%AE%AD%E7%BB%83%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%BC%94%E8%BF%9B/%E8%AE%BA%E6%96%87%E4%B8%8EFAQ.html">论文与FAQ<small>论文与FAQ</small></a>
+</details>
+<details>
+<summary>05 GPT系列深度解析</summary>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_05_GPT%E7%B3%BB%E5%88%97%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90/README.html">README<small>05 GPT 系列深度解析</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_05_GPT%E7%B3%BB%E5%88%97%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90/1_GPT%E7%B3%BB%E5%88%97%E6%9E%B6%E6%9E%84%E6%BC%94%E8%BF%9B.html">1_GPT系列架构演进<small>GPT 系列架构演进</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_05_GPT%E7%B3%BB%E5%88%97%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90/2_ScalingLaws%E4%B8%8E%E6%B6%8C%E7%8E%B0.html">2_ScalingLaws与涌现<small>Scaling Laws 与涌现能力</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_05_GPT%E7%B3%BB%E5%88%97%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90/3_%E5%AF%B9%E9%BD%90%E6%8A%80%E6%9C%AF.html">3_对齐技术<small>对齐技术：从预训练到有用又安全</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_05_GPT%E7%B3%BB%E5%88%97%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90/4_GPT4%E4%B9%8B%E5%90%8E%E7%9A%84%E6%BC%94%E8%BF%9B.html">4_GPT4之后的演进<small>GPT-4 之后的演进（截至 2026.4）</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_05_GPT%E7%B3%BB%E5%88%97%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90/%E8%AE%BA%E6%96%87%E4%B8%8EFAQ.html">论文与FAQ<small>论文与FAQ</small></a>
+</details>
+<details>
+<summary>06 生成模型与扩散模型</summary>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_06_%E7%94%9F%E6%88%90%E6%A8%A1%E5%9E%8B%E4%B8%8E%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B/README.html">README<small>06 生成模型与扩散模型</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_06_%E7%94%9F%E6%88%90%E6%A8%A1%E5%9E%8B%E4%B8%8E%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B/1_%E7%94%9F%E6%88%90%E6%A8%A1%E5%9E%8B%E8%B0%B1%E7%B3%BB.html">1_生成模型谱系<small>生成模型谱系</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_06_%E7%94%9F%E6%88%90%E6%A8%A1%E5%9E%8B%E4%B8%8E%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B/2_%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B%E5%8E%9F%E7%90%86.html">2_扩散模型原理<small>扩散模型原理</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_06_%E7%94%9F%E6%88%90%E6%A8%A1%E5%9E%8B%E4%B8%8E%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B/3_%E6%9D%A1%E4%BB%B6%E7%94%9F%E6%88%90%E4%B8%8E%E5%BC%95%E5%AF%BC.html">3_条件生成与引导<small>条件生成与引导</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_06_%E7%94%9F%E6%88%90%E6%A8%A1%E5%9E%8B%E4%B8%8E%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B/4_%E6%9E%B6%E6%9E%84%E4%B8%8E%E5%BA%94%E7%94%A8.html">4_架构与应用<small>架构与应用</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_06_%E7%94%9F%E6%88%90%E6%A8%A1%E5%9E%8B%E4%B8%8E%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B/%E8%AE%BA%E6%96%87%E4%B8%8EFAQ.html">论文与FAQ<small>论文与FAQ</small></a>
+</details>
+<details>
+<summary>07 大模型训练技术</summary>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_07_%E5%A4%A7%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83%E6%8A%80%E6%9C%AF/README.html">README<small>07 大模型训练技术</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_07_%E5%A4%A7%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83%E6%8A%80%E6%9C%AF/1_%E5%88%86%E5%B8%83%E5%BC%8F%E8%AE%AD%E7%BB%83.html">1_分布式训练<small>分布式训练</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_07_%E5%A4%A7%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83%E6%8A%80%E6%9C%AF/2_%E6%B7%B7%E5%90%88%E7%B2%BE%E5%BA%A6%E4%B8%8E%E6%A1%86%E6%9E%B6.html">2_混合精度与框架<small>混合精度与训练框架</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_07_%E5%A4%A7%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83%E6%8A%80%E6%9C%AF/3_%E6%95%B0%E6%8D%AE%E5%B7%A5%E7%A8%8B%E4%B8%8ETokenizer.html">3_数据工程与Tokenizer<small>数据工程与 Tokenizer</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_07_%E5%A4%A7%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83%E6%8A%80%E6%9C%AF/4_%E5%AF%B9%E9%BD%90%E8%AE%AD%E7%BB%83%E5%AE%9E%E8%B7%B5.html">4_对齐训练实践<small>对齐训练实践</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_07_%E5%A4%A7%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83%E6%8A%80%E6%9C%AF/%E8%AE%BA%E6%96%87%E4%B8%8EFAQ.html">论文与FAQ<small>论文与 FAQ</small></a>
+</details>
+<details open>
+<summary>08 大模型推理与部署</summary>
+<a class="doc-link" href="README.html">README<small>08 大模型推理与部署</small></a>
+<a class="doc-link" href="1_KVCache%E4%B8%8E%E6%8E%A8%E7%90%86%E4%BC%98%E5%8C%96.html">1_KVCache与推理优化<small>KV Cache 与推理优化</small></a>
+<a class="doc-link" href="2_%E9%87%8F%E5%8C%96%E6%8A%80%E6%9C%AF.html">2_量化技术<small>量化技术</small></a>
+<a class="doc-link" href="3_%E6%8E%A8%E7%90%86%E6%A1%86%E6%9E%B6%E4%B8%8E%E9%83%A8%E7%BD%B2.html">3_推理框架与部署<small>推理框架与部署</small></a>
+<a class="doc-link active" href="%E8%AE%BA%E6%96%87%E4%B8%8EFAQ.html">论文与FAQ<small>论文与FAQ</small></a>
+</details>
+<details>
+<summary>09 RAG与应用架构</summary>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_09_RAG%E4%B8%8E%E5%BA%94%E7%94%A8%E6%9E%B6%E6%9E%84/README.html">README<small>09 RAG与应用架构</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_09_RAG%E4%B8%8E%E5%BA%94%E7%94%A8%E6%9E%B6%E6%9E%84/1_RAG%E5%AE%8C%E6%95%B4%E6%B5%81%E7%A8%8B.html">1_RAG完整流程<small>RAG 完整流程</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_09_RAG%E4%B8%8E%E5%BA%94%E7%94%A8%E6%9E%B6%E6%9E%84/2_Embedding%E4%B8%8E%E5%90%91%E9%87%8F%E6%A3%80%E7%B4%A2.html">2_Embedding与向量检索<small>Embedding 与向量检索</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_09_RAG%E4%B8%8E%E5%BA%94%E7%94%A8%E6%9E%B6%E6%9E%84/3_%E9%AB%98%E7%BA%A7RAG%E6%8A%80%E6%9C%AF.html">3_高级RAG技术<small>高级 RAG 技术</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_09_RAG%E4%B8%8E%E5%BA%94%E7%94%A8%E6%9E%B6%E6%9E%84/%E8%AE%BA%E6%96%87%E4%B8%8EFAQ.html">论文与FAQ<small>论文与FAQ</small></a>
+</details>
+<details>
+<summary>10 多模态模型</summary>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_10_%E5%A4%9A%E6%A8%A1%E6%80%81%E6%A8%A1%E5%9E%8B/README.html">README<small>10 多模态模型</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_10_%E5%A4%9A%E6%A8%A1%E6%80%81%E6%A8%A1%E5%9E%8B/1_ViT%E4%B8%8ECLIP.html">1_ViT与CLIP<small>ViT 与 CLIP</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_10_%E5%A4%9A%E6%A8%A1%E6%80%81%E6%A8%A1%E5%9E%8B/2_%E5%A4%9A%E6%A8%A1%E6%80%81%E5%A4%A7%E6%A8%A1%E5%9E%8B.html">2_多模态大模型<small>多模态大模型</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_10_%E5%A4%9A%E6%A8%A1%E6%80%81%E6%A8%A1%E5%9E%8B/3_%E8%A7%86%E9%A2%91%E4%B8%8E%E8%AF%AD%E9%9F%B3.html">3_视频与语音<small>视频与语音</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_10_%E5%A4%9A%E6%A8%A1%E6%80%81%E6%A8%A1%E5%9E%8B/%E8%AE%BA%E6%96%87%E4%B8%8EFAQ.html">论文与FAQ<small>论文与FAQ</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_10_%E5%A4%9A%E6%A8%A1%E6%80%81%E6%A8%A1%E5%9E%8B/%E6%97%B6%E6%95%88%E6%80%A7%E8%AF%B4%E6%98%8E.html">时效性说明<small>时效性说明</small></a>
+</details>
+<details>
+<summary>11 推理与思维链</summary>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_11_%E6%8E%A8%E7%90%86%E4%B8%8E%E6%80%9D%E7%BB%B4%E9%93%BE/README.html">README<small>11 推理与思维链</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_11_%E6%8E%A8%E7%90%86%E4%B8%8E%E6%80%9D%E7%BB%B4%E9%93%BE/1_%E6%80%9D%E7%BB%B4%E9%93%BE%E6%8F%90%E7%A4%BA.html">1_思维链提示<small>思维链提示</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_11_%E6%8E%A8%E7%90%86%E4%B8%8E%E6%80%9D%E7%BB%B4%E9%93%BE/2_%E9%AB%98%E7%BA%A7%E6%8E%A8%E7%90%86%E6%96%B9%E6%B3%95.html">2_高级推理方法<small>高级推理方法</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_11_%E6%8E%A8%E7%90%86%E4%B8%8E%E6%80%9D%E7%BB%B4%E9%93%BE/3_%E6%8E%A8%E7%90%86%E6%A8%A1%E5%9E%8B%E4%B8%8ETTC.html">3_推理模型与TTC<small>推理模型与 Test-time Compute Scaling</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_11_%E6%8E%A8%E7%90%86%E4%B8%8E%E6%80%9D%E7%BB%B4%E9%93%BE/%E8%AE%BA%E6%96%87%E4%B8%8EFAQ.html">论文与FAQ<small>论文与FAQ</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_11_%E6%8E%A8%E7%90%86%E4%B8%8E%E6%80%9D%E7%BB%B4%E9%93%BE/%E6%97%B6%E6%95%88%E6%80%A7%E8%AF%B4%E6%98%8E.html">时效性说明<small>时效性说明</small></a>
+</details>
+<details>
+<summary>12 Agent与工具使用</summary>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_12_Agent%E4%B8%8E%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/README.html">README<small>12 Agent与工具使用</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_12_Agent%E4%B8%8E%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/1_Agent%E6%A1%86%E6%9E%B6%E5%8E%9F%E7%90%86.html">1_Agent框架原理<small>Agent 框架原理</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_12_Agent%E4%B8%8E%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/2_%E8%AE%B0%E5%BF%86%E4%B8%8E%E7%8A%B6%E6%80%81%E7%AE%A1%E7%90%86.html">2_记忆与状态管理<small>记忆与状态管理</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_12_Agent%E4%B8%8E%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/3_%E5%A4%9AAgent%E4%B8%8EMCP.html">3_多Agent与MCP<small>多 Agent 与 MCP</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_12_Agent%E4%B8%8E%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/%E8%AE%BA%E6%96%87%E4%B8%8EFAQ.html">论文与FAQ<small>论文与FAQ</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_12_Agent%E4%B8%8E%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/%E6%97%B6%E6%95%88%E6%80%A7%E8%AF%B4%E6%98%8E.html">时效性说明<small>时效性说明</small></a>
+</details>
+<details>
+<summary>13 长文本与高效架构</summary>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_13_%E9%95%BF%E6%96%87%E6%9C%AC%E4%B8%8E%E9%AB%98%E6%95%88%E6%9E%B6%E6%9E%84/README.html">README<small>13 长文本与高效架构</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_13_%E9%95%BF%E6%96%87%E6%9C%AC%E4%B8%8E%E9%AB%98%E6%95%88%E6%9E%B6%E6%9E%84/1_%E9%95%BF%E6%96%87%E6%9C%AC%E6%8A%80%E6%9C%AF.html">1_长文本技术<small>长文本技术</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_13_%E9%95%BF%E6%96%87%E6%9C%AC%E4%B8%8E%E9%AB%98%E6%95%88%E6%9E%B6%E6%9E%84/2_MoE%E6%9E%B6%E6%9E%84.html">2_MoE架构<small>Mixture of Experts（MoE）架构</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_13_%E9%95%BF%E6%96%87%E6%9C%AC%E4%B8%8E%E9%AB%98%E6%95%88%E6%9E%B6%E6%9E%84/3_%E9%AB%98%E6%95%88Transformer.html">3_高效Transformer<small>高效 Transformer 变体</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_13_%E9%95%BF%E6%96%87%E6%9C%AC%E4%B8%8E%E9%AB%98%E6%95%88%E6%9E%B6%E6%9E%84/%E8%AE%BA%E6%96%87%E4%B8%8EFAQ.html">论文与FAQ<small>论文与FAQ</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_13_%E9%95%BF%E6%96%87%E6%9C%AC%E4%B8%8E%E9%AB%98%E6%95%88%E6%9E%B6%E6%9E%84/%E6%97%B6%E6%95%88%E6%80%A7%E8%AF%B4%E6%98%8E.html">时效性说明<small>时效性说明</small></a>
+</details></nav><div class="sidebar-rule"></div><details class="page-toc" open><summary>当前页目录</summary><a class="depth-2" href="#一关键论文">一、关键论文</a>
+<a class="depth-3" href="#论文列表">论文列表</a>
+<a class="depth-4" href="#1-kwon-et-al-2023-vllm-pagedattention">1. Kwon et al., 2023 — vLLM / PagedAttention</a>
+<a class="depth-4" href="#2-frantar-et-al-2022-gptq">2. Frantar et al., 2022 — GPTQ</a>
+<a class="depth-4" href="#3-lin-et-al-2023-awq">3. Lin et al., 2023 — AWQ</a>
+<a class="depth-4" href="#4-leviathan-et-al-2023-speculative-decoding">4. Leviathan et al., 2023 — Speculative Decoding</a>
+<a class="depth-4" href="#5-dettmers-et-al-2022-llmint8">5. Dettmers et al., 2022 — LLM.int8()</a>
+<a class="depth-4" href="#6-dao-et-al-2022-2023-flash-attention-补充">6. Dao et al., 2022 / 2023 — Flash Attention (补充)</a>
+<a class="depth-3" href="#论文速查表">论文速查表</a>
+<a class="depth-2" href="#二延伸阅读">二、延伸阅读</a>
+<a class="depth-2" href="#三faq">三、FAQ</a>
+<a class="depth-3" href="#faq-1-kv-cache-为什么只缓存-k-和-v不缓存-q">FAQ 1: KV Cache 为什么只缓存 K 和 V，不缓存 Q？</a>
+<a class="depth-3" href="#faq-2-量化为什么对大模型的影响比小模型小">FAQ 2: 量化为什么对大模型的影响比小模型小？</a>
+<a class="depth-3" href="#faq-3-vllm-的-pagedattention-比朴素推理快-224-倍差异为什么这么大">FAQ 3: vLLM 的 PagedAttention 比朴素推理快 2~24 倍，差异为什么这么大？</a>
+<a class="depth-3" href="#faq-4-gptq-和-awq-都是-int4-量化我该选哪个">FAQ 4: GPTQ 和 AWQ 都是 INT4 量化，我该选哪个？</a>
+<a class="depth-3" href="#faq-5-推测解码保证无损为什么不所有场景都用">FAQ 5: 推测解码保证无损，为什么不所有场景都用？</a>
+<a class="depth-3" href="#faq-6-llamacpp-的-q4_k_m-和-gptq-int4-有什么区别">FAQ 6: llama.cpp 的 Q4_K_M 和 GPTQ INT4 有什么区别？</a>
+<a class="depth-3" href="#faq-7-为什么-prompt-engineering-中角色扮演有效">FAQ 7: 为什么 Prompt Engineering 中&quot;角色扮演&quot;有效？</a>
+<a class="depth-3" href="#faq-8-未来推理优化的方向是什么">FAQ 8: 未来推理优化的方向是什么？</a></details></aside>
+    <main class="page">
+      <article class="markdown-body">
+<h1 id="论文与faq">论文与FAQ</h1>
+<blockquote><p>本文件用于论文脉络、误区澄清与延伸阅读，不替代主章节正文。</p></blockquote>
+<blockquote><p>返回 <a href="README.html">本模块 README</a></p></blockquote>
+<hr>
+<h2 id="一关键论文">一、关键论文</h2>
+<blockquote><p><strong>建议先读 Kwon 2023 (vLLM/PagedAttention)</strong>。PagedAttention 是理解现代推理优化的关键——它解释了为什么 KV Cache 的显存管理是推理吞吐的核心瓶颈，以及如何用操作系统的分页思想来解决。理解了这篇论文，后续的量化（为什么要减少模型体积）和推测解码（为什么要减少串行步数）的动机就一目了然。</p></blockquote>
+<h3 id="论文列表">论文列表</h3>
+<h4 id="1-kwon-et-al-2023-vllm-pagedattention">1. Kwon et al., 2023 — vLLM / PagedAttention</h4>
+<p><strong>标题</strong>：<em>Efficient Memory Management for Large Language Model Serving with PagedAttention</em></p>
+<p><strong>简评</strong>：本文指出，在大模型推理服务中，KV Cache 的显存管理是吞吐量的关键瓶颈。朴素的连续分配策略导致 60~80% 的显存浪费（内部碎片 + 外部碎片 + 预留碎片）。作者借鉴操作系统的虚拟内存分页思想，提出 PagedAttention：将 KV Cache 分成固定大小的块（block），通过块表（block table）建立逻辑到物理的映射，实现按需分配、零碎片。</p>
+<p><strong>核心贡献</strong>：</p>
+<ul>
+<li>首次将 OS 分页思想系统应用于 KV Cache 管理</li>
+<li>支持 Copy-on-Write 的前缀共享（多请求共享系统 prompt 的 KV Cache）</li>
+<li>实测吞吐量比 HuggingFace Transformers 提升 2~24 倍</li>
+<li>开源 vLLM 框架，成为高吞吐 LLM 推理的事实标准</li>
+</ul>
+<p><strong>与本模块的关系</strong>：第 1 章 PagedAttention 和 Continuous Batching 的核心论文。</p>
+<hr>
+<h4 id="2-frantar-et-al-2022-gptq">2. Frantar et al., 2022 — GPTQ</h4>
+<p><strong>标题</strong>：<em>GPTQ: Accurate Post-Training Quantization for Generative Pre-trained Transformers</em></p>
+<p><strong>简评</strong>：GPTQ 是首个将大模型（175B 级别）高效量化到 3~4 bit 且保持可用精度的方法。其核心是基于 OBS（Optimal Brain Surgeon）的逐列量化：每量化一列权重，利用 Hessian 矩阵信息将量化误差最优地补偿到尚未量化的列上。与此前的逐行量化（OPTQ/AdaQuant）相比，GPTQ 利用了列间相关性，在同等位数下精度显著更好。</p>
+<p><strong>核心贡献</strong>：</p>
+<ul>
+<li>首次在 3~4 bit 下保持 175B 模型的可用精度</li>
+<li>量化速度极快：175B 模型在单 GPU 上约 4 小时</li>
+<li>提出了基于 Cholesky 分解的高效 Hessian 逆计算</li>
+<li>广泛被 AutoGPTQ 等工具采用，成为 GPU 量化的主流标准</li>
+</ul>
+<p><strong>与本模块的关系</strong>：第 2 章 GPTQ 量化的核心论文。</p>
+<hr>
+<h4 id="3-lin-et-al-2023-awq">3. Lin et al., 2023 — AWQ</h4>
+<p><strong>标题</strong>：<em>AWQ: Activation-aware Weight Quantization for LLM Compression and Acceleration</em></p>
+<p><strong>简评</strong>：AWQ 的核心观察是：权重的重要性可以通过激活值来衡量——如果某个输入通道的激活值始终很大，那该通道的权重量化误差会被放大。基于此，AWQ 提出 per-channel scaling：在量化前对权重做通道级缩放，使重要通道更容易量化，再通过数学等价变换确保最终结果不变。</p>
+<p><strong>核心贡献</strong>：</p>
+<ul>
+<li>提出 activation-aware 的权重重要性度量</li>
+<li>per-channel scaling 在数学上保持等价性，无需重训练</li>
+<li>INT4 量化精度略优于 GPTQ，尤其在小 group_size 时</li>
+<li>提供了高效的推理 Kernel（TinyChat），支持边缘设备部署</li>
+</ul>
+<p><strong>与本模块的关系</strong>：第 2 章 AWQ 量化的核心论文。</p>
+<p><strong>AWQ vs GPTQ 核心区别</strong>：</p>
+<ul>
+<li>GPTQ：量化<strong>后</strong>补偿误差（reactive）</li>
+<li>AWQ：量化<strong>前</strong>保护重要权重（proactive）</li>
+<li>两者互补，可以结合使用</li>
+</ul>
+<hr>
+<h4 id="4-leviathan-et-al-2023-speculative-decoding">4. Leviathan et al., 2023 — Speculative Decoding</h4>
+<p><strong>标题</strong>：<em>Fast Inference from Transformers via Speculative Decoding</em></p>
+<p><strong>简评</strong>：自回归解码的根本限制是串行性——每步必须等前一步完成。本文提出推测解码：用一个快速的 draft 模型（小模型）连续猜测多个 token，然后用目标模型（大模型）一次前向传播并行验证。关键创新是设计了一个基于拒绝采样的验证方案，<strong>数学上保证了最终输出分布与单独使用大模型完全相同</strong>。</p>
+<p><strong>核心贡献</strong>：</p>
+<ul>
+<li>首次提出无损的推测解码框架</li>
+<li>证明了拒绝采样方案的采样一致性（与目标模型分布严格等价）</li>
+<li>在代码生成等高可预测性任务上实现 2~3 倍加速</li>
+<li>启发了后续大量工作（Medusa、Eagle、Lookahead Decoding 等）</li>
+</ul>
+<p><strong>与本模块的关系</strong>：第 1 章推测解码的核心论文。</p>
+<p><strong>同期独立工作</strong>：Chen et al., 2023 (<em>Accelerating Large Language Model Decoding with Speculative Sampling</em>) 独立提出了几乎相同的方法。两篇论文的核心思想和数学保证是等价的。</p>
+<hr>
+<h4 id="5-dettmers-et-al-2022-llmint8">5. Dettmers et al., 2022 — LLM.int8()</h4>
+<p><strong>标题</strong>：<em>LLM.int8(): 8-bit Matrix Multiplication for Transformers at Scale</em></p>
+<p><strong>简评</strong>：Dettmers 发现 Transformer 在 6.7B 参数以上会出现&quot;涌现特征&quot;——约 0.1% 的隐藏维度的激活值远大于其他维度（outlier 值可达正常值的 100 倍+）。这些 outlier 使得直接 INT8 量化在大模型上严重失效。LLM.int8() 提出混合精度分解：将矩阵乘法按维度拆分为正常部分（INT8 计算）和 outlier 部分（FP16 计算），实现了 175B 模型的零精度损失 INT8 推理。</p>
+<p><strong>核心贡献</strong>：</p>
+<ul>
+<li>首次揭示了大模型中 outlier 维度的涌现现象</li>
+<li>提出了维度级混合精度分解，解决了 outlier 导致的量化失败</li>
+<li>175B 模型上实现零 perplexity 损失的 INT8 推理</li>
+<li>集成到 bitsandbytes 库，成为最简单的量化方案（一行代码 <code>load_in_8bit=True</code>）</li>
+</ul>
+<p><strong>与本模块的关系</strong>：第 2 章 LLM.int8() 和混合精度量化的核心论文。</p>
+<hr>
+<h4 id="6-dao-et-al-2022-2023-flash-attention-补充">6. Dao et al., 2022 / 2023 — Flash Attention (补充)</h4>
+<p><strong>标题</strong>：<em>FlashAttention: Fast and Memory-Efficient Exact Attention with IO-Awareness</em> / <em>FlashAttention-2: Faster Attention with Better Parallelism and Work Partitioning</em></p>
+<p><strong>简评</strong>：Flash Attention 并不改变注意力的数学结果，而是改变了<strong>计算顺序</strong>。标准注意力需要将 $N \times N$ 的注意力矩阵完整写入 HBM（显存），而 Flash Attention 利用 GPU SRAM（片上内存）做分块计算（tiling），避免了大矩阵的 IO 开销。Flash Attention 2 进一步优化了并行度和 work partitioning。</p>
+<p><strong>核心贡献</strong>：</p>
+<ul>
+<li>精确注意力计算（非近似），显存从 $O(N^2)$ 降到 $O(N)$</li>
+<li>在 A100 上 Attention 速度提升 2~4x</li>
+<li>支持更长的上下文（减少了显存需求）</li>
+<li>几乎所有现代推理框架都已集成</li>
+</ul>
+<p><strong>与本模块的关系</strong>：第 1 章&quot;其他推理优化技术&quot;部分。不是严格的推理专用技术（训练也受益），但对推理性能影响显著。</p>
+<hr>
+<h3 id="论文速查表">论文速查表</h3>
+<div class="table-wrap"><table><thead><tr><th>论文</th><th>年份</th><th>核心问题</th><th>核心方案</th><th>实际影响</th></tr></thead><tbody><tr><td>vLLM (Kwon)</td><td>2023</td><td>KV Cache 显存浪费</td><td>PagedAttention 分页管理</td><td>高吞吐推理标准</td></tr><tr><td>GPTQ (Frantar)</td><td>2022</td><td>大模型量化</td><td>逐列量化+Hessian补偿</td><td>GPU INT4 量化标准</td></tr><tr><td>AWQ (Lin)</td><td>2023</td><td>重要权重保护</td><td>Activation-aware Scaling</td><td>精度优先的量化选择</td></tr><tr><td>Speculative (Leviathan)</td><td>2023</td><td>自回归串行瓶颈</td><td>小模型猜+大模型验</td><td>低延迟推理</td></tr><tr><td>LLM.int8() (Dettmers)</td><td>2022</td><td>Outlier 导致量化失败</td><td>混合精度分解</td><td>最简单的 INT8 方案</td></tr><tr><td>Flash Attention (Dao)</td><td>2022</td><td>注意力 IO 瓶颈</td><td>Tiling + IO-aware</td><td>所有框架标配</td></tr></tbody></table></div>
+<hr>
+<h2 id="二延伸阅读">二、延伸阅读</h2>
+<div class="table-wrap"><table><thead><tr><th>主题</th><th>推荐资料</th><th>说明</th></tr></thead><tbody><tr><td>vLLM 源码</td><td>github.com/vllm-project/vllm</td><td>工程实现的最佳参考</td></tr><tr><td>llama.cpp</td><td>github.com/ggerganov/llama.cpp</td><td>GGUF 格式和 CPU 量化推理</td></tr><tr><td>NVIDIA blog</td><td>developer.nvidia.com/blog/tensorrt-llm</td><td>TensorRT-LLM 官方教程</td></tr><tr><td>Hugging Face Blog</td><td>huggingface.co/blog/optimize-llm</td><td>LLM 推理优化综述（定期更新）</td></tr><tr><td>Survey: LLM Inference</td><td>arxiv.org/abs/2404.14294</td><td>2024 年推理优化综述</td></tr><tr><td>Medusa (Cai et al., 2024)</td><td>推测解码的后续工作</td><td>用多个预测头替代 draft 模型</td></tr><tr><td>Eagle (Li et al., 2024)</td><td>推测解码的后续工作</td><td>自回归 draft + 特征融合</td></tr></tbody></table></div>
+<hr>
+<h2 id="三faq">三、FAQ</h2>
+<h3 id="faq-1-kv-cache-为什么只缓存-k-和-v不缓存-q">FAQ 1: KV Cache 为什么只缓存 K 和 V，不缓存 Q？</h3>
+<p><strong>因为 Q 向量在每步都不同，无法复用。</strong></p>
+<p>在自回归 decode 阶段：</p>
+<ul>
+<li><strong>Q（Query）</strong>：只有当前新 token 的 query，每步不同</li>
+<li><strong>K（Key）和 V（Value）</strong>：包含所有历史 token，每步新增但不改变历史部分</li>
+</ul>
+<pre><code>步骤 t:   Q = W_q × h_t         ← 只有位置 t 的 query
+          K = [k_1, ..., k_t]   ← 需要所有历史 key
+          V = [v_1, ..., v_t]   ← 需要所有历史 value
+
+Attention = softmax(Q × K^T / sqrt(d)) × V
+          = softmax(q_t × [k_1,...,k_t]^T / sqrt(d)) × [v_1,...,v_t]
+
+K 和 V 中的历史部分不变 → 可以缓存
+Q 每步都是新 token 的 → 无需缓存</code></pre>
+<p>所以 KV Cache 的名字非常精确：缓存的恰好是 <strong>K</strong> 和 <strong>V</strong>。</p>
+<hr>
+<h3 id="faq-2-量化为什么对大模型的影响比小模型小">FAQ 2: 量化为什么对大模型的影响比小模型小？</h3>
+<p><strong>因为大模型有更多的参数冗余来&quot;吸收&quot;量化误差。</strong></p>
+<p>直觉：</p>
+<pre><code>小模型 (1B): 每个参数都在努力工作，减少一个参数的精度影响很大
+大模型 (70B): 大量参数有冗余，单个参数的精度损失对整体影响很小
+
+类比: 一个 3 人团队失去一个人 → 损失 33% 产能
+      一个 100 人团队失去一个人 → 损失 1% 产能</code></pre>
+<p>实验数据支持：</p>
+<div class="table-wrap"><table><thead><tr><th>模型</th><th>FP16 PPL</th><th>INT4 PPL</th><th>PPL 增长</th></tr></thead><tbody><tr><td>LLaMA 7B</td><td>5.68</td><td>5.85</td><td>+3.0%</td></tr><tr><td>LLaMA 13B</td><td>5.09</td><td>5.17</td><td>+1.6%</td></tr><tr><td>LLaMA 30B</td><td>4.10</td><td>4.14</td><td>+1.0%</td></tr><tr><td>LLaMA 65B</td><td>3.53</td><td>3.56</td><td>+0.8%</td></tr></tbody></table></div>
+<p><strong>趋势清晰：模型越大，量化造成的精度损失越小。</strong> 这也是为什么 INT4 量化在 70B+ 模型上几乎无损。</p>
+<hr>
+<h3 id="faq-3-vllm-的-pagedattention-比朴素推理快-224-倍差异为什么这么大">FAQ 3: vLLM 的 PagedAttention 比朴素推理快 2~24 倍，差异为什么这么大？</h3>
+<p><strong>因为加速比高度依赖并发量和请求长度的多样性。</strong></p>
+<pre><code>情况 1: batch_size=1, 所有请求长度相同
+  → PagedAttention 几乎无优势（没有碎片可优化）
+  → 加速比 ≈ 1~2x（来自更高效的 Kernel）
+
+情况 2: batch_size=64, 请求长度差异大 (50~2000 tokens)
+  → 朴素分配: 每请求预分配 2000 token 空间 → 大量浪费
+  → PagedAttention: 按需分配 → 同样显存能服务更多请求
+  → 加速比 ≈ 10~24x（吞吐量）
+
+加速比 = f(并发量, 长度方差, 显存大小)</code></pre>
+<p><strong>核心理解</strong>：PagedAttention 的主要收益不是&quot;计算更快&quot;，而是&quot;同样的显存能服务更多的并发请求&quot;——吞吐量的提升来自于<strong>更高的显存利用率</strong>。</p>
+<hr>
+<h3 id="faq-4-gptq-和-awq-都是-int4-量化我该选哪个">FAQ 4: GPTQ 和 AWQ 都是 INT4 量化，我该选哪个？</h3>
+<p><strong>大多数情况选 GPTQ（生态更成熟），精度敏感时选 AWQ。</strong></p>
+<p>详细对比：</p>
+<div class="table-wrap"><table><thead><tr><th>维度</th><th>GPTQ</th><th>AWQ</th></tr></thead><tbody><tr><td>量化速度</td><td>更快（7B ~4 min）</td><td>稍慢（7B ~10 min）</td></tr><tr><td>INT4 精度</td><td>优秀</td><td>略优（尤其在小 group_size）</td></tr><tr><td>推理速度</td><td>依赖后端</td><td>通常略快（Marlin kernel）</td></tr><tr><td>vLLM 支持</td><td>完善</td><td>完善</td></tr><tr><td>TGI 支持</td><td>完善</td><td>有限</td></tr><tr><td>llama.cpp</td><td>不适用（用 GGUF）</td><td>不适用（用 GGUF）</td></tr><tr><td>社区模型</td><td>更多（TheBloke 早期主推）</td><td>快速增长</td></tr><tr><td>理论基础</td><td>Hessian 误差补偿</td><td>Activation-aware Scaling</td></tr></tbody></table></div>
+<p><strong>学习建议</strong>：</p>
+<ol>
+<li>先试 AWQ，精度通常更好</li>
+<li>如果推理框架只支持 GPTQ，就用 GPTQ</li>
+<li>如果是 CPU/边缘设备，两个都不用——用 GGUF</li>
+<li>HuggingFace 上搜 <code>&lt;model&gt;-AWQ</code> 或 <code>&lt;model&gt;-GPTQ</code> 通常都能找到预量化版本</li>
+</ol>
+<hr>
+<h3 id="faq-5-推测解码保证无损为什么不所有场景都用">FAQ 5: 推测解码保证无损，为什么不所有场景都用？</h3>
+<p><strong>因为&quot;无损&quot;指的是生成质量，不是推理效率——在某些场景下推测解码反而更慢。</strong></p>
+<p>推测解码的隐含开销：</p>
+<pre><code>传统解码: 每步 1 次大模型前向传播
+推测解码: 每步 γ 次小模型前向传播 + 1 次大模型前向传播
+
+如果猜中率很低（如 30%）:
+  传统: 1 步 → 1 token
+  推测: (γ次小模型 + 1次大模型) → 平均 1.3 token
+  → 小模型的开销 &gt; 额外产出，得不偿失
+
+如果 batch_size 很大:
+  大模型已经通过 batching 提高了 GPU 利用率
+  加一个小模型反而争抢 GPU 资源
+  → 整体吞吐量可能下降</code></pre>
+<p><strong>适用判断规则</strong>：</p>
+<ul>
+<li>低并发 (batch_size=1~4) + 高猜中率 (&gt;60%) → 用推测解码</li>
+<li>高并发 (batch_size&gt;32) → 不用推测解码，Continuous Batching 更有效</li>
+<li>任务可预测性低 → 不用推测解码</li>
+</ul>
+<hr>
+<h3 id="faq-6-llamacpp-的-q4_k_m-和-gptq-int4-有什么区别">FAQ 6: llama.cpp 的 Q4_K_M 和 GPTQ INT4 有什么区别？</h3>
+<p><strong>底层量化策略完全不同，不能直接比较。</strong></p>
+<pre><code>GPTQ INT4:
+  - 均匀量化 + Hessian 误差补偿
+  - 整个模型统一 4 bit
+  - 需要校准数据
+  - 为 GPU 矩阵乘法优化
+
+GGUF Q4_K_M:
+  - K-Quant: 不同层/不同权重用不同位数
+  - &quot;4&quot; 是平均值，实际可能 3~6 bit 混合
+  - 不需要校准数据（基于权重统计特性）
+  - 为 CPU 向量运算优化（AVX2/NEON）
+
+文件大小（7B 模型）:
+  GPTQ INT4:    ~3.5 GB
+  GGUF Q4_K_M:  ~4.1 GB（因为部分层 &gt; 4 bit）
+
+精度:
+  GGUF Q4_K_M 通常略好于 GPTQ INT4（得益于混合位数策略）</code></pre>
+<p><strong>选择原则</strong>：GPU 推理用 GPTQ/AWQ，CPU 推理用 GGUF。不要在 GPU 上跑 GGUF（缺乏对应的 CUDA kernel 优化），也不要在 CPU 上跑 GPTQ（没有对应的 CPU 优化）。</p>
+<hr>
+<h3 id="faq-7-为什么-prompt-engineering-中角色扮演有效">FAQ 7: 为什么 Prompt Engineering 中&quot;角色扮演&quot;有效？</h3>
+<p><strong>因为训练数据中不同&quot;角色&quot;对应不同的文本分布。</strong></p>
+<pre><code>预训练数据中:
+  - &quot;作为医生，我建议...&quot; 后面通常跟专业医疗建议
+  - &quot;作为厨师，我推荐...&quot; 后面通常跟烹饪相关内容
+  - &quot;以下是 Python 代码:&quot; 后面通常跟合法的 Python
+
+模型学到了: P(专业内容 | &quot;作为XX专家&quot;) &gt;&gt; P(专业内容 | 无角色)
+
+设定角色 = 在条件概率中增加了一个强先验
+         = 把模型推向训练数据中该角色对应的文本分布区域</code></pre>
+<p>这不是&quot;模型真的变成了专家&quot;，而是&quot;模型生成文本时参考了训练数据中专家写的文本模式&quot;。</p>
+<p><strong>实践 tip</strong>：角色描述越具体、越像训练数据中真实出现的表达方式，效果越好。比如 &quot;你是一位有 10 年经验的 Python 后端开发者&quot; 比 &quot;你是代码专家&quot; 效果更好，因为前者更像训练数据中真实存在的自我介绍。</p>
+<hr>
+<h3 id="faq-8-未来推理优化的方向是什么">FAQ 8: 未来推理优化的方向是什么？</h3>
+<p><strong>截至 2026 年初的几个重要趋势</strong>：</p>
+<ol>
+<li><strong>硬件级量化支持</strong>：NVIDIA H100/B200 原生支持 FP8/FP4 运算，量化从&quot;软件近似&quot;变成&quot;硬件原生&quot;</li>
+<li><strong>更聪明的推测解码</strong>：Medusa（多头预测）、Eagle（特征级 draft）、Lookahead Decoding（Jacobi 迭代）</li>
+<li><strong>KV Cache 压缩</strong>：不只是量化，还有 token 级剪枝（丢弃不重要的历史 token 的 KV）</li>
+<li><strong>Prefill-Decode 解耦</strong>：Splitwise、DistServe 等将 Prefill 和 Decode 放在不同硬件上</li>
+<li><strong>专用推理芯片</strong>：Groq LPU、Cerebras 等非 GPU 架构，从根本上消除内存带宽瓶颈</li>
+</ol>
+<pre><code>2022: 基本没有推理优化 → FP16 朴素推理
+2023: vLLM + GPTQ → 第一波优化（10x+ 提升）
+2024: Flash Attention 2 + AWQ + Speculative → 第二波（再 2~3x）
+2025: FP8 硬件 + 高级调度 + KV 压缩 → 第三波
+2026: 专用芯片 + Prefill-Decode 解耦 → 新架构探索</code></pre>
+      </article>
+      <nav class="doc-nav"><a href="3_%E6%8E%A8%E7%90%86%E6%A1%86%E6%9E%B6%E4%B8%8E%E9%83%A8%E7%BD%B2.html">← 推理框架与部署</a><a href="../AI%E5%AD%A6%E4%B9%A0_09_RAG%E4%B8%8E%E5%BA%94%E7%94%A8%E6%9E%B6%E6%9E%84/README.html">09 RAG与应用架构 →</a></nav>
+    </main>
+  </div>
+</body>
+</html>

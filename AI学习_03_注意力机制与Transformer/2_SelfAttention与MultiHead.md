@@ -1,6 +1,6 @@
 # Self-Attention 与 Multi-Head Attention
 
-## 风趣易懂的直觉讲解
+## 一句话内部如何互相看
 ### Self-Attention：一句话内部互相看
 
 普通注意力常见于"解码器看编码器"：输出序列去看输入序列。
@@ -27,7 +27,7 @@
 
 ---
 
-## 准确概念定义与核心原理
+## Self-Attention 与多头注意力
 ### 1. Self-Attention 的定义
 
 给定输入序列矩阵 $X$，通过三组线性变换得到：

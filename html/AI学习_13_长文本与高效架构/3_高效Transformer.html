@@ -1,0 +1,293 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>高效 Transformer 变体 · AI学习</title>
+  <link rel="stylesheet" href="../assets/study.css">
+  <script>
+    window.MathJax = {
+      tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], displayMath: [['$$', '$$'], ['\\[', '\\]']] },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="../index.html"><span class="brand-mark">AI</span><span>AI学习 HTML 预览</span></a>
+    <span class="crumb">13 长文本与高效架构 / 3_高效Transformer.md</span>
+  </header>
+  <div class="shell doc-shell">
+    <aside class="toc"><div class="toc-title">完整目录</div><nav class="site-tree"><details>
+<summary>总览与附录</summary>
+<a class="doc-link" href="../README.html">README<small>StudyAI — AI 及大模型原理系统学习教材</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0%E7%9B%AE%E5%BD%95%E7%B4%A2%E5%BC%95.html">AI学习目录索引<small>AI 及大模型原理 — 学习目录索引</small></a>
+<a class="doc-link" href="../%E6%95%B4%E4%BD%93%E7%9F%A5%E8%AF%86%E4%BD%93%E7%B3%BB%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE.html">整体知识体系思维导图<small>AI 及大模型原理 — 整体知识体系思维导图</small></a>
+<a class="doc-link" href="../%E9%99%84%E5%BD%95_%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%80%E9%80%9F%E8%A7%88.html">附录_数学基础速览<small>附录：数学基础速览</small></a>
+<a class="doc-link" href="../%E9%99%84%E5%BD%95_%E4%BB%A3%E7%A0%81%E7%A4%BA%E4%BE%8B%E9%9B%86.html">附录_代码示例集<small>附录：代码示例集（精选版）</small></a>
+</details>
+<details>
+<summary>01 神经网络基础</summary>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_01_%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/README.html">README<small>01 神经网络基础</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_01_%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/1_%E6%84%9F%E7%9F%A5%E6%9C%BA%E4%B8%8E%E5%A4%9A%E5%B1%82%E7%BD%91%E7%BB%9C.html">1_感知机与多层网络<small>感知机与多层网络</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_01_%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/2_%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0.html">2_激活函数<small>激活函数</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_01_%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/3_%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0.html">3_损失函数<small>损失函数</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_01_%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/4_%E5%8F%8D%E5%90%91%E4%BC%A0%E6%92%AD.html">4_反向传播<small>反向传播</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_01_%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/5_%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D%E4%B8%8E%E4%BC%98%E5%8C%96%E5%99%A8.html">5_梯度下降与优化器<small>梯度下降与优化器</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_01_%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/6_%E6%AD%A3%E5%88%99%E5%8C%96.html">6_正则化<small>正则化（Regularization）</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_01_%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/%E8%AE%BA%E6%96%87%E4%B8%8EFAQ.html">论文与FAQ<small>论文与FAQ</small></a>
+</details>
+<details>
+<summary>02 经典网络架构</summary>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_02_%E7%BB%8F%E5%85%B8%E7%BD%91%E7%BB%9C%E6%9E%B6%E6%9E%84/README.html">README<small>02 经典网络架构</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_02_%E7%BB%8F%E5%85%B8%E7%BD%91%E7%BB%9C%E6%9E%B6%E6%9E%84/1_CNN%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C.html">1_CNN卷积神经网络<small>CNN 卷积神经网络</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_02_%E7%BB%8F%E5%85%B8%E7%BD%91%E7%BB%9C%E6%9E%B6%E6%9E%84/2_RNN%E5%BE%AA%E7%8E%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C.html">2_RNN循环神经网络<small>RNN 循环神经网络</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_02_%E7%BB%8F%E5%85%B8%E7%BD%91%E7%BB%9C%E6%9E%B6%E6%9E%84/3_LSTM%E4%B8%8EGRU.html">3_LSTM与GRU<small>LSTM 与 GRU</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_02_%E7%BB%8F%E5%85%B8%E7%BD%91%E7%BB%9C%E6%9E%B6%E6%9E%84/4_%E7%BC%96%E7%A0%81%E5%99%A8%E8%A7%A3%E7%A0%81%E5%99%A8%E6%A1%86%E6%9E%B6.html">4_编码器解码器框架<small>编码器-解码器框架（Seq2Seq）</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_02_%E7%BB%8F%E5%85%B8%E7%BD%91%E7%BB%9C%E6%9E%B6%E6%9E%84/%E8%AE%BA%E6%96%87%E4%B8%8EFAQ.html">论文与FAQ<small>论文与FAQ</small></a>
+</details>
+<details>
+<summary>03 注意力机制与Transformer</summary>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_03_%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%9C%BA%E5%88%B6%E4%B8%8ETransformer/README.html">README<small>03 注意力机制与 Transformer</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_03_%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%9C%BA%E5%88%B6%E4%B8%8ETransformer/1_%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%9C%BA%E5%88%B6.html">1_注意力机制<small>注意力机制</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_03_%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%9C%BA%E5%88%B6%E4%B8%8ETransformer/2_SelfAttention%E4%B8%8EMultiHead.html">2_SelfAttention与MultiHead<small>Self-Attention 与 Multi-Head Attention</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_03_%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%9C%BA%E5%88%B6%E4%B8%8ETransformer/3_Transformer%E6%9E%B6%E6%9E%84.html">3_Transformer架构<small>Transformer 完整架构</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_03_%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%9C%BA%E5%88%B6%E4%B8%8ETransformer/4_%E4%BD%8D%E7%BD%AE%E7%BC%96%E7%A0%81.html">4_位置编码<small>位置编码</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_03_%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%9C%BA%E5%88%B6%E4%B8%8ETransformer/%E8%AE%BA%E6%96%87%E4%B8%8EFAQ.html">论文与FAQ<small>论文与FAQ</small></a>
+</details>
+<details>
+<summary>04 预训练语言模型演进</summary>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_04_%E9%A2%84%E8%AE%AD%E7%BB%83%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%BC%94%E8%BF%9B/README.html">README<small>04 预训练语言模型演进</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_04_%E9%A2%84%E8%AE%AD%E7%BB%83%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%BC%94%E8%BF%9B/1_%E8%AF%8D%E8%A1%A8%E7%A4%BA%E7%9A%84%E6%BC%94%E8%BF%9B.html">1_词表示的演进<small>词表示的演进</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_04_%E9%A2%84%E8%AE%AD%E7%BB%83%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%BC%94%E8%BF%9B/2_%E8%87%AA%E7%9B%91%E7%9D%A3%E9%A2%84%E8%AE%AD%E7%BB%83%E8%8C%83%E5%BC%8F.html">2_自监督预训练范式<small>自监督预训练范式</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_04_%E9%A2%84%E8%AE%AD%E7%BB%83%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%BC%94%E8%BF%9B/3_BERT%E4%B8%8EGPT.html">3_BERT与GPT<small>BERT 与 GPT：两大路线</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_04_%E9%A2%84%E8%AE%AD%E7%BB%83%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%BC%94%E8%BF%9B/4_%E5%BE%AE%E8%B0%83%E4%B8%8E%E8%BF%81%E7%A7%BB%E5%AD%A6%E4%B9%A0.html">4_微调与迁移学习<small>微调与迁移学习</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_04_%E9%A2%84%E8%AE%AD%E7%BB%83%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%BC%94%E8%BF%9B/%E8%AE%BA%E6%96%87%E4%B8%8EFAQ.html">论文与FAQ<small>论文与FAQ</small></a>
+</details>
+<details>
+<summary>05 GPT系列深度解析</summary>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_05_GPT%E7%B3%BB%E5%88%97%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90/README.html">README<small>05 GPT 系列深度解析</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_05_GPT%E7%B3%BB%E5%88%97%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90/1_GPT%E7%B3%BB%E5%88%97%E6%9E%B6%E6%9E%84%E6%BC%94%E8%BF%9B.html">1_GPT系列架构演进<small>GPT 系列架构演进</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_05_GPT%E7%B3%BB%E5%88%97%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90/2_ScalingLaws%E4%B8%8E%E6%B6%8C%E7%8E%B0.html">2_ScalingLaws与涌现<small>Scaling Laws 与涌现能力</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_05_GPT%E7%B3%BB%E5%88%97%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90/3_%E5%AF%B9%E9%BD%90%E6%8A%80%E6%9C%AF.html">3_对齐技术<small>对齐技术：从预训练到有用又安全</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_05_GPT%E7%B3%BB%E5%88%97%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90/4_GPT4%E4%B9%8B%E5%90%8E%E7%9A%84%E6%BC%94%E8%BF%9B.html">4_GPT4之后的演进<small>GPT-4 之后的演进（截至 2026.4）</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_05_GPT%E7%B3%BB%E5%88%97%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90/%E8%AE%BA%E6%96%87%E4%B8%8EFAQ.html">论文与FAQ<small>论文与FAQ</small></a>
+</details>
+<details>
+<summary>06 生成模型与扩散模型</summary>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_06_%E7%94%9F%E6%88%90%E6%A8%A1%E5%9E%8B%E4%B8%8E%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B/README.html">README<small>06 生成模型与扩散模型</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_06_%E7%94%9F%E6%88%90%E6%A8%A1%E5%9E%8B%E4%B8%8E%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B/1_%E7%94%9F%E6%88%90%E6%A8%A1%E5%9E%8B%E8%B0%B1%E7%B3%BB.html">1_生成模型谱系<small>生成模型谱系</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_06_%E7%94%9F%E6%88%90%E6%A8%A1%E5%9E%8B%E4%B8%8E%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B/2_%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B%E5%8E%9F%E7%90%86.html">2_扩散模型原理<small>扩散模型原理</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_06_%E7%94%9F%E6%88%90%E6%A8%A1%E5%9E%8B%E4%B8%8E%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B/3_%E6%9D%A1%E4%BB%B6%E7%94%9F%E6%88%90%E4%B8%8E%E5%BC%95%E5%AF%BC.html">3_条件生成与引导<small>条件生成与引导</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_06_%E7%94%9F%E6%88%90%E6%A8%A1%E5%9E%8B%E4%B8%8E%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B/4_%E6%9E%B6%E6%9E%84%E4%B8%8E%E5%BA%94%E7%94%A8.html">4_架构与应用<small>架构与应用</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_06_%E7%94%9F%E6%88%90%E6%A8%A1%E5%9E%8B%E4%B8%8E%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B/%E8%AE%BA%E6%96%87%E4%B8%8EFAQ.html">论文与FAQ<small>论文与FAQ</small></a>
+</details>
+<details>
+<summary>07 大模型训练技术</summary>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_07_%E5%A4%A7%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83%E6%8A%80%E6%9C%AF/README.html">README<small>07 大模型训练技术</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_07_%E5%A4%A7%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83%E6%8A%80%E6%9C%AF/1_%E5%88%86%E5%B8%83%E5%BC%8F%E8%AE%AD%E7%BB%83.html">1_分布式训练<small>分布式训练</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_07_%E5%A4%A7%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83%E6%8A%80%E6%9C%AF/2_%E6%B7%B7%E5%90%88%E7%B2%BE%E5%BA%A6%E4%B8%8E%E6%A1%86%E6%9E%B6.html">2_混合精度与框架<small>混合精度与训练框架</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_07_%E5%A4%A7%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83%E6%8A%80%E6%9C%AF/3_%E6%95%B0%E6%8D%AE%E5%B7%A5%E7%A8%8B%E4%B8%8ETokenizer.html">3_数据工程与Tokenizer<small>数据工程与 Tokenizer</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_07_%E5%A4%A7%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83%E6%8A%80%E6%9C%AF/4_%E5%AF%B9%E9%BD%90%E8%AE%AD%E7%BB%83%E5%AE%9E%E8%B7%B5.html">4_对齐训练实践<small>对齐训练实践</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_07_%E5%A4%A7%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83%E6%8A%80%E6%9C%AF/%E8%AE%BA%E6%96%87%E4%B8%8EFAQ.html">论文与FAQ<small>论文与 FAQ</small></a>
+</details>
+<details>
+<summary>08 大模型推理与部署</summary>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_08_%E5%A4%A7%E6%A8%A1%E5%9E%8B%E6%8E%A8%E7%90%86%E4%B8%8E%E9%83%A8%E7%BD%B2/README.html">README<small>08 大模型推理与部署</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_08_%E5%A4%A7%E6%A8%A1%E5%9E%8B%E6%8E%A8%E7%90%86%E4%B8%8E%E9%83%A8%E7%BD%B2/1_KVCache%E4%B8%8E%E6%8E%A8%E7%90%86%E4%BC%98%E5%8C%96.html">1_KVCache与推理优化<small>KV Cache 与推理优化</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_08_%E5%A4%A7%E6%A8%A1%E5%9E%8B%E6%8E%A8%E7%90%86%E4%B8%8E%E9%83%A8%E7%BD%B2/2_%E9%87%8F%E5%8C%96%E6%8A%80%E6%9C%AF.html">2_量化技术<small>量化技术</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_08_%E5%A4%A7%E6%A8%A1%E5%9E%8B%E6%8E%A8%E7%90%86%E4%B8%8E%E9%83%A8%E7%BD%B2/3_%E6%8E%A8%E7%90%86%E6%A1%86%E6%9E%B6%E4%B8%8E%E9%83%A8%E7%BD%B2.html">3_推理框架与部署<small>推理框架与部署</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_08_%E5%A4%A7%E6%A8%A1%E5%9E%8B%E6%8E%A8%E7%90%86%E4%B8%8E%E9%83%A8%E7%BD%B2/%E8%AE%BA%E6%96%87%E4%B8%8EFAQ.html">论文与FAQ<small>论文与FAQ</small></a>
+</details>
+<details>
+<summary>09 RAG与应用架构</summary>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_09_RAG%E4%B8%8E%E5%BA%94%E7%94%A8%E6%9E%B6%E6%9E%84/README.html">README<small>09 RAG与应用架构</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_09_RAG%E4%B8%8E%E5%BA%94%E7%94%A8%E6%9E%B6%E6%9E%84/1_RAG%E5%AE%8C%E6%95%B4%E6%B5%81%E7%A8%8B.html">1_RAG完整流程<small>RAG 完整流程</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_09_RAG%E4%B8%8E%E5%BA%94%E7%94%A8%E6%9E%B6%E6%9E%84/2_Embedding%E4%B8%8E%E5%90%91%E9%87%8F%E6%A3%80%E7%B4%A2.html">2_Embedding与向量检索<small>Embedding 与向量检索</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_09_RAG%E4%B8%8E%E5%BA%94%E7%94%A8%E6%9E%B6%E6%9E%84/3_%E9%AB%98%E7%BA%A7RAG%E6%8A%80%E6%9C%AF.html">3_高级RAG技术<small>高级 RAG 技术</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_09_RAG%E4%B8%8E%E5%BA%94%E7%94%A8%E6%9E%B6%E6%9E%84/%E8%AE%BA%E6%96%87%E4%B8%8EFAQ.html">论文与FAQ<small>论文与FAQ</small></a>
+</details>
+<details>
+<summary>10 多模态模型</summary>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_10_%E5%A4%9A%E6%A8%A1%E6%80%81%E6%A8%A1%E5%9E%8B/README.html">README<small>10 多模态模型</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_10_%E5%A4%9A%E6%A8%A1%E6%80%81%E6%A8%A1%E5%9E%8B/1_ViT%E4%B8%8ECLIP.html">1_ViT与CLIP<small>ViT 与 CLIP</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_10_%E5%A4%9A%E6%A8%A1%E6%80%81%E6%A8%A1%E5%9E%8B/2_%E5%A4%9A%E6%A8%A1%E6%80%81%E5%A4%A7%E6%A8%A1%E5%9E%8B.html">2_多模态大模型<small>多模态大模型</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_10_%E5%A4%9A%E6%A8%A1%E6%80%81%E6%A8%A1%E5%9E%8B/3_%E8%A7%86%E9%A2%91%E4%B8%8E%E8%AF%AD%E9%9F%B3.html">3_视频与语音<small>视频与语音</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_10_%E5%A4%9A%E6%A8%A1%E6%80%81%E6%A8%A1%E5%9E%8B/%E8%AE%BA%E6%96%87%E4%B8%8EFAQ.html">论文与FAQ<small>论文与FAQ</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_10_%E5%A4%9A%E6%A8%A1%E6%80%81%E6%A8%A1%E5%9E%8B/%E6%97%B6%E6%95%88%E6%80%A7%E8%AF%B4%E6%98%8E.html">时效性说明<small>时效性说明</small></a>
+</details>
+<details>
+<summary>11 推理与思维链</summary>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_11_%E6%8E%A8%E7%90%86%E4%B8%8E%E6%80%9D%E7%BB%B4%E9%93%BE/README.html">README<small>11 推理与思维链</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_11_%E6%8E%A8%E7%90%86%E4%B8%8E%E6%80%9D%E7%BB%B4%E9%93%BE/1_%E6%80%9D%E7%BB%B4%E9%93%BE%E6%8F%90%E7%A4%BA.html">1_思维链提示<small>思维链提示</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_11_%E6%8E%A8%E7%90%86%E4%B8%8E%E6%80%9D%E7%BB%B4%E9%93%BE/2_%E9%AB%98%E7%BA%A7%E6%8E%A8%E7%90%86%E6%96%B9%E6%B3%95.html">2_高级推理方法<small>高级推理方法</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_11_%E6%8E%A8%E7%90%86%E4%B8%8E%E6%80%9D%E7%BB%B4%E9%93%BE/3_%E6%8E%A8%E7%90%86%E6%A8%A1%E5%9E%8B%E4%B8%8ETTC.html">3_推理模型与TTC<small>推理模型与 Test-time Compute Scaling</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_11_%E6%8E%A8%E7%90%86%E4%B8%8E%E6%80%9D%E7%BB%B4%E9%93%BE/%E8%AE%BA%E6%96%87%E4%B8%8EFAQ.html">论文与FAQ<small>论文与FAQ</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_11_%E6%8E%A8%E7%90%86%E4%B8%8E%E6%80%9D%E7%BB%B4%E9%93%BE/%E6%97%B6%E6%95%88%E6%80%A7%E8%AF%B4%E6%98%8E.html">时效性说明<small>时效性说明</small></a>
+</details>
+<details>
+<summary>12 Agent与工具使用</summary>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_12_Agent%E4%B8%8E%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/README.html">README<small>12 Agent与工具使用</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_12_Agent%E4%B8%8E%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/1_Agent%E6%A1%86%E6%9E%B6%E5%8E%9F%E7%90%86.html">1_Agent框架原理<small>Agent 框架原理</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_12_Agent%E4%B8%8E%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/2_%E8%AE%B0%E5%BF%86%E4%B8%8E%E7%8A%B6%E6%80%81%E7%AE%A1%E7%90%86.html">2_记忆与状态管理<small>记忆与状态管理</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_12_Agent%E4%B8%8E%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/3_%E5%A4%9AAgent%E4%B8%8EMCP.html">3_多Agent与MCP<small>多 Agent 与 MCP</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_12_Agent%E4%B8%8E%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/%E8%AE%BA%E6%96%87%E4%B8%8EFAQ.html">论文与FAQ<small>论文与FAQ</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_12_Agent%E4%B8%8E%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/%E6%97%B6%E6%95%88%E6%80%A7%E8%AF%B4%E6%98%8E.html">时效性说明<small>时效性说明</small></a>
+</details>
+<details open>
+<summary>13 长文本与高效架构</summary>
+<a class="doc-link" href="README.html">README<small>13 长文本与高效架构</small></a>
+<a class="doc-link" href="1_%E9%95%BF%E6%96%87%E6%9C%AC%E6%8A%80%E6%9C%AF.html">1_长文本技术<small>长文本技术</small></a>
+<a class="doc-link" href="2_MoE%E6%9E%B6%E6%9E%84.html">2_MoE架构<small>Mixture of Experts（MoE）架构</small></a>
+<a class="doc-link active" href="3_%E9%AB%98%E6%95%88Transformer.html">3_高效Transformer<small>高效 Transformer 变体</small></a>
+<a class="doc-link" href="%E8%AE%BA%E6%96%87%E4%B8%8EFAQ.html">论文与FAQ<small>论文与FAQ</small></a>
+<a class="doc-link" href="%E6%97%B6%E6%95%88%E6%80%A7%E8%AF%B4%E6%98%8E.html">时效性说明<small>时效性说明</small></a>
+</details></nav><div class="sidebar-rule"></div><details class="page-toc" open><summary>当前页目录</summary><a class="depth-2" href="#为什么标准-transformer-不够省">为什么标准 Transformer 不够省</a>
+<a class="depth-3" href="#核心问题">核心问题</a>
+<a class="depth-3" href="#三大类方案">三大类方案</a>
+<a class="depth-3" href="#直觉对比">直觉对比</a>
+<a class="depth-2" href="#高效-transformer-的主要路线">高效 Transformer 的主要路线</a>
+<a class="depth-3" href="#一稀疏注意力">一、稀疏注意力</a>
+<a class="depth-4" href="#longformerbeltagy-et-al-allen-ai-2020">Longformer（Beltagy et al., Allen AI, 2020）</a>
+<a class="depth-4" href="#bigbirdgoogle-2020">BigBird（Google, 2020）</a>
+<a class="depth-3" href="#二线性注意力">二、线性注意力</a>
+<a class="depth-4" href="#核心思想重排矩阵乘法顺序">核心思想：重排矩阵乘法顺序</a>
+<a class="depth-4" href="#performergoogle-choromanski-et-al-2020">Performer（Google, Choromanski et al. 2020）</a>
+<a class="depth-3" href="#三状态空间模型ssm">三、状态空间模型（SSM）</a>
+<a class="depth-4" href="#从-rnn-到-ssm-的演进">从 RNN 到 SSM 的演进</a>
+<a class="depth-4" href="#s4structured-state-space-gu-et-al-2022">S4（Structured State Space, Gu et al. 2022）</a>
+<a class="depth-4" href="#mambagu-dao-2023">Mamba（Gu &amp; Dao, 2023）</a>
+<a class="depth-4" href="#mamba-2dao-gu-2024">Mamba-2（Dao &amp; Gu, 2024）</a>
+<a class="depth-4" href="#rwkvpeng-et-al-2023-2025">RWKV（Peng et al., 2023-2025）</a>
+<a class="depth-2" href="#本章小结">本章小结</a>
+<a class="depth-2" href="#时效性说明">时效性说明</a></details></aside>
+    <main class="page">
+      <article class="markdown-body">
+<h1 id="高效-transformer-变体">高效 Transformer 变体</h1>
+<blockquote><p><strong>前置知识</strong>：<a href="../AI%E5%AD%A6%E4%B9%A0_03_%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%9C%BA%E5%88%B6%E4%B8%8ETransformer/1_%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%9C%BA%E5%88%B6.html">注意力机制</a>、<a href="../AI%E5%AD%A6%E4%B9%A0_03_%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%9C%BA%E5%88%B6%E4%B8%8ETransformer/3_Transformer%E6%9E%B6%E6%9E%84.html">Transformer 架构</a><br>
+<strong>内容时效</strong>：截至 2026 年 4 月</p></blockquote>
+<hr>
+<h2 id="为什么标准-transformer-不够省">为什么标准 Transformer 不够省</h2>
+<h3 id="核心问题">核心问题</h3>
+<p>前一章讨论了如何让标准 Transformer 支持更长的序列（位置编码外推、序列并行、压缩记忆）。但这些方案都没有改变一个根本事实：<strong>标准注意力的计算量是 O(n^2)</strong>。</p>
+<p>本章探讨另一条路：<strong>从注意力机制本身下手</strong>，设计计算复杂度更低的替代方案。</p>
+<h3 id="三大类方案">三大类方案</h3>
+<div class="table-wrap"><table><thead><tr><th>类别</th><th>核心思路</th><th>复杂度</th><th>代表模型</th></tr></thead><tbody><tr><td><strong>稀疏注意力</strong></td><td>不让每个 token 关注所有 token，只关注一部分</td><td>$O(n \sqrt{n})$ 或 $O(n \log n)$</td><td>Longformer, BigBird</td></tr><tr><td><strong>线性注意力</strong></td><td>用核函数近似 softmax，将 $QK^T$ 分解为 $Q(K^T V)$</td><td>$O(n \cdot d^2)$</td><td>Performer</td></tr><tr><td><strong>状态空间模型 (SSM)</strong></td><td>完全抛弃注意力，用递归状态方程建模序列</td><td>$O(n \cdot d)$</td><td>S4, Mamba, RWKV</td></tr></tbody></table></div>
+<h3 id="直觉对比">直觉对比</h3>
+<pre><code>标准注意力:  每个 token 都&quot;看&quot;所有其他 token
+             n=1000 时，100 万次交互
+             ↓
+稀疏注意力:  每个 token 只看&quot;附近的&quot;和&quot;远处采样的&quot;token
+             n=1000 时，约 3-5 万次交互
+             ↓
+线性注意力:  用数学技巧避免显式计算 n×n 矩阵
+             n=1000 时，不需要 n×n 矩阵
+             ↓
+SSM (Mamba): 完全不用注意力，用隐状态逐步处理序列
+             类似&quot;高效版 RNN&quot;，但可以并行训练</code></pre>
+<hr>
+<h2 id="高效-transformer-的主要路线">高效 Transformer 的主要路线</h2>
+<h3 id="一稀疏注意力">一、稀疏注意力</h3>
+<h4 id="longformerbeltagy-et-al-allen-ai-2020">Longformer（Beltagy et al., Allen AI, 2020）</h4>
+<p><strong>核心思想</strong>：绝大多数 NLP 任务中，token 主要关注自己附近的上下文，偶尔关注远距离的特殊 token。Longformer 用两种稀疏模式组合来近似全注意力：</p>
+<pre><code>全注意力矩阵 (n=12):          Longformer 稀疏模式:
+■ ■ ■ ■ ■ ■ ■ ■ ■ ■ ■ ■      ■ ■ ■ · · · · · · · · ■   ← [CLS] 做全局
+■ ■ ■ ■ ■ ■ ■ ■ ■ ■ ■ ■      ■ ■ ■ ■ · · · · · · · ·
+■ ■ ■ ■ ■ ■ ■ ■ ■ ■ ■ ■      ■ ■ ■ ■ ■ · · · · · · ·
+■ ■ ■ ■ ■ ■ ■ ■ ■ ■ ■ ■      · ■ ■ ■ ■ ■ · · · · · ·   ← 滑动窗口
+■ ■ ■ ■ ■ ■ ■ ■ ■ ■ ■ ■      · · ■ ■ ■ ■ ■ · · · · ·      (局部注意力)
+■ ■ ■ ■ ■ ■ ■ ■ ■ ■ ■ ■      · · · ■ ■ ■ ■ ■ · · · ·
+■ ■ ■ ■ ■ ■ ■ ■ ■ ■ ■ ■      · · · · ■ ■ ■ ■ ■ · · ·
+■ ■ ■ ■ ■ ■ ■ ■ ■ ■ ■ ■      · · · · · ■ ■ ■ ■ ■ · ·
+■ ■ ■ ■ ■ ■ ■ ■ ■ ■ ■ ■      · · · · · · ■ ■ ■ ■ ■ ·
+■ ■ ■ ■ ■ ■ ■ ■ ■ ■ ■ ■      · · · · · · · ■ ■ ■ ■ ■
+■ ■ ■ ■ ■ ■ ■ ■ ■ ■ ■ ■      · · · · · · · · ■ ■ ■ ■
+■ ■ ■ ■ ■ ■ ■ ■ ■ ■ ■ ■      ■ · · · · · · · · ■ ■ ■
+O(n^2)                         O(n * w)
+■=计算注意力  ·=跳过</code></pre>
+<p>两种注意力模式：</p>
+<ol>
+<li><strong>滑动窗口（Local）注意力</strong>：每个 token 只关注左右 $w/2$ 个 token（窗口大小 $w$）。复杂度 $O(n \cdot w)$。</li>
+<li><strong>全局（Global）注意力</strong>：少数特殊 token（如 [CLS]、问题 token）可以关注所有 token。这些全局 token 起到&quot;信息中继站&quot;的作用。</li>
+</ol>
+<p><strong>效果</strong>：$L$ 层堆叠后，信息可以通过窗口的逐层扩展传播到整个序列。感受野 = $L \times w$。</p>
+<h4 id="bigbirdgoogle-2020">BigBird（Google, 2020）</h4>
+<p>BigBird 在 Longformer 的基础上加入了<strong>随机注意力</strong>：</p>
+<div class="table-wrap"><table><thead><tr><th>模式</th><th>描述</th><th>作用</th></tr></thead><tbody><tr><td>滑动窗口</td><td>与 Longformer 相同</td><td>捕捉局部依赖</td></tr><tr><td>全局 token</td><td>少数 token 关注所有</td><td>信息汇聚和传播</td></tr><tr><td>随机连接</td><td>每个 token 额外随机关注 $r$ 个 token</td><td>缩短任意两点间的&quot;最短路径&quot;</td></tr></tbody></table></div>
+<p>随机连接的理论动机来自图论：在一个规则图中加入少量随机边，可以将任意两点间的平均路径长度从 $O(n)$ 降到 $O(\log n)$——这就是&quot;小世界网络&quot;效应。</p>
+<h3 id="二线性注意力">二、线性注意力</h3>
+<h4 id="核心思想重排矩阵乘法顺序">核心思想：重排矩阵乘法顺序</h4>
+<p>标准注意力：</p>
+<div class="math-block">$$\text{Attention}(Q, K, V) = \text{softmax}\left(\frac{QK^T}{\sqrt{d}}\right) V$$</div>
+<p>关键瓶颈：$QK^T$ 产生 $n \times n$ 矩阵。</p>
+<p>如果我们把 softmax 替换为一个可分解的核函数 $\phi$：</p>
+<div class="math-block">$$\text{softmax}(QK^T) \approx \phi(Q) \cdot \phi(K)^T$$</div>
+<p>那么计算顺序可以改变：</p>
+<div class="math-block">$$\text{Attention} = \phi(Q) \cdot \underbrace{(\phi(K)^T \cdot V)}_{\text{先算这个！}} $$</div>
+<p>先计算 $\phi(K)^T V$，结果是 $d \times d$ 矩阵（与 $n$ 无关！），再乘以 $\phi(Q)$。总复杂度从 $O(n^2 d)$ 降到 $O(n d^2)$。</p>
+<p><strong>当 $d \ll n$ 时（长序列场景），这就是线性复杂度</strong>。</p>
+<h4 id="performergoogle-choromanski-et-al-2020">Performer（Google, Choromanski et al. 2020）</h4>
+<p>Performer 使用随机特征（Random Features）来近似 softmax 核：</p>
+<div class="math-block">$$\phi(x) = \frac{1}{\sqrt{m}} \left[\exp(w_1^T x - \|x\|^2/2), \ldots, \exp(w_m^T x - \|x\|^2/2)\right]$$</div>
+<p>其中 $w_1, \ldots, w_m$ 是从标准正态分布采样的随机向量。</p>
+<p><strong>问题</strong>：近似质量依赖随机特征数量 $m$，实际中 $m$ 需要很大才能接近标准 softmax，导致常数因子大。因此 Performer 在实际应用中未被广泛采用。</p>
+<h3 id="三状态空间模型ssm">三、状态空间模型（SSM）</h3>
+<h4 id="从-rnn-到-ssm-的演进">从 RNN 到 SSM 的演进</h4>
+<p>回顾 RNN 的核心公式：$h_t = f(h_{t-1}, x_t)$。RNN 的问题是非线性递归导致无法并行训练。</p>
+<p>SSM 的核心洞察：如果递归是<strong>线性</strong>的，就可以展开为卷积，从而并行计算。</p>
+<p><strong>连续时间 SSM</strong>（线性状态方程）：</p>
+<div class="math-block">$$h&#x27;(t) = Ah(t) + Bx(t), \quad y(t) = Ch(t)$$</div>
+<p>离散化后：</p>
+<div class="math-block">$$h_t = \bar{A} h_{t-1} + \bar{B} x_t, \quad y_t = C h_t$$</div>
+<p>其中 $\bar{A}, \bar{B}$ 是连续参数 $A, B$ 的离散化版本。</p>
+<p><strong>关键特性</strong>：由于是线性递归，整个序列的输出可以展开为一个卷积：</p>
+<div class="math-block">$$y = \bar{K} * x, \quad \bar{K} = (C\bar{B}, C\bar{A}\bar{B}, C\bar{A}^2\bar{B}, \ldots)$$</div>
+<p>训练时用 FFT 加速卷积，$O(n \log n)$；推理时用递归，$O(1)$ 每步。</p>
+<h4 id="s4structured-state-space-gu-et-al-2022">S4（Structured State Space, Gu et al. 2022）</h4>
+<p>S4 是 SSM 的关键突破。核心贡献：发现矩阵 $A$ 的初始化方式极其重要。使用 <strong>HiPPO 矩阵</strong>（一种特殊结构的矩阵）初始化 $A$，可以让状态 $h$ 有效地记忆长期历史。</p>
+<p>S4 的 $A$ 矩阵结构使得状态 $h$ 在数学上等价于对历史输入做<strong>正交多项式基的最优逼近</strong>——直觉上，它在&quot;用有限的状态维度尽可能准确地记住过去&quot;。</p>
+<h4 id="mambagu-dao-2023">Mamba（Gu &amp; Dao, 2023）</h4>
+<p>Mamba 是 SSM 领域最重要的工作，首次让 SSM 在语言建模上比肩同规模的 Transformer。核心创新：<strong>选择性 SSM（Selective SSM）</strong>。</p>
+<p><strong>S4 的局限</strong>：$A, B, C$ 是固定参数，对所有输入相同。这意味着 S4 无法根据输入内容动态决定&quot;记住什么、忘记什么&quot;。</p>
+<p><strong>Mamba 的解决方案</strong>：让 $B, C$ 和步长 $\Delta$ 成为输入的函数：</p>
+<div class="math-block">$$B_t = \text{Linear}_B(x_t), \quad C_t = \text{Linear}_C(x_t), \quad \Delta_t = \text{softplus}(\text{Linear}_\Delta(x_t))$$</div>
+<p>这样模型可以根据当前输入<strong>选择性地</strong>决定：</p>
+<ul>
+<li>$\Delta_t$ 大：多关注当前输入（&quot;这个信息重要，要记住&quot;）</li>
+<li>$\Delta_t$ 小：多保留历史状态（&quot;当前输入不重要，保持记忆&quot;）</li>
+</ul>
+<p><strong>硬件优化</strong>：Mamba 配合了类似 FlashAttention 的 IO-aware 计算策略，在 GPU 上实现了高效的选择性扫描（selective scan）。</p>
+<h4 id="mamba-2dao-gu-2024">Mamba-2（Dao &amp; Gu, 2024）</h4>
+<p>Mamba-2 揭示了 SSM 与注意力之间更深层的联系：</p>
+<ul>
+<li>将 Mamba 的选择性 SSM 重新表述为一种<strong>半可分离矩阵</strong>（semiseparable matrix）的结构化矩阵乘法</li>
+<li>证明了线性注意力实际上是 SSM 的一个特例</li>
+<li>利用这种等价性设计了更高效的 GPU 算法，速度比 Mamba-1 提升 2-8 倍</li>
+</ul>
+<h4 id="rwkvpeng-et-al-2023-2025">RWKV（Peng et al., 2023-2025）</h4>
+<p>RWKV 是另一条&quot;去注意力&quot;路线，名字代表其四个核心向量：Receptance、Weight、Key、Value。</p>
+<p><strong>核心思想</strong>：用<strong>线性递归</strong>替代注意力，但保留类似 attention 的 QKV 交互形式：</p>
+<div class="math-block">$$wkv_t = \frac{\sum_{i=1}^{t} e^{-(t-i)w + k_i} v_i}{\sum_{i=1}^{t} e^{-(t-i)w + k_i}}$$</div>
+<p>其中 $w$ 是可学习的衰减权重。这可以用递归高效计算（$O(1)$ 每步），同时保留了对历史 token 的加权聚合能力。</p>
+<p><strong>RWKV 演进</strong>：RWKV-4 (2023) → RWKV-5/Eagle (2024, 引入多头) → RWKV-6/Finch (2024, 14B 接近同规模 Transformer) → RWKV-7 (2025, 持续优化)。</p>
+<hr>
+<h2 id="本章小结">本章小结</h2>
+<div class="table-wrap"><table><thead><tr><th>概念</th><th>一句话总结</th></tr></thead><tbody><tr><td><strong>稀疏注意力</strong></td><td>只计算部分位置对的注意力，用滑动窗口 + 全局 token 组合</td></tr><tr><td><strong>Longformer</strong></td><td>局部窗口注意力 + 少数全局 token，$O(n \cdot w)$</td></tr><tr><td><strong>BigBird</strong></td><td>Longformer + 随机连接，理论保证图连通性</td></tr><tr><td><strong>线性注意力</strong></td><td>用核函数近似 softmax，改变矩阵乘法顺序避免 $n^2$</td></tr><tr><td><strong>Performer</strong></td><td>用随机特征近似 softmax 核，理论优雅但实际效果有限</td></tr><tr><td><strong>SSM / S4</strong></td><td>线性递归状态方程 + HiPPO 初始化，训练时用卷积/FFT 并行</td></tr><tr><td><strong>Mamba</strong></td><td>选择性 SSM——让 B, C, Delta 依赖输入，实现动态记忆控制</td></tr><tr><td><strong>Mamba-2</strong></td><td>揭示 SSM 与注意力的理论统一，性能大幅提升</td></tr><tr><td><strong>RWKV</strong></td><td>线性递归 + 类注意力交互，&quot;高效版 RNN&quot;</td></tr><tr><td><strong>混合架构</strong></td><td>Mamba 层 + Attention 层，兼顾效率与精确检索</td></tr></tbody></table></div>
+<hr>
+<h2 id="时效性说明">时效性说明</h2>
+<p>本文内容截至 <strong>2026 年 4 月</strong>。以下领域变化最快：</p>
+<ul>
+<li><strong>SSM vs Transformer 之争</strong>：Mamba-2 缩小了差距，但 Transformer + FlashAttention 仍是主流。混合架构是当前共识方向</li>
+<li><strong>RWKV 生态</strong>：社区驱动，版本迭代快（已到 RWKV-7），但工业界大规模采用案例仍少</li>
+<li><strong>稀疏注意力</strong>：Longformer/BigBird 主要用于 BERT 时代的长文档分类，在 LLM 时代已被 FlashAttention + 全注意力取代</li>
+<li><strong>新架构</strong>：可能出现全新的序列建模范式，目前无法预测</li>
+</ul>
+<p><strong>建议</strong>：关注 Tri Dao（FlashAttention/Mamba 作者）和 Albert Gu（S4/Mamba 作者）的论文更新。RWKV 社区的最新进展见其 GitHub 和 Discord。</p>
+<p><strong>延伸阅读</strong>：<a href="%E8%AE%BA%E6%96%87%E4%B8%8EFAQ.html">论文与FAQ</a>——本模块涉及的关键论文列表和常见问题。</p>
+      </article>
+      <nav class="doc-nav"><a href="2_MoE%E6%9E%B6%E6%9E%84.html">← Mixture of Experts（MoE）架构</a><a href="%E8%AE%BA%E6%96%87%E4%B8%8EFAQ.html">论文与FAQ →</a></nav>
+    </main>
+  </div>
+</body>
+</html>

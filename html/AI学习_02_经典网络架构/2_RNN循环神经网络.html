@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>RNN 循环神经网络 · AI学习</title>
+  <link rel="stylesheet" href="../assets/study.css">
+  <script>
+    window.MathJax = {
+      tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], displayMath: [['$$', '$$'], ['\\[', '\\]']] },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="../index.html"><span class="brand-mark">AI</span><span>AI学习 HTML 预览</span></a>
+    <span class="crumb">02 经典网络架构 / 2_RNN循环神经网络.md</span>
+  </header>
+  <div class="shell doc-shell">
+    <aside class="toc"><div class="toc-title">完整目录</div><nav class="site-tree"><details>
+<summary>总览与附录</summary>
+<a class="doc-link" href="../README.html">README<small>StudyAI — AI 及大模型原理系统学习教材</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0%E7%9B%AE%E5%BD%95%E7%B4%A2%E5%BC%95.html">AI学习目录索引<small>AI 及大模型原理 — 学习目录索引</small></a>
+<a class="doc-link" href="../%E6%95%B4%E4%BD%93%E7%9F%A5%E8%AF%86%E4%BD%93%E7%B3%BB%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE.html">整体知识体系思维导图<small>AI 及大模型原理 — 整体知识体系思维导图</small></a>
+<a class="doc-link" href="../%E9%99%84%E5%BD%95_%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%80%E9%80%9F%E8%A7%88.html">附录_数学基础速览<small>附录：数学基础速览</small></a>
+<a class="doc-link" href="../%E9%99%84%E5%BD%95_%E4%BB%A3%E7%A0%81%E7%A4%BA%E4%BE%8B%E9%9B%86.html">附录_代码示例集<small>附录：代码示例集（精选版）</small></a>
+</details>
+<details>
+<summary>01 神经网络基础</summary>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_01_%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/README.html">README<small>01 神经网络基础</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_01_%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/1_%E6%84%9F%E7%9F%A5%E6%9C%BA%E4%B8%8E%E5%A4%9A%E5%B1%82%E7%BD%91%E7%BB%9C.html">1_感知机与多层网络<small>感知机与多层网络</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_01_%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/2_%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0.html">2_激活函数<small>激活函数</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_01_%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/3_%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0.html">3_损失函数<small>损失函数</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_01_%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/4_%E5%8F%8D%E5%90%91%E4%BC%A0%E6%92%AD.html">4_反向传播<small>反向传播</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_01_%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/5_%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D%E4%B8%8E%E4%BC%98%E5%8C%96%E5%99%A8.html">5_梯度下降与优化器<small>梯度下降与优化器</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_01_%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/6_%E6%AD%A3%E5%88%99%E5%8C%96.html">6_正则化<small>正则化（Regularization）</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_01_%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/%E8%AE%BA%E6%96%87%E4%B8%8EFAQ.html">论文与FAQ<small>论文与FAQ</small></a>
+</details>
+<details open>
+<summary>02 经典网络架构</summary>
+<a class="doc-link" href="README.html">README<small>02 经典网络架构</small></a>
+<a class="doc-link" href="1_CNN%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C.html">1_CNN卷积神经网络<small>CNN 卷积神经网络</small></a>
+<a class="doc-link active" href="2_RNN%E5%BE%AA%E7%8E%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C.html">2_RNN循环神经网络<small>RNN 循环神经网络</small></a>
+<a class="doc-link" href="3_LSTM%E4%B8%8EGRU.html">3_LSTM与GRU<small>LSTM 与 GRU</small></a>
+<a class="doc-link" href="4_%E7%BC%96%E7%A0%81%E5%99%A8%E8%A7%A3%E7%A0%81%E5%99%A8%E6%A1%86%E6%9E%B6.html">4_编码器解码器框架<small>编码器-解码器框架（Seq2Seq）</small></a>
+<a class="doc-link" href="%E8%AE%BA%E6%96%87%E4%B8%8EFAQ.html">论文与FAQ<small>论文与FAQ</small></a>
+</details>
+<details>
+<summary>03 注意力机制与Transformer</summary>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_03_%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%9C%BA%E5%88%B6%E4%B8%8ETransformer/README.html">README<small>03 注意力机制与 Transformer</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_03_%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%9C%BA%E5%88%B6%E4%B8%8ETransformer/1_%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%9C%BA%E5%88%B6.html">1_注意力机制<small>注意力机制</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_03_%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%9C%BA%E5%88%B6%E4%B8%8ETransformer/2_SelfAttention%E4%B8%8EMultiHead.html">2_SelfAttention与MultiHead<small>Self-Attention 与 Multi-Head Attention</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_03_%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%9C%BA%E5%88%B6%E4%B8%8ETransformer/3_Transformer%E6%9E%B6%E6%9E%84.html">3_Transformer架构<small>Transformer 完整架构</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_03_%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%9C%BA%E5%88%B6%E4%B8%8ETransformer/4_%E4%BD%8D%E7%BD%AE%E7%BC%96%E7%A0%81.html">4_位置编码<small>位置编码</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_03_%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%9C%BA%E5%88%B6%E4%B8%8ETransformer/%E8%AE%BA%E6%96%87%E4%B8%8EFAQ.html">论文与FAQ<small>论文与FAQ</small></a>
+</details>
+<details>
+<summary>04 预训练语言模型演进</summary>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_04_%E9%A2%84%E8%AE%AD%E7%BB%83%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%BC%94%E8%BF%9B/README.html">README<small>04 预训练语言模型演进</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_04_%E9%A2%84%E8%AE%AD%E7%BB%83%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%BC%94%E8%BF%9B/1_%E8%AF%8D%E8%A1%A8%E7%A4%BA%E7%9A%84%E6%BC%94%E8%BF%9B.html">1_词表示的演进<small>词表示的演进</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_04_%E9%A2%84%E8%AE%AD%E7%BB%83%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%BC%94%E8%BF%9B/2_%E8%87%AA%E7%9B%91%E7%9D%A3%E9%A2%84%E8%AE%AD%E7%BB%83%E8%8C%83%E5%BC%8F.html">2_自监督预训练范式<small>自监督预训练范式</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_04_%E9%A2%84%E8%AE%AD%E7%BB%83%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%BC%94%E8%BF%9B/3_BERT%E4%B8%8EGPT.html">3_BERT与GPT<small>BERT 与 GPT：两大路线</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_04_%E9%A2%84%E8%AE%AD%E7%BB%83%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%BC%94%E8%BF%9B/4_%E5%BE%AE%E8%B0%83%E4%B8%8E%E8%BF%81%E7%A7%BB%E5%AD%A6%E4%B9%A0.html">4_微调与迁移学习<small>微调与迁移学习</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_04_%E9%A2%84%E8%AE%AD%E7%BB%83%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%BC%94%E8%BF%9B/%E8%AE%BA%E6%96%87%E4%B8%8EFAQ.html">论文与FAQ<small>论文与FAQ</small></a>
+</details>
+<details>
+<summary>05 GPT系列深度解析</summary>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_05_GPT%E7%B3%BB%E5%88%97%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90/README.html">README<small>05 GPT 系列深度解析</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_05_GPT%E7%B3%BB%E5%88%97%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90/1_GPT%E7%B3%BB%E5%88%97%E6%9E%B6%E6%9E%84%E6%BC%94%E8%BF%9B.html">1_GPT系列架构演进<small>GPT 系列架构演进</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_05_GPT%E7%B3%BB%E5%88%97%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90/2_ScalingLaws%E4%B8%8E%E6%B6%8C%E7%8E%B0.html">2_ScalingLaws与涌现<small>Scaling Laws 与涌现能力</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_05_GPT%E7%B3%BB%E5%88%97%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90/3_%E5%AF%B9%E9%BD%90%E6%8A%80%E6%9C%AF.html">3_对齐技术<small>对齐技术：从预训练到有用又安全</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_05_GPT%E7%B3%BB%E5%88%97%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90/4_GPT4%E4%B9%8B%E5%90%8E%E7%9A%84%E6%BC%94%E8%BF%9B.html">4_GPT4之后的演进<small>GPT-4 之后的演进（截至 2026.4）</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_05_GPT%E7%B3%BB%E5%88%97%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90/%E8%AE%BA%E6%96%87%E4%B8%8EFAQ.html">论文与FAQ<small>论文与FAQ</small></a>
+</details>
+<details>
+<summary>06 生成模型与扩散模型</summary>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_06_%E7%94%9F%E6%88%90%E6%A8%A1%E5%9E%8B%E4%B8%8E%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B/README.html">README<small>06 生成模型与扩散模型</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_06_%E7%94%9F%E6%88%90%E6%A8%A1%E5%9E%8B%E4%B8%8E%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B/1_%E7%94%9F%E6%88%90%E6%A8%A1%E5%9E%8B%E8%B0%B1%E7%B3%BB.html">1_生成模型谱系<small>生成模型谱系</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_06_%E7%94%9F%E6%88%90%E6%A8%A1%E5%9E%8B%E4%B8%8E%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B/2_%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B%E5%8E%9F%E7%90%86.html">2_扩散模型原理<small>扩散模型原理</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_06_%E7%94%9F%E6%88%90%E6%A8%A1%E5%9E%8B%E4%B8%8E%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B/3_%E6%9D%A1%E4%BB%B6%E7%94%9F%E6%88%90%E4%B8%8E%E5%BC%95%E5%AF%BC.html">3_条件生成与引导<small>条件生成与引导</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_06_%E7%94%9F%E6%88%90%E6%A8%A1%E5%9E%8B%E4%B8%8E%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B/4_%E6%9E%B6%E6%9E%84%E4%B8%8E%E5%BA%94%E7%94%A8.html">4_架构与应用<small>架构与应用</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_06_%E7%94%9F%E6%88%90%E6%A8%A1%E5%9E%8B%E4%B8%8E%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B/%E8%AE%BA%E6%96%87%E4%B8%8EFAQ.html">论文与FAQ<small>论文与FAQ</small></a>
+</details>
+<details>
+<summary>07 大模型训练技术</summary>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_07_%E5%A4%A7%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83%E6%8A%80%E6%9C%AF/README.html">README<small>07 大模型训练技术</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_07_%E5%A4%A7%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83%E6%8A%80%E6%9C%AF/1_%E5%88%86%E5%B8%83%E5%BC%8F%E8%AE%AD%E7%BB%83.html">1_分布式训练<small>分布式训练</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_07_%E5%A4%A7%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83%E6%8A%80%E6%9C%AF/2_%E6%B7%B7%E5%90%88%E7%B2%BE%E5%BA%A6%E4%B8%8E%E6%A1%86%E6%9E%B6.html">2_混合精度与框架<small>混合精度与训练框架</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_07_%E5%A4%A7%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83%E6%8A%80%E6%9C%AF/3_%E6%95%B0%E6%8D%AE%E5%B7%A5%E7%A8%8B%E4%B8%8ETokenizer.html">3_数据工程与Tokenizer<small>数据工程与 Tokenizer</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_07_%E5%A4%A7%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83%E6%8A%80%E6%9C%AF/4_%E5%AF%B9%E9%BD%90%E8%AE%AD%E7%BB%83%E5%AE%9E%E8%B7%B5.html">4_对齐训练实践<small>对齐训练实践</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_07_%E5%A4%A7%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83%E6%8A%80%E6%9C%AF/%E8%AE%BA%E6%96%87%E4%B8%8EFAQ.html">论文与FAQ<small>论文与 FAQ</small></a>
+</details>
+<details>
+<summary>08 大模型推理与部署</summary>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_08_%E5%A4%A7%E6%A8%A1%E5%9E%8B%E6%8E%A8%E7%90%86%E4%B8%8E%E9%83%A8%E7%BD%B2/README.html">README<small>08 大模型推理与部署</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_08_%E5%A4%A7%E6%A8%A1%E5%9E%8B%E6%8E%A8%E7%90%86%E4%B8%8E%E9%83%A8%E7%BD%B2/1_KVCache%E4%B8%8E%E6%8E%A8%E7%90%86%E4%BC%98%E5%8C%96.html">1_KVCache与推理优化<small>KV Cache 与推理优化</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_08_%E5%A4%A7%E6%A8%A1%E5%9E%8B%E6%8E%A8%E7%90%86%E4%B8%8E%E9%83%A8%E7%BD%B2/2_%E9%87%8F%E5%8C%96%E6%8A%80%E6%9C%AF.html">2_量化技术<small>量化技术</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_08_%E5%A4%A7%E6%A8%A1%E5%9E%8B%E6%8E%A8%E7%90%86%E4%B8%8E%E9%83%A8%E7%BD%B2/3_%E6%8E%A8%E7%90%86%E6%A1%86%E6%9E%B6%E4%B8%8E%E9%83%A8%E7%BD%B2.html">3_推理框架与部署<small>推理框架与部署</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_08_%E5%A4%A7%E6%A8%A1%E5%9E%8B%E6%8E%A8%E7%90%86%E4%B8%8E%E9%83%A8%E7%BD%B2/%E8%AE%BA%E6%96%87%E4%B8%8EFAQ.html">论文与FAQ<small>论文与FAQ</small></a>
+</details>
+<details>
+<summary>09 RAG与应用架构</summary>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_09_RAG%E4%B8%8E%E5%BA%94%E7%94%A8%E6%9E%B6%E6%9E%84/README.html">README<small>09 RAG与应用架构</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_09_RAG%E4%B8%8E%E5%BA%94%E7%94%A8%E6%9E%B6%E6%9E%84/1_RAG%E5%AE%8C%E6%95%B4%E6%B5%81%E7%A8%8B.html">1_RAG完整流程<small>RAG 完整流程</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_09_RAG%E4%B8%8E%E5%BA%94%E7%94%A8%E6%9E%B6%E6%9E%84/2_Embedding%E4%B8%8E%E5%90%91%E9%87%8F%E6%A3%80%E7%B4%A2.html">2_Embedding与向量检索<small>Embedding 与向量检索</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_09_RAG%E4%B8%8E%E5%BA%94%E7%94%A8%E6%9E%B6%E6%9E%84/3_%E9%AB%98%E7%BA%A7RAG%E6%8A%80%E6%9C%AF.html">3_高级RAG技术<small>高级 RAG 技术</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_09_RAG%E4%B8%8E%E5%BA%94%E7%94%A8%E6%9E%B6%E6%9E%84/%E8%AE%BA%E6%96%87%E4%B8%8EFAQ.html">论文与FAQ<small>论文与FAQ</small></a>
+</details>
+<details>
+<summary>10 多模态模型</summary>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_10_%E5%A4%9A%E6%A8%A1%E6%80%81%E6%A8%A1%E5%9E%8B/README.html">README<small>10 多模态模型</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_10_%E5%A4%9A%E6%A8%A1%E6%80%81%E6%A8%A1%E5%9E%8B/1_ViT%E4%B8%8ECLIP.html">1_ViT与CLIP<small>ViT 与 CLIP</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_10_%E5%A4%9A%E6%A8%A1%E6%80%81%E6%A8%A1%E5%9E%8B/2_%E5%A4%9A%E6%A8%A1%E6%80%81%E5%A4%A7%E6%A8%A1%E5%9E%8B.html">2_多模态大模型<small>多模态大模型</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_10_%E5%A4%9A%E6%A8%A1%E6%80%81%E6%A8%A1%E5%9E%8B/3_%E8%A7%86%E9%A2%91%E4%B8%8E%E8%AF%AD%E9%9F%B3.html">3_视频与语音<small>视频与语音</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_10_%E5%A4%9A%E6%A8%A1%E6%80%81%E6%A8%A1%E5%9E%8B/%E8%AE%BA%E6%96%87%E4%B8%8EFAQ.html">论文与FAQ<small>论文与FAQ</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_10_%E5%A4%9A%E6%A8%A1%E6%80%81%E6%A8%A1%E5%9E%8B/%E6%97%B6%E6%95%88%E6%80%A7%E8%AF%B4%E6%98%8E.html">时效性说明<small>时效性说明</small></a>
+</details>
+<details>
+<summary>11 推理与思维链</summary>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_11_%E6%8E%A8%E7%90%86%E4%B8%8E%E6%80%9D%E7%BB%B4%E9%93%BE/README.html">README<small>11 推理与思维链</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_11_%E6%8E%A8%E7%90%86%E4%B8%8E%E6%80%9D%E7%BB%B4%E9%93%BE/1_%E6%80%9D%E7%BB%B4%E9%93%BE%E6%8F%90%E7%A4%BA.html">1_思维链提示<small>思维链提示</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_11_%E6%8E%A8%E7%90%86%E4%B8%8E%E6%80%9D%E7%BB%B4%E9%93%BE/2_%E9%AB%98%E7%BA%A7%E6%8E%A8%E7%90%86%E6%96%B9%E6%B3%95.html">2_高级推理方法<small>高级推理方法</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_11_%E6%8E%A8%E7%90%86%E4%B8%8E%E6%80%9D%E7%BB%B4%E9%93%BE/3_%E6%8E%A8%E7%90%86%E6%A8%A1%E5%9E%8B%E4%B8%8ETTC.html">3_推理模型与TTC<small>推理模型与 Test-time Compute Scaling</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_11_%E6%8E%A8%E7%90%86%E4%B8%8E%E6%80%9D%E7%BB%B4%E9%93%BE/%E8%AE%BA%E6%96%87%E4%B8%8EFAQ.html">论文与FAQ<small>论文与FAQ</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_11_%E6%8E%A8%E7%90%86%E4%B8%8E%E6%80%9D%E7%BB%B4%E9%93%BE/%E6%97%B6%E6%95%88%E6%80%A7%E8%AF%B4%E6%98%8E.html">时效性说明<small>时效性说明</small></a>
+</details>
+<details>
+<summary>12 Agent与工具使用</summary>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_12_Agent%E4%B8%8E%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/README.html">README<small>12 Agent与工具使用</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_12_Agent%E4%B8%8E%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/1_Agent%E6%A1%86%E6%9E%B6%E5%8E%9F%E7%90%86.html">1_Agent框架原理<small>Agent 框架原理</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_12_Agent%E4%B8%8E%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/2_%E8%AE%B0%E5%BF%86%E4%B8%8E%E7%8A%B6%E6%80%81%E7%AE%A1%E7%90%86.html">2_记忆与状态管理<small>记忆与状态管理</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_12_Agent%E4%B8%8E%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/3_%E5%A4%9AAgent%E4%B8%8EMCP.html">3_多Agent与MCP<small>多 Agent 与 MCP</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_12_Agent%E4%B8%8E%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/%E8%AE%BA%E6%96%87%E4%B8%8EFAQ.html">论文与FAQ<small>论文与FAQ</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_12_Agent%E4%B8%8E%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/%E6%97%B6%E6%95%88%E6%80%A7%E8%AF%B4%E6%98%8E.html">时效性说明<small>时效性说明</small></a>
+</details>
+<details>
+<summary>13 长文本与高效架构</summary>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_13_%E9%95%BF%E6%96%87%E6%9C%AC%E4%B8%8E%E9%AB%98%E6%95%88%E6%9E%B6%E6%9E%84/README.html">README<small>13 长文本与高效架构</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_13_%E9%95%BF%E6%96%87%E6%9C%AC%E4%B8%8E%E9%AB%98%E6%95%88%E6%9E%B6%E6%9E%84/1_%E9%95%BF%E6%96%87%E6%9C%AC%E6%8A%80%E6%9C%AF.html">1_长文本技术<small>长文本技术</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_13_%E9%95%BF%E6%96%87%E6%9C%AC%E4%B8%8E%E9%AB%98%E6%95%88%E6%9E%B6%E6%9E%84/2_MoE%E6%9E%B6%E6%9E%84.html">2_MoE架构<small>Mixture of Experts（MoE）架构</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_13_%E9%95%BF%E6%96%87%E6%9C%AC%E4%B8%8E%E9%AB%98%E6%95%88%E6%9E%B6%E6%9E%84/3_%E9%AB%98%E6%95%88Transformer.html">3_高效Transformer<small>高效 Transformer 变体</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_13_%E9%95%BF%E6%96%87%E6%9C%AC%E4%B8%8E%E9%AB%98%E6%95%88%E6%9E%B6%E6%9E%84/%E8%AE%BA%E6%96%87%E4%B8%8EFAQ.html">论文与FAQ<small>论文与FAQ</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_13_%E9%95%BF%E6%96%87%E6%9C%AC%E4%B8%8E%E9%AB%98%E6%95%88%E6%9E%B6%E6%9E%84/%E6%97%B6%E6%95%88%E6%80%A7%E8%AF%B4%E6%98%8E.html">时效性说明<small>时效性说明</small></a>
+</details></nav><div class="sidebar-rule"></div><details class="page-toc" open><summary>当前页目录</summary><a class="depth-2" href="#序列不是一袋词">序列不是一袋词</a>
+<a class="depth-3" href="#核心问题序列不是一袋词">核心问题：序列不是一袋词</a>
+<a class="depth-3" href="#阅读类比">阅读类比</a>
+<a class="depth-2" href="#rnn-的核心机制">RNN 的核心机制</a>
+<a class="depth-3" href="#1-基本-rnn-公式">1. 基本 RNN 公式</a>
+<a class="depth-3" href="#2-展开图循环其实是共享参数的深层网络">2. 展开图：循环其实是共享参数的深层网络</a>
+<a class="depth-3" href="#3-隐藏状态到底记了什么">3. 隐藏状态到底记了什么</a>
+<a class="depth-3" href="#4-rnn-的常见输入输出模式">4. RNN 的常见输入输出模式</a>
+<a class="depth-3" href="#5-bptt沿时间反向传播">5. BPTT：沿时间反向传播</a>
+<a class="depth-3" href="#6-为什么原始-rnn-记不住长距离依赖">6. 为什么原始 RNN 记不住长距离依赖</a>
+<a class="depth-2" href="#常见误区">常见误区</a>
+<a class="depth-2" href="#本节小结">本节小结</a></details></aside>
+    <main class="page">
+      <article class="markdown-body">
+<h1 id="rnn-循环神经网络">RNN 循环神经网络</h1>
+<h2 id="序列不是一袋词">序列不是一袋词</h2>
+<h3 id="核心问题序列不是一袋词">核心问题：序列不是一袋词</h3>
+<p>普通前馈网络默认输入长度固定，且各位置没有天然顺序。但语言、语音、时间序列都不一样：</p>
+<ul>
+<li>&quot;我不喜欢这部电影&quot; 和 &quot;我喜欢这部电影不&quot; 不是一回事。</li>
+<li>股票、天气、传感器数据都依赖时间顺序。</li>
+<li>一句话的后半句常常要靠前半句理解。</li>
+</ul>
+<p>RNN（Recurrent Neural Network，循环神经网络）的核心想法是：<strong>读序列时带着一个会更新的记忆状态</strong>。</p>
+<h3 id="阅读类比">阅读类比</h3>
+<p>你读一句话时，不会每看到一个词就忘掉前面的词。你会带着一个不断更新的&quot;当前理解&quot;：</p>
+<pre><code>我 → 我很 → 我很喜欢 → 我很喜欢这部 → 我很喜欢这部电影</code></pre>
+<p>RNN 的隐藏状态 $h_t$ 就像这个&quot;当前理解&quot;。每读入一个新 token，RNN 同时看：</p>
+<ul>
+<li>当前输入 $x_t$</li>
+<li>上一步记忆 $h_{t-1}$</li>
+</ul>
+<p>然后更新成新的记忆 $h_t$。</p>
+<hr>
+<h2 id="rnn-的核心机制">RNN 的核心机制</h2>
+<h3 id="1-基本-rnn-公式">1. 基本 RNN 公式</h3>
+<p>基本 RNN 的递推公式：</p>
+<div class="math-block">$$h_t = \tanh(W_{xh}x_t + W_{hh}h_{t-1} + b_h)$$</div>
+<div class="math-block">$$y_t = W_{hy}h_t + b_y$$</div>
+<p>其中：</p>
+<ul>
+<li>$x_t$：第 $t$ 个时间步的输入</li>
+<li>$h_t$：第 $t$ 个时间步的隐藏状态</li>
+<li>$W_{xh}$：输入到隐藏状态的权重</li>
+<li>$W_{hh}$：上一隐藏状态到当前隐藏状态的权重</li>
+<li>$y_t$：当前时间步输出</li>
+</ul>
+<p>最重要的是 $W_{hh}h_{t-1}$：它让过去的信息影响现在。</p>
+<h3 id="2-展开图循环其实是共享参数的深层网络">2. 展开图：循环其实是共享参数的深层网络</h3>
+<p>RNN 可以沿时间展开：</p>
+<pre><code>h0 → h1 → h2 → h3 → ...
+     ↑    ↑    ↑
+     x1   x2   x3</code></pre>
+<p>每个时间步看起来像一层网络，但这些&quot;层&quot;共享同一套参数 $W_{xh}$、$W_{hh}$、$W_{hy}$。</p>
+<p>这带来两个结果：</p>
+<ul>
+<li>序列多长都能处理，因为参数不会随长度增加。</li>
+<li>时间步越长，反向传播路径越长，梯度问题越严重。</li>
+</ul>
+<h3 id="3-隐藏状态到底记了什么">3. 隐藏状态到底记了什么</h3>
+<p>$h_t$ 不是原文的拷贝，而是模型压缩出的状态向量。</p>
+<p>它可能包含：</p>
+<ul>
+<li>当前句子的主题</li>
+<li>最近出现的重要词</li>
+<li>语法状态</li>
+<li>时间序列的近期趋势</li>
+</ul>
+<p>但它容量有限。所有过去信息都要被压进一个固定长度向量，这就是 RNN 处理长序列时的根本压力。</p>
+<h3 id="4-rnn-的常见输入输出模式">4. RNN 的常见输入输出模式</h3>
+<div class="table-wrap"><table><thead><tr><th>模式</th><th>例子</th><th>说明</th></tr></thead><tbody><tr><td>One-to-One</td><td>普通分类</td><td>不是 RNN 重点</td></tr><tr><td>One-to-Many</td><td>图像生成描述</td><td>一个输入生成序列</td></tr><tr><td>Many-to-One</td><td>情感分类</td><td>读完整句后输出一个结果</td></tr><tr><td>Many-to-Many（同步）</td><td>词性标注</td><td>每个输入对应一个输出</td></tr><tr><td>Many-to-Many（异步）</td><td>翻译、摘要</td><td>输入输出长度可不同</td></tr></tbody></table></div>
+<p>Seq2Seq 架构会在后面专门讲 Many-to-Many 的异步情况。</p>
+<h3 id="5-bptt沿时间反向传播">5. BPTT：沿时间反向传播</h3>
+<p>RNN 的训练使用 <strong>BPTT（Backpropagation Through Time）</strong>。本质很简单：</p>
+<ol>
+<li>把 RNN 沿时间展开成一条长链。</li>
+<li>正向读完整个序列。</li>
+<li>从损失出发，沿时间反向传播梯度。</li>
+</ol>
+<p>问题也正来自这里：如果序列很长，梯度要穿过很多时间步，连乘效应会变得严重。</p>
+<h3 id="6-为什么原始-rnn-记不住长距离依赖">6. 为什么原始 RNN 记不住长距离依赖</h3>
+<p>假设一句话有 100 个 token，最后一个词的理解依赖第 1 个词。梯度从最后传回第 1 个时间步时，要经过 100 次左右的连续变换。</p>
+<p>如果每一步都让梯度变小一点，最后就几乎没信号了。这就是<strong>梯度消失</strong>。</p>
+<p>如果每一步都让梯度变大一点，最后就会爆炸。这就是<strong>梯度爆炸</strong>。</p>
+<p>梯度爆炸可以用梯度裁剪缓解；梯度消失更棘手，因为早期信息根本传不回来。LSTM 和 GRU 就是为了解决这个问题而设计的。</p>
+<hr>
+<h2 id="常见误区">常见误区</h2>
+<p><strong>误区 1：RNN 的隐藏状态等于完整记忆。</strong></p>
+<p>不是。隐藏状态是压缩表示，不可能无损保存任意长历史。</p>
+<p><strong>误区 2：RNN 天然擅长所有长文本任务。</strong></p>
+<p>不对。RNN 能处理变长序列，但原始 RNN 很难学习长距离依赖。</p>
+<p><strong>误区 3：RNN 已经完全没用了。</strong></p>
+<p>也不准确。Transformer 成为主流后，RNN 在大规模语言建模中退居二线，但 RNN 的状态递推思想仍影响了很多高效序列模型。</p>
+<hr>
+<h2 id="本节小结">本节小结</h2>
+<div class="table-wrap"><table><thead><tr><th>概念</th><th>一句话总结</th></tr></thead><tbody><tr><td>RNN</td><td>带隐藏状态的序列模型</td></tr><tr><td>隐藏状态 $h_t$</td><td>对历史信息的压缩表示</td></tr><tr><td>参数共享</td><td>每个时间步使用同一套参数</td></tr><tr><td>BPTT</td><td>沿时间展开后做反向传播</td></tr><tr><td>梯度消失</td><td>长距离依赖学不到的关键原因</td></tr><tr><td>梯度爆炸</td><td>梯度过大导致训练不稳定，可用裁剪缓解</td></tr></tbody></table></div>
+<p><strong>下一篇</strong>：<a href="3_LSTM%E4%B8%8EGRU.html">LSTM 与 GRU</a>——如果普通 RNN 的记忆太差，门控机制如何帮它选择性记住和忘记？</p>
+      </article>
+      <nav class="doc-nav"><a href="1_CNN%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C.html">← CNN 卷积神经网络</a><a href="3_LSTM%E4%B8%8EGRU.html">LSTM 与 GRU →</a></nav>
+    </main>
+  </div>
+</body>
+</html>

@@ -4,7 +4,7 @@
 
 ---
 
-## 风趣易懂的直觉讲解
+## 为什么 Attention 可以撑起整座模型
 ### 核心问题
 
 你已经学完了 Self-Attention 和 Multi-Head Attention。它们很强大，但一个注意力层还不是一个完整的模型。要真正处理序列到序列的任务（翻译、摘要、对话），你需要回答以下问题：
@@ -58,7 +58,7 @@ Transformer 的回答是：**把 Multi-Head Attention 与残差连接、Layer No
 
 ---
 
-## 准确概念定义与核心原理
+## Transformer 的层级结构
 ### 编码器层（Encoder Layer）
 
 原始 Transformer 使用 N=6 个相同结构的编码器层堆叠。每一层包含两个子层：

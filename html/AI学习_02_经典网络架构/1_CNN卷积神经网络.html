@@ -1,0 +1,256 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CNN 卷积神经网络 · AI学习</title>
+  <link rel="stylesheet" href="../assets/study.css">
+  <script>
+    window.MathJax = {
+      tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], displayMath: [['$$', '$$'], ['\\[', '\\]']] },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="../index.html"><span class="brand-mark">AI</span><span>AI学习 HTML 预览</span></a>
+    <span class="crumb">02 经典网络架构 / 1_CNN卷积神经网络.md</span>
+  </header>
+  <div class="shell doc-shell">
+    <aside class="toc"><div class="toc-title">完整目录</div><nav class="site-tree"><details>
+<summary>总览与附录</summary>
+<a class="doc-link" href="../README.html">README<small>StudyAI — AI 及大模型原理系统学习教材</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0%E7%9B%AE%E5%BD%95%E7%B4%A2%E5%BC%95.html">AI学习目录索引<small>AI 及大模型原理 — 学习目录索引</small></a>
+<a class="doc-link" href="../%E6%95%B4%E4%BD%93%E7%9F%A5%E8%AF%86%E4%BD%93%E7%B3%BB%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE.html">整体知识体系思维导图<small>AI 及大模型原理 — 整体知识体系思维导图</small></a>
+<a class="doc-link" href="../%E9%99%84%E5%BD%95_%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%80%E9%80%9F%E8%A7%88.html">附录_数学基础速览<small>附录：数学基础速览</small></a>
+<a class="doc-link" href="../%E9%99%84%E5%BD%95_%E4%BB%A3%E7%A0%81%E7%A4%BA%E4%BE%8B%E9%9B%86.html">附录_代码示例集<small>附录：代码示例集（精选版）</small></a>
+</details>
+<details>
+<summary>01 神经网络基础</summary>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_01_%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/README.html">README<small>01 神经网络基础</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_01_%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/1_%E6%84%9F%E7%9F%A5%E6%9C%BA%E4%B8%8E%E5%A4%9A%E5%B1%82%E7%BD%91%E7%BB%9C.html">1_感知机与多层网络<small>感知机与多层网络</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_01_%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/2_%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0.html">2_激活函数<small>激活函数</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_01_%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/3_%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0.html">3_损失函数<small>损失函数</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_01_%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/4_%E5%8F%8D%E5%90%91%E4%BC%A0%E6%92%AD.html">4_反向传播<small>反向传播</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_01_%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/5_%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D%E4%B8%8E%E4%BC%98%E5%8C%96%E5%99%A8.html">5_梯度下降与优化器<small>梯度下降与优化器</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_01_%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/6_%E6%AD%A3%E5%88%99%E5%8C%96.html">6_正则化<small>正则化（Regularization）</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_01_%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/%E8%AE%BA%E6%96%87%E4%B8%8EFAQ.html">论文与FAQ<small>论文与FAQ</small></a>
+</details>
+<details open>
+<summary>02 经典网络架构</summary>
+<a class="doc-link" href="README.html">README<small>02 经典网络架构</small></a>
+<a class="doc-link active" href="1_CNN%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C.html">1_CNN卷积神经网络<small>CNN 卷积神经网络</small></a>
+<a class="doc-link" href="2_RNN%E5%BE%AA%E7%8E%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C.html">2_RNN循环神经网络<small>RNN 循环神经网络</small></a>
+<a class="doc-link" href="3_LSTM%E4%B8%8EGRU.html">3_LSTM与GRU<small>LSTM 与 GRU</small></a>
+<a class="doc-link" href="4_%E7%BC%96%E7%A0%81%E5%99%A8%E8%A7%A3%E7%A0%81%E5%99%A8%E6%A1%86%E6%9E%B6.html">4_编码器解码器框架<small>编码器-解码器框架（Seq2Seq）</small></a>
+<a class="doc-link" href="%E8%AE%BA%E6%96%87%E4%B8%8EFAQ.html">论文与FAQ<small>论文与FAQ</small></a>
+</details>
+<details>
+<summary>03 注意力机制与Transformer</summary>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_03_%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%9C%BA%E5%88%B6%E4%B8%8ETransformer/README.html">README<small>03 注意力机制与 Transformer</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_03_%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%9C%BA%E5%88%B6%E4%B8%8ETransformer/1_%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%9C%BA%E5%88%B6.html">1_注意力机制<small>注意力机制</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_03_%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%9C%BA%E5%88%B6%E4%B8%8ETransformer/2_SelfAttention%E4%B8%8EMultiHead.html">2_SelfAttention与MultiHead<small>Self-Attention 与 Multi-Head Attention</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_03_%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%9C%BA%E5%88%B6%E4%B8%8ETransformer/3_Transformer%E6%9E%B6%E6%9E%84.html">3_Transformer架构<small>Transformer 完整架构</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_03_%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%9C%BA%E5%88%B6%E4%B8%8ETransformer/4_%E4%BD%8D%E7%BD%AE%E7%BC%96%E7%A0%81.html">4_位置编码<small>位置编码</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_03_%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%9C%BA%E5%88%B6%E4%B8%8ETransformer/%E8%AE%BA%E6%96%87%E4%B8%8EFAQ.html">论文与FAQ<small>论文与FAQ</small></a>
+</details>
+<details>
+<summary>04 预训练语言模型演进</summary>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_04_%E9%A2%84%E8%AE%AD%E7%BB%83%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%BC%94%E8%BF%9B/README.html">README<small>04 预训练语言模型演进</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_04_%E9%A2%84%E8%AE%AD%E7%BB%83%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%BC%94%E8%BF%9B/1_%E8%AF%8D%E8%A1%A8%E7%A4%BA%E7%9A%84%E6%BC%94%E8%BF%9B.html">1_词表示的演进<small>词表示的演进</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_04_%E9%A2%84%E8%AE%AD%E7%BB%83%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%BC%94%E8%BF%9B/2_%E8%87%AA%E7%9B%91%E7%9D%A3%E9%A2%84%E8%AE%AD%E7%BB%83%E8%8C%83%E5%BC%8F.html">2_自监督预训练范式<small>自监督预训练范式</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_04_%E9%A2%84%E8%AE%AD%E7%BB%83%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%BC%94%E8%BF%9B/3_BERT%E4%B8%8EGPT.html">3_BERT与GPT<small>BERT 与 GPT：两大路线</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_04_%E9%A2%84%E8%AE%AD%E7%BB%83%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%BC%94%E8%BF%9B/4_%E5%BE%AE%E8%B0%83%E4%B8%8E%E8%BF%81%E7%A7%BB%E5%AD%A6%E4%B9%A0.html">4_微调与迁移学习<small>微调与迁移学习</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_04_%E9%A2%84%E8%AE%AD%E7%BB%83%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%BC%94%E8%BF%9B/%E8%AE%BA%E6%96%87%E4%B8%8EFAQ.html">论文与FAQ<small>论文与FAQ</small></a>
+</details>
+<details>
+<summary>05 GPT系列深度解析</summary>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_05_GPT%E7%B3%BB%E5%88%97%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90/README.html">README<small>05 GPT 系列深度解析</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_05_GPT%E7%B3%BB%E5%88%97%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90/1_GPT%E7%B3%BB%E5%88%97%E6%9E%B6%E6%9E%84%E6%BC%94%E8%BF%9B.html">1_GPT系列架构演进<small>GPT 系列架构演进</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_05_GPT%E7%B3%BB%E5%88%97%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90/2_ScalingLaws%E4%B8%8E%E6%B6%8C%E7%8E%B0.html">2_ScalingLaws与涌现<small>Scaling Laws 与涌现能力</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_05_GPT%E7%B3%BB%E5%88%97%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90/3_%E5%AF%B9%E9%BD%90%E6%8A%80%E6%9C%AF.html">3_对齐技术<small>对齐技术：从预训练到有用又安全</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_05_GPT%E7%B3%BB%E5%88%97%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90/4_GPT4%E4%B9%8B%E5%90%8E%E7%9A%84%E6%BC%94%E8%BF%9B.html">4_GPT4之后的演进<small>GPT-4 之后的演进（截至 2026.4）</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_05_GPT%E7%B3%BB%E5%88%97%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90/%E8%AE%BA%E6%96%87%E4%B8%8EFAQ.html">论文与FAQ<small>论文与FAQ</small></a>
+</details>
+<details>
+<summary>06 生成模型与扩散模型</summary>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_06_%E7%94%9F%E6%88%90%E6%A8%A1%E5%9E%8B%E4%B8%8E%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B/README.html">README<small>06 生成模型与扩散模型</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_06_%E7%94%9F%E6%88%90%E6%A8%A1%E5%9E%8B%E4%B8%8E%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B/1_%E7%94%9F%E6%88%90%E6%A8%A1%E5%9E%8B%E8%B0%B1%E7%B3%BB.html">1_生成模型谱系<small>生成模型谱系</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_06_%E7%94%9F%E6%88%90%E6%A8%A1%E5%9E%8B%E4%B8%8E%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B/2_%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B%E5%8E%9F%E7%90%86.html">2_扩散模型原理<small>扩散模型原理</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_06_%E7%94%9F%E6%88%90%E6%A8%A1%E5%9E%8B%E4%B8%8E%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B/3_%E6%9D%A1%E4%BB%B6%E7%94%9F%E6%88%90%E4%B8%8E%E5%BC%95%E5%AF%BC.html">3_条件生成与引导<small>条件生成与引导</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_06_%E7%94%9F%E6%88%90%E6%A8%A1%E5%9E%8B%E4%B8%8E%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B/4_%E6%9E%B6%E6%9E%84%E4%B8%8E%E5%BA%94%E7%94%A8.html">4_架构与应用<small>架构与应用</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_06_%E7%94%9F%E6%88%90%E6%A8%A1%E5%9E%8B%E4%B8%8E%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B/%E8%AE%BA%E6%96%87%E4%B8%8EFAQ.html">论文与FAQ<small>论文与FAQ</small></a>
+</details>
+<details>
+<summary>07 大模型训练技术</summary>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_07_%E5%A4%A7%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83%E6%8A%80%E6%9C%AF/README.html">README<small>07 大模型训练技术</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_07_%E5%A4%A7%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83%E6%8A%80%E6%9C%AF/1_%E5%88%86%E5%B8%83%E5%BC%8F%E8%AE%AD%E7%BB%83.html">1_分布式训练<small>分布式训练</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_07_%E5%A4%A7%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83%E6%8A%80%E6%9C%AF/2_%E6%B7%B7%E5%90%88%E7%B2%BE%E5%BA%A6%E4%B8%8E%E6%A1%86%E6%9E%B6.html">2_混合精度与框架<small>混合精度与训练框架</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_07_%E5%A4%A7%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83%E6%8A%80%E6%9C%AF/3_%E6%95%B0%E6%8D%AE%E5%B7%A5%E7%A8%8B%E4%B8%8ETokenizer.html">3_数据工程与Tokenizer<small>数据工程与 Tokenizer</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_07_%E5%A4%A7%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83%E6%8A%80%E6%9C%AF/4_%E5%AF%B9%E9%BD%90%E8%AE%AD%E7%BB%83%E5%AE%9E%E8%B7%B5.html">4_对齐训练实践<small>对齐训练实践</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_07_%E5%A4%A7%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83%E6%8A%80%E6%9C%AF/%E8%AE%BA%E6%96%87%E4%B8%8EFAQ.html">论文与FAQ<small>论文与 FAQ</small></a>
+</details>
+<details>
+<summary>08 大模型推理与部署</summary>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_08_%E5%A4%A7%E6%A8%A1%E5%9E%8B%E6%8E%A8%E7%90%86%E4%B8%8E%E9%83%A8%E7%BD%B2/README.html">README<small>08 大模型推理与部署</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_08_%E5%A4%A7%E6%A8%A1%E5%9E%8B%E6%8E%A8%E7%90%86%E4%B8%8E%E9%83%A8%E7%BD%B2/1_KVCache%E4%B8%8E%E6%8E%A8%E7%90%86%E4%BC%98%E5%8C%96.html">1_KVCache与推理优化<small>KV Cache 与推理优化</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_08_%E5%A4%A7%E6%A8%A1%E5%9E%8B%E6%8E%A8%E7%90%86%E4%B8%8E%E9%83%A8%E7%BD%B2/2_%E9%87%8F%E5%8C%96%E6%8A%80%E6%9C%AF.html">2_量化技术<small>量化技术</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_08_%E5%A4%A7%E6%A8%A1%E5%9E%8B%E6%8E%A8%E7%90%86%E4%B8%8E%E9%83%A8%E7%BD%B2/3_%E6%8E%A8%E7%90%86%E6%A1%86%E6%9E%B6%E4%B8%8E%E9%83%A8%E7%BD%B2.html">3_推理框架与部署<small>推理框架与部署</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_08_%E5%A4%A7%E6%A8%A1%E5%9E%8B%E6%8E%A8%E7%90%86%E4%B8%8E%E9%83%A8%E7%BD%B2/%E8%AE%BA%E6%96%87%E4%B8%8EFAQ.html">论文与FAQ<small>论文与FAQ</small></a>
+</details>
+<details>
+<summary>09 RAG与应用架构</summary>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_09_RAG%E4%B8%8E%E5%BA%94%E7%94%A8%E6%9E%B6%E6%9E%84/README.html">README<small>09 RAG与应用架构</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_09_RAG%E4%B8%8E%E5%BA%94%E7%94%A8%E6%9E%B6%E6%9E%84/1_RAG%E5%AE%8C%E6%95%B4%E6%B5%81%E7%A8%8B.html">1_RAG完整流程<small>RAG 完整流程</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_09_RAG%E4%B8%8E%E5%BA%94%E7%94%A8%E6%9E%B6%E6%9E%84/2_Embedding%E4%B8%8E%E5%90%91%E9%87%8F%E6%A3%80%E7%B4%A2.html">2_Embedding与向量检索<small>Embedding 与向量检索</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_09_RAG%E4%B8%8E%E5%BA%94%E7%94%A8%E6%9E%B6%E6%9E%84/3_%E9%AB%98%E7%BA%A7RAG%E6%8A%80%E6%9C%AF.html">3_高级RAG技术<small>高级 RAG 技术</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_09_RAG%E4%B8%8E%E5%BA%94%E7%94%A8%E6%9E%B6%E6%9E%84/%E8%AE%BA%E6%96%87%E4%B8%8EFAQ.html">论文与FAQ<small>论文与FAQ</small></a>
+</details>
+<details>
+<summary>10 多模态模型</summary>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_10_%E5%A4%9A%E6%A8%A1%E6%80%81%E6%A8%A1%E5%9E%8B/README.html">README<small>10 多模态模型</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_10_%E5%A4%9A%E6%A8%A1%E6%80%81%E6%A8%A1%E5%9E%8B/1_ViT%E4%B8%8ECLIP.html">1_ViT与CLIP<small>ViT 与 CLIP</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_10_%E5%A4%9A%E6%A8%A1%E6%80%81%E6%A8%A1%E5%9E%8B/2_%E5%A4%9A%E6%A8%A1%E6%80%81%E5%A4%A7%E6%A8%A1%E5%9E%8B.html">2_多模态大模型<small>多模态大模型</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_10_%E5%A4%9A%E6%A8%A1%E6%80%81%E6%A8%A1%E5%9E%8B/3_%E8%A7%86%E9%A2%91%E4%B8%8E%E8%AF%AD%E9%9F%B3.html">3_视频与语音<small>视频与语音</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_10_%E5%A4%9A%E6%A8%A1%E6%80%81%E6%A8%A1%E5%9E%8B/%E8%AE%BA%E6%96%87%E4%B8%8EFAQ.html">论文与FAQ<small>论文与FAQ</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_10_%E5%A4%9A%E6%A8%A1%E6%80%81%E6%A8%A1%E5%9E%8B/%E6%97%B6%E6%95%88%E6%80%A7%E8%AF%B4%E6%98%8E.html">时效性说明<small>时效性说明</small></a>
+</details>
+<details>
+<summary>11 推理与思维链</summary>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_11_%E6%8E%A8%E7%90%86%E4%B8%8E%E6%80%9D%E7%BB%B4%E9%93%BE/README.html">README<small>11 推理与思维链</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_11_%E6%8E%A8%E7%90%86%E4%B8%8E%E6%80%9D%E7%BB%B4%E9%93%BE/1_%E6%80%9D%E7%BB%B4%E9%93%BE%E6%8F%90%E7%A4%BA.html">1_思维链提示<small>思维链提示</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_11_%E6%8E%A8%E7%90%86%E4%B8%8E%E6%80%9D%E7%BB%B4%E9%93%BE/2_%E9%AB%98%E7%BA%A7%E6%8E%A8%E7%90%86%E6%96%B9%E6%B3%95.html">2_高级推理方法<small>高级推理方法</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_11_%E6%8E%A8%E7%90%86%E4%B8%8E%E6%80%9D%E7%BB%B4%E9%93%BE/3_%E6%8E%A8%E7%90%86%E6%A8%A1%E5%9E%8B%E4%B8%8ETTC.html">3_推理模型与TTC<small>推理模型与 Test-time Compute Scaling</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_11_%E6%8E%A8%E7%90%86%E4%B8%8E%E6%80%9D%E7%BB%B4%E9%93%BE/%E8%AE%BA%E6%96%87%E4%B8%8EFAQ.html">论文与FAQ<small>论文与FAQ</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_11_%E6%8E%A8%E7%90%86%E4%B8%8E%E6%80%9D%E7%BB%B4%E9%93%BE/%E6%97%B6%E6%95%88%E6%80%A7%E8%AF%B4%E6%98%8E.html">时效性说明<small>时效性说明</small></a>
+</details>
+<details>
+<summary>12 Agent与工具使用</summary>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_12_Agent%E4%B8%8E%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/README.html">README<small>12 Agent与工具使用</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_12_Agent%E4%B8%8E%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/1_Agent%E6%A1%86%E6%9E%B6%E5%8E%9F%E7%90%86.html">1_Agent框架原理<small>Agent 框架原理</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_12_Agent%E4%B8%8E%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/2_%E8%AE%B0%E5%BF%86%E4%B8%8E%E7%8A%B6%E6%80%81%E7%AE%A1%E7%90%86.html">2_记忆与状态管理<small>记忆与状态管理</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_12_Agent%E4%B8%8E%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/3_%E5%A4%9AAgent%E4%B8%8EMCP.html">3_多Agent与MCP<small>多 Agent 与 MCP</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_12_Agent%E4%B8%8E%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/%E8%AE%BA%E6%96%87%E4%B8%8EFAQ.html">论文与FAQ<small>论文与FAQ</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_12_Agent%E4%B8%8E%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/%E6%97%B6%E6%95%88%E6%80%A7%E8%AF%B4%E6%98%8E.html">时效性说明<small>时效性说明</small></a>
+</details>
+<details>
+<summary>13 长文本与高效架构</summary>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_13_%E9%95%BF%E6%96%87%E6%9C%AC%E4%B8%8E%E9%AB%98%E6%95%88%E6%9E%B6%E6%9E%84/README.html">README<small>13 长文本与高效架构</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_13_%E9%95%BF%E6%96%87%E6%9C%AC%E4%B8%8E%E9%AB%98%E6%95%88%E6%9E%B6%E6%9E%84/1_%E9%95%BF%E6%96%87%E6%9C%AC%E6%8A%80%E6%9C%AF.html">1_长文本技术<small>长文本技术</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_13_%E9%95%BF%E6%96%87%E6%9C%AC%E4%B8%8E%E9%AB%98%E6%95%88%E6%9E%B6%E6%9E%84/2_MoE%E6%9E%B6%E6%9E%84.html">2_MoE架构<small>Mixture of Experts（MoE）架构</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_13_%E9%95%BF%E6%96%87%E6%9C%AC%E4%B8%8E%E9%AB%98%E6%95%88%E6%9E%B6%E6%9E%84/3_%E9%AB%98%E6%95%88Transformer.html">3_高效Transformer<small>高效 Transformer 变体</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_13_%E9%95%BF%E6%96%87%E6%9C%AC%E4%B8%8E%E9%AB%98%E6%95%88%E6%9E%B6%E6%9E%84/%E8%AE%BA%E6%96%87%E4%B8%8EFAQ.html">论文与FAQ<small>论文与FAQ</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_13_%E9%95%BF%E6%96%87%E6%9C%AC%E4%B8%8E%E9%AB%98%E6%95%88%E6%9E%B6%E6%9E%84/%E6%97%B6%E6%95%88%E6%80%A7%E8%AF%B4%E6%98%8E.html">时效性说明<small>时效性说明</small></a>
+</details></nav><div class="sidebar-rule"></div><details class="page-toc" open><summary>当前页目录</summary><a class="depth-2" href="#图像为什么需要卷积">图像为什么需要卷积</a>
+<a class="depth-3" href="#核心问题图像不能直接当一长串数字处理">核心问题：图像不能直接当一长串数字处理</a>
+<a class="depth-3" href="#cnn-的三个核心思想">CNN 的三个核心思想</a>
+<a class="depth-2" href="#cnn-的核心机制">CNN 的核心机制</a>
+<a class="depth-3" href="#1-卷积运算滑动窗口做加权求和">1. 卷积运算：滑动窗口做加权求和</a>
+<a class="depth-3" href="#2-感受野一个输出能看到多大范围">2. 感受野：一个输出能看到多大范围</a>
+<a class="depth-3" href="#3-paddingstride-和输出尺寸">3. Padding、Stride 和输出尺寸</a>
+<a class="depth-3" href="#4-多通道卷积不是只看灰度图">4. 多通道卷积：不是只看灰度图</a>
+<a class="depth-3" href="#5-池化层压缩空间保留强信号">5. 池化层：压缩空间，保留强信号</a>
+<a class="depth-3" href="#6-经典-cnn-演进记思想不背结构">6. 经典 CNN 演进：记思想，不背结构</a>
+<a class="depth-3" href="#7-1-x-1-卷积通道混合器">7. 1 x 1 卷积：通道混合器</a>
+<a class="depth-2" href="#常见误区">常见误区</a>
+<a class="depth-2" href="#本节小结">本节小结</a></details></aside>
+    <main class="page">
+      <article class="markdown-body">
+<h1 id="cnn-卷积神经网络">CNN 卷积神经网络</h1>
+<h2 id="图像为什么需要卷积">图像为什么需要卷积</h2>
+<h3 id="核心问题图像不能直接当一长串数字处理">核心问题：图像不能直接当一长串数字处理</h3>
+<p>一张 224 x 224 x 3 的彩色图片有 150,528 个像素值。如果直接用全连接网络处理，参数量会爆炸。</p>
+<p>更糟的是，全连接网络把图像摊平成一维向量后，会丢掉一个关键信息：<strong>空间邻近关系</strong>。</p>
+<p>在图像里，旁边的像素通常相关。猫耳朵、眼睛、胡须这些局部结构，不是随机散落的数字，而是空间模式。CNN 的核心就是利用这种结构。</p>
+<h3 id="cnn-的三个核心思想">CNN 的三个核心思想</h3>
+<div class="table-wrap"><table><thead><tr><th>思想</th><th>直觉</th><th>解决什么问题</th></tr></thead><tbody><tr><td>局部连接</td><td>先看小区域，不必一口吞下整张图</td><td>利用图像局部结构</td></tr><tr><td>权值共享</td><td>同一个探测器在整张图上滑动</td><td>大幅减少参数量</td></tr><tr><td>层级特征</td><td>低层看边缘，高层看部件，再高层看物体</td><td>从局部组合出语义</td></tr></tbody></table></div>
+<p>可以把卷积核想象成一个小小的&quot;模式探测器&quot;：它在图像上滑动，遇到像边缘、纹理、角点这样的模式就响应强，没遇到就响应弱。</p>
+<hr>
+<h2 id="cnn-的核心机制">CNN 的核心机制</h2>
+<h3 id="1-卷积运算滑动窗口做加权求和">1. 卷积运算：滑动窗口做加权求和</h3>
+<p>严格来说，深度学习框架里的&quot;卷积&quot;多数是<strong>互相关</strong>：卷积核不翻转，直接与窗口内像素逐元素相乘再求和。</p>
+<p>对二维输入 $X$ 和卷积核 $K$：</p>
+<div class="math-block">$$Y[i,j] = \sum_m\sum_n X[i+m,j+n]\cdot K[m,n]$$</div>
+<p>直觉：</p>
+<pre><code>卷积核覆盖一小块区域
+→ 每个位置相乘
+→ 全部加起来
+→ 得到输出特征图上的一个值</code></pre>
+<p>卷积核滑过整张图，就得到一张<strong>特征图（Feature Map）</strong>。特征图表示：某种局部模式在各个位置出现得有多强。</p>
+<h3 id="2-感受野一个输出能看到多大范围">2. 感受野：一个输出能看到多大范围</h3>
+<p><strong>感受野（Receptive Field）</strong>指某个神经元能&quot;看到&quot;输入图像中的多大区域。</p>
+<ul>
+<li>单个 3 x 3 卷积只看局部 3 x 3 区域。</li>
+<li>多层卷积叠起来后，高层神经元能间接看到更大区域。</li>
+</ul>
+<p>这解释了 CNN 的层级特征：</p>
+<pre><code>低层：边缘、颜色、纹理
+中层：眼睛、轮廓、局部部件
+高层：猫、车、人脸等语义对象</code></pre>
+<h3 id="3-paddingstride-和输出尺寸">3. Padding、Stride 和输出尺寸</h3>
+<p>CNN 常见三个参数：</p>
+<div class="table-wrap"><table><thead><tr><th>参数</th><th>含义</th><th>直觉</th></tr></thead><tbody><tr><td>Kernel Size</td><td>卷积核大小</td><td>探测器一次看多大</td></tr><tr><td>Stride</td><td>滑动步长</td><td>探测器每次跳多远</td></tr><tr><td>Padding</td><td>边缘补零</td><td>是否保留边缘信息和空间尺寸</td></tr></tbody></table></div>
+<p>输出尺寸公式：</p>
+<div class="math-block">$$H_{\text{out}} = \left\lfloor \frac{H_{\text{in}} + 2P - K}{S} \right\rfloor + 1$$</div>
+<p>其中 $H_{\text{in}}$ 是输入高度，$K$ 是卷积核大小，$P$ 是 padding，$S$ 是 stride。宽度同理。</p>
+<p>不用死记公式，抓住直觉即可：</p>
+<ul>
+<li>padding 越大，输出越大。</li>
+<li>stride 越大，输出越小。</li>
+<li>kernel 越大，边缘可滑动的位置越少，输出越小。</li>
+</ul>
+<h3 id="4-多通道卷积不是只看灰度图">4. 多通道卷积：不是只看灰度图</h3>
+<p>彩色图像有 RGB 三个通道。卷积核也要有对应的输入通道。</p>
+<p>如果输入是 $H \times W \times C_{\text{in}}$，一个卷积核的形状通常是：</p>
+<div class="math-block">$$K \times K \times C_{\text{in}}$$</div>
+<p>它会同时看所有输入通道，输出一张特征图。</p>
+<p>如果有 $C_{\text{out}}$ 个卷积核，就会输出 $C_{\text{out}}$ 张特征图。每个卷积核学习一种不同的模式探测器。</p>
+<h3 id="5-池化层压缩空间保留强信号">5. 池化层：压缩空间，保留强信号</h3>
+<p>池化（Pooling）常用于降低特征图尺寸。</p>
+<p><strong>最大池化（Max Pooling）</strong>取窗口内最大值：</p>
+<pre><code>[[1, 3],
+ [2, 0]] → 3</code></pre>
+<p>直觉：只关心&quot;这个模式有没有强烈出现&quot;，不太关心精确位置。</p>
+<p>池化的作用：</p>
+<ul>
+<li>降低计算量</li>
+<li>增加一定的位置鲁棒性</li>
+<li>扩大后续层的感受野</li>
+</ul>
+<p>现代 CNN 中，池化有时会被 stride 卷积替代，但&quot;逐步降低空间分辨率、提高语义抽象度&quot;这个思想仍然重要。</p>
+<h3 id="6-经典-cnn-演进记思想不背结构">6. 经典 CNN 演进：记思想，不背结构</h3>
+<div class="table-wrap"><table><thead><tr><th>模型</th><th>关键思想</th><th>为什么重要</th></tr></thead><tbody><tr><td>LeNet-5</td><td>卷积 + 池化 + 全连接</td><td>奠定 CNN 基本范式</td></tr><tr><td>AlexNet</td><td>ReLU、Dropout、大数据和 GPU</td><td>引爆深度学习时代</td></tr><tr><td>VGG</td><td>多个 3 x 3 小卷积堆叠</td><td>证明深度和规整结构很有效</td></tr><tr><td>Inception</td><td>多尺度卷积分支</td><td>同时捕捉不同大小的模式</td></tr><tr><td>ResNet</td><td>残差连接</td><td>让很深的网络可以稳定训练</td></tr></tbody></table></div>
+<p>其中最值得记住的是 <strong>ResNet 的残差连接</strong>：</p>
+<div class="math-block">$$y = F(x) + x$$</div>
+<p>它让网络可以学习&quot;在输入基础上改一点&quot;，而不是每层都从零学习完整变换。反向传播时，$+x$ 也给梯度提供了一条更直接的路径，缓解深层网络训练困难。</p>
+<h3 id="7-1-x-1-卷积通道混合器">7. 1 x 1 卷积：通道混合器</h3>
+<p>1 x 1 卷积看起来像&quot;没看邻居&quot;，但它非常有用：它在每个空间位置上混合不同通道。</p>
+<p>直觉：</p>
+<pre><code>空间位置不变
+通道之间重新组合</code></pre>
+<p>常见用途：</p>
+<ul>
+<li>降低通道数，减少计算量</li>
+<li>提升通道数，增加表达能力</li>
+<li>在 Inception、ResNet bottleneck 等结构中做通道变换</li>
+</ul>
+<hr>
+<h2 id="常见误区">常见误区</h2>
+<p><strong>误区 1：CNN 只能用于图像。</strong></p>
+<p>不是。只要数据有局部结构，卷积就可能有用。例如音频、时间序列、文本的局部 n-gram 模式都可以用卷积建模。</p>
+<p><strong>误区 2：卷积核一开始就会识别猫眼睛。</strong></p>
+<p>不会。低层卷积核通常学到边缘、颜色、纹理；更高层才逐渐组合成部件和语义对象。</p>
+<p><strong>误区 3：池化只是为了省计算。</strong></p>
+<p>省计算是一方面，更重要的是引入位置鲁棒性：模式稍微挪一点，模型仍能认出来。</p>
+<hr>
+<h2 id="本节小结">本节小结</h2>
+<div class="table-wrap"><table><thead><tr><th>概念</th><th>一句话总结</th></tr></thead><tbody><tr><td>局部连接</td><td>每个神经元只看局部区域</td></tr><tr><td>权值共享</td><td>同一个卷积核在整张图上复用</td></tr><tr><td>特征图</td><td>某种模式在各位置的响应强度</td></tr><tr><td>感受野</td><td>一个输出能看到的输入范围</td></tr><tr><td>池化</td><td>压缩空间尺寸，保留强信号</td></tr><tr><td>残差连接</td><td>给深层网络提供更容易学习和传梯度的路径</td></tr><tr><td>1 x 1 卷积</td><td>在每个位置上混合通道</td></tr></tbody></table></div>
+<p><strong>下一篇</strong>：<a href="2_RNN%E5%BE%AA%E7%8E%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C.html">RNN 循环神经网络</a>——图像有空间结构，序列则有时间顺序。RNN 要解决的是&quot;如何记住前文&quot;。</p>
+      </article>
+      <nav class="doc-nav"><a href="README.html">← 02 经典网络架构</a><a href="2_RNN%E5%BE%AA%E7%8E%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C.html">RNN 循环神经网络 →</a></nav>
+    </main>
+  </div>
+</body>
+</html>

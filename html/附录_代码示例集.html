@@ -1,0 +1,1326 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>附录：代码示例集（精选版） · AI学习</title>
+  <link rel="stylesheet" href="assets/study.css">
+  <script>
+    window.MathJax = {
+      tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], displayMath: [['$$', '$$'], ['\\[', '\\]']] },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="index.html"><span class="brand-mark">AI</span><span>AI学习 HTML 预览</span></a>
+    <span class="crumb">总览与附录 / 附录_代码示例集.md</span>
+  </header>
+  <div class="shell doc-shell">
+    <aside class="toc"><div class="toc-title">完整目录</div><nav class="site-tree"><details open>
+<summary>总览与附录</summary>
+<a class="doc-link" href="README.html">README<small>StudyAI — AI 及大模型原理系统学习教材</small></a>
+<a class="doc-link" href="AI%E5%AD%A6%E4%B9%A0%E7%9B%AE%E5%BD%95%E7%B4%A2%E5%BC%95.html">AI学习目录索引<small>AI 及大模型原理 — 学习目录索引</small></a>
+<a class="doc-link" href="%E6%95%B4%E4%BD%93%E7%9F%A5%E8%AF%86%E4%BD%93%E7%B3%BB%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE.html">整体知识体系思维导图<small>AI 及大模型原理 — 整体知识体系思维导图</small></a>
+<a class="doc-link" href="%E9%99%84%E5%BD%95_%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%80%E9%80%9F%E8%A7%88.html">附录_数学基础速览<small>附录：数学基础速览</small></a>
+<a class="doc-link active" href="%E9%99%84%E5%BD%95_%E4%BB%A3%E7%A0%81%E7%A4%BA%E4%BE%8B%E9%9B%86.html">附录_代码示例集<small>附录：代码示例集（精选版）</small></a>
+</details>
+<details>
+<summary>01 神经网络基础</summary>
+<a class="doc-link" href="AI%E5%AD%A6%E4%B9%A0_01_%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/README.html">README<small>01 神经网络基础</small></a>
+<a class="doc-link" href="AI%E5%AD%A6%E4%B9%A0_01_%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/1_%E6%84%9F%E7%9F%A5%E6%9C%BA%E4%B8%8E%E5%A4%9A%E5%B1%82%E7%BD%91%E7%BB%9C.html">1_感知机与多层网络<small>感知机与多层网络</small></a>
+<a class="doc-link" href="AI%E5%AD%A6%E4%B9%A0_01_%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/2_%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0.html">2_激活函数<small>激活函数</small></a>
+<a class="doc-link" href="AI%E5%AD%A6%E4%B9%A0_01_%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/3_%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0.html">3_损失函数<small>损失函数</small></a>
+<a class="doc-link" href="AI%E5%AD%A6%E4%B9%A0_01_%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/4_%E5%8F%8D%E5%90%91%E4%BC%A0%E6%92%AD.html">4_反向传播<small>反向传播</small></a>
+<a class="doc-link" href="AI%E5%AD%A6%E4%B9%A0_01_%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/5_%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D%E4%B8%8E%E4%BC%98%E5%8C%96%E5%99%A8.html">5_梯度下降与优化器<small>梯度下降与优化器</small></a>
+<a class="doc-link" href="AI%E5%AD%A6%E4%B9%A0_01_%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/6_%E6%AD%A3%E5%88%99%E5%8C%96.html">6_正则化<small>正则化（Regularization）</small></a>
+<a class="doc-link" href="AI%E5%AD%A6%E4%B9%A0_01_%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/%E8%AE%BA%E6%96%87%E4%B8%8EFAQ.html">论文与FAQ<small>论文与FAQ</small></a>
+</details>
+<details>
+<summary>02 经典网络架构</summary>
+<a class="doc-link" href="AI%E5%AD%A6%E4%B9%A0_02_%E7%BB%8F%E5%85%B8%E7%BD%91%E7%BB%9C%E6%9E%B6%E6%9E%84/README.html">README<small>02 经典网络架构</small></a>
+<a class="doc-link" href="AI%E5%AD%A6%E4%B9%A0_02_%E7%BB%8F%E5%85%B8%E7%BD%91%E7%BB%9C%E6%9E%B6%E6%9E%84/1_CNN%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C.html">1_CNN卷积神经网络<small>CNN 卷积神经网络</small></a>
+<a class="doc-link" href="AI%E5%AD%A6%E4%B9%A0_02_%E7%BB%8F%E5%85%B8%E7%BD%91%E7%BB%9C%E6%9E%B6%E6%9E%84/2_RNN%E5%BE%AA%E7%8E%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C.html">2_RNN循环神经网络<small>RNN 循环神经网络</small></a>
+<a class="doc-link" href="AI%E5%AD%A6%E4%B9%A0_02_%E7%BB%8F%E5%85%B8%E7%BD%91%E7%BB%9C%E6%9E%B6%E6%9E%84/3_LSTM%E4%B8%8EGRU.html">3_LSTM与GRU<small>LSTM 与 GRU</small></a>
+<a class="doc-link" href="AI%E5%AD%A6%E4%B9%A0_02_%E7%BB%8F%E5%85%B8%E7%BD%91%E7%BB%9C%E6%9E%B6%E6%9E%84/4_%E7%BC%96%E7%A0%81%E5%99%A8%E8%A7%A3%E7%A0%81%E5%99%A8%E6%A1%86%E6%9E%B6.html">4_编码器解码器框架<small>编码器-解码器框架（Seq2Seq）</small></a>
+<a class="doc-link" href="AI%E5%AD%A6%E4%B9%A0_02_%E7%BB%8F%E5%85%B8%E7%BD%91%E7%BB%9C%E6%9E%B6%E6%9E%84/%E8%AE%BA%E6%96%87%E4%B8%8EFAQ.html">论文与FAQ<small>论文与FAQ</small></a>
+</details>
+<details>
+<summary>03 注意力机制与Transformer</summary>
+<a class="doc-link" href="AI%E5%AD%A6%E4%B9%A0_03_%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%9C%BA%E5%88%B6%E4%B8%8ETransformer/README.html">README<small>03 注意力机制与 Transformer</small></a>
+<a class="doc-link" href="AI%E5%AD%A6%E4%B9%A0_03_%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%9C%BA%E5%88%B6%E4%B8%8ETransformer/1_%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%9C%BA%E5%88%B6.html">1_注意力机制<small>注意力机制</small></a>
+<a class="doc-link" href="AI%E5%AD%A6%E4%B9%A0_03_%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%9C%BA%E5%88%B6%E4%B8%8ETransformer/2_SelfAttention%E4%B8%8EMultiHead.html">2_SelfAttention与MultiHead<small>Self-Attention 与 Multi-Head Attention</small></a>
+<a class="doc-link" href="AI%E5%AD%A6%E4%B9%A0_03_%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%9C%BA%E5%88%B6%E4%B8%8ETransformer/3_Transformer%E6%9E%B6%E6%9E%84.html">3_Transformer架构<small>Transformer 完整架构</small></a>
+<a class="doc-link" href="AI%E5%AD%A6%E4%B9%A0_03_%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%9C%BA%E5%88%B6%E4%B8%8ETransformer/4_%E4%BD%8D%E7%BD%AE%E7%BC%96%E7%A0%81.html">4_位置编码<small>位置编码</small></a>
+<a class="doc-link" href="AI%E5%AD%A6%E4%B9%A0_03_%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%9C%BA%E5%88%B6%E4%B8%8ETransformer/%E8%AE%BA%E6%96%87%E4%B8%8EFAQ.html">论文与FAQ<small>论文与FAQ</small></a>
+</details>
+<details>
+<summary>04 预训练语言模型演进</summary>
+<a class="doc-link" href="AI%E5%AD%A6%E4%B9%A0_04_%E9%A2%84%E8%AE%AD%E7%BB%83%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%BC%94%E8%BF%9B/README.html">README<small>04 预训练语言模型演进</small></a>
+<a class="doc-link" href="AI%E5%AD%A6%E4%B9%A0_04_%E9%A2%84%E8%AE%AD%E7%BB%83%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%BC%94%E8%BF%9B/1_%E8%AF%8D%E8%A1%A8%E7%A4%BA%E7%9A%84%E6%BC%94%E8%BF%9B.html">1_词表示的演进<small>词表示的演进</small></a>
+<a class="doc-link" href="AI%E5%AD%A6%E4%B9%A0_04_%E9%A2%84%E8%AE%AD%E7%BB%83%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%BC%94%E8%BF%9B/2_%E8%87%AA%E7%9B%91%E7%9D%A3%E9%A2%84%E8%AE%AD%E7%BB%83%E8%8C%83%E5%BC%8F.html">2_自监督预训练范式<small>自监督预训练范式</small></a>
+<a class="doc-link" href="AI%E5%AD%A6%E4%B9%A0_04_%E9%A2%84%E8%AE%AD%E7%BB%83%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%BC%94%E8%BF%9B/3_BERT%E4%B8%8EGPT.html">3_BERT与GPT<small>BERT 与 GPT：两大路线</small></a>
+<a class="doc-link" href="AI%E5%AD%A6%E4%B9%A0_04_%E9%A2%84%E8%AE%AD%E7%BB%83%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%BC%94%E8%BF%9B/4_%E5%BE%AE%E8%B0%83%E4%B8%8E%E8%BF%81%E7%A7%BB%E5%AD%A6%E4%B9%A0.html">4_微调与迁移学习<small>微调与迁移学习</small></a>
+<a class="doc-link" href="AI%E5%AD%A6%E4%B9%A0_04_%E9%A2%84%E8%AE%AD%E7%BB%83%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%BC%94%E8%BF%9B/%E8%AE%BA%E6%96%87%E4%B8%8EFAQ.html">论文与FAQ<small>论文与FAQ</small></a>
+</details>
+<details>
+<summary>05 GPT系列深度解析</summary>
+<a class="doc-link" href="AI%E5%AD%A6%E4%B9%A0_05_GPT%E7%B3%BB%E5%88%97%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90/README.html">README<small>05 GPT 系列深度解析</small></a>
+<a class="doc-link" href="AI%E5%AD%A6%E4%B9%A0_05_GPT%E7%B3%BB%E5%88%97%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90/1_GPT%E7%B3%BB%E5%88%97%E6%9E%B6%E6%9E%84%E6%BC%94%E8%BF%9B.html">1_GPT系列架构演进<small>GPT 系列架构演进</small></a>
+<a class="doc-link" href="AI%E5%AD%A6%E4%B9%A0_05_GPT%E7%B3%BB%E5%88%97%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90/2_ScalingLaws%E4%B8%8E%E6%B6%8C%E7%8E%B0.html">2_ScalingLaws与涌现<small>Scaling Laws 与涌现能力</small></a>
+<a class="doc-link" href="AI%E5%AD%A6%E4%B9%A0_05_GPT%E7%B3%BB%E5%88%97%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90/3_%E5%AF%B9%E9%BD%90%E6%8A%80%E6%9C%AF.html">3_对齐技术<small>对齐技术：从预训练到有用又安全</small></a>
+<a class="doc-link" href="AI%E5%AD%A6%E4%B9%A0_05_GPT%E7%B3%BB%E5%88%97%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90/4_GPT4%E4%B9%8B%E5%90%8E%E7%9A%84%E6%BC%94%E8%BF%9B.html">4_GPT4之后的演进<small>GPT-4 之后的演进（截至 2026.4）</small></a>
+<a class="doc-link" href="AI%E5%AD%A6%E4%B9%A0_05_GPT%E7%B3%BB%E5%88%97%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90/%E8%AE%BA%E6%96%87%E4%B8%8EFAQ.html">论文与FAQ<small>论文与FAQ</small></a>
+</details>
+<details>
+<summary>06 生成模型与扩散模型</summary>
+<a class="doc-link" href="AI%E5%AD%A6%E4%B9%A0_06_%E7%94%9F%E6%88%90%E6%A8%A1%E5%9E%8B%E4%B8%8E%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B/README.html">README<small>06 生成模型与扩散模型</small></a>
+<a class="doc-link" href="AI%E5%AD%A6%E4%B9%A0_06_%E7%94%9F%E6%88%90%E6%A8%A1%E5%9E%8B%E4%B8%8E%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B/1_%E7%94%9F%E6%88%90%E6%A8%A1%E5%9E%8B%E8%B0%B1%E7%B3%BB.html">1_生成模型谱系<small>生成模型谱系</small></a>
+<a class="doc-link" href="AI%E5%AD%A6%E4%B9%A0_06_%E7%94%9F%E6%88%90%E6%A8%A1%E5%9E%8B%E4%B8%8E%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B/2_%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B%E5%8E%9F%E7%90%86.html">2_扩散模型原理<small>扩散模型原理</small></a>
+<a class="doc-link" href="AI%E5%AD%A6%E4%B9%A0_06_%E7%94%9F%E6%88%90%E6%A8%A1%E5%9E%8B%E4%B8%8E%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B/3_%E6%9D%A1%E4%BB%B6%E7%94%9F%E6%88%90%E4%B8%8E%E5%BC%95%E5%AF%BC.html">3_条件生成与引导<small>条件生成与引导</small></a>
+<a class="doc-link" href="AI%E5%AD%A6%E4%B9%A0_06_%E7%94%9F%E6%88%90%E6%A8%A1%E5%9E%8B%E4%B8%8E%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B/4_%E6%9E%B6%E6%9E%84%E4%B8%8E%E5%BA%94%E7%94%A8.html">4_架构与应用<small>架构与应用</small></a>
+<a class="doc-link" href="AI%E5%AD%A6%E4%B9%A0_06_%E7%94%9F%E6%88%90%E6%A8%A1%E5%9E%8B%E4%B8%8E%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B/%E8%AE%BA%E6%96%87%E4%B8%8EFAQ.html">论文与FAQ<small>论文与FAQ</small></a>
+</details>
+<details>
+<summary>07 大模型训练技术</summary>
+<a class="doc-link" href="AI%E5%AD%A6%E4%B9%A0_07_%E5%A4%A7%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83%E6%8A%80%E6%9C%AF/README.html">README<small>07 大模型训练技术</small></a>
+<a class="doc-link" href="AI%E5%AD%A6%E4%B9%A0_07_%E5%A4%A7%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83%E6%8A%80%E6%9C%AF/1_%E5%88%86%E5%B8%83%E5%BC%8F%E8%AE%AD%E7%BB%83.html">1_分布式训练<small>分布式训练</small></a>
+<a class="doc-link" href="AI%E5%AD%A6%E4%B9%A0_07_%E5%A4%A7%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83%E6%8A%80%E6%9C%AF/2_%E6%B7%B7%E5%90%88%E7%B2%BE%E5%BA%A6%E4%B8%8E%E6%A1%86%E6%9E%B6.html">2_混合精度与框架<small>混合精度与训练框架</small></a>
+<a class="doc-link" href="AI%E5%AD%A6%E4%B9%A0_07_%E5%A4%A7%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83%E6%8A%80%E6%9C%AF/3_%E6%95%B0%E6%8D%AE%E5%B7%A5%E7%A8%8B%E4%B8%8ETokenizer.html">3_数据工程与Tokenizer<small>数据工程与 Tokenizer</small></a>
+<a class="doc-link" href="AI%E5%AD%A6%E4%B9%A0_07_%E5%A4%A7%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83%E6%8A%80%E6%9C%AF/4_%E5%AF%B9%E9%BD%90%E8%AE%AD%E7%BB%83%E5%AE%9E%E8%B7%B5.html">4_对齐训练实践<small>对齐训练实践</small></a>
+<a class="doc-link" href="AI%E5%AD%A6%E4%B9%A0_07_%E5%A4%A7%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83%E6%8A%80%E6%9C%AF/%E8%AE%BA%E6%96%87%E4%B8%8EFAQ.html">论文与FAQ<small>论文与 FAQ</small></a>
+</details>
+<details>
+<summary>08 大模型推理与部署</summary>
+<a class="doc-link" href="AI%E5%AD%A6%E4%B9%A0_08_%E5%A4%A7%E6%A8%A1%E5%9E%8B%E6%8E%A8%E7%90%86%E4%B8%8E%E9%83%A8%E7%BD%B2/README.html">README<small>08 大模型推理与部署</small></a>
+<a class="doc-link" href="AI%E5%AD%A6%E4%B9%A0_08_%E5%A4%A7%E6%A8%A1%E5%9E%8B%E6%8E%A8%E7%90%86%E4%B8%8E%E9%83%A8%E7%BD%B2/1_KVCache%E4%B8%8E%E6%8E%A8%E7%90%86%E4%BC%98%E5%8C%96.html">1_KVCache与推理优化<small>KV Cache 与推理优化</small></a>
+<a class="doc-link" href="AI%E5%AD%A6%E4%B9%A0_08_%E5%A4%A7%E6%A8%A1%E5%9E%8B%E6%8E%A8%E7%90%86%E4%B8%8E%E9%83%A8%E7%BD%B2/2_%E9%87%8F%E5%8C%96%E6%8A%80%E6%9C%AF.html">2_量化技术<small>量化技术</small></a>
+<a class="doc-link" href="AI%E5%AD%A6%E4%B9%A0_08_%E5%A4%A7%E6%A8%A1%E5%9E%8B%E6%8E%A8%E7%90%86%E4%B8%8E%E9%83%A8%E7%BD%B2/3_%E6%8E%A8%E7%90%86%E6%A1%86%E6%9E%B6%E4%B8%8E%E9%83%A8%E7%BD%B2.html">3_推理框架与部署<small>推理框架与部署</small></a>
+<a class="doc-link" href="AI%E5%AD%A6%E4%B9%A0_08_%E5%A4%A7%E6%A8%A1%E5%9E%8B%E6%8E%A8%E7%90%86%E4%B8%8E%E9%83%A8%E7%BD%B2/%E8%AE%BA%E6%96%87%E4%B8%8EFAQ.html">论文与FAQ<small>论文与FAQ</small></a>
+</details>
+<details>
+<summary>09 RAG与应用架构</summary>
+<a class="doc-link" href="AI%E5%AD%A6%E4%B9%A0_09_RAG%E4%B8%8E%E5%BA%94%E7%94%A8%E6%9E%B6%E6%9E%84/README.html">README<small>09 RAG与应用架构</small></a>
+<a class="doc-link" href="AI%E5%AD%A6%E4%B9%A0_09_RAG%E4%B8%8E%E5%BA%94%E7%94%A8%E6%9E%B6%E6%9E%84/1_RAG%E5%AE%8C%E6%95%B4%E6%B5%81%E7%A8%8B.html">1_RAG完整流程<small>RAG 完整流程</small></a>
+<a class="doc-link" href="AI%E5%AD%A6%E4%B9%A0_09_RAG%E4%B8%8E%E5%BA%94%E7%94%A8%E6%9E%B6%E6%9E%84/2_Embedding%E4%B8%8E%E5%90%91%E9%87%8F%E6%A3%80%E7%B4%A2.html">2_Embedding与向量检索<small>Embedding 与向量检索</small></a>
+<a class="doc-link" href="AI%E5%AD%A6%E4%B9%A0_09_RAG%E4%B8%8E%E5%BA%94%E7%94%A8%E6%9E%B6%E6%9E%84/3_%E9%AB%98%E7%BA%A7RAG%E6%8A%80%E6%9C%AF.html">3_高级RAG技术<small>高级 RAG 技术</small></a>
+<a class="doc-link" href="AI%E5%AD%A6%E4%B9%A0_09_RAG%E4%B8%8E%E5%BA%94%E7%94%A8%E6%9E%B6%E6%9E%84/%E8%AE%BA%E6%96%87%E4%B8%8EFAQ.html">论文与FAQ<small>论文与FAQ</small></a>
+</details>
+<details>
+<summary>10 多模态模型</summary>
+<a class="doc-link" href="AI%E5%AD%A6%E4%B9%A0_10_%E5%A4%9A%E6%A8%A1%E6%80%81%E6%A8%A1%E5%9E%8B/README.html">README<small>10 多模态模型</small></a>
+<a class="doc-link" href="AI%E5%AD%A6%E4%B9%A0_10_%E5%A4%9A%E6%A8%A1%E6%80%81%E6%A8%A1%E5%9E%8B/1_ViT%E4%B8%8ECLIP.html">1_ViT与CLIP<small>ViT 与 CLIP</small></a>
+<a class="doc-link" href="AI%E5%AD%A6%E4%B9%A0_10_%E5%A4%9A%E6%A8%A1%E6%80%81%E6%A8%A1%E5%9E%8B/2_%E5%A4%9A%E6%A8%A1%E6%80%81%E5%A4%A7%E6%A8%A1%E5%9E%8B.html">2_多模态大模型<small>多模态大模型</small></a>
+<a class="doc-link" href="AI%E5%AD%A6%E4%B9%A0_10_%E5%A4%9A%E6%A8%A1%E6%80%81%E6%A8%A1%E5%9E%8B/3_%E8%A7%86%E9%A2%91%E4%B8%8E%E8%AF%AD%E9%9F%B3.html">3_视频与语音<small>视频与语音</small></a>
+<a class="doc-link" href="AI%E5%AD%A6%E4%B9%A0_10_%E5%A4%9A%E6%A8%A1%E6%80%81%E6%A8%A1%E5%9E%8B/%E8%AE%BA%E6%96%87%E4%B8%8EFAQ.html">论文与FAQ<small>论文与FAQ</small></a>
+<a class="doc-link" href="AI%E5%AD%A6%E4%B9%A0_10_%E5%A4%9A%E6%A8%A1%E6%80%81%E6%A8%A1%E5%9E%8B/%E6%97%B6%E6%95%88%E6%80%A7%E8%AF%B4%E6%98%8E.html">时效性说明<small>时效性说明</small></a>
+</details>
+<details>
+<summary>11 推理与思维链</summary>
+<a class="doc-link" href="AI%E5%AD%A6%E4%B9%A0_11_%E6%8E%A8%E7%90%86%E4%B8%8E%E6%80%9D%E7%BB%B4%E9%93%BE/README.html">README<small>11 推理与思维链</small></a>
+<a class="doc-link" href="AI%E5%AD%A6%E4%B9%A0_11_%E6%8E%A8%E7%90%86%E4%B8%8E%E6%80%9D%E7%BB%B4%E9%93%BE/1_%E6%80%9D%E7%BB%B4%E9%93%BE%E6%8F%90%E7%A4%BA.html">1_思维链提示<small>思维链提示</small></a>
+<a class="doc-link" href="AI%E5%AD%A6%E4%B9%A0_11_%E6%8E%A8%E7%90%86%E4%B8%8E%E6%80%9D%E7%BB%B4%E9%93%BE/2_%E9%AB%98%E7%BA%A7%E6%8E%A8%E7%90%86%E6%96%B9%E6%B3%95.html">2_高级推理方法<small>高级推理方法</small></a>
+<a class="doc-link" href="AI%E5%AD%A6%E4%B9%A0_11_%E6%8E%A8%E7%90%86%E4%B8%8E%E6%80%9D%E7%BB%B4%E9%93%BE/3_%E6%8E%A8%E7%90%86%E6%A8%A1%E5%9E%8B%E4%B8%8ETTC.html">3_推理模型与TTC<small>推理模型与 Test-time Compute Scaling</small></a>
+<a class="doc-link" href="AI%E5%AD%A6%E4%B9%A0_11_%E6%8E%A8%E7%90%86%E4%B8%8E%E6%80%9D%E7%BB%B4%E9%93%BE/%E8%AE%BA%E6%96%87%E4%B8%8EFAQ.html">论文与FAQ<small>论文与FAQ</small></a>
+<a class="doc-link" href="AI%E5%AD%A6%E4%B9%A0_11_%E6%8E%A8%E7%90%86%E4%B8%8E%E6%80%9D%E7%BB%B4%E9%93%BE/%E6%97%B6%E6%95%88%E6%80%A7%E8%AF%B4%E6%98%8E.html">时效性说明<small>时效性说明</small></a>
+</details>
+<details>
+<summary>12 Agent与工具使用</summary>
+<a class="doc-link" href="AI%E5%AD%A6%E4%B9%A0_12_Agent%E4%B8%8E%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/README.html">README<small>12 Agent与工具使用</small></a>
+<a class="doc-link" href="AI%E5%AD%A6%E4%B9%A0_12_Agent%E4%B8%8E%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/1_Agent%E6%A1%86%E6%9E%B6%E5%8E%9F%E7%90%86.html">1_Agent框架原理<small>Agent 框架原理</small></a>
+<a class="doc-link" href="AI%E5%AD%A6%E4%B9%A0_12_Agent%E4%B8%8E%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/2_%E8%AE%B0%E5%BF%86%E4%B8%8E%E7%8A%B6%E6%80%81%E7%AE%A1%E7%90%86.html">2_记忆与状态管理<small>记忆与状态管理</small></a>
+<a class="doc-link" href="AI%E5%AD%A6%E4%B9%A0_12_Agent%E4%B8%8E%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/3_%E5%A4%9AAgent%E4%B8%8EMCP.html">3_多Agent与MCP<small>多 Agent 与 MCP</small></a>
+<a class="doc-link" href="AI%E5%AD%A6%E4%B9%A0_12_Agent%E4%B8%8E%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/%E8%AE%BA%E6%96%87%E4%B8%8EFAQ.html">论文与FAQ<small>论文与FAQ</small></a>
+<a class="doc-link" href="AI%E5%AD%A6%E4%B9%A0_12_Agent%E4%B8%8E%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/%E6%97%B6%E6%95%88%E6%80%A7%E8%AF%B4%E6%98%8E.html">时效性说明<small>时效性说明</small></a>
+</details>
+<details>
+<summary>13 长文本与高效架构</summary>
+<a class="doc-link" href="AI%E5%AD%A6%E4%B9%A0_13_%E9%95%BF%E6%96%87%E6%9C%AC%E4%B8%8E%E9%AB%98%E6%95%88%E6%9E%B6%E6%9E%84/README.html">README<small>13 长文本与高效架构</small></a>
+<a class="doc-link" href="AI%E5%AD%A6%E4%B9%A0_13_%E9%95%BF%E6%96%87%E6%9C%AC%E4%B8%8E%E9%AB%98%E6%95%88%E6%9E%B6%E6%9E%84/1_%E9%95%BF%E6%96%87%E6%9C%AC%E6%8A%80%E6%9C%AF.html">1_长文本技术<small>长文本技术</small></a>
+<a class="doc-link" href="AI%E5%AD%A6%E4%B9%A0_13_%E9%95%BF%E6%96%87%E6%9C%AC%E4%B8%8E%E9%AB%98%E6%95%88%E6%9E%B6%E6%9E%84/2_MoE%E6%9E%B6%E6%9E%84.html">2_MoE架构<small>Mixture of Experts（MoE）架构</small></a>
+<a class="doc-link" href="AI%E5%AD%A6%E4%B9%A0_13_%E9%95%BF%E6%96%87%E6%9C%AC%E4%B8%8E%E9%AB%98%E6%95%88%E6%9E%B6%E6%9E%84/3_%E9%AB%98%E6%95%88Transformer.html">3_高效Transformer<small>高效 Transformer 变体</small></a>
+<a class="doc-link" href="AI%E5%AD%A6%E4%B9%A0_13_%E9%95%BF%E6%96%87%E6%9C%AC%E4%B8%8E%E9%AB%98%E6%95%88%E6%9E%B6%E6%9E%84/%E8%AE%BA%E6%96%87%E4%B8%8EFAQ.html">论文与FAQ<small>论文与FAQ</small></a>
+<a class="doc-link" href="AI%E5%AD%A6%E4%B9%A0_13_%E9%95%BF%E6%96%87%E6%9C%AC%E4%B8%8E%E9%AB%98%E6%95%88%E6%9E%B6%E6%9E%84/%E6%97%B6%E6%95%88%E6%80%A7%E8%AF%B4%E6%98%8E.html">时效性说明<small>时效性说明</small></a>
+</details></nav><div class="sidebar-rule"></div><details class="page-toc" open><summary>当前页目录</summary><a class="depth-2" href="#使用方式">使用方式</a>
+<a class="depth-2" href="#目录">目录</a>
+<a class="depth-2" href="#1-ai学习_01_神经网络基础-1_感知机与多层网络">1. AI学习_01_神经网络基础 / 1_感知机与多层网络</a>
+<a class="depth-2" href="#2-ai学习_02_经典网络架构-1_cnn卷积神经网络">2. AI学习_02_经典网络架构 / 1_CNN卷积神经网络</a>
+<a class="depth-2" href="#3-ai学习_03_注意力机制与transformer-1_注意力机制">3. AI学习_03_注意力机制与Transformer / 1_注意力机制</a>
+<a class="depth-2" href="#4-ai学习_04_预训练语言模型演进-1_词表示的演进">4. AI学习_04_预训练语言模型演进 / 1_词表示的演进</a>
+<a class="depth-2" href="#5-ai学习_05_gpt系列深度解析-1_gpt系列架构演进">5. AI学习_05_GPT系列深度解析 / 1_GPT系列架构演进</a>
+<a class="depth-2" href="#6-ai学习_06_生成模型与扩散模型-1_生成模型谱系">6. AI学习_06_生成模型与扩散模型 / 1_生成模型谱系</a>
+<a class="depth-2" href="#7-ai学习_07_大模型训练技术-1_分布式训练">7. AI学习_07_大模型训练技术 / 1_分布式训练</a>
+<a class="depth-2" href="#8-ai学习_08_大模型推理与部署-1_kvcache与推理优化">8. AI学习_08_大模型推理与部署 / 1_KVCache与推理优化</a>
+<a class="depth-2" href="#9-ai学习_09_rag与应用架构-1_rag完整流程">9. AI学习_09_RAG与应用架构 / 1_RAG完整流程</a>
+<a class="depth-2" href="#10-ai学习_10_多模态模型-1_vit与clip">10. AI学习_10_多模态模型 / 1_ViT与CLIP</a>
+<a class="depth-2" href="#11-ai学习_11_推理与思维链-1_思维链提示">11. AI学习_11_推理与思维链 / 1_思维链提示</a>
+<a class="depth-2" href="#12-ai学习_12_agent与工具使用-1_agent框架原理">12. AI学习_12_Agent与工具使用 / 1_Agent框架原理</a>
+<a class="depth-2" href="#13-ai学习_13_长文本与高效架构-1_长文本技术">13. AI学习_13_长文本与高效架构 / 1_长文本技术</a>
+<a class="depth-2" href="#14-附录_数学基础速览-11-向量与矩阵运算">14. . / 附录_数学基础速览 / 1.1 向量与矩阵运算</a></details></aside>
+    <main class="page">
+      <article class="markdown-body">
+<h1 id="附录代码示例集精选版">附录：代码示例集（精选版）</h1>
+<blockquote><p>本附录只保留少量能显著帮助理解概念的代表性代码、配置和短伪代码示例。主线文档以概念定义、风趣讲解和核心原理为主；代码不构成主线学习要求。</p></blockquote>
+<h2 id="使用方式">使用方式</h2>
+<ul>
+<li>先读主线正文，再按需查看对应模块的示例。</li>
+<li>每个模块仅保留一个最小代表片段，避免附录变成第二套教材。</li>
+<li>如果示例细节和正文冲突，以正文概念解释为准。</li>
+</ul>
+<h2 id="目录">目录</h2>
+<ol>
+<li><code>AI学习_01_神经网络基础/1_感知机与多层网络.md</code></li>
+<li><code>AI学习_02_经典网络架构/1_CNN卷积神经网络.md</code></li>
+<li><code>AI学习_03_注意力机制与Transformer/1_注意力机制.md</code></li>
+<li><code>AI学习_04_预训练语言模型演进/1_词表示的演进.md</code></li>
+<li><code>AI学习_05_GPT系列深度解析/1_GPT系列架构演进.md</code></li>
+<li><code>AI学习_06_生成模型与扩散模型/1_生成模型谱系.md</code></li>
+<li><code>AI学习_07_大模型训练技术/1_分布式训练.md</code></li>
+<li><code>AI学习_08_大模型推理与部署/1_KVCache与推理优化.md</code></li>
+<li><code>AI学习_09_RAG与应用架构/1_RAG完整流程.md</code></li>
+<li><code>AI学习_10_多模态模型/1_ViT与CLIP.md</code></li>
+<li><code>AI学习_11_推理与思维链/1_思维链提示.md</code></li>
+<li><code>AI学习_12_Agent与工具使用/1_Agent框架原理.md</code></li>
+<li><code>AI学习_13_长文本与高效架构/1_长文本技术.md</code></li>
+<li><code>附录_数学基础速览.md</code></li>
+</ol>
+<h2 id="1-ai学习_01_神经网络基础-1_感知机与多层网络">1. AI学习_01_神经网络基础 / 1_感知机与多层网络</h2>
+<blockquote><p>来源：<code>AI学习_01_神经网络基础/1_感知机与多层网络.md</code><br>
+原上下文：3. Python 代码示例</p></blockquote>
+<pre><code class="language-python">import numpy as np
+
+# ============================================================
+# 单个感知机学习 AND 门
+# AND 真值表:
+#   (0,0) -&gt; 0
+#   (0,1) -&gt; 0
+#   (1,0) -&gt; 0
+#   (1,1) -&gt; 1
+# ============================================================
+
+# --- 数据 ---
+X = np.array([
+    [0, 0],
+    [0, 1],
+    [1, 0],
+    [1, 1],
+], dtype=np.float64)
+
+y = np.array([0, 0, 0, 1], dtype=np.float64)  # AND 门的输出
+
+# --- 感知机定义 ---
+class Perceptron:
+    &quot;&quot;&quot;
+    单个感知机：y = step(w·x + b)
+    使用经典的感知机学习规则更新权重。
+    &quot;&quot;&quot;
+    def __init__(self, n_features, lr=0.1):
+        # 权重初始化为 0（感知机学习规则对初始值不敏感）
+        self.w = np.zeros(n_features)
+        self.b = 0.0
+        self.lr = lr
+
+    def predict(self, x):
+        &quot;&quot;&quot;前向传播：加权求和 + 阶跃激活&quot;&quot;&quot;
+        z = np.dot(self.w, x) + self.b       # 线性变换
+        return 1.0 if z &gt;= 0 else 0.0        # 阶跃函数
+
+    def train(self, X, y, epochs=10):
+        &quot;&quot;&quot;
+        感知机学习规则：
+        如果预测正确，不更新。
+        如果预测错误：w += lr * (y_true - y_pred) * x
+        &quot;&quot;&quot;
+        for epoch in range(epochs):
+            n_errors = 0
+            for xi, yi in zip(X, y):
+                y_pred = self.predict(xi)
+                error = yi - y_pred           # 0 表示正确
+                if error != 0:
+                    # 更新权重：朝着减小误差的方向调整
+                    self.w += self.lr * error * xi
+                    self.b += self.lr * error
+                    n_errors += 1
+            if n_errors == 0:
+                print(f&quot;  第 {epoch+1} 轮：全部正确，提前停止&quot;)
+                break
+            else:
+                print(f&quot;  第 {epoch+1} 轮：{n_errors} 个错误，w={self.w}, b={self.b:.1f}&quot;)
+
+# --- 训练 ---
+print(&quot;=== 训练感知机学习 AND 门 ===&quot;)
+p = Perceptron(n_features=2, lr=0.1)
+p.train(X, y, epochs=20)
+
+# --- 测试 ---
+print(&quot;\n=== 测试结果 ===&quot;)
+for xi, yi in zip(X, y):
+    pred = p.predict(xi)
+    print(f&quot;  输入: {xi} → 预测: {int(pred)}, 期望: {int(yi)}, {&#x27;✓&#x27; if pred == yi else &#x27;✗&#x27;}&quot;)
+
+print(f&quot;\n学到的参数: w={p.w}, b={p.b:.1f}&quot;)
+print(f&quot;决策边界: {p.w[0]:.1f}*x1 + {p.w[1]:.1f}*x2 + ({p.b:.1f}) = 0&quot;)</code></pre>
+<h2 id="2-ai学习_02_经典网络架构-1_cnn卷积神经网络">2. AI学习_02_经典网络架构 / 1_CNN卷积神经网络</h2>
+<blockquote><p>来源：<code>AI学习_02_经典网络架构/1_CNN卷积神经网络.md</code><br>
+原上下文：Python 代码示例</p></blockquote>
+<pre><code class="language-python">import numpy as np
+
+# ============================================================
+# 用 numpy 手写 2D 卷积（单通道，支持 stride 和 padding）
+# 对应公式：Y[i,j] = sum_{m,n} X[i*s+m, j*s+n] * K[m,n] + b
+# ============================================================
+
+def conv2d(X, K, stride=1, padding=0, bias=0.0):
+    &quot;&quot;&quot;
+    2D 卷积（互相关）运算。
+
+    参数:
+        X:       输入矩阵, shape (H, W)
+        K:       卷积核, shape (Kh, Kw)
+        stride:  步长
+        padding: 零填充圈数
+        bias:    偏置
+
+    返回:
+        输出矩阵, shape (Oh, Ow)
+    &quot;&quot;&quot;
+    # --- 填充 ---
+    if padding &gt; 0:
+        X = np.pad(X, pad_width=padding, mode=&#x27;constant&#x27;, constant_values=0)
+
+    H, W = X.shape
+    Kh, Kw = K.shape
+
+    # --- 计算输出尺寸 ---
+    Oh = (H - Kh) // stride + 1
+    Ow = (W - Kw) // stride + 1
+
+    # --- 卷积计算 ---
+    Y = np.zeros((Oh, Ow))
+    for i in range(Oh):
+        for j in range(Ow):
+            # 取出卷积核覆盖的区域
+            region = X[i * stride : i * stride + Kh,
+                       j * stride : j * stride + Kw]
+            # 逐元素相乘再求和
+            Y[i, j] = np.sum(region * K) + bias
+
+    return Y
+
+
+# ============================================================
+# 测试: 基本卷积 + same padding + stride
+# ============================================================
+X = np.array([[1, 2, 3, 0], [0, 1, 2, 3],
+              [3, 0, 1, 2], [2, 3, 0, 1]], dtype=float)
+K = np.array([[0, 1, 2], [2, 2, 0], [0, 1, 2]], dtype=float)
+
+Y = conv2d(X, K, stride=1, padding=0)
+print(f&quot;基本卷积: 输入(4x4) * 核(3x3) → 输出{Y.shape}&quot;)
+print(f&quot;Y[0,0] = {Y[0,0]}  (手算: 0+2+6+0+2+0+0+0+2 = 12)&quot;)
+
+# same padding: padding=1 保持尺寸不变
+X2 = np.arange(1, 26, dtype=float).reshape(5, 5)
+K2 = np.array([[1, 0, -1], [1, 0, -1], [1, 0, -1]], dtype=float)
+Y2 = conv2d(X2, K2, stride=1, padding=1)
+print(f&quot;Same padding: 输入{X2.shape} → 输出{Y2.shape} (尺寸不变)&quot;)
+
+# stride=2 下采样
+Y3 = conv2d(np.random.randn(8, 8), np.ones((3, 3)) / 9, stride=2)
+print(f&quot;Stride=2: 输入(8,8) → 输出{Y3.shape}  公式: (8-3)//2+1={3}&quot;)
+
+# 输出尺寸公式验证
+for W, Ks, S, P, name in [(28,5,1,0,&quot;LeNet&quot;), (224,7,2,3,&quot;ResNet&quot;), (56,3,1,1,&quot;VGG&quot;)]:
+    O = (W - Ks + 2*P)//S + 1
+    Y_t = conv2d(np.random.randn(W, W), np.random.randn(Ks, Ks), S, P)
+    print(f&quot;  {name}: W={W},K={Ks},S={S},P={P} → O={O} (实际={Y_t.shape[0]}) OK&quot;)</code></pre>
+<h2 id="3-ai学习_03_注意力机制与transformer-1_注意力机制">3. AI学习_03_注意力机制与Transformer / 1_注意力机制</h2>
+<blockquote><p>来源：<code>AI学习_03_注意力机制与Transformer/1_注意力机制.md</code><br>
+原上下文：3. Python 代码示例</p></blockquote>
+<pre><code class="language-python">import numpy as np
+
+# ============================================================
+# 缩放点积注意力的 numpy 实现
+# Attention(Q, K, V) = softmax(Q @ K^T / sqrt(d_k)) @ V
+# ============================================================
+
+def softmax(x, axis=-1):
+    &quot;&quot;&quot;数值稳定的 softmax：减去最大值防止 exp 溢出&quot;&quot;&quot;
+    x_max = np.max(x, axis=axis, keepdims=True)
+    exp_x = np.exp(x - x_max)
+    return exp_x / np.sum(exp_x, axis=axis, keepdims=True)
+
+def scaled_dot_product_attention(Q, K, V, mask=None):
+    &quot;&quot;&quot;
+    参数:
+        Q: (n, d_k) 或 (batch, n, d_k)
+        K: (m, d_k) 或 (batch, m, d_k)
+        V: (m, d_v) 或 (batch, m, d_v)
+        mask: (n, m)，True 的位置会被屏蔽
+    返回: output, weights
+    &quot;&quot;&quot;
+    d_k = Q.shape[-1]
+
+    # 第一步: Q @ K^T → (n, m) 分数矩阵
+    scores = Q @ K.swapaxes(-2, -1)
+
+    # 第二步: 缩放
+    scores = scores / np.sqrt(d_k)
+
+    # 可选: 掩码（被屏蔽位置设为 -inf，softmax 后趋近 0）
+    if mask is not None:
+        scores = np.where(mask, -1e9, scores)
+
+    # 第三步: softmax → 注意力权重
+    weights = softmax(scores, axis=-1)
+
+    # 第四步: 加权求和 → (n, d_v)
+    output = weights @ V
+    return output, weights
+
+
+# === 测试 ===
+np.random.seed(42)
+seq_len, d_k = 4, 8
+
+X = np.random.randn(seq_len, d_k)
+Q = K = V = X  # Self-Attention 场景: Q/K/V 来自同一序列
+
+output, weights = scaled_dot_product_attention(Q, K, V)
+
+print(&quot;=== 缩放点积注意力（numpy）===\n&quot;)
+print(f&quot;输入 shape: {X.shape}, 输出 shape: {output.shape}&quot;)
+print(f&quot;\n注意力权重矩阵（每行求和为 1）:&quot;)
+np.set_printoptions(precision=4, suppress=True)
+print(weights)
+print(f&quot;每行之和: {weights.sum(axis=-1)}&quot;)</code></pre>
+<h2 id="4-ai学习_04_预训练语言模型演进-1_词表示的演进">4. AI学习_04_预训练语言模型演进 / 1_词表示的演进</h2>
+<blockquote><p>来源：<code>AI学习_04_预训练语言模型演进/1_词表示的演进.md</code><br>
+原上下文：3. Python 代码示例</p></blockquote>
+<pre><code class="language-python">import numpy as np
+
+class SimpleWord2Vec:
+    &quot;&quot;&quot;Skip-gram + Negative Sampling 的 numpy 实现（教学用）。&quot;&quot;&quot;
+
+    def __init__(self, vocab_size, embed_dim=16, neg_samples=5, lr=0.01):
+        self.vocab_size, self.embed_dim = vocab_size, embed_dim
+        self.neg_samples, self.lr = neg_samples, lr
+        scale = 0.5 / embed_dim
+        self.W_in = np.random.uniform(-scale, scale, (vocab_size, embed_dim))
+        self.W_out = np.random.uniform(-scale, scale, (vocab_size, embed_dim))
+
+    def sigmoid(self, x):
+        return np.where(x &gt;= 0, 1 / (1 + np.exp(-x)), np.exp(x) / (1 + np.exp(x)))
+
+    def train_pair(self, center, context, word_freq):
+        &quot;&quot;&quot;对一个（中心词, 上下文词）对做一步梯度更新。&quot;&quot;&quot;
+        v, u_pos = self.W_in[center], self.W_out[context]
+
+        # 正样本: dL/d(u·v) = σ(u·v) - 1
+        grad_pos = self.sigmoid(u_pos @ v) - 1.0
+        self.W_out[context] -= self.lr * grad_pos * v
+        grad_v = grad_pos * u_pos
+
+        # 负样本: dL/d(u·v) = σ(u·v)
+        probs = word_freq ** 0.75
+        probs[context] = 0
+        probs /= probs.sum()
+        for neg in np.random.choice(self.vocab_size, self.neg_samples, False, p=probs):
+            u_neg = self.W_out[neg]
+            grad_neg = self.sigmoid(u_neg @ v)
+            self.W_out[neg] -= self.lr * grad_neg * v
+            grad_v += grad_neg * u_neg
+
+        self.W_in[center] -= self.lr * grad_v
+
+    def train(self, indices, window=2, epochs=50):
+        freq = np.maximum(np.bincount(indices, minlength=self.vocab_size).astype(float), 1e-8)
+        for ep in range(epochs):
+            pairs = 0
+            for i in range(len(indices)):
+                w = np.random.randint(1, window + 1)
+                for j in range(max(0, i - w), min(len(indices), i + w + 1)):
+                    if j != i:
+                        self.train_pair(indices[i], indices[j], freq)
+                        pairs += 1
+            if (ep + 1) % 25 == 0:
+                print(f&quot;  Epoch {ep+1:&gt;3d}, 训练词对数: {pairs}&quot;)
+
+    def most_similar(self, idx, idx2word, topk=5):
+        v = self.W_in[idx]
+        norms = np.maximum(np.linalg.norm(self.W_in, axis=1), 1e-8)
+        cos = (self.W_in @ v) / (norms * np.linalg.norm(v))
+        return [(idx2word[i], cos[i]) for i in cos.argsort()[::-1][1:topk+1]]
+
+
+# === 小语料训练 ===
+corpus = [
+    &quot;the king is a strong man&quot;, &quot;the queen is a wise woman&quot;,
+    &quot;the prince is a young man&quot;, &quot;the princess is a young woman&quot;,
+    &quot;a man and a woman walked by the river&quot;,
+    &quot;the king and queen ruled the land&quot;,
+    &quot;the prince and princess played in the garden&quot;,
+    &quot;a wise man is also a strong man&quot;,
+    &quot;a wise woman is also a strong woman&quot;,
+    &quot;the king sat on the throne&quot;, &quot;the queen sat beside the king&quot;,
+]
+all_words = &#x27; &#x27;.join(corpus).split()
+vocab = sorted(set(all_words))
+w2i = {w: i for i, w in enumerate(vocab)}
+i2w = {i: w for w, i in w2i.items()}
+indices = [w2i[w] for w in all_words]
+
+print(f&quot;词汇表大小: {len(vocab)}, 语料总词数: {len(indices)}\n&quot;)
+
+np.random.seed(42)
+model = SimpleWord2Vec(len(vocab), embed_dim=16, neg_samples=3, lr=0.05)
+model.train(indices, window=3, epochs=100)
+
+# 相似词查询
+print(&quot;\n=== 相似词查询 ===&quot;)
+for q in [&#x27;king&#x27;, &#x27;queen&#x27;, &#x27;man&#x27;, &#x27;woman&#x27;]:
+    sims = model.most_similar(w2i[q], i2w, topk=3)
+    print(f&quot;  {q:&gt;8s} → {&#x27;, &#x27;.join(f&#x27;{w}({s:.3f})&#x27; for w, s in sims)}&quot;)
+
+# 类比推理
+v_res = model.W_in[w2i[&#x27;king&#x27;]] - model.W_in[w2i[&#x27;man&#x27;]] + model.W_in[w2i[&#x27;woman&#x27;]]
+norms = np.linalg.norm(model.W_in, axis=1)
+cos = (model.W_in @ v_res) / (norms * np.linalg.norm(v_res) + 1e-8)
+for w in [&#x27;king&#x27;, &#x27;man&#x27;, &#x27;woman&#x27;]:
+    cos[w2i[w]] = -1
+print(f&quot;\n类比: king - man + woman ≈ {i2w[cos.argmax()]} (cos={cos.max():.3f})&quot;)
+print(&quot;（小语料结果不稳定，大语料上效果显著）&quot;)</code></pre>
+<h2 id="5-ai学习_05_gpt系列深度解析-1_gpt系列架构演进">5. AI学习_05_GPT系列深度解析 / 1_GPT系列架构演进</h2>
+<blockquote><p>来源：<code>AI学习_05_GPT系列深度解析/1_GPT系列架构演进.md</code><br>
+原上下文：Python 代码示例</p></blockquote>
+<pre><code class="language-python">from transformers import GPT2LMHeadModel, GPT2Tokenizer
+import torch
+
+# 加载 GPT-2（小版本，本地可跑）
+tokenizer = GPT2Tokenizer.from_pretrained(&quot;gpt2&quot;)
+model = GPT2LMHeadModel.from_pretrained(&quot;gpt2&quot;)
+model.eval()
+
+def generate(prompt, max_new_tokens=50, temperature=0.7):
+    &quot;&quot;&quot;自回归生成文本&quot;&quot;&quot;
+    ids = tokenizer.encode(prompt, return_tensors=&quot;pt&quot;)
+    with torch.no_grad():
+        for _ in range(max_new_tokens):
+            logits = model(ids).logits[:, -1, :] / temperature
+            probs = torch.softmax(logits, dim=-1)
+            next_id = torch.multinomial(probs, 1)
+            ids = torch.cat([ids, next_id], dim=1)
+            if next_id.item() == tokenizer.eos_token_id:
+                break
+    return tokenizer.decode(ids[0], skip_special_tokens=True)
+
+# --- Zero-shot ---
+print(&quot;=== Zero-shot 翻译 ===&quot;)
+print(generate(&quot;Translate English to French: cheese =&gt;&quot;))
+
+# --- Few-shot (In-Context Learning) ---
+print(&quot;\n=== Few-shot 翻译 ===&quot;)
+few_shot_prompt = &quot;&quot;&quot;Translate English to French:
+sea otter =&gt; loutre de mer
+peppermint =&gt; menthe poivrée
+plush giraffe =&gt; girafe en peluche
+cheese =&gt;&quot;&quot;&quot;
+print(generate(few_shot_prompt, max_new_tokens=20))
+
+# --- Few-shot 情感分类 ---
+print(&quot;\n=== Few-shot 情感分类 ===&quot;)
+sentiment_prompt = &quot;&quot;&quot;Classify the sentiment as Positive or Negative:
+Review: &quot;This movie was absolutely wonderful!&quot; Sentiment: Positive
+Review: &quot;Terrible waste of time.&quot; Sentiment: Negative
+Review: &quot;I loved every minute of it!&quot; Sentiment:&quot;&quot;&quot;
+print(generate(sentiment_prompt, max_new_tokens=5, temperature=0.1))</code></pre>
+<h2 id="6-ai学习_06_生成模型与扩散模型-1_生成模型谱系">6. AI学习_06_生成模型与扩散模型 / 1_生成模型谱系</h2>
+<blockquote><p>来源：<code>AI学习_06_生成模型与扩散模型/1_生成模型谱系.md</code><br>
+原上下文：3. Python 代码示例</p></blockquote>
+<pre><code class="language-python">import torch
+import torch.nn as nn
+import torch.optim as optim
+from torch.utils.data import DataLoader
+from torchvision import datasets, transforms
+import matplotlib
+matplotlib.use(&quot;Agg&quot;)
+import matplotlib.pyplot as plt
+
+# ============================================================
+# 超参数
+# ============================================================
+LATENT_DIM = 20       # 潜空间维度
+HIDDEN_DIM = 400      # 隐藏层维度
+BATCH_SIZE = 128
+EPOCHS     = 10
+LR         = 1e-3
+DEVICE = torch.device(&quot;cuda&quot; if torch.cuda.is_available() else &quot;cpu&quot;)
+
+# ============================================================
+# 数据加载
+# ============================================================
+train_loader = DataLoader(
+    datasets.MNIST(&quot;./data&quot;, train=True, download=True,
+                   transform=transforms.ToTensor()),
+    batch_size=BATCH_SIZE, shuffle=True,
+)
+
+# ============================================================
+# VAE 模型
+# ============================================================
+class VAE(nn.Module):
+    &quot;&quot;&quot;编码器: 784→400→(μ,logσ²) 各20维 | 解码器: 20→400→784&quot;&quot;&quot;
+    def __init__(self):
+        super().__init__()
+        # 编码器
+        self.encoder_fc = nn.Linear(784, HIDDEN_DIM)
+        self.fc_mu      = nn.Linear(HIDDEN_DIM, LATENT_DIM)   # 均值 μ
+        self.fc_logvar  = nn.Linear(HIDDEN_DIM, LATENT_DIM)   # log(σ²)
+        # 为什么输出 log(σ²)？方差必须&gt;0，输出 log 值范围 (-∞,+∞) 更好学
+        # 解码器
+        self.decoder_fc1 = nn.Linear(LATENT_DIM, HIDDEN_DIM)
+        self.decoder_fc2 = nn.Linear(HIDDEN_DIM, 784)
+
+    def encode(self, x):
+        h = torch.relu(self.encoder_fc(x))
+        return self.fc_mu(h), self.fc_logvar(h)
+
+    def reparameterize(self, mu, logvar):
+        &quot;&quot;&quot;重参数化: z = μ + σ*ε, ε~N(0,I)&quot;&quot;&quot;
+        std = torch.exp(0.5 * logvar)
+        return mu + std * torch.randn_like(std)
+
+    def decode(self, z):
+        h = torch.relu(self.decoder_fc1(z))
+        return torch.sigmoid(self.decoder_fc2(h))
+
+    def forward(self, x):
+        mu, logvar = self.encode(x)
+        z = self.reparameterize(mu, logvar)
+        return self.decode(z), mu, logvar
+
+# ============================================================
+# 损失函数：负 ELBO = 重建损失(BCE) + KL 散度(解析解)
+# ============================================================
+def vae_loss(x_recon, x, mu, logvar):
+    recon = nn.functional.binary_cross_entropy(x_recon, x, reduction=&quot;sum&quot;)
+    kl    = -0.5 * torch.sum(1 + logvar - mu.pow(2) - logvar.exp())
+    return (recon + kl) / x.size(0)
+
+# ============================================================
+# 训练
+# ============================================================
+model = VAE().to(DEVICE)
+optimizer = optim.Adam(model.parameters(), lr=LR)
+print(f&quot;设备: {DEVICE} | 参数量: {sum(p.numel() for p in model.parameters()):,}\n&quot;)
+
+for epoch in range(1, EPOCHS + 1):
+    model.train()
+    total_loss = 0.0
+    for images, _ in train_loader:
+        images = images.view(-1, 784).to(DEVICE)
+        x_recon, mu, logvar = model(images)
+        loss = vae_loss(x_recon, images, mu, logvar)
+        optimizer.zero_grad(); loss.backward(); optimizer.step()
+        total_loss += loss.item()
+    print(f&quot;Epoch [{epoch}/{EPOCHS}]  Loss: {total_loss / len(train_loader):.2f}&quot;)
+
+# ============================================================
+# 从标准正态采样 z，通过解码器生成新图像
+# ============================================================
+model.eval()
+with torch.no_grad():
+    z = torch.randn(16, LATENT_DIM).to(DEVICE)
+    generated = model.decode(z).view(-1, 1, 28, 28).cpu()
+
+fig, axes = plt.subplots(2, 8, figsize=(12, 3))
+for i, ax in enumerate(axes.flat):
+    ax.imshow(generated[i, 0], cmap=&quot;gray&quot;); ax.axis(&quot;off&quot;)
+fig.suptitle(&quot;VAE Generated Digits&quot;)
+plt.tight_layout(); plt.savefig(&quot;vae_generated.png&quot;, dpi=100)
+print(&quot;生成结果已保存到 vae_generated.png&quot;)</code></pre>
+<h2 id="7-ai学习_07_大模型训练技术-1_分布式训练">7. AI学习_07_大模型训练技术 / 1_分布式训练</h2>
+<blockquote><p>来源：<code>AI学习_07_大模型训练技术/1_分布式训练.md</code><br>
+原上下文：Python 代码示例</p></blockquote>
+<pre><code class="language-python">&quot;&quot;&quot;
+PyTorch DistributedDataParallel 基础示例
+展示数据并行的标准写法
+&quot;&quot;&quot;
+import os
+import torch
+import torch.nn as nn
+import torch.distributed as dist
+from torch.nn.parallel import DistributedDataParallel as DDP
+from torch.utils.data import DataLoader, DistributedSampler, TensorDataset
+
+
+def setup_distributed():
+    &quot;&quot;&quot;初始化分布式环境&quot;&quot;&quot;
+    # torchrun 会自动设置这些环境变量
+    dist.init_process_group(backend=&quot;nccl&quot;)  # NCCL 是 NVIDIA GPU 最优的后端
+    local_rank = int(os.environ[&quot;LOCAL_RANK&quot;])
+    torch.cuda.set_device(local_rank)
+    return local_rank
+
+
+def cleanup():
+    dist.destroy_process_group()
+
+
+class SimpleTransformerBlock(nn.Module):
+    &quot;&quot;&quot;简化的 Transformer block，用于演示&quot;&quot;&quot;
+    def __init__(self, d_model=512, nhead=8, dim_ff=2048):
+        super().__init__()
+        self.attn = nn.MultiheadAttention(d_model, nhead, batch_first=True)
+        self.ff = nn.Sequential(
+            nn.Linear(d_model, dim_ff),
+            nn.GELU(),
+            nn.Linear(dim_ff, d_model),
+        )
+        self.ln1 = nn.LayerNorm(d_model)
+        self.ln2 = nn.LayerNorm(d_model)
+
+    def forward(self, x):
+        # Pre-LN Transformer
+        h = self.ln1(x)
+        x = x + self.attn(h, h, h, need_weights=False)[0]
+        x = x + self.ff(self.ln2(x))
+        return x
+
+
+def train_ddp():
+    local_rank = setup_distributed()
+    world_size = dist.get_world_size()
+    rank = dist.get_rank()
+
+    # 1. 创建模型并包装为 DDP
+    model = nn.Sequential(
+        nn.Embedding(10000, 512),
+        SimpleTransformerBlock(512, 8, 2048),
+        SimpleTransformerBlock(512, 8, 2048),
+        nn.Linear(512, 10000),
+    ).cuda(local_rank)
+
+    model = DDP(model, device_ids=[local_rank])  # 核心：DDP 包装
+
+    # 2. 使用 DistributedSampler 确保每张卡的数据不重复
+    dataset = TensorDataset(
+        torch.randint(0, 10000, (10000, 128)),  # 假数据
+        torch.randint(0, 10000, (10000, 128)),
+    )
+    sampler = DistributedSampler(dataset, num_replicas=world_size, rank=rank)
+    dataloader = DataLoader(dataset, batch_size=32, sampler=sampler)
+
+    # 3. 标准训练循环
+    optimizer = torch.optim.AdamW(model.parameters(), lr=1e-4)
+    loss_fn = nn.CrossEntropyLoss()
+
+    for epoch in range(3):
+        sampler.set_epoch(epoch)  # 关键：每个 epoch 打乱顺序
+        for batch_idx, (input_ids, labels) in enumerate(dataloader):
+            input_ids = input_ids.cuda(local_rank)
+            labels = labels.cuda(local_rank)
+
+            logits = model(input_ids)  # [B, seq_len, vocab]
+            loss = loss_fn(logits.view(-1, 10000), labels.view(-1))
+
+            optimizer.zero_grad()
+            loss.backward()       # DDP 自动在 backward 中触发 AllReduce
+            optimizer.step()
+
+            if rank == 0 and batch_idx % 50 == 0:
+                print(f&quot;Epoch {epoch}, Step {batch_idx}, Loss: {loss.item():.4f}&quot;)
+
+    cleanup()
+
+
+# 启动命令 (4 GPU):
+# torchrun --nproc_per_node=4 train_ddp.py
+if __name__ == &quot;__main__&quot;:
+    train_ddp()</code></pre>
+<h2 id="8-ai学习_08_大模型推理与部署-1_kvcache与推理优化">8. AI学习_08_大模型推理与部署 / 1_KVCache与推理优化</h2>
+<blockquote><p>来源：<code>AI学习_08_大模型推理与部署/1_KVCache与推理优化.md</code><br>
+原上下文：Python 代码示例</p></blockquote>
+<pre><code class="language-python">import torch
+import torch.nn as nn
+import time
+
+class SimpleAttention(nn.Module):
+    &quot;&quot;&quot;简化的因果自注意力，演示 KV Cache 的作用&quot;&quot;&quot;
+    def __init__(self, d_model=256, n_heads=4):
+        super().__init__()
+        self.d_model = d_model
+        self.n_heads = n_heads
+        self.d_head = d_model // n_heads
+        self.W_q = nn.Linear(d_model, d_model, bias=False)
+        self.W_k = nn.Linear(d_model, d_model, bias=False)
+        self.W_v = nn.Linear(d_model, d_model, bias=False)
+        self.W_o = nn.Linear(d_model, d_model, bias=False)
+
+    def forward(self, x, kv_cache=None):
+        &quot;&quot;&quot;
+        x: [batch, seq_len, d_model]
+           无缓存时 seq_len=全序列长度, 有缓存时 seq_len=1（只有新token）
+        kv_cache: (cached_k, cached_v) 或 None
+        返回: output, (updated_k, updated_v)
+        &quot;&quot;&quot;
+        B, S, D = x.shape
+        q = self.W_q(x).view(B, S, self.n_heads, self.d_head).transpose(1, 2)
+        k = self.W_k(x).view(B, S, self.n_heads, self.d_head).transpose(1, 2)
+        v = self.W_v(x).view(B, S, self.n_heads, self.d_head).transpose(1, 2)
+
+        # 如果有缓存，拼接历史 K/V
+        if kv_cache is not None:
+            cached_k, cached_v = kv_cache
+            k = torch.cat([cached_k, k], dim=2)  # 在序列维度拼接
+            v = torch.cat([cached_v, v], dim=2)
+
+        # 标准注意力计算（Q 只有新位置，K/V 包含全部历史）
+        scale = self.d_head ** -0.5
+        attn = torch.matmul(q, k.transpose(-2, -1)) * scale
+        attn = torch.softmax(attn, dim=-1)
+        out = torch.matmul(attn, v)
+
+        out = out.transpose(1, 2).contiguous().view(B, S, D)
+        return self.W_o(out), (k, v)
+
+# ========== 对比实验 ==========
+d_model = 256
+seq_len = 512  # 模拟生成 512 个 token
+attn = SimpleAttention(d_model).eval()
+
+# 方法 1: 无 KV Cache（每步重新计算所有历史 token 的 K/V）
+torch.manual_seed(42)
+all_hidden = [torch.randn(1, 1, d_model)]
+t0 = time.time()
+for step in range(1, seq_len):
+    full_input = torch.cat(all_hidden, dim=1)   # 拼接所有历史
+    with torch.no_grad():
+        out, _ = attn(full_input)                # 对整个序列做注意力
+    all_hidden.append(torch.randn(1, 1, d_model))
+t_no_cache = time.time() - t0
+
+# 方法 2: 有 KV Cache（每步只计算新 token 的 K/V）
+torch.manual_seed(42)
+hidden = torch.randn(1, 1, d_model)
+kv = None
+t0 = time.time()
+for step in range(seq_len):
+    with torch.no_grad():
+        out, kv = attn(hidden, kv_cache=kv)     # 只输入新 token
+    hidden = torch.randn(1, 1, d_model)
+t_with_cache = time.time() - t0
+
+print(f&quot;无 KV Cache: {t_no_cache:.3f}s&quot;)
+print(f&quot;有 KV Cache: {t_with_cache:.3f}s&quot;)
+print(f&quot;加速比: {t_no_cache / t_with_cache:.1f}x&quot;)
+print(f&quot;\n理论分析: 无缓存总注意力计算 ~ O(n^2), 有缓存 ~ O(n)&quot;)
+print(f&quot;KV Cache 最终大小: {kv[0].shape}&quot;)
+# 典型输出: 无缓存约 2~3s, 有缓存约 0.3s, 加速约 6~10x</code></pre>
+<h2 id="9-ai学习_09_rag与应用架构-1_rag完整流程">9. AI学习_09_RAG与应用架构 / 1_RAG完整流程</h2>
+<blockquote><p>来源：<code>AI学习_09_RAG与应用架构/1_RAG完整流程.md</code><br>
+原上下文：3. Python 代码实战</p></blockquote>
+<pre><code class="language-python">&quot;&quot;&quot;
+最小 RAG 系统：不依赖上层框架，理解每一步在做什么。
+依赖: pip install faiss-cpu sentence-transformers
+&quot;&quot;&quot;
+import numpy as np
+import faiss
+from sentence_transformers import SentenceTransformer
+
+# ================================================================
+# 阶段 1：索引构建（Indexing）—— 离线执行一次
+# ================================================================
+
+# 模拟企业知识库文档
+documents = [
+    &quot;RAG（Retrieval-Augmented Generation）由 Facebook AI Research 在 2020 年提出，&quot;
+    &quot;核心思想是生成答案前先从外部知识库检索相关文档。&quot;,
+
+    &quot;FAISS 是 Meta 开源的向量相似度搜索库，支持十亿级向量的高效检索，&quot;
+    &quot;核心算法包括 IVF（倒排文件索引）和 HNSW（层级可导航小世界图）。&quot;,
+
+    &quot;LangChain 是构建 LLM 应用的开源框架，提供 Document Loader、&quot;
+    &quot;Text Splitter、Embedding、Vector Store、Chain 等模块化组件。&quot;,
+
+    &quot;向量数据库（Milvus / Chroma / Pinecone）专为高维向量存储和检索设计，&quot;
+    &quot;支持 ANN 近似最近邻搜索，在毫秒级返回相似结果。&quot;,
+
+    &quot;Embedding 模型将文本映射为稠密向量表示。常用模型有 OpenAI text-embedding-3-small、&quot;
+    &quot;BGE、GTE、E5 等，输出维度通常为 384~3072。&quot;,
+
+    &quot;Chunking（文档分块）是 RAG 的关键预处理环节。常见策略包括固定大小分块、&quot;
+    &quot;按段落分块、递归字符分块、基于语义相似度的分块。&quot;,
+]
+
+# 加载 Embedding 模型（本地运行，无需 API）
+embed_model = SentenceTransformer(&quot;all-MiniLM-L6-v2&quot;)  # 384 维，约 80MB
+doc_embeddings = embed_model.encode(documents, normalize_embeddings=True)
+print(f&quot;文档数量: {len(documents)}, 向量维度: {doc_embeddings.shape}&quot;)
+# 输出: 文档数量: 6, 向量维度: (6, 384)
+
+# 构建 FAISS 索引（L2 归一化后用内积 = 余弦相似度）
+dim = doc_embeddings.shape[1]
+index = faiss.IndexFlatIP(dim)
+index.add(doc_embeddings.astype(np.float32))
+print(f&quot;FAISS 索引向量数: {index.ntotal}&quot;)
+
+# ================================================================
+# 阶段 2：检索（Retrieval）—— 每次查询在线执行
+# ================================================================
+
+def retrieve(query: str, top_k: int = 3) -&gt; list[tuple[str, float]]:
+    &quot;&quot;&quot;编码查询 → FAISS 搜索 → 返回 (文档, 分数) 列表&quot;&quot;&quot;
+    q_vec = embed_model.encode([query], normalize_embeddings=True)
+    scores, indices = index.search(q_vec.astype(np.float32), top_k)
+    return [
+        (documents[idx], float(score))
+        for idx, score in zip(indices[0], scores[0])
+        if idx != -1
+    ]
+
+query = &quot;RAG 是什么？它是如何工作的？&quot;
+results = retrieve(query, top_k=3)
+print(f&quot;\n查询: {query}&quot;)
+for rank, (doc, score) in enumerate(results, 1):
+    print(f&quot;  [{rank}] (score={score:.4f}) {doc[:60]}...&quot;)
+
+# ================================================================
+# 阶段 3：生成（Generation）—— 拼接 Prompt 后调用 LLM
+# ================================================================
+
+def build_rag_prompt(question: str, contexts: list[str]) -&gt; str:
+    &quot;&quot;&quot;将问题与检索到的上下文组装为 Prompt&quot;&quot;&quot;
+    ctx_block = &quot;\n\n&quot;.join(
+        f&quot;[参考文档 {i+1}]\n{ctx}&quot; for i, ctx in enumerate(contexts)
+    )
+    return f&quot;&quot;&quot;你是一个专业的 AI 技术助手。请严格根据以下参考文档回答用户问题。
+如果参考文档中没有相关信息，请明确说明&quot;根据现有资料无法回答&quot;。
+请在回答中标注信息来源（如 [参考文档 1]）。
+
+{ctx_block}
+
+用户问题：{question}
+
+回答：&quot;&quot;&quot;
+
+# 组装 Prompt
+contexts = [doc for doc, _ in results]
+prompt = build_rag_prompt(query, contexts)
+print(f&quot;\n=== 生成的 Prompt（前 400 字符）===\n{prompt[:400]}...&quot;)
+
+# 调用 LLM（取消注释后可实际运行）
+# from openai import OpenAI
+# client = OpenAI()
+# response = client.chat.completions.create(
+#     model=&quot;gpt-4o-mini&quot;,
+#     messages=[{&quot;role&quot;: &quot;user&quot;, &quot;content&quot;: prompt}],
+#     temperature=0.2,  # 低温度 → 更忠实于上下文
+# )
+# print(response.choices[0].message.content)</code></pre>
+<h2 id="10-ai学习_10_多模态模型-1_vit与clip">10. AI学习_10_多模态模型 / 1_ViT与CLIP</h2>
+<blockquote><p>来源：<code>AI学习_10_多模态模型/1_ViT与CLIP.md</code><br>
+原上下文：3. Python 代码实战</p></blockquote>
+<pre><code class="language-python">&quot;&quot;&quot;
+简化版 ViT：理解 Patch Embedding → Transformer → 分类 的完整流程。
+依赖: pip install torch torchvision
+&quot;&quot;&quot;
+import torch
+import torch.nn as nn
+
+
+class PatchEmbedding(nn.Module):
+    &quot;&quot;&quot;将图像切分为 patch 并投影为 token 向量&quot;&quot;&quot;
+
+    def __init__(self, img_size=224, patch_size=16, in_channels=3, embed_dim=768):
+        super().__init__()
+        self.num_patches = (img_size // patch_size) ** 2  # 14*14 = 196
+        # 用卷积实现 &quot;切 patch + 线性投影&quot; 一步到位
+        # 卷积核大小 = patch 大小，步长 = patch 大小 → 不重叠地切割
+        self.projection = nn.Conv2d(
+            in_channels, embed_dim,
+            kernel_size=patch_size, stride=patch_size
+        )
+
+    def forward(self, x):
+        # x: (B, C, H, W) → (B, embed_dim, H/P, W/P) → (B, embed_dim, N) → (B, N, embed_dim)
+        x = self.projection(x)           # (B, 768, 14, 14)
+        x = x.flatten(2)                 # (B, 768, 196)
+        x = x.transpose(1, 2)            # (B, 196, 768)
+        return x
+
+
+class SimpleViT(nn.Module):
+    &quot;&quot;&quot;
+    简化版 Vision Transformer。
+    省略了 DropPath 等细节，聚焦核心架构。
+    &quot;&quot;&quot;
+
+    def __init__(
+        self,
+        img_size=224,
+        patch_size=16,
+        in_channels=3,
+        num_classes=1000,
+        embed_dim=768,
+        num_heads=12,
+        num_layers=12,
+    ):
+        super().__init__()
+
+        # 1. Patch Embedding
+        self.patch_embed = PatchEmbedding(img_size, patch_size, in_channels, embed_dim)
+        num_patches = self.patch_embed.num_patches
+
+        # 2. [CLS] Token（可学习）
+        self.cls_token = nn.Parameter(torch.randn(1, 1, embed_dim))
+
+        # 3. 位置编码（可学习）
+        self.pos_embed = nn.Parameter(torch.randn(1, num_patches + 1, embed_dim))
+
+        # 4. Transformer Encoder
+        encoder_layer = nn.TransformerEncoderLayer(
+            d_model=embed_dim,
+            nhead=num_heads,
+            dim_feedforward=embed_dim * 4,
+            dropout=0.1,
+            activation=&#x27;gelu&#x27;,
+            batch_first=True,
+            norm_first=True,      # Pre-Norm（ViT 使用的变体）
+        )
+        self.transformer = nn.TransformerEncoder(encoder_layer, num_layers=num_layers)
+
+        # 5. 分类头
+        self.norm = nn.LayerNorm(embed_dim)
+        self.head = nn.Linear(embed_dim, num_classes)
+
+    def forward(self, x):
+        B = x.shape[0]
+
+        # Patch Embedding: (B, 3, 224, 224) → (B, 196, 768)
+        x = self.patch_embed(x)
+
+        # 添加 [CLS] Token: (B, 196, 768) → (B, 197, 768)
+        cls_tokens = self.cls_token.expand(B, -1, -1)
+        x = torch.cat([cls_tokens, x], dim=1)
+
+        # 添加位置编码
+        x = x + self.pos_embed
+
+        # Transformer Encoder
+        x = self.transformer(x)
+
+        # 取 [CLS] Token 的输出作为图像表示
+        cls_output = x[:, 0]              # (B, 768)
+        cls_output = self.norm(cls_output)
+
+        # 分类
+        logits = self.head(cls_output)    # (B, num_classes)
+        return logits
+
+
+# ---------- 验证 ----------
+if __name__ == &quot;__main__&quot;:
+    model = SimpleViT(
+        img_size=224, patch_size=16, num_classes=10,
+        embed_dim=384, num_heads=6, num_layers=6,  # 小配置，便于测试
+    )
+    dummy_img = torch.randn(2, 3, 224, 224)  # batch_size=2
+    logits = model(dummy_img)
+    print(f&quot;输入: {dummy_img.shape}&quot;)          # (2, 3, 224, 224)
+    print(f&quot;输出: {logits.shape}&quot;)             # (2, 10)
+    print(f&quot;参数量: {sum(p.numel() for p in model.parameters()) / 1e6:.1f}M&quot;)
+
+    # 查看中间维度
+    patches = model.patch_embed(dummy_img)
+    print(f&quot;\nPatch Embedding 输出: {patches.shape}&quot;)  # (2, 196, 384)
+    print(f&quot;Patch 数量: {model.patch_embed.num_patches}&quot;)  # 196 = 14*14</code></pre>
+<h2 id="11-ai学习_11_推理与思维链-1_思维链提示">11. AI学习_11_推理与思维链 / 1_思维链提示</h2>
+<blockquote><p>来源：<code>AI学习_11_推理与思维链/1_思维链提示.md</code><br>
+原上下文：3.3 Python 实践</p></blockquote>
+<pre><code class="language-python">&quot;&quot;&quot;
+Zero-shot CoT 实践示例
+使用 OpenAI API 对比标准回答和 CoT 回答
+&quot;&quot;&quot;
+from openai import OpenAI
+
+client = OpenAI()
+
+def standard_answer(question: str) -&gt; str:
+    &quot;&quot;&quot;标准方式：直接要答案&quot;&quot;&quot;
+    response = client.chat.completions.create(
+        model=&quot;gpt-4o&quot;,
+        messages=[
+            {&quot;role&quot;: &quot;user&quot;, &quot;content&quot;: f&quot;{question}\n请直接给出答案，不要解释。&quot;}
+        ],
+        temperature=0
+    )
+    return response.choices[0].message.content
+
+def zero_shot_cot(question: str) -&gt; str:
+    &quot;&quot;&quot;Zero-shot CoT：让模型一步步思考&quot;&quot;&quot;
+    response = client.chat.completions.create(
+        model=&quot;gpt-4o&quot;,
+        messages=[
+            {&quot;role&quot;: &quot;user&quot;, &quot;content&quot;: f&quot;{question}\nLet&#x27;s think step by step.&quot;}
+        ],
+        temperature=0
+    )
+    return response.choices[0].message.content
+
+# ----- 测试 -----
+question = &quot;&quot;&quot;
+一家商店周一卖了 45 本书，周二卖了周一的 2 倍，
+周三卖了周二的一半再减 10 本。三天一共卖了多少本书？
+&quot;&quot;&quot;
+
+print(&quot;=== 标准回答 ===&quot;)
+print(standard_answer(question))
+# 可能直接输出一个数字，有时会算错
+
+print(&quot;\n=== Zero-shot CoT ===&quot;)
+print(zero_shot_cot(question))
+# 会输出完整推理过程：
+# 周一：45 本
+# 周二：45 × 2 = 90 本
+# 周三：90 / 2 - 10 = 35 本
+# 总计：45 + 90 + 35 = 170 本</code></pre>
+<h2 id="12-ai学习_12_agent与工具使用-1_agent框架原理">12. AI学习_12_Agent与工具使用 / 1_Agent框架原理</h2>
+<blockquote><p>来源：<code>AI学习_12_Agent与工具使用/1_Agent框架原理.md</code><br>
+原上下文：3. Python 代码实践</p></blockquote>
+<pre><code class="language-python">&quot;&quot;&quot;
+最小 ReAct Agent 实现
+不依赖任何 Agent 框架，仅使用 OpenAI API，展示核心循环
+&quot;&quot;&quot;
+import json
+import re
+from openai import OpenAI
+
+client = OpenAI()  # 需要设置 OPENAI_API_KEY 环境变量
+
+# ── 工具定义 ──────────────────────────────────────────────
+def search_web(query: str) -&gt; str:
+    &quot;&quot;&quot;模拟网络搜索&quot;&quot;&quot;
+    # 实际项目中替换为真实搜索 API（如 Tavily、SerpAPI）
+    mock_results = {
+        &quot;Python 3.12 新特性&quot;: &quot;Python 3.12 于 2023 年 10 月发布，主要特性包括：改进的错误消息、&quot;
+                              &quot;f-string 语法增强、类型参数语法（PEP 695）、per-interpreter GIL（PEP 684）。&quot;,
+        &quot;2026年AI趋势&quot;: &quot;2026 年 AI 主要趋势：Agent 系统成为主流应用形态，&quot;
+                        &quot;多模态模型能力持续提升，推理模型（如 o3、Claude Opus）成为标配。&quot;,
+    }
+    for key, value in mock_results.items():
+        if key in query or any(word in query for word in key.split()):
+            return value
+    return f&quot;未找到关于 &#x27;{query}&#x27; 的相关结果。&quot;
+
+def calculator(expression: str) -&gt; str:
+    &quot;&quot;&quot;安全的数学计算&quot;&quot;&quot;
+    try:
+        # 仅允许数学运算，防止代码注入
+        allowed = set(&quot;0123456789+-*/.() &quot;)
+        if not all(c in allowed for c in expression):
+            return &quot;错误：包含不允许的字符&quot;
+        result = eval(expression)  # 生产环境应使用 ast.literal_eval 或专用库
+        return str(result)
+    except Exception as e:
+        return f&quot;计算错误：{e}&quot;
+
+# 工具注册表
+TOOLS = {
+    &quot;search_web&quot;: search_web,
+    &quot;calculator&quot;: calculator,
+}
+
+TOOL_DESCRIPTIONS = &quot;&quot;&quot;
+可用工具：
+1. search_web(query) - 搜索网络获取信息
+2. calculator(expression) - 执行数学计算
+&quot;&quot;&quot;
+
+# ── ReAct 核心循环 ─────────────────────────────────────────
+REACT_SYSTEM_PROMPT = f&quot;&quot;&quot;你是一个能使用工具的 AI 助手。请使用以下格式回答问题：
+
+Thought: &lt;你的思考过程&gt;
+Action: &lt;工具名称&gt;
+Action Input: &lt;工具输入&gt;
+
+当你观察到工具返回结果后，继续思考。当你得到最终答案时，使用：
+
+Thought: 我已经得到了足够的信息
+Final Answer: &lt;最终答案&gt;
+
+{TOOL_DESCRIPTIONS}
+
+重要规则：
+- 每次只调用一个工具
+- 仔细分析工具返回的结果
+- 如果第一次搜索没找到想要的信息，尝试换个关键词
+- 最多执行 5 轮工具调用
+&quot;&quot;&quot;
+
+def run_react_agent(question: str, max_steps: int = 5) -&gt; str:
+    &quot;&quot;&quot;运行 ReAct Agent 循环&quot;&quot;&quot;
+    messages = [
+        {&quot;role&quot;: &quot;system&quot;, &quot;content&quot;: REACT_SYSTEM_PROMPT},
+        {&quot;role&quot;: &quot;user&quot;, &quot;content&quot;: f&quot;Question: {question}&quot;},
+    ]
+
+    for step in range(max_steps):
+        # 调用 LLM
+        response = client.chat.completions.create(
+            model=&quot;gpt-4o&quot;,
+            messages=messages,
+            temperature=0,
+        )
+        assistant_msg = response.choices[0].message.content
+        messages.append({&quot;role&quot;: &quot;assistant&quot;, &quot;content&quot;: assistant_msg})
+        print(f&quot;\n{&#x27;=&#x27;*60}&quot;)
+        print(f&quot;Step {step + 1}:&quot;)
+        print(assistant_msg)
+
+        # 检查是否有 Final Answer
+        if &quot;Final Answer:&quot; in assistant_msg:
+            final = assistant_msg.split(&quot;Final Answer:&quot;)[-1].strip()
+            return final
+
+        # 解析 Action 和 Action Input
+        action_match = re.search(r&quot;Action:\s*(.+)&quot;, assistant_msg)
+        input_match = re.search(r&quot;Action Input:\s*(.+)&quot;, assistant_msg)
+
+        if action_match and input_match:
+            tool_name = action_match.group(1).strip()
+            tool_input = input_match.group(1).strip()
+
+            # 执行工具
+            if tool_name in TOOLS:
+                observation = TOOLS[tool_name](tool_input)
+            else:
+                observation = f&quot;错误：未知工具 &#x27;{tool_name}&#x27;&quot;
+
+            # 将观察结果加入对话
+            obs_msg = f&quot;Observation: {observation}&quot;
+            messages.append({&quot;role&quot;: &quot;user&quot;, &quot;content&quot;: obs_msg})
+            print(f&quot;\n{obs_msg}&quot;)
+        else:
+            # 无法解析 Action，要求模型重新生成
+            messages.append({
+                &quot;role&quot;: &quot;user&quot;,
+                &quot;content&quot;: &quot;请按照 Thought/Action/Action Input 或 Final Answer 格式继续。&quot;
+            })
+
+    return &quot;达到最大步数限制，未能得出最终答案。&quot;
+
+# ── 使用示例 ──────────────────────────────────────────────
+if __name__ == &quot;__main__&quot;:
+    answer = run_react_agent(&quot;Python 3.12 有哪些新特性？帮我算一下 3.12 * 100 是多少。&quot;)
+    print(f&quot;\n最终答案：{answer}&quot;)</code></pre>
+<h2 id="13-ai学习_13_长文本与高效架构-1_长文本技术">13. AI学习_13_长文本与高效架构 / 1_长文本技术</h2>
+<blockquote><p>来源：<code>AI学习_13_长文本与高效架构/1_长文本技术.md</code><br>
+原上下文：Python 代码示例</p></blockquote>
+<pre><code class="language-python">import torch
+import math
+
+def rope_frequencies(dim: int, seq_len: int, base: float = 10000.0):
+    &quot;&quot;&quot;标准 RoPE：计算每个 (位置, 维度对) 的旋转角度。&quot;&quot;&quot;
+    freqs = 1.0 / (base ** (torch.arange(0, dim, 2).float() / dim))
+    positions = torch.arange(seq_len).float()
+    angles = torch.outer(positions, freqs)  # (seq_len, dim//2)
+    return angles
+
+def pi_frequencies(dim, target_len, train_len=4096, base=10000.0):
+    &quot;&quot;&quot;Position Interpolation：线性压缩位置索引。&quot;&quot;&quot;
+    freqs = 1.0 / (base ** (torch.arange(0, dim, 2).float() / dim))
+    scale = train_len / target_len
+    positions = torch.arange(target_len).float() * scale  # 压缩！
+    return torch.outer(positions, freqs)
+
+def ntk_aware_frequencies(dim, target_len, train_len=4096, base=10000.0):
+    &quot;&quot;&quot;NTK-Aware：修改 base 实现不均匀缩放。&quot;&quot;&quot;
+    alpha = target_len / train_len
+    new_base = base * alpha ** (dim / (dim - 2))
+    freqs = 1.0 / (new_base ** (torch.arange(0, dim, 2).float() / dim))
+    positions = torch.arange(target_len).float()
+    return torch.outer(positions, freqs)
+
+# --- 对比分析 ---
+dim = 64
+train_len = 4096
+target_len = 32768  # 8 倍扩展
+
+angles_standard = rope_frequencies(dim, target_len)
+angles_pi = pi_frequencies(dim, target_len, train_len)
+angles_ntk = ntk_aware_frequencies(dim, target_len, train_len)
+
+# 训练范围内的最大旋转角度（作为参考基线）
+angles_train = rope_frequencies(dim, train_len)
+max_train_high = angles_train[-1, 0].item()   # 高频维度
+max_train_low = angles_train[-1, -1].item()   # 低频维度
+
+print(f&quot;训练长度: {train_len}, 目标长度: {target_len} (扩展 {target_len/train_len:.0f} 倍)&quot;)
+print(f&quot;\n训练范围内最大旋转角度:&quot;)
+print(f&quot;  高频维度(dim 0): {max_train_high:.2f} rad&quot;)
+print(f&quot;  低频维度(dim {dim//2-1}): {max_train_low:.4f} rad&quot;)
+
+print(f&quot;\n位置 {target_len-1} 处各方案的旋转角度:&quot;)
+print(f&quot;{&#x27;方案&#x27;:&lt;20} {&#x27;高频(dim 0)&#x27;:&lt;15} {&#x27;低频(dim last)&#x27;:&lt;15} {&#x27;高频是否越界&#x27;}&quot;)
+print(&quot;-&quot; * 70)
+
+for name, angles in [
+    (&quot;直接外推(会崩)&quot;, angles_standard),
+    (&quot;PI 插值&quot;, angles_pi),
+    (&quot;NTK-Aware&quot;, angles_ntk),
+]:
+    high = angles[-1, 0].item()
+    low = angles[-1, -1].item()
+    oob = &quot;!!! 越界&quot; if high &gt; max_train_high * 1.1 else &quot;安全&quot;
+    print(f&quot;{name:&lt;20} {high:&lt;15.2f} {low:&lt;15.4f} {oob}&quot;)
+
+# 可视化不同方案在各维度上的缩放效果
+print(f&quot;\n各维度的缩放因子 (target/train 最大旋转角度之比):&quot;)
+print(f&quot;{&#x27;维度对&#x27;:&lt;8} {&#x27;直接外推&#x27;:&lt;12} {&#x27;PI&#x27;:&lt;12} {&#x27;NTK-Aware&#x27;:&lt;12}&quot;)
+for idx in [0, dim//8, dim//4, 3*dim//8, dim//2-1]:
+    ratio_std = angles_standard[-1, idx].item() / angles_train[-1, idx].item()
+    ratio_pi = angles_pi[-1, idx].item() / angles_train[-1, idx].item()
+    ratio_ntk = angles_ntk[-1, idx].item() / angles_train[-1, idx].item()
+    print(f&quot;  {idx:&lt;6} {ratio_std:&lt;12.2f} {ratio_pi:&lt;12.2f} {ratio_ntk:&lt;12.2f}&quot;)</code></pre>
+<h2 id="14-附录_数学基础速览-11-向量与矩阵运算">14. . / 附录_数学基础速览 / 1.1 向量与矩阵运算</h2>
+<blockquote><p>来源：<code>附录_数学基础速览.md</code><br>
+原上下文：1.1 向量与矩阵运算</p></blockquote>
+<pre><code class="language-python">import numpy as np
+
+# === 向量 ===
+a = np.array([1, 2, 3])
+b = np.array([4, 5, 6])
+
+# 点积：衡量相似度，Transformer 注意力分数的核心
+dot = np.dot(a, b)          # 1*4 + 2*5 + 3*6 = 32
+dot_alt = a @ b             # @ 运算符，同样是点积
+print(f&quot;点积: {dot}&quot;)       # 32
+
+# === 矩阵 ===
+# 神经网络全连接层: y = Wx + b
+W = np.array([[1, 2, 3],    # 2x3 矩阵（2个神经元，3个输入）
+              [4, 5, 6]])
+x = np.array([0.1, 0.2, 0.3])  # 3维输入
+bias = np.array([0.5, 0.5])
+
+y = W @ x + bias            # 矩阵乘法 + 偏置
+print(f&quot;全连接层输出: {y}&quot;)   # [1.9, 3.7]
+
+# === 转置 ===
+print(f&quot;W 形状: {W.shape}&quot;)         # (2, 3)
+print(f&quot;W^T 形状: {W.T.shape}&quot;)     # (3, 2)
+
+# === 批量矩阵乘法 ===
+# 实际训练时是 batch 操作：多个样本同时计算
+X_batch = np.random.randn(32, 3)    # 32个样本，每个3维
+Y_batch = X_batch @ W.T + bias      # (32,3) @ (3,2) + (2,) = (32,2)
+print(f&quot;批量输出形状: {Y_batch.shape}&quot;)  # (32, 2)</code></pre>
+      </article>
+      <nav class="doc-nav"><a href="%E9%99%84%E5%BD%95_%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%80%E9%80%9F%E8%A7%88.html">← 附录：数学基础速览</a><a href="AI%E5%AD%A6%E4%B9%A0_01_%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/README.html">01 神经网络基础 →</a></nav>
+    </main>
+  </div>
+</body>
+</html>

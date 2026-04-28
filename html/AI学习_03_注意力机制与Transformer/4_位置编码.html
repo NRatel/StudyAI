@@ -1,0 +1,240 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>位置编码 · AI学习</title>
+  <link rel="stylesheet" href="../assets/study.css">
+  <script>
+    window.MathJax = {
+      tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], displayMath: [['$$', '$$'], ['\\[', '\\]']] },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="../index.html"><span class="brand-mark">AI</span><span>AI学习 HTML 预览</span></a>
+    <span class="crumb">03 注意力机制与Transformer / 4_位置编码.md</span>
+  </header>
+  <div class="shell doc-shell">
+    <aside class="toc"><div class="toc-title">完整目录</div><nav class="site-tree"><details>
+<summary>总览与附录</summary>
+<a class="doc-link" href="../README.html">README<small>StudyAI — AI 及大模型原理系统学习教材</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0%E7%9B%AE%E5%BD%95%E7%B4%A2%E5%BC%95.html">AI学习目录索引<small>AI 及大模型原理 — 学习目录索引</small></a>
+<a class="doc-link" href="../%E6%95%B4%E4%BD%93%E7%9F%A5%E8%AF%86%E4%BD%93%E7%B3%BB%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE.html">整体知识体系思维导图<small>AI 及大模型原理 — 整体知识体系思维导图</small></a>
+<a class="doc-link" href="../%E9%99%84%E5%BD%95_%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%80%E9%80%9F%E8%A7%88.html">附录_数学基础速览<small>附录：数学基础速览</small></a>
+<a class="doc-link" href="../%E9%99%84%E5%BD%95_%E4%BB%A3%E7%A0%81%E7%A4%BA%E4%BE%8B%E9%9B%86.html">附录_代码示例集<small>附录：代码示例集（精选版）</small></a>
+</details>
+<details>
+<summary>01 神经网络基础</summary>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_01_%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/README.html">README<small>01 神经网络基础</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_01_%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/1_%E6%84%9F%E7%9F%A5%E6%9C%BA%E4%B8%8E%E5%A4%9A%E5%B1%82%E7%BD%91%E7%BB%9C.html">1_感知机与多层网络<small>感知机与多层网络</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_01_%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/2_%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0.html">2_激活函数<small>激活函数</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_01_%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/3_%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0.html">3_损失函数<small>损失函数</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_01_%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/4_%E5%8F%8D%E5%90%91%E4%BC%A0%E6%92%AD.html">4_反向传播<small>反向传播</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_01_%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/5_%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D%E4%B8%8E%E4%BC%98%E5%8C%96%E5%99%A8.html">5_梯度下降与优化器<small>梯度下降与优化器</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_01_%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/6_%E6%AD%A3%E5%88%99%E5%8C%96.html">6_正则化<small>正则化（Regularization）</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_01_%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/%E8%AE%BA%E6%96%87%E4%B8%8EFAQ.html">论文与FAQ<small>论文与FAQ</small></a>
+</details>
+<details>
+<summary>02 经典网络架构</summary>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_02_%E7%BB%8F%E5%85%B8%E7%BD%91%E7%BB%9C%E6%9E%B6%E6%9E%84/README.html">README<small>02 经典网络架构</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_02_%E7%BB%8F%E5%85%B8%E7%BD%91%E7%BB%9C%E6%9E%B6%E6%9E%84/1_CNN%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C.html">1_CNN卷积神经网络<small>CNN 卷积神经网络</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_02_%E7%BB%8F%E5%85%B8%E7%BD%91%E7%BB%9C%E6%9E%B6%E6%9E%84/2_RNN%E5%BE%AA%E7%8E%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C.html">2_RNN循环神经网络<small>RNN 循环神经网络</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_02_%E7%BB%8F%E5%85%B8%E7%BD%91%E7%BB%9C%E6%9E%B6%E6%9E%84/3_LSTM%E4%B8%8EGRU.html">3_LSTM与GRU<small>LSTM 与 GRU</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_02_%E7%BB%8F%E5%85%B8%E7%BD%91%E7%BB%9C%E6%9E%B6%E6%9E%84/4_%E7%BC%96%E7%A0%81%E5%99%A8%E8%A7%A3%E7%A0%81%E5%99%A8%E6%A1%86%E6%9E%B6.html">4_编码器解码器框架<small>编码器-解码器框架（Seq2Seq）</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_02_%E7%BB%8F%E5%85%B8%E7%BD%91%E7%BB%9C%E6%9E%B6%E6%9E%84/%E8%AE%BA%E6%96%87%E4%B8%8EFAQ.html">论文与FAQ<small>论文与FAQ</small></a>
+</details>
+<details open>
+<summary>03 注意力机制与Transformer</summary>
+<a class="doc-link" href="README.html">README<small>03 注意力机制与 Transformer</small></a>
+<a class="doc-link" href="1_%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%9C%BA%E5%88%B6.html">1_注意力机制<small>注意力机制</small></a>
+<a class="doc-link" href="2_SelfAttention%E4%B8%8EMultiHead.html">2_SelfAttention与MultiHead<small>Self-Attention 与 Multi-Head Attention</small></a>
+<a class="doc-link" href="3_Transformer%E6%9E%B6%E6%9E%84.html">3_Transformer架构<small>Transformer 完整架构</small></a>
+<a class="doc-link active" href="4_%E4%BD%8D%E7%BD%AE%E7%BC%96%E7%A0%81.html">4_位置编码<small>位置编码</small></a>
+<a class="doc-link" href="%E8%AE%BA%E6%96%87%E4%B8%8EFAQ.html">论文与FAQ<small>论文与FAQ</small></a>
+</details>
+<details>
+<summary>04 预训练语言模型演进</summary>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_04_%E9%A2%84%E8%AE%AD%E7%BB%83%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%BC%94%E8%BF%9B/README.html">README<small>04 预训练语言模型演进</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_04_%E9%A2%84%E8%AE%AD%E7%BB%83%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%BC%94%E8%BF%9B/1_%E8%AF%8D%E8%A1%A8%E7%A4%BA%E7%9A%84%E6%BC%94%E8%BF%9B.html">1_词表示的演进<small>词表示的演进</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_04_%E9%A2%84%E8%AE%AD%E7%BB%83%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%BC%94%E8%BF%9B/2_%E8%87%AA%E7%9B%91%E7%9D%A3%E9%A2%84%E8%AE%AD%E7%BB%83%E8%8C%83%E5%BC%8F.html">2_自监督预训练范式<small>自监督预训练范式</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_04_%E9%A2%84%E8%AE%AD%E7%BB%83%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%BC%94%E8%BF%9B/3_BERT%E4%B8%8EGPT.html">3_BERT与GPT<small>BERT 与 GPT：两大路线</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_04_%E9%A2%84%E8%AE%AD%E7%BB%83%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%BC%94%E8%BF%9B/4_%E5%BE%AE%E8%B0%83%E4%B8%8E%E8%BF%81%E7%A7%BB%E5%AD%A6%E4%B9%A0.html">4_微调与迁移学习<small>微调与迁移学习</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_04_%E9%A2%84%E8%AE%AD%E7%BB%83%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%BC%94%E8%BF%9B/%E8%AE%BA%E6%96%87%E4%B8%8EFAQ.html">论文与FAQ<small>论文与FAQ</small></a>
+</details>
+<details>
+<summary>05 GPT系列深度解析</summary>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_05_GPT%E7%B3%BB%E5%88%97%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90/README.html">README<small>05 GPT 系列深度解析</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_05_GPT%E7%B3%BB%E5%88%97%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90/1_GPT%E7%B3%BB%E5%88%97%E6%9E%B6%E6%9E%84%E6%BC%94%E8%BF%9B.html">1_GPT系列架构演进<small>GPT 系列架构演进</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_05_GPT%E7%B3%BB%E5%88%97%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90/2_ScalingLaws%E4%B8%8E%E6%B6%8C%E7%8E%B0.html">2_ScalingLaws与涌现<small>Scaling Laws 与涌现能力</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_05_GPT%E7%B3%BB%E5%88%97%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90/3_%E5%AF%B9%E9%BD%90%E6%8A%80%E6%9C%AF.html">3_对齐技术<small>对齐技术：从预训练到有用又安全</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_05_GPT%E7%B3%BB%E5%88%97%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90/4_GPT4%E4%B9%8B%E5%90%8E%E7%9A%84%E6%BC%94%E8%BF%9B.html">4_GPT4之后的演进<small>GPT-4 之后的演进（截至 2026.4）</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_05_GPT%E7%B3%BB%E5%88%97%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90/%E8%AE%BA%E6%96%87%E4%B8%8EFAQ.html">论文与FAQ<small>论文与FAQ</small></a>
+</details>
+<details>
+<summary>06 生成模型与扩散模型</summary>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_06_%E7%94%9F%E6%88%90%E6%A8%A1%E5%9E%8B%E4%B8%8E%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B/README.html">README<small>06 生成模型与扩散模型</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_06_%E7%94%9F%E6%88%90%E6%A8%A1%E5%9E%8B%E4%B8%8E%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B/1_%E7%94%9F%E6%88%90%E6%A8%A1%E5%9E%8B%E8%B0%B1%E7%B3%BB.html">1_生成模型谱系<small>生成模型谱系</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_06_%E7%94%9F%E6%88%90%E6%A8%A1%E5%9E%8B%E4%B8%8E%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B/2_%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B%E5%8E%9F%E7%90%86.html">2_扩散模型原理<small>扩散模型原理</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_06_%E7%94%9F%E6%88%90%E6%A8%A1%E5%9E%8B%E4%B8%8E%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B/3_%E6%9D%A1%E4%BB%B6%E7%94%9F%E6%88%90%E4%B8%8E%E5%BC%95%E5%AF%BC.html">3_条件生成与引导<small>条件生成与引导</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_06_%E7%94%9F%E6%88%90%E6%A8%A1%E5%9E%8B%E4%B8%8E%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B/4_%E6%9E%B6%E6%9E%84%E4%B8%8E%E5%BA%94%E7%94%A8.html">4_架构与应用<small>架构与应用</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_06_%E7%94%9F%E6%88%90%E6%A8%A1%E5%9E%8B%E4%B8%8E%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B/%E8%AE%BA%E6%96%87%E4%B8%8EFAQ.html">论文与FAQ<small>论文与FAQ</small></a>
+</details>
+<details>
+<summary>07 大模型训练技术</summary>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_07_%E5%A4%A7%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83%E6%8A%80%E6%9C%AF/README.html">README<small>07 大模型训练技术</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_07_%E5%A4%A7%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83%E6%8A%80%E6%9C%AF/1_%E5%88%86%E5%B8%83%E5%BC%8F%E8%AE%AD%E7%BB%83.html">1_分布式训练<small>分布式训练</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_07_%E5%A4%A7%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83%E6%8A%80%E6%9C%AF/2_%E6%B7%B7%E5%90%88%E7%B2%BE%E5%BA%A6%E4%B8%8E%E6%A1%86%E6%9E%B6.html">2_混合精度与框架<small>混合精度与训练框架</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_07_%E5%A4%A7%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83%E6%8A%80%E6%9C%AF/3_%E6%95%B0%E6%8D%AE%E5%B7%A5%E7%A8%8B%E4%B8%8ETokenizer.html">3_数据工程与Tokenizer<small>数据工程与 Tokenizer</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_07_%E5%A4%A7%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83%E6%8A%80%E6%9C%AF/4_%E5%AF%B9%E9%BD%90%E8%AE%AD%E7%BB%83%E5%AE%9E%E8%B7%B5.html">4_对齐训练实践<small>对齐训练实践</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_07_%E5%A4%A7%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83%E6%8A%80%E6%9C%AF/%E8%AE%BA%E6%96%87%E4%B8%8EFAQ.html">论文与FAQ<small>论文与 FAQ</small></a>
+</details>
+<details>
+<summary>08 大模型推理与部署</summary>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_08_%E5%A4%A7%E6%A8%A1%E5%9E%8B%E6%8E%A8%E7%90%86%E4%B8%8E%E9%83%A8%E7%BD%B2/README.html">README<small>08 大模型推理与部署</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_08_%E5%A4%A7%E6%A8%A1%E5%9E%8B%E6%8E%A8%E7%90%86%E4%B8%8E%E9%83%A8%E7%BD%B2/1_KVCache%E4%B8%8E%E6%8E%A8%E7%90%86%E4%BC%98%E5%8C%96.html">1_KVCache与推理优化<small>KV Cache 与推理优化</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_08_%E5%A4%A7%E6%A8%A1%E5%9E%8B%E6%8E%A8%E7%90%86%E4%B8%8E%E9%83%A8%E7%BD%B2/2_%E9%87%8F%E5%8C%96%E6%8A%80%E6%9C%AF.html">2_量化技术<small>量化技术</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_08_%E5%A4%A7%E6%A8%A1%E5%9E%8B%E6%8E%A8%E7%90%86%E4%B8%8E%E9%83%A8%E7%BD%B2/3_%E6%8E%A8%E7%90%86%E6%A1%86%E6%9E%B6%E4%B8%8E%E9%83%A8%E7%BD%B2.html">3_推理框架与部署<small>推理框架与部署</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_08_%E5%A4%A7%E6%A8%A1%E5%9E%8B%E6%8E%A8%E7%90%86%E4%B8%8E%E9%83%A8%E7%BD%B2/%E8%AE%BA%E6%96%87%E4%B8%8EFAQ.html">论文与FAQ<small>论文与FAQ</small></a>
+</details>
+<details>
+<summary>09 RAG与应用架构</summary>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_09_RAG%E4%B8%8E%E5%BA%94%E7%94%A8%E6%9E%B6%E6%9E%84/README.html">README<small>09 RAG与应用架构</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_09_RAG%E4%B8%8E%E5%BA%94%E7%94%A8%E6%9E%B6%E6%9E%84/1_RAG%E5%AE%8C%E6%95%B4%E6%B5%81%E7%A8%8B.html">1_RAG完整流程<small>RAG 完整流程</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_09_RAG%E4%B8%8E%E5%BA%94%E7%94%A8%E6%9E%B6%E6%9E%84/2_Embedding%E4%B8%8E%E5%90%91%E9%87%8F%E6%A3%80%E7%B4%A2.html">2_Embedding与向量检索<small>Embedding 与向量检索</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_09_RAG%E4%B8%8E%E5%BA%94%E7%94%A8%E6%9E%B6%E6%9E%84/3_%E9%AB%98%E7%BA%A7RAG%E6%8A%80%E6%9C%AF.html">3_高级RAG技术<small>高级 RAG 技术</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_09_RAG%E4%B8%8E%E5%BA%94%E7%94%A8%E6%9E%B6%E6%9E%84/%E8%AE%BA%E6%96%87%E4%B8%8EFAQ.html">论文与FAQ<small>论文与FAQ</small></a>
+</details>
+<details>
+<summary>10 多模态模型</summary>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_10_%E5%A4%9A%E6%A8%A1%E6%80%81%E6%A8%A1%E5%9E%8B/README.html">README<small>10 多模态模型</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_10_%E5%A4%9A%E6%A8%A1%E6%80%81%E6%A8%A1%E5%9E%8B/1_ViT%E4%B8%8ECLIP.html">1_ViT与CLIP<small>ViT 与 CLIP</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_10_%E5%A4%9A%E6%A8%A1%E6%80%81%E6%A8%A1%E5%9E%8B/2_%E5%A4%9A%E6%A8%A1%E6%80%81%E5%A4%A7%E6%A8%A1%E5%9E%8B.html">2_多模态大模型<small>多模态大模型</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_10_%E5%A4%9A%E6%A8%A1%E6%80%81%E6%A8%A1%E5%9E%8B/3_%E8%A7%86%E9%A2%91%E4%B8%8E%E8%AF%AD%E9%9F%B3.html">3_视频与语音<small>视频与语音</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_10_%E5%A4%9A%E6%A8%A1%E6%80%81%E6%A8%A1%E5%9E%8B/%E8%AE%BA%E6%96%87%E4%B8%8EFAQ.html">论文与FAQ<small>论文与FAQ</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_10_%E5%A4%9A%E6%A8%A1%E6%80%81%E6%A8%A1%E5%9E%8B/%E6%97%B6%E6%95%88%E6%80%A7%E8%AF%B4%E6%98%8E.html">时效性说明<small>时效性说明</small></a>
+</details>
+<details>
+<summary>11 推理与思维链</summary>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_11_%E6%8E%A8%E7%90%86%E4%B8%8E%E6%80%9D%E7%BB%B4%E9%93%BE/README.html">README<small>11 推理与思维链</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_11_%E6%8E%A8%E7%90%86%E4%B8%8E%E6%80%9D%E7%BB%B4%E9%93%BE/1_%E6%80%9D%E7%BB%B4%E9%93%BE%E6%8F%90%E7%A4%BA.html">1_思维链提示<small>思维链提示</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_11_%E6%8E%A8%E7%90%86%E4%B8%8E%E6%80%9D%E7%BB%B4%E9%93%BE/2_%E9%AB%98%E7%BA%A7%E6%8E%A8%E7%90%86%E6%96%B9%E6%B3%95.html">2_高级推理方法<small>高级推理方法</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_11_%E6%8E%A8%E7%90%86%E4%B8%8E%E6%80%9D%E7%BB%B4%E9%93%BE/3_%E6%8E%A8%E7%90%86%E6%A8%A1%E5%9E%8B%E4%B8%8ETTC.html">3_推理模型与TTC<small>推理模型与 Test-time Compute Scaling</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_11_%E6%8E%A8%E7%90%86%E4%B8%8E%E6%80%9D%E7%BB%B4%E9%93%BE/%E8%AE%BA%E6%96%87%E4%B8%8EFAQ.html">论文与FAQ<small>论文与FAQ</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_11_%E6%8E%A8%E7%90%86%E4%B8%8E%E6%80%9D%E7%BB%B4%E9%93%BE/%E6%97%B6%E6%95%88%E6%80%A7%E8%AF%B4%E6%98%8E.html">时效性说明<small>时效性说明</small></a>
+</details>
+<details>
+<summary>12 Agent与工具使用</summary>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_12_Agent%E4%B8%8E%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/README.html">README<small>12 Agent与工具使用</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_12_Agent%E4%B8%8E%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/1_Agent%E6%A1%86%E6%9E%B6%E5%8E%9F%E7%90%86.html">1_Agent框架原理<small>Agent 框架原理</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_12_Agent%E4%B8%8E%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/2_%E8%AE%B0%E5%BF%86%E4%B8%8E%E7%8A%B6%E6%80%81%E7%AE%A1%E7%90%86.html">2_记忆与状态管理<small>记忆与状态管理</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_12_Agent%E4%B8%8E%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/3_%E5%A4%9AAgent%E4%B8%8EMCP.html">3_多Agent与MCP<small>多 Agent 与 MCP</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_12_Agent%E4%B8%8E%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/%E8%AE%BA%E6%96%87%E4%B8%8EFAQ.html">论文与FAQ<small>论文与FAQ</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_12_Agent%E4%B8%8E%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/%E6%97%B6%E6%95%88%E6%80%A7%E8%AF%B4%E6%98%8E.html">时效性说明<small>时效性说明</small></a>
+</details>
+<details>
+<summary>13 长文本与高效架构</summary>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_13_%E9%95%BF%E6%96%87%E6%9C%AC%E4%B8%8E%E9%AB%98%E6%95%88%E6%9E%B6%E6%9E%84/README.html">README<small>13 长文本与高效架构</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_13_%E9%95%BF%E6%96%87%E6%9C%AC%E4%B8%8E%E9%AB%98%E6%95%88%E6%9E%B6%E6%9E%84/1_%E9%95%BF%E6%96%87%E6%9C%AC%E6%8A%80%E6%9C%AF.html">1_长文本技术<small>长文本技术</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_13_%E9%95%BF%E6%96%87%E6%9C%AC%E4%B8%8E%E9%AB%98%E6%95%88%E6%9E%B6%E6%9E%84/2_MoE%E6%9E%B6%E6%9E%84.html">2_MoE架构<small>Mixture of Experts（MoE）架构</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_13_%E9%95%BF%E6%96%87%E6%9C%AC%E4%B8%8E%E9%AB%98%E6%95%88%E6%9E%B6%E6%9E%84/3_%E9%AB%98%E6%95%88Transformer.html">3_高效Transformer<small>高效 Transformer 变体</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_13_%E9%95%BF%E6%96%87%E6%9C%AC%E4%B8%8E%E9%AB%98%E6%95%88%E6%9E%B6%E6%9E%84/%E8%AE%BA%E6%96%87%E4%B8%8EFAQ.html">论文与FAQ<small>论文与FAQ</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_13_%E9%95%BF%E6%96%87%E6%9C%AC%E4%B8%8E%E9%AB%98%E6%95%88%E6%9E%B6%E6%9E%84/%E6%97%B6%E6%95%88%E6%80%A7%E8%AF%B4%E6%98%8E.html">时效性说明<small>时效性说明</small></a>
+</details></nav><div class="sidebar-rule"></div><details class="page-toc" open><summary>当前页目录</summary><a class="depth-2" href="#1-self-attention-为什么需要位置">1. Self-Attention 为什么需要位置</a>
+<a class="depth-3" href="#11-问题self-attention-是位置盲的">1.1 问题：Self-Attention 是&quot;位置盲&quot;的</a>
+<a class="depth-3" href="#12-解决方案给每个位置注入我在哪的信息">1.2 解决方案：给每个位置注入&quot;我在哪&quot;的信息</a>
+<a class="depth-3" href="#13-三种主流方案一览">1.3 三种主流方案一览</a>
+<a class="depth-2" href="#2-主流位置编码方案">2. 主流位置编码方案</a>
+<a class="depth-3" href="#21-正弦位置编码sinusoidal-positional-encoding">2.1 正弦位置编码（Sinusoidal Positional Encoding）</a>
+<a class="depth-4" href="#211-公式">2.1.1 公式</a>
+<a class="depth-4" href="#212-直觉为什么用正弦和余弦">2.1.2 直觉：为什么用正弦和余弦？</a>
+<a class="depth-4" href="#213-使用方式">2.1.3 使用方式</a>
+<a class="depth-3" href="#22-可学习位置编码learned-positional-embedding">2.2 可学习位置编码（Learned Positional Embedding）</a>
+<a class="depth-3" href="#23-rope-旋转位置编码rotary-position-embedding">2.3 RoPE 旋转位置编码（Rotary Position Embedding）</a>
+<a class="depth-4" href="#231-核心思想">2.3.1 核心思想</a>
+<a class="depth-4" href="#232-rope-的关键优势">2.3.2 RoPE 的关键优势</a>
+<a class="depth-3" href="#24-三种位置编码的对比总结">2.4 三种位置编码的对比总结</a>
+<a class="depth-2" href="#本节小结">本节小结</a></details></aside>
+    <main class="page">
+      <article class="markdown-body">
+<h1 id="位置编码">位置编码</h1>
+<blockquote><p><strong>前置知识</strong>：已学完 <a href="3_Transformer%E6%9E%B6%E6%9E%84.html">Transformer 架构</a>，理解 Self-Attention 的计算过程（$\text{Attention}(Q,K,V) = \text{softmax}(\frac{QK^T}{\sqrt{d_k}})V$）、Multi-Head Attention、残差连接和 Layer Norm。数学符号不熟悉可查阅 <a href="../%E9%99%84%E5%BD%95_%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%80%E9%80%9F%E8%A7%88.html">附录：数学基础速览</a>。<br>
+<strong>本节目标</strong>：理解为什么 Transformer 需要位置编码，掌握正弦位置编码、可学习位置编码、RoPE 的核心思想，并理解位置编码与长文本能力的关系。</p></blockquote>
+<hr>
+<h2 id="1-self-attention-为什么需要位置">1. Self-Attention 为什么需要位置</h2>
+<h3 id="11-问题self-attention-是位置盲的">1.1 问题：Self-Attention 是&quot;位置盲&quot;的</h3>
+<p>回顾 Self-Attention 的核心计算：</p>
+<div class="math-block">$$\text{Attention}(Q, K, V) = \text{softmax}\left(\frac{QK^T}{\sqrt{d_k}}\right) V$$</div>
+<p>这个计算有一个关键性质：<strong>置换不变性</strong>（permutation invariance）。把 &quot;I love AI&quot; 打乱成 &quot;AI love I&quot;，Self-Attention 对每个词的输出（经过适当重排后）完全一样——它只关心词的内容，不关心词出现在哪个位置。</p>
+<p>但语言显然是有顺序的：&quot;狗咬人&quot; 和 &quot;人咬狗&quot; 意思完全不同。如果模型无法区分词序，就无法理解语言。</p>
+<h3 id="12-解决方案给每个位置注入我在哪的信息">1.2 解决方案：给每个位置注入&quot;我在哪&quot;的信息</h3>
+<p><strong>类比</strong>：教室里的学生都戴着面具（只有内容信息，没有位置信息）。解决办法：给每个座位贴编号，让学生把编号别在胸前。这样讨论时，不仅知道对方说了什么，还知道对方坐在哪里。</p>
+<p>位置编码（Positional Encoding）就是这个&quot;座位编号&quot;。注入方式有两种：</p>
+<ol>
+<li><strong>加法注入</strong>：$\text{input} = \text{token\_embedding} + \text{position\_encoding}$</li>
+<li><strong>旋转注入</strong>：在计算 Attention 时旋转 Q/K 向量（RoPE 的做法）</li>
+</ol>
+<h3 id="13-三种主流方案一览">1.3 三种主流方案一览</h3>
+<div class="table-wrap"><table><thead><tr><th>方案</th><th>代表模型</th><th>核心思想</th><th>注入方式</th></tr></thead><tbody><tr><td>正弦位置编码（Sinusoidal）</td><td>原始 Transformer (2017)</td><td>用不同频率的正弦/余弦函数编码位置</td><td>加到嵌入上</td></tr><tr><td>可学习位置编码（Learned）</td><td>BERT, GPT-2</td><td>直接学一个位置嵌入表</td><td>加到嵌入上</td></tr><tr><td>旋转位置编码（RoPE）</td><td>LLaMA, GPT-NeoX, Qwen</td><td>用旋转矩阵把位置编码为角度</td><td>旋转 Q/K 向量</td></tr></tbody></table></div>
+<hr>
+<h2 id="2-主流位置编码方案">2. 主流位置编码方案</h2>
+<h3 id="21-正弦位置编码sinusoidal-positional-encoding">2.1 正弦位置编码（Sinusoidal Positional Encoding）</h3>
+<h4 id="211-公式">2.1.1 公式</h4>
+<p>对于位置 $pos$ 和维度 $i$（$i = 0, 1, \dots, d/2 - 1$）：</p>
+<div class="math-block">$$PE(pos, 2i) = \sin\left(\frac{pos}{10000^{2i/d}}\right), \quad PE(pos, 2i+1) = \cos\left(\frac{pos}{10000^{2i/d}}\right)$$</div>
+<p>其中 $d$ 是模型维度。结果是一个 $(max\_len, d)$ 的矩阵，每一行是一个位置的编码向量。</p>
+<div class="table-wrap"><table><thead><tr><th>符号</th><th>含义</th></tr></thead><tbody><tr><td>$pos$</td><td>词在序列中的位置，从 0 开始</td></tr><tr><td>$i$</td><td>维度索引（每两个维度共享一个频率）</td></tr><tr><td>$10000^{2i/d}$</td><td>周期，随维度增大而增大</td></tr></tbody></table></div>
+<h4 id="212-直觉为什么用正弦和余弦">2.1.2 直觉：为什么用正弦和余弦？</h4>
+<p><strong>直觉 1：不同频率捕捉不同尺度的位置关系</strong></p>
+<p>$10000^{2i/d}$ 随 $i$ 增大而指数级增长：低维度周期短、变化快（捕捉相邻词的差异），高维度周期长、变化慢（捕捉远距离的相对位置）。</p>
+<p>类比：钟表的秒针（高频）、分针（中频）、时针（低频），组合起来能唯一表示任何时间点。</p>
+<pre><code>维度 0-1 (高频):  ▁▂▃▄▅▆▇█▇▆▅▄▃▂▁▂▃▄▅▆▇█▇▆▅▄▃▂▁  (变化快)
+维度 2-3 (中频):  ▁▁▂▃▃▄▅▅▆▇▇█▇▇▆▅▅▄▃▃▂▁▁▂▃▃▄▅▅▆  (变化中等)
+维度 d-2,d-1(低频): ▁▁▁▁▁▂▂▂▂▂▃▃▃▃▃▄▄▄▄▄▅▅▅▅▅▆▆▆▆▆  (变化慢)
+
+组合所有维度 → 每个位置有唯一的&quot;指纹&quot;</code></pre>
+<p><strong>直觉 2：相对位置可以用线性变换表示</strong></p>
+<p>这是正弦编码最精妙的性质。对于任意固定偏移 $k$，存在一个只依赖 $k$ 的线性变换矩阵 $M_k$，使得 $PE(pos + k) = M_k \cdot PE(pos)$。</p>
+<p>利用三角函数的和角公式，对每一对 sin/cos 维度（频率 $\omega$）：</p>
+<div class="math-block">$$\begin{bmatrix} \sin((pos+k)\omega) \\ \cos((pos+k)\omega) \end{bmatrix} = \begin{bmatrix} \cos(k\omega) &amp; \sin(k\omega) \\ -\sin(k\omega) &amp; \cos(k\omega) \end{bmatrix} \begin{bmatrix} \sin(pos \cdot \omega) \\ \cos(pos \cdot \omega) \end{bmatrix}$$</div>
+<p>这意味着模型可以通过学习线性变换来&quot;关注相对位置为 $k$ 的词&quot;——&quot;the cat sat&quot; 中 &quot;cat&quot; 和 &quot;sat&quot; 的语法关系只取决于它们的距离，不取决于绝对位置。</p>
+<h4 id="213-使用方式">2.1.3 使用方式</h4>
+<p>正弦编码是<strong>加法注入</strong>，且是<strong>固定的</strong>（不参与训练）：</p>
+<div class="math-block">$$\text{input}_i = \text{Embedding}(token_i) + PE(i)$$</div>
+<h3 id="22-可学习位置编码learned-positional-embedding">2.2 可学习位置编码（Learned Positional Embedding）</h3>
+<p>BERT 和 GPT-2 采用更直接的方式：<code>PositionEmbedding</code> 是一个 $(max\_len, d_{model})$ 的可训练参数矩阵。</p>
+<div class="table-wrap"><table><thead><tr><th>对比维度</th><th>正弦编码</th><th>可学习编码</th></tr></thead><tbody><tr><td>参数</td><td>无（固定公式）</td><td>$max\_len \times d_{model}$</td></tr><tr><td>理论性质</td><td>相对位置可线性表示</td><td>无理论保证</td></tr><tr><td>外推能力</td><td>公式可泛化，但实际效果退化</td><td><strong>无法外推</strong>——超过 $max\_len$ 直接报错</td></tr><tr><td>实际效果</td><td>两者几乎一样</td><td>两者几乎一样</td></tr></tbody></table></div>
+<p>可学习编码的致命问题：<code>max_len</code> 是死的。训练时 <code>max_len=512</code>，推理遇到 513 个 token 就崩溃。这推动了 RoPE 等方案的诞生。</p>
+<h3 id="23-rope-旋转位置编码rotary-position-embedding">2.3 RoPE 旋转位置编码（Rotary Position Embedding）</h3>
+<p>RoPE（Su et al. 2021）已成为现代大语言模型的标配（LLaMA、Qwen、Mistral 等几乎全部使用）。</p>
+<h4 id="231-核心思想">2.3.1 核心思想</h4>
+<p>不修改嵌入，而是在计算 Attention 时<strong>旋转</strong> Q 和 K 向量，使得点积 $\tilde{q}_m^T \tilde{k}_n$ 只依赖于内容和<strong>相对位置</strong> $m - n$。</p>
+<h4 id="232-rope-的关键优势">2.3.2 RoPE 的关键优势</h4>
+<ol>
+<li><strong>天然的相对位置编码</strong>：在数学上保证点积只依赖相对位置</li>
+<li><strong>不增加额外参数</strong>：旋转角度由位置和固定频率决定</li>
+<li><strong>更好的长度外推</strong>：编码相对位置，天然支持长文本扩展</li>
+<li><strong>适合注意力机制</strong>：直接作用在 Q/K 上，影响的是 token 之间的匹配关系</li>
+</ol>
+<h3 id="24-三种位置编码的对比总结">2.4 三种位置编码的对比总结</h3>
+<div class="table-wrap"><table><thead><tr><th>对比维度</th><th>正弦编码</th><th>可学习编码</th><th>RoPE</th></tr></thead><tbody><tr><td>类型</td><td>绝对位置</td><td>绝对位置</td><td>相对位置</td></tr><tr><td>注入方式</td><td>加到嵌入上</td><td>加到嵌入上</td><td>旋转 Q/K 向量</td></tr><tr><td>额外参数</td><td>0</td><td>$max\_len \times d$</td><td>0</td></tr><tr><td>外推能力</td><td>一般</td><td>差</td><td>较好</td></tr><tr><td>当前使用状况</td><td>较少</td><td>部分模型</td><td><strong>大模型标配</strong></td></tr></tbody></table></div>
+<blockquote><p><strong>一句话理清三者关系</strong>：绝对位置编码（正弦、可学习）给每个位置分配一个固定坐标；相对位置编码更关心两个位置之间隔多远；RoPE 用旋转 Q/K 的方式把相对位置信息写进注意力匹配过程，因此成为现代大模型的常见选择。</p></blockquote>
+<hr>
+<h2 id="本节小结">本节小结</h2>
+<div class="table-wrap"><table><thead><tr><th>概念</th><th>一句话总结</th></tr></thead><tbody><tr><td>置换不变性问题</td><td>Self-Attention 不关心词序，需要额外注入位置信息</td></tr><tr><td>正弦位置编码</td><td>用不同频率的 sin/cos 编码位置，有优美的线性变换性质</td></tr><tr><td>可学习位置编码</td><td>直接学一个嵌入表，简单但无法外推</td></tr><tr><td>RoPE</td><td>旋转 Q/K 向量，天然编码相对位置，现代大模型标配</td></tr><tr><td>绝对 vs 相对编码</td><td>绝对编码给位置贴标签，相对编码关注位置间距离</td></tr><tr><td>长度外推</td><td>训练短推理长，RoPE + PI/NTK/YaRN 是主流方案</td></tr><tr><td>ALiBi</td><td>Attention score 加线性偏置，简单但已被 RoPE 超越</td></tr></tbody></table></div>
+<p><strong>位置编码在知识体系中的位置</strong>：</p>
+<pre><code>Self-Attention（内容交互） + 位置编码（顺序信息）  ← 本节
+  = 完整的 Transformer 注意力机制
+    → BERT, GPT-2（绝对位置编码时代）
+      → LLaMA, Mistral, Qwen（RoPE 时代）
+        → 长文本技术（模块 13）</code></pre>
+<p><strong>回到模块首页</strong>：<a href="README.html">README</a></p>
+      </article>
+      <nav class="doc-nav"><a href="3_Transformer%E6%9E%B6%E6%9E%84.html">← Transformer 完整架构</a><a href="%E8%AE%BA%E6%96%87%E4%B8%8EFAQ.html">论文与FAQ →</a></nav>
+    </main>
+  </div>
+</body>
+</html>

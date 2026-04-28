@@ -1,0 +1,316 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ViT 与 CLIP · AI学习</title>
+  <link rel="stylesheet" href="../assets/study.css">
+  <script>
+    window.MathJax = {
+      tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], displayMath: [['$$', '$$'], ['\\[', '\\]']] },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="../index.html"><span class="brand-mark">AI</span><span>AI学习 HTML 预览</span></a>
+    <span class="crumb">10 多模态模型 / 1_ViT与CLIP.md</span>
+  </header>
+  <div class="shell doc-shell">
+    <aside class="toc"><div class="toc-title">完整目录</div><nav class="site-tree"><details>
+<summary>总览与附录</summary>
+<a class="doc-link" href="../README.html">README<small>StudyAI — AI 及大模型原理系统学习教材</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0%E7%9B%AE%E5%BD%95%E7%B4%A2%E5%BC%95.html">AI学习目录索引<small>AI 及大模型原理 — 学习目录索引</small></a>
+<a class="doc-link" href="../%E6%95%B4%E4%BD%93%E7%9F%A5%E8%AF%86%E4%BD%93%E7%B3%BB%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE.html">整体知识体系思维导图<small>AI 及大模型原理 — 整体知识体系思维导图</small></a>
+<a class="doc-link" href="../%E9%99%84%E5%BD%95_%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%80%E9%80%9F%E8%A7%88.html">附录_数学基础速览<small>附录：数学基础速览</small></a>
+<a class="doc-link" href="../%E9%99%84%E5%BD%95_%E4%BB%A3%E7%A0%81%E7%A4%BA%E4%BE%8B%E9%9B%86.html">附录_代码示例集<small>附录：代码示例集（精选版）</small></a>
+</details>
+<details>
+<summary>01 神经网络基础</summary>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_01_%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/README.html">README<small>01 神经网络基础</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_01_%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/1_%E6%84%9F%E7%9F%A5%E6%9C%BA%E4%B8%8E%E5%A4%9A%E5%B1%82%E7%BD%91%E7%BB%9C.html">1_感知机与多层网络<small>感知机与多层网络</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_01_%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/2_%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0.html">2_激活函数<small>激活函数</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_01_%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/3_%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0.html">3_损失函数<small>损失函数</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_01_%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/4_%E5%8F%8D%E5%90%91%E4%BC%A0%E6%92%AD.html">4_反向传播<small>反向传播</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_01_%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/5_%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D%E4%B8%8E%E4%BC%98%E5%8C%96%E5%99%A8.html">5_梯度下降与优化器<small>梯度下降与优化器</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_01_%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/6_%E6%AD%A3%E5%88%99%E5%8C%96.html">6_正则化<small>正则化（Regularization）</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_01_%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/%E8%AE%BA%E6%96%87%E4%B8%8EFAQ.html">论文与FAQ<small>论文与FAQ</small></a>
+</details>
+<details>
+<summary>02 经典网络架构</summary>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_02_%E7%BB%8F%E5%85%B8%E7%BD%91%E7%BB%9C%E6%9E%B6%E6%9E%84/README.html">README<small>02 经典网络架构</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_02_%E7%BB%8F%E5%85%B8%E7%BD%91%E7%BB%9C%E6%9E%B6%E6%9E%84/1_CNN%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C.html">1_CNN卷积神经网络<small>CNN 卷积神经网络</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_02_%E7%BB%8F%E5%85%B8%E7%BD%91%E7%BB%9C%E6%9E%B6%E6%9E%84/2_RNN%E5%BE%AA%E7%8E%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C.html">2_RNN循环神经网络<small>RNN 循环神经网络</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_02_%E7%BB%8F%E5%85%B8%E7%BD%91%E7%BB%9C%E6%9E%B6%E6%9E%84/3_LSTM%E4%B8%8EGRU.html">3_LSTM与GRU<small>LSTM 与 GRU</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_02_%E7%BB%8F%E5%85%B8%E7%BD%91%E7%BB%9C%E6%9E%B6%E6%9E%84/4_%E7%BC%96%E7%A0%81%E5%99%A8%E8%A7%A3%E7%A0%81%E5%99%A8%E6%A1%86%E6%9E%B6.html">4_编码器解码器框架<small>编码器-解码器框架（Seq2Seq）</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_02_%E7%BB%8F%E5%85%B8%E7%BD%91%E7%BB%9C%E6%9E%B6%E6%9E%84/%E8%AE%BA%E6%96%87%E4%B8%8EFAQ.html">论文与FAQ<small>论文与FAQ</small></a>
+</details>
+<details>
+<summary>03 注意力机制与Transformer</summary>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_03_%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%9C%BA%E5%88%B6%E4%B8%8ETransformer/README.html">README<small>03 注意力机制与 Transformer</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_03_%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%9C%BA%E5%88%B6%E4%B8%8ETransformer/1_%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%9C%BA%E5%88%B6.html">1_注意力机制<small>注意力机制</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_03_%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%9C%BA%E5%88%B6%E4%B8%8ETransformer/2_SelfAttention%E4%B8%8EMultiHead.html">2_SelfAttention与MultiHead<small>Self-Attention 与 Multi-Head Attention</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_03_%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%9C%BA%E5%88%B6%E4%B8%8ETransformer/3_Transformer%E6%9E%B6%E6%9E%84.html">3_Transformer架构<small>Transformer 完整架构</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_03_%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%9C%BA%E5%88%B6%E4%B8%8ETransformer/4_%E4%BD%8D%E7%BD%AE%E7%BC%96%E7%A0%81.html">4_位置编码<small>位置编码</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_03_%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%9C%BA%E5%88%B6%E4%B8%8ETransformer/%E8%AE%BA%E6%96%87%E4%B8%8EFAQ.html">论文与FAQ<small>论文与FAQ</small></a>
+</details>
+<details>
+<summary>04 预训练语言模型演进</summary>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_04_%E9%A2%84%E8%AE%AD%E7%BB%83%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%BC%94%E8%BF%9B/README.html">README<small>04 预训练语言模型演进</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_04_%E9%A2%84%E8%AE%AD%E7%BB%83%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%BC%94%E8%BF%9B/1_%E8%AF%8D%E8%A1%A8%E7%A4%BA%E7%9A%84%E6%BC%94%E8%BF%9B.html">1_词表示的演进<small>词表示的演进</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_04_%E9%A2%84%E8%AE%AD%E7%BB%83%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%BC%94%E8%BF%9B/2_%E8%87%AA%E7%9B%91%E7%9D%A3%E9%A2%84%E8%AE%AD%E7%BB%83%E8%8C%83%E5%BC%8F.html">2_自监督预训练范式<small>自监督预训练范式</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_04_%E9%A2%84%E8%AE%AD%E7%BB%83%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%BC%94%E8%BF%9B/3_BERT%E4%B8%8EGPT.html">3_BERT与GPT<small>BERT 与 GPT：两大路线</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_04_%E9%A2%84%E8%AE%AD%E7%BB%83%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%BC%94%E8%BF%9B/4_%E5%BE%AE%E8%B0%83%E4%B8%8E%E8%BF%81%E7%A7%BB%E5%AD%A6%E4%B9%A0.html">4_微调与迁移学习<small>微调与迁移学习</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_04_%E9%A2%84%E8%AE%AD%E7%BB%83%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%BC%94%E8%BF%9B/%E8%AE%BA%E6%96%87%E4%B8%8EFAQ.html">论文与FAQ<small>论文与FAQ</small></a>
+</details>
+<details>
+<summary>05 GPT系列深度解析</summary>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_05_GPT%E7%B3%BB%E5%88%97%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90/README.html">README<small>05 GPT 系列深度解析</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_05_GPT%E7%B3%BB%E5%88%97%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90/1_GPT%E7%B3%BB%E5%88%97%E6%9E%B6%E6%9E%84%E6%BC%94%E8%BF%9B.html">1_GPT系列架构演进<small>GPT 系列架构演进</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_05_GPT%E7%B3%BB%E5%88%97%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90/2_ScalingLaws%E4%B8%8E%E6%B6%8C%E7%8E%B0.html">2_ScalingLaws与涌现<small>Scaling Laws 与涌现能力</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_05_GPT%E7%B3%BB%E5%88%97%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90/3_%E5%AF%B9%E9%BD%90%E6%8A%80%E6%9C%AF.html">3_对齐技术<small>对齐技术：从预训练到有用又安全</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_05_GPT%E7%B3%BB%E5%88%97%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90/4_GPT4%E4%B9%8B%E5%90%8E%E7%9A%84%E6%BC%94%E8%BF%9B.html">4_GPT4之后的演进<small>GPT-4 之后的演进（截至 2026.4）</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_05_GPT%E7%B3%BB%E5%88%97%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90/%E8%AE%BA%E6%96%87%E4%B8%8EFAQ.html">论文与FAQ<small>论文与FAQ</small></a>
+</details>
+<details>
+<summary>06 生成模型与扩散模型</summary>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_06_%E7%94%9F%E6%88%90%E6%A8%A1%E5%9E%8B%E4%B8%8E%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B/README.html">README<small>06 生成模型与扩散模型</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_06_%E7%94%9F%E6%88%90%E6%A8%A1%E5%9E%8B%E4%B8%8E%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B/1_%E7%94%9F%E6%88%90%E6%A8%A1%E5%9E%8B%E8%B0%B1%E7%B3%BB.html">1_生成模型谱系<small>生成模型谱系</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_06_%E7%94%9F%E6%88%90%E6%A8%A1%E5%9E%8B%E4%B8%8E%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B/2_%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B%E5%8E%9F%E7%90%86.html">2_扩散模型原理<small>扩散模型原理</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_06_%E7%94%9F%E6%88%90%E6%A8%A1%E5%9E%8B%E4%B8%8E%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B/3_%E6%9D%A1%E4%BB%B6%E7%94%9F%E6%88%90%E4%B8%8E%E5%BC%95%E5%AF%BC.html">3_条件生成与引导<small>条件生成与引导</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_06_%E7%94%9F%E6%88%90%E6%A8%A1%E5%9E%8B%E4%B8%8E%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B/4_%E6%9E%B6%E6%9E%84%E4%B8%8E%E5%BA%94%E7%94%A8.html">4_架构与应用<small>架构与应用</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_06_%E7%94%9F%E6%88%90%E6%A8%A1%E5%9E%8B%E4%B8%8E%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B/%E8%AE%BA%E6%96%87%E4%B8%8EFAQ.html">论文与FAQ<small>论文与FAQ</small></a>
+</details>
+<details>
+<summary>07 大模型训练技术</summary>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_07_%E5%A4%A7%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83%E6%8A%80%E6%9C%AF/README.html">README<small>07 大模型训练技术</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_07_%E5%A4%A7%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83%E6%8A%80%E6%9C%AF/1_%E5%88%86%E5%B8%83%E5%BC%8F%E8%AE%AD%E7%BB%83.html">1_分布式训练<small>分布式训练</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_07_%E5%A4%A7%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83%E6%8A%80%E6%9C%AF/2_%E6%B7%B7%E5%90%88%E7%B2%BE%E5%BA%A6%E4%B8%8E%E6%A1%86%E6%9E%B6.html">2_混合精度与框架<small>混合精度与训练框架</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_07_%E5%A4%A7%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83%E6%8A%80%E6%9C%AF/3_%E6%95%B0%E6%8D%AE%E5%B7%A5%E7%A8%8B%E4%B8%8ETokenizer.html">3_数据工程与Tokenizer<small>数据工程与 Tokenizer</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_07_%E5%A4%A7%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83%E6%8A%80%E6%9C%AF/4_%E5%AF%B9%E9%BD%90%E8%AE%AD%E7%BB%83%E5%AE%9E%E8%B7%B5.html">4_对齐训练实践<small>对齐训练实践</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_07_%E5%A4%A7%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83%E6%8A%80%E6%9C%AF/%E8%AE%BA%E6%96%87%E4%B8%8EFAQ.html">论文与FAQ<small>论文与 FAQ</small></a>
+</details>
+<details>
+<summary>08 大模型推理与部署</summary>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_08_%E5%A4%A7%E6%A8%A1%E5%9E%8B%E6%8E%A8%E7%90%86%E4%B8%8E%E9%83%A8%E7%BD%B2/README.html">README<small>08 大模型推理与部署</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_08_%E5%A4%A7%E6%A8%A1%E5%9E%8B%E6%8E%A8%E7%90%86%E4%B8%8E%E9%83%A8%E7%BD%B2/1_KVCache%E4%B8%8E%E6%8E%A8%E7%90%86%E4%BC%98%E5%8C%96.html">1_KVCache与推理优化<small>KV Cache 与推理优化</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_08_%E5%A4%A7%E6%A8%A1%E5%9E%8B%E6%8E%A8%E7%90%86%E4%B8%8E%E9%83%A8%E7%BD%B2/2_%E9%87%8F%E5%8C%96%E6%8A%80%E6%9C%AF.html">2_量化技术<small>量化技术</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_08_%E5%A4%A7%E6%A8%A1%E5%9E%8B%E6%8E%A8%E7%90%86%E4%B8%8E%E9%83%A8%E7%BD%B2/3_%E6%8E%A8%E7%90%86%E6%A1%86%E6%9E%B6%E4%B8%8E%E9%83%A8%E7%BD%B2.html">3_推理框架与部署<small>推理框架与部署</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_08_%E5%A4%A7%E6%A8%A1%E5%9E%8B%E6%8E%A8%E7%90%86%E4%B8%8E%E9%83%A8%E7%BD%B2/%E8%AE%BA%E6%96%87%E4%B8%8EFAQ.html">论文与FAQ<small>论文与FAQ</small></a>
+</details>
+<details>
+<summary>09 RAG与应用架构</summary>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_09_RAG%E4%B8%8E%E5%BA%94%E7%94%A8%E6%9E%B6%E6%9E%84/README.html">README<small>09 RAG与应用架构</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_09_RAG%E4%B8%8E%E5%BA%94%E7%94%A8%E6%9E%B6%E6%9E%84/1_RAG%E5%AE%8C%E6%95%B4%E6%B5%81%E7%A8%8B.html">1_RAG完整流程<small>RAG 完整流程</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_09_RAG%E4%B8%8E%E5%BA%94%E7%94%A8%E6%9E%B6%E6%9E%84/2_Embedding%E4%B8%8E%E5%90%91%E9%87%8F%E6%A3%80%E7%B4%A2.html">2_Embedding与向量检索<small>Embedding 与向量检索</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_09_RAG%E4%B8%8E%E5%BA%94%E7%94%A8%E6%9E%B6%E6%9E%84/3_%E9%AB%98%E7%BA%A7RAG%E6%8A%80%E6%9C%AF.html">3_高级RAG技术<small>高级 RAG 技术</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_09_RAG%E4%B8%8E%E5%BA%94%E7%94%A8%E6%9E%B6%E6%9E%84/%E8%AE%BA%E6%96%87%E4%B8%8EFAQ.html">论文与FAQ<small>论文与FAQ</small></a>
+</details>
+<details open>
+<summary>10 多模态模型</summary>
+<a class="doc-link" href="README.html">README<small>10 多模态模型</small></a>
+<a class="doc-link active" href="1_ViT%E4%B8%8ECLIP.html">1_ViT与CLIP<small>ViT 与 CLIP</small></a>
+<a class="doc-link" href="2_%E5%A4%9A%E6%A8%A1%E6%80%81%E5%A4%A7%E6%A8%A1%E5%9E%8B.html">2_多模态大模型<small>多模态大模型</small></a>
+<a class="doc-link" href="3_%E8%A7%86%E9%A2%91%E4%B8%8E%E8%AF%AD%E9%9F%B3.html">3_视频与语音<small>视频与语音</small></a>
+<a class="doc-link" href="%E8%AE%BA%E6%96%87%E4%B8%8EFAQ.html">论文与FAQ<small>论文与FAQ</small></a>
+<a class="doc-link" href="%E6%97%B6%E6%95%88%E6%80%A7%E8%AF%B4%E6%98%8E.html">时效性说明<small>时效性说明</small></a>
+</details>
+<details>
+<summary>11 推理与思维链</summary>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_11_%E6%8E%A8%E7%90%86%E4%B8%8E%E6%80%9D%E7%BB%B4%E9%93%BE/README.html">README<small>11 推理与思维链</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_11_%E6%8E%A8%E7%90%86%E4%B8%8E%E6%80%9D%E7%BB%B4%E9%93%BE/1_%E6%80%9D%E7%BB%B4%E9%93%BE%E6%8F%90%E7%A4%BA.html">1_思维链提示<small>思维链提示</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_11_%E6%8E%A8%E7%90%86%E4%B8%8E%E6%80%9D%E7%BB%B4%E9%93%BE/2_%E9%AB%98%E7%BA%A7%E6%8E%A8%E7%90%86%E6%96%B9%E6%B3%95.html">2_高级推理方法<small>高级推理方法</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_11_%E6%8E%A8%E7%90%86%E4%B8%8E%E6%80%9D%E7%BB%B4%E9%93%BE/3_%E6%8E%A8%E7%90%86%E6%A8%A1%E5%9E%8B%E4%B8%8ETTC.html">3_推理模型与TTC<small>推理模型与 Test-time Compute Scaling</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_11_%E6%8E%A8%E7%90%86%E4%B8%8E%E6%80%9D%E7%BB%B4%E9%93%BE/%E8%AE%BA%E6%96%87%E4%B8%8EFAQ.html">论文与FAQ<small>论文与FAQ</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_11_%E6%8E%A8%E7%90%86%E4%B8%8E%E6%80%9D%E7%BB%B4%E9%93%BE/%E6%97%B6%E6%95%88%E6%80%A7%E8%AF%B4%E6%98%8E.html">时效性说明<small>时效性说明</small></a>
+</details>
+<details>
+<summary>12 Agent与工具使用</summary>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_12_Agent%E4%B8%8E%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/README.html">README<small>12 Agent与工具使用</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_12_Agent%E4%B8%8E%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/1_Agent%E6%A1%86%E6%9E%B6%E5%8E%9F%E7%90%86.html">1_Agent框架原理<small>Agent 框架原理</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_12_Agent%E4%B8%8E%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/2_%E8%AE%B0%E5%BF%86%E4%B8%8E%E7%8A%B6%E6%80%81%E7%AE%A1%E7%90%86.html">2_记忆与状态管理<small>记忆与状态管理</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_12_Agent%E4%B8%8E%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/3_%E5%A4%9AAgent%E4%B8%8EMCP.html">3_多Agent与MCP<small>多 Agent 与 MCP</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_12_Agent%E4%B8%8E%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/%E8%AE%BA%E6%96%87%E4%B8%8EFAQ.html">论文与FAQ<small>论文与FAQ</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_12_Agent%E4%B8%8E%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/%E6%97%B6%E6%95%88%E6%80%A7%E8%AF%B4%E6%98%8E.html">时效性说明<small>时效性说明</small></a>
+</details>
+<details>
+<summary>13 长文本与高效架构</summary>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_13_%E9%95%BF%E6%96%87%E6%9C%AC%E4%B8%8E%E9%AB%98%E6%95%88%E6%9E%B6%E6%9E%84/README.html">README<small>13 长文本与高效架构</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_13_%E9%95%BF%E6%96%87%E6%9C%AC%E4%B8%8E%E9%AB%98%E6%95%88%E6%9E%B6%E6%9E%84/1_%E9%95%BF%E6%96%87%E6%9C%AC%E6%8A%80%E6%9C%AF.html">1_长文本技术<small>长文本技术</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_13_%E9%95%BF%E6%96%87%E6%9C%AC%E4%B8%8E%E9%AB%98%E6%95%88%E6%9E%B6%E6%9E%84/2_MoE%E6%9E%B6%E6%9E%84.html">2_MoE架构<small>Mixture of Experts（MoE）架构</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_13_%E9%95%BF%E6%96%87%E6%9C%AC%E4%B8%8E%E9%AB%98%E6%95%88%E6%9E%B6%E6%9E%84/3_%E9%AB%98%E6%95%88Transformer.html">3_高效Transformer<small>高效 Transformer 变体</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_13_%E9%95%BF%E6%96%87%E6%9C%AC%E4%B8%8E%E9%AB%98%E6%95%88%E6%9E%B6%E6%9E%84/%E8%AE%BA%E6%96%87%E4%B8%8EFAQ.html">论文与FAQ<small>论文与FAQ</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_13_%E9%95%BF%E6%96%87%E6%9C%AC%E4%B8%8E%E9%AB%98%E6%95%88%E6%9E%B6%E6%9E%84/%E6%97%B6%E6%95%88%E6%80%A7%E8%AF%B4%E6%98%8E.html">时效性说明<small>时效性说明</small></a>
+</details></nav><div class="sidebar-rule"></div><details class="page-toc" open><summary>当前页目录</summary><a class="depth-2" href="#1-图像怎么进入-transformer">1. 图像怎么进入 Transformer</a>
+<a class="depth-3" href="#11-核心问题图像怎么进入-transformer">1.1 核心问题：图像怎么进入 Transformer？</a>
+<a class="depth-3" href="#12-核心问题图像和文本怎么对齐">1.2 核心问题：图像和文本怎么&quot;对齐&quot;？</a>
+<a class="depth-3" href="#13-为什么-vit-和-clip-是多模态的基石">1.3 为什么 ViT 和 CLIP 是多模态的基石？</a>
+<a class="depth-2" href="#2-vit-与-clip-的核心机制">2. ViT 与 CLIP 的核心机制</a>
+<a class="depth-3" href="#21-vision-transformervit">2.1 Vision Transformer（ViT）</a>
+<a class="depth-4" href="#211-架构总览">2.1.1 架构总览</a>
+<a class="depth-4" href="#212-patch-embedding-的数学">2.1.2 Patch Embedding 的数学</a>
+<a class="depth-4" href="#213-vit-的关键设计选择">2.1.3 ViT 的关键设计选择</a>
+<a class="depth-4" href="#214-vit-家族演进截至-20264">2.1.4 ViT 家族演进（截至 2026.4）</a>
+<a class="depth-3" href="#22-clipcontrastive-language-image-pre-training">2.2 CLIP（Contrastive Language-Image Pre-training）</a>
+<a class="depth-4" href="#221-clip-的训练范式">2.2.1 CLIP 的训练范式</a>
+<a class="depth-4" href="#222-对比学习损失函数">2.2.2 对比学习损失函数</a>
+<a class="depth-4" href="#223-clip-的零样本分类">2.2.3 CLIP 的零样本分类</a>
+<a class="depth-4" href="#224-clip-的关键设计">2.2.4 CLIP 的关键设计</a>
+<a class="depth-2" href="#本节小结">本节小结</a></details></aside>
+    <main class="page">
+      <article class="markdown-body">
+<h1 id="vit-与-clip">ViT 与 CLIP</h1>
+<blockquote><p><strong>前置知识</strong>：<a href="../AI%E5%AD%A6%E4%B9%A0_03_%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%9C%BA%E5%88%B6%E4%B8%8ETransformer/README.html">03 注意力机制与Transformer</a>（Self-Attention、Multi-Head Attention、Transformer 架构）、<a href="../AI%E5%AD%A6%E4%B9%A0_05_GPT%E7%B3%BB%E5%88%97%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90/README.html">05 GPT系列</a>（预训练范式）<br>
+<strong>本节目标</strong>：理解 Vision Transformer 如何将图像建模为 token 序列、CLIP 如何通过对比学习实现图文对齐、以及它们为什么是多模态 AI 的基石。<br>
+<strong>内容时效</strong>：截至 2026 年 4 月。</p></blockquote>
+<hr>
+<h2 id="1-图像怎么进入-transformer">1. 图像怎么进入 Transformer</h2>
+<h3 id="11-核心问题图像怎么进入-transformer">1.1 核心问题：图像怎么进入 Transformer？</h3>
+<p>Transformer 最初是为序列数据（文本）设计的——输入是一个 token 序列，每个 token 是一个向量。但图像不是序列，它是一个二维像素网格。</p>
+<p>CNN 是传统的图像处理方案：卷积核在图像上滑动，逐层提取局部特征。但 CNN 有一个根本局限——<strong>感受野是局部的</strong>。即使通过多层卷积扩大感受野，CNN 也很难高效捕捉图像中远距离区域之间的关系。</p>
+<p><strong>ViT 的核心思路</strong>：把图像切成一个个小方块（patch），把每个 patch 当作一个&quot;token&quot;，然后直接送入标准 Transformer。</p>
+<p>类比：<strong>ViT = 把图像当作一篇文章来读</strong>。每个 patch 就像一个&quot;词&quot;，Transformer 的 Self-Attention 让每个&quot;词&quot;都能关注到文章中的任何其他&quot;词&quot;——这就是全局感受野。</p>
+<h3 id="12-核心问题图像和文本怎么对齐">1.2 核心问题：图像和文本怎么&quot;对齐&quot;？</h3>
+<p>ViT 解决了&quot;图像怎么用 Transformer 处理&quot;，但还有一个更根本的问题：<strong>图像和文本活在完全不同的特征空间里</strong>。一张猫的照片的特征向量，和&quot;一只猫&quot;这个文本的特征向量，毫无关系。</p>
+<p><strong>CLIP 的核心思路</strong>：训练一个图像编码器和一个文本编码器，让同一概念的图文描述在<strong>共享向量空间</strong>中靠近，不相关的图文描述远离。</p>
+<p>类比：<strong>CLIP = 给图像和文本建立一本共用的字典</strong>。训练后，&quot;一只猫&quot;的文本向量和猫图片的图像向量，在同一个向量空间中距离很近。</p>
+<h3 id="13-为什么-vit-和-clip-是多模态的基石">1.3 为什么 ViT 和 CLIP 是多模态的基石？</h3>
+<pre><code>传统路线:  图像 → CNN → 图像特征     文本 → RNN/Transformer → 文本特征
+                   ↓                            ↓
+              两个独立空间，无法直接比较
+
+ViT + CLIP:  图像 → ViT → 图像特征 ─┐
+                                      ├──→ 共享向量空间（可比较、可检索、可迁移）
+             文本 → Transformer → 文本特征 ─┘</code></pre>
+<p>CLIP 训练出的&quot;图文共享语义空间&quot;成为后续多模态大模型的重要地基。LLaVA、早期 InternVL 等开源模型常直接使用或借鉴 CLIP/SigLIP 风格的视觉编码器；GPT-4V、GPT-4o 这类闭源模型没有公开具体视觉编码器，不能断言它们直接使用 CLIP，只能说它们延续了&quot;视觉特征与语言语义对齐&quot;这条路线。</p>
+<blockquote><p><strong>为什么 CLIP 能成为后续多模态模型的桥接基础？</strong> 根本原因在于 CLIP 通过对比学习建立了一个<strong>图文共享的向量空间</strong>——在这个空间中，图像和文本的语义是可比较、可对齐的。正是因为有了这个共享空间，后续的多模态大模型才能通过一个简单的投影层（如 MLP）将视觉特征&quot;翻译&quot;到 LLM 能理解的语义空间。如果没有 CLIP 预先建立的图文对齐基础，视觉编码器的输出对 LLM 来说就是毫无意义的噪声。可以说，CLIP 的图文共享向量空间是整个&quot;桥接式多模态&quot;技术路线的地基。</p></blockquote>
+<hr>
+<h2 id="2-vit-与-clip-的核心机制">2. ViT 与 CLIP 的核心机制</h2>
+<h3 id="21-vision-transformervit">2.1 Vision Transformer（ViT）</h3>
+<h4 id="211-架构总览">2.1.1 架构总览</h4>
+<p>ViT 的完整流程（Dosovitskiy et al., 2020）：</p>
+<pre><code>输入图像 (H × W × C)
+    │
+    ▼
+┌─────────────────────────────────┐
+│ Step 1: Patch Embedding          │
+│                                  │
+│ 将图像切成 N = (H/P) × (W/P)    │
+│ 个 patch，每个 patch 大小 P × P  │
+│                                  │
+│ 每个 patch 展平后线性投影为       │
+│ D 维向量 → 得到 N 个 patch token │
+└───────────┬─────────────────────┘
+            │
+            ▼
+┌─────────────────────────────────┐
+│ Step 2: 添加 [CLS] token         │
+│ + 位置编码（Positional Embedding）│
+│                                  │
+│ [CLS], patch_1, patch_2, ...,   │
+│ patch_N  → 共 N+1 个 token       │
+└───────────┬─────────────────────┘
+            │
+            ▼
+┌─────────────────────────────────┐
+│ Step 3: 标准 Transformer Encoder │
+│                                  │
+│ L 层 (MSA + FFN + LayerNorm)     │
+└───────────┬─────────────────────┘
+            │
+            ▼
+┌─────────────────────────────────┐
+│ Step 4: 取 [CLS] token 的输出    │
+│ 作为整张图像的全局表示            │
+│ → 接分类头（MLP）进行分类         │
+└─────────────────────────────────┘</code></pre>
+<h4 id="212-patch-embedding-的数学">2.1.2 Patch Embedding 的数学</h4>
+<p>给定输入图像 $\mathbf{x} \in \mathbb{R}^{H \times W \times C}$，patch 大小为 $P \times P$：</p>
+<p><strong>Step 1</strong>：将图像分割为 $N = \frac{H \cdot W}{P^2}$ 个 patch：</p>
+<div class="math-block">$$\mathbf{x}_p^{(i)} \in \mathbb{R}^{P^2 \cdot C}, \quad i = 1, \ldots, N$$</div>
+<p>例如：224 x 224 的图像，patch 大小 16 x 16，得到 $N = 14 \times 14 = 196$ 个 patch。每个 patch 展平后是 $16 \times 16 \times 3 = 768$ 维向量。</p>
+<p><strong>Step 2</strong>：线性投影到 $D$ 维嵌入空间：</p>
+<div class="math-block">$$\mathbf{z}_0^{(i)} = \mathbf{x}_p^{(i)} \mathbf{E} + \mathbf{e}_{pos}^{(i)}, \quad \mathbf{E} \in \mathbb{R}^{(P^2 C) \times D}$$</div>
+<p>其中 $\mathbf{e}_{pos}^{(i)}$ 是可学习的位置编码（position embedding），$D$ 是 Transformer 的隐藏维度。</p>
+<p><strong>Step 3</strong>：在序列开头添加一个可学习的 [CLS] token $\mathbf{z}_0^{(0)}$：</p>
+<div class="math-block">$$\mathbf{Z}_0 = [\mathbf{z}_0^{(0)},\; \mathbf{z}_0^{(1)},\; \ldots,\; \mathbf{z}_0^{(N)}] \in \mathbb{R}^{(N+1) \times D}$$</div>
+<p><strong>Step 4</strong>：送入 $L$ 层标准 Transformer Encoder：</p>
+<div class="math-block">$$\mathbf{Z}_l = \text{TransformerBlock}(\mathbf{Z}_{l-1}), \quad l = 1, \ldots, L$$</div>
+<p>最终图像表示为 $\mathbf{Z}_L^{(0)}$（最后一层 [CLS] token 的输出）。</p>
+<h4 id="213-vit-的关键设计选择">2.1.3 ViT 的关键设计选择</h4>
+<div class="table-wrap"><table><thead><tr><th>设计</th><th>ViT 的做法</th><th>为什么</th></tr></thead><tbody><tr><td><strong>Patch 大小</strong></td><td>16×16 或 14×14</td><td>太小 → token 数暴增（计算量平方级增长）；太大 → 分辨率损失</td></tr><tr><td><strong>位置编码</strong></td><td>可学习的 1D 位置编码</td><td>比固定 sin/cos 效果略好，且无需假设 2D 结构</td></tr><tr><td><strong>[CLS] token</strong></td><td>沿用 BERT 设计</td><td>让全局信息汇聚到一个 token</td></tr><tr><td><strong>预训练策略</strong></td><td>大规模监督预训练（JFT-300M）</td><td>ViT 在小数据集上不如 CNN，需要大数据</td></tr></tbody></table></div>
+<p><strong>关键发现</strong>：ViT 在小数据集（如 ImageNet-1K）上不如 CNN（缺少卷积的归纳偏置），但在大数据集（JFT-300M，3 亿图像）上显著超越 CNN。这印证了 Transformer 的核心优势——在充分数据下的扩展性（scalability）。</p>
+<h4 id="214-vit-家族演进截至-20264">2.1.4 ViT 家族演进（截至 2026.4）</h4>
+<div class="table-wrap"><table><thead><tr><th>模型</th><th>年份</th><th>核心改进</th></tr></thead><tbody><tr><td>ViT</td><td>2020</td><td>原始 patch + Transformer</td></tr><tr><td>DeiT</td><td>2021</td><td>知识蒸馏，小数据也能训好 ViT</td></tr><tr><td>Swin Transformer</td><td>2021</td><td>层级窗口注意力，适合密集预测</td></tr><tr><td>MAE</td><td>2022</td><td>自监督预训练（掩码补全）</td></tr><tr><td>DINOv2</td><td>2023</td><td>自蒸馏自监督，通用视觉特征</td></tr><tr><td>SigLIP</td><td>2023</td><td>sigmoid 对比学习，替代 softmax</td></tr><tr><td>InternViT-6B</td><td>2024</td><td>60 亿参数视觉编码器</td></tr><tr><td>ViT-22B</td><td>2023</td><td>Google 220 亿参数 ViT</td></tr></tbody></table></div>
+<h3 id="22-clipcontrastive-language-image-pre-training">2.2 CLIP（Contrastive Language-Image Pre-training）</h3>
+<h4 id="221-clip-的训练范式">2.2.1 CLIP 的训练范式</h4>
+<p>CLIP（Radford et al., 2021）的核心是<strong>对比学习</strong>（contrastive learning）：</p>
+<pre><code>训练数据：4 亿个 (图像, 文本描述) 对
+
+              图像编码器（ViT）          文本编码器（Transformer）
+                    │                           │
+              图像 → I_1                   文本 → T_1
+              图像 → I_2                   文本 → T_2
+              图像 → I_3                   文本 → T_3
+                    │                           │
+                    └─────────┬─────────────────┘
+                              │
+                   计算 N×N 相似度矩阵
+                              │
+                    ┌─────────────────────┐
+                    │  T_1   T_2   T_3    │
+                    │ ┌─────┬─────┬─────┐ │
+              I_1   │ │ ✓   │ ✗   │ ✗   │ │  ← 对角线是正样本对
+              I_2   │ │ ✗   │ ✓   │ ✗   │ │
+              I_3   │ │ ✗   │ ✗   │ ✓   │ │  ← 非对角线是负样本对
+                    │ └─────┴─────┴─────┘ │
+                    └─────────────────────┘
+                              │
+                    最大化对角线相似度
+                    最小化非对角线相似度</code></pre>
+<h4 id="222-对比学习损失函数">2.2.2 对比学习损失函数</h4>
+<p>给定一个 batch 中的 $N$ 个 (图像, 文本) 对，CLIP 同时优化两个方向的交叉熵：</p>
+<p><strong>图像 → 文本方向</strong>（给定图像，找正确文本）：</p>
+<div class="math-block">$$\mathcal{L}_{\text{i2t}} = -\frac{1}{N} \sum_{i=1}^{N} \log \frac{\exp(\text{sim}(\mathbf{I}_i, \mathbf{T}_i) / \tau)}{\sum_{j=1}^{N} \exp(\text{sim}(\mathbf{I}_i, \mathbf{T}_j) / \tau)}$$</div>
+<p><strong>文本 → 图像方向</strong>（给定文本，找正确图像）：</p>
+<div class="math-block">$$\mathcal{L}_{\text{t2i}} = -\frac{1}{N} \sum_{i=1}^{N} \log \frac{\exp(\text{sim}(\mathbf{T}_i, \mathbf{I}_i) / \tau)}{\sum_{j=1}^{N} \exp(\text{sim}(\mathbf{T}_i, \mathbf{I}_j) / \tau)}$$</div>
+<p><strong>总损失</strong>：</p>
+<div class="math-block">$$\mathcal{L}_{\text{CLIP}} = \frac{1}{2}(\mathcal{L}_{\text{i2t}} + \mathcal{L}_{\text{t2i}})$$</div>
+<p>其中：</p>
+<ul>
+<li>$\text{sim}(\mathbf{I}, \mathbf{T}) = \frac{\mathbf{I} \cdot \mathbf{T}}{|\mathbf{I}| \cdot |\mathbf{T}|}$ 是余弦相似度</li>
+<li>$\tau$ 是<strong>可学习的温度参数</strong>（初始约 0.07），控制分布的尖锐程度</li>
+</ul>
+<h4 id="223-clip-的零样本分类">2.2.3 CLIP 的零样本分类</h4>
+<p>CLIP 最惊人的能力是<strong>零样本分类</strong>——无需任何标注数据，就能对新的类别进行图像分类。</p>
+<p>原理：</p>
+<pre><code>Step 1: 将所有候选类别转化为文本 prompt
+        &quot;a photo of a cat&quot;
+        &quot;a photo of a dog&quot;
+        &quot;a photo of a car&quot;
+        ...
+
+Step 2: 用文本编码器编码所有类别 → 得到 K 个文本向量
+
+Step 3: 用图像编码器编码待分类图像 → 得到 1 个图像向量
+
+Step 4: 计算图像向量与所有文本向量的余弦相似度
+
+Step 5: 相似度最高的类别即为预测结果</code></pre>
+<p><strong>这为什么有效？</strong> 因为 CLIP 在 4 亿图文对上训练后，已经学会了一个<strong>通用的视觉-语言语义空间</strong>。在这个空间里，&quot;猫的照片&quot;和&quot;a photo of a cat&quot;天然靠近。这意味着任何能用语言描述的视觉概念，都可以被零样本识别。</p>
+<h4 id="224-clip-的关键设计">2.2.4 CLIP 的关键设计</h4>
+<div class="table-wrap"><table><thead><tr><th>设计</th><th>具体做法</th><th>为什么</th></tr></thead><tbody><tr><td><strong>数据</strong></td><td>4 亿网络图文对（WIT-400M）</td><td>网络数据虽然有噪声，但规模弥补了质量</td></tr><tr><td><strong>图像编码器</strong></td><td>ViT-L/14（最优配置）</td><td>ViT 在大规模数据上优于 ResNet</td></tr><tr><td><strong>文本编码器</strong></td><td>12 层 Transformer（63M 参数）</td><td>不需要特别大，能编码语义即可</td></tr><tr><td><strong>Batch Size</strong></td><td>32,768</td><td>对比学习需要大 batch 产生足够负样本</td></tr><tr><td><strong>温度参数 τ</strong></td><td>可学习，初始 0.07</td><td>自适应调节分布尖锐度</td></tr><tr><td><strong>Prompt 设计</strong></td><td>&quot;a photo of a {class}&quot;</td><td>手工 prompt 比裸类别名效果显著提升</td></tr></tbody></table></div>
+<hr>
+<h2 id="本节小结">本节小结</h2>
+<div class="table-wrap"><table><thead><tr><th>概念</th><th>一句话总结</th></tr></thead><tbody><tr><td><strong>ViT</strong></td><td>将图像切为 patch 序列，用标准 Transformer 处理——证明了图像也不需要 CNN</td></tr><tr><td><strong>Patch Embedding</strong></td><td>图像切块 → 展平 → 线性投影 → 位置编码，将 2D 图像转为 1D token 序列</td></tr><tr><td><strong>[CLS] Token</strong></td><td>沿用 BERT 设计，汇聚全局信息，其最终输出作为整图表示</td></tr><tr><td><strong>CLIP</strong></td><td>用 4 亿图文对做对比学习，让图像和文本在共享空间对齐</td></tr><tr><td><strong>对比学习</strong></td><td>最大化匹配图文对的相似度，最小化不匹配对的相似度</td></tr><tr><td><strong>零样本分类</strong></td><td>用文本描述作为分类器，无需标注数据即可分类新类别</td></tr><tr><td><strong>CLIP 的遗产</strong></td><td>其视觉编码器成为几乎所有多模态大模型的&quot;眼睛&quot;</td></tr></tbody></table></div>
+<p><strong>下一节</strong>：基于 ViT/CLIP 这个&quot;眼睛&quot;，多模态大模型如何把视觉能力接入 LLM？</p>
+<hr>
+<blockquote><p><strong>时效性说明</strong>（截至 2026 年 4 月）：ViT 和 CLIP 作为基础架构已相当稳定，核心原理不会过时。但其变体（如 SigLIP、EVA-CLIP、InternViT 等）仍在快速迭代。在选择具体的视觉编码器时，建议查阅最新的 Open CLIP benchmark 和 MMMU/MMBench 等多模态评测排行榜。2025-2026 年的重要趋势包括：(1) 视觉编码器参数量持续增大（InternViT-6B、ViT-22B）；(2) 自监督预训练（DINOv2）与对比学习的融合；(3) SigLIP 逐步替代原始 CLIP 成为新的默认选择。</p></blockquote>
+      </article>
+      <nav class="doc-nav"><a href="README.html">← 10 多模态模型</a><a href="2_%E5%A4%9A%E6%A8%A1%E6%80%81%E5%A4%A7%E6%A8%A1%E5%9E%8B.html">多模态大模型 →</a></nav>
+    </main>
+  </div>
+</body>
+</html>

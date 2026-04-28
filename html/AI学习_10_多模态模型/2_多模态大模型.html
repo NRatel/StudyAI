@@ -1,0 +1,383 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>多模态大模型 · AI学习</title>
+  <link rel="stylesheet" href="../assets/study.css">
+  <script>
+    window.MathJax = {
+      tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], displayMath: [['$$', '$$'], ['\\[', '\\]']] },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="../index.html"><span class="brand-mark">AI</span><span>AI学习 HTML 预览</span></a>
+    <span class="crumb">10 多模态模型 / 2_多模态大模型.md</span>
+  </header>
+  <div class="shell doc-shell">
+    <aside class="toc"><div class="toc-title">完整目录</div><nav class="site-tree"><details>
+<summary>总览与附录</summary>
+<a class="doc-link" href="../README.html">README<small>StudyAI — AI 及大模型原理系统学习教材</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0%E7%9B%AE%E5%BD%95%E7%B4%A2%E5%BC%95.html">AI学习目录索引<small>AI 及大模型原理 — 学习目录索引</small></a>
+<a class="doc-link" href="../%E6%95%B4%E4%BD%93%E7%9F%A5%E8%AF%86%E4%BD%93%E7%B3%BB%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE.html">整体知识体系思维导图<small>AI 及大模型原理 — 整体知识体系思维导图</small></a>
+<a class="doc-link" href="../%E9%99%84%E5%BD%95_%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%80%E9%80%9F%E8%A7%88.html">附录_数学基础速览<small>附录：数学基础速览</small></a>
+<a class="doc-link" href="../%E9%99%84%E5%BD%95_%E4%BB%A3%E7%A0%81%E7%A4%BA%E4%BE%8B%E9%9B%86.html">附录_代码示例集<small>附录：代码示例集（精选版）</small></a>
+</details>
+<details>
+<summary>01 神经网络基础</summary>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_01_%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/README.html">README<small>01 神经网络基础</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_01_%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/1_%E6%84%9F%E7%9F%A5%E6%9C%BA%E4%B8%8E%E5%A4%9A%E5%B1%82%E7%BD%91%E7%BB%9C.html">1_感知机与多层网络<small>感知机与多层网络</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_01_%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/2_%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0.html">2_激活函数<small>激活函数</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_01_%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/3_%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0.html">3_损失函数<small>损失函数</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_01_%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/4_%E5%8F%8D%E5%90%91%E4%BC%A0%E6%92%AD.html">4_反向传播<small>反向传播</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_01_%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/5_%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D%E4%B8%8E%E4%BC%98%E5%8C%96%E5%99%A8.html">5_梯度下降与优化器<small>梯度下降与优化器</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_01_%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/6_%E6%AD%A3%E5%88%99%E5%8C%96.html">6_正则化<small>正则化（Regularization）</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_01_%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/%E8%AE%BA%E6%96%87%E4%B8%8EFAQ.html">论文与FAQ<small>论文与FAQ</small></a>
+</details>
+<details>
+<summary>02 经典网络架构</summary>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_02_%E7%BB%8F%E5%85%B8%E7%BD%91%E7%BB%9C%E6%9E%B6%E6%9E%84/README.html">README<small>02 经典网络架构</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_02_%E7%BB%8F%E5%85%B8%E7%BD%91%E7%BB%9C%E6%9E%B6%E6%9E%84/1_CNN%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C.html">1_CNN卷积神经网络<small>CNN 卷积神经网络</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_02_%E7%BB%8F%E5%85%B8%E7%BD%91%E7%BB%9C%E6%9E%B6%E6%9E%84/2_RNN%E5%BE%AA%E7%8E%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C.html">2_RNN循环神经网络<small>RNN 循环神经网络</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_02_%E7%BB%8F%E5%85%B8%E7%BD%91%E7%BB%9C%E6%9E%B6%E6%9E%84/3_LSTM%E4%B8%8EGRU.html">3_LSTM与GRU<small>LSTM 与 GRU</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_02_%E7%BB%8F%E5%85%B8%E7%BD%91%E7%BB%9C%E6%9E%B6%E6%9E%84/4_%E7%BC%96%E7%A0%81%E5%99%A8%E8%A7%A3%E7%A0%81%E5%99%A8%E6%A1%86%E6%9E%B6.html">4_编码器解码器框架<small>编码器-解码器框架（Seq2Seq）</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_02_%E7%BB%8F%E5%85%B8%E7%BD%91%E7%BB%9C%E6%9E%B6%E6%9E%84/%E8%AE%BA%E6%96%87%E4%B8%8EFAQ.html">论文与FAQ<small>论文与FAQ</small></a>
+</details>
+<details>
+<summary>03 注意力机制与Transformer</summary>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_03_%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%9C%BA%E5%88%B6%E4%B8%8ETransformer/README.html">README<small>03 注意力机制与 Transformer</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_03_%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%9C%BA%E5%88%B6%E4%B8%8ETransformer/1_%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%9C%BA%E5%88%B6.html">1_注意力机制<small>注意力机制</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_03_%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%9C%BA%E5%88%B6%E4%B8%8ETransformer/2_SelfAttention%E4%B8%8EMultiHead.html">2_SelfAttention与MultiHead<small>Self-Attention 与 Multi-Head Attention</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_03_%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%9C%BA%E5%88%B6%E4%B8%8ETransformer/3_Transformer%E6%9E%B6%E6%9E%84.html">3_Transformer架构<small>Transformer 完整架构</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_03_%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%9C%BA%E5%88%B6%E4%B8%8ETransformer/4_%E4%BD%8D%E7%BD%AE%E7%BC%96%E7%A0%81.html">4_位置编码<small>位置编码</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_03_%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%9C%BA%E5%88%B6%E4%B8%8ETransformer/%E8%AE%BA%E6%96%87%E4%B8%8EFAQ.html">论文与FAQ<small>论文与FAQ</small></a>
+</details>
+<details>
+<summary>04 预训练语言模型演进</summary>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_04_%E9%A2%84%E8%AE%AD%E7%BB%83%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%BC%94%E8%BF%9B/README.html">README<small>04 预训练语言模型演进</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_04_%E9%A2%84%E8%AE%AD%E7%BB%83%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%BC%94%E8%BF%9B/1_%E8%AF%8D%E8%A1%A8%E7%A4%BA%E7%9A%84%E6%BC%94%E8%BF%9B.html">1_词表示的演进<small>词表示的演进</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_04_%E9%A2%84%E8%AE%AD%E7%BB%83%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%BC%94%E8%BF%9B/2_%E8%87%AA%E7%9B%91%E7%9D%A3%E9%A2%84%E8%AE%AD%E7%BB%83%E8%8C%83%E5%BC%8F.html">2_自监督预训练范式<small>自监督预训练范式</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_04_%E9%A2%84%E8%AE%AD%E7%BB%83%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%BC%94%E8%BF%9B/3_BERT%E4%B8%8EGPT.html">3_BERT与GPT<small>BERT 与 GPT：两大路线</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_04_%E9%A2%84%E8%AE%AD%E7%BB%83%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%BC%94%E8%BF%9B/4_%E5%BE%AE%E8%B0%83%E4%B8%8E%E8%BF%81%E7%A7%BB%E5%AD%A6%E4%B9%A0.html">4_微调与迁移学习<small>微调与迁移学习</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_04_%E9%A2%84%E8%AE%AD%E7%BB%83%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%BC%94%E8%BF%9B/%E8%AE%BA%E6%96%87%E4%B8%8EFAQ.html">论文与FAQ<small>论文与FAQ</small></a>
+</details>
+<details>
+<summary>05 GPT系列深度解析</summary>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_05_GPT%E7%B3%BB%E5%88%97%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90/README.html">README<small>05 GPT 系列深度解析</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_05_GPT%E7%B3%BB%E5%88%97%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90/1_GPT%E7%B3%BB%E5%88%97%E6%9E%B6%E6%9E%84%E6%BC%94%E8%BF%9B.html">1_GPT系列架构演进<small>GPT 系列架构演进</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_05_GPT%E7%B3%BB%E5%88%97%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90/2_ScalingLaws%E4%B8%8E%E6%B6%8C%E7%8E%B0.html">2_ScalingLaws与涌现<small>Scaling Laws 与涌现能力</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_05_GPT%E7%B3%BB%E5%88%97%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90/3_%E5%AF%B9%E9%BD%90%E6%8A%80%E6%9C%AF.html">3_对齐技术<small>对齐技术：从预训练到有用又安全</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_05_GPT%E7%B3%BB%E5%88%97%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90/4_GPT4%E4%B9%8B%E5%90%8E%E7%9A%84%E6%BC%94%E8%BF%9B.html">4_GPT4之后的演进<small>GPT-4 之后的演进（截至 2026.4）</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_05_GPT%E7%B3%BB%E5%88%97%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90/%E8%AE%BA%E6%96%87%E4%B8%8EFAQ.html">论文与FAQ<small>论文与FAQ</small></a>
+</details>
+<details>
+<summary>06 生成模型与扩散模型</summary>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_06_%E7%94%9F%E6%88%90%E6%A8%A1%E5%9E%8B%E4%B8%8E%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B/README.html">README<small>06 生成模型与扩散模型</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_06_%E7%94%9F%E6%88%90%E6%A8%A1%E5%9E%8B%E4%B8%8E%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B/1_%E7%94%9F%E6%88%90%E6%A8%A1%E5%9E%8B%E8%B0%B1%E7%B3%BB.html">1_生成模型谱系<small>生成模型谱系</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_06_%E7%94%9F%E6%88%90%E6%A8%A1%E5%9E%8B%E4%B8%8E%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B/2_%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B%E5%8E%9F%E7%90%86.html">2_扩散模型原理<small>扩散模型原理</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_06_%E7%94%9F%E6%88%90%E6%A8%A1%E5%9E%8B%E4%B8%8E%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B/3_%E6%9D%A1%E4%BB%B6%E7%94%9F%E6%88%90%E4%B8%8E%E5%BC%95%E5%AF%BC.html">3_条件生成与引导<small>条件生成与引导</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_06_%E7%94%9F%E6%88%90%E6%A8%A1%E5%9E%8B%E4%B8%8E%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B/4_%E6%9E%B6%E6%9E%84%E4%B8%8E%E5%BA%94%E7%94%A8.html">4_架构与应用<small>架构与应用</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_06_%E7%94%9F%E6%88%90%E6%A8%A1%E5%9E%8B%E4%B8%8E%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B/%E8%AE%BA%E6%96%87%E4%B8%8EFAQ.html">论文与FAQ<small>论文与FAQ</small></a>
+</details>
+<details>
+<summary>07 大模型训练技术</summary>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_07_%E5%A4%A7%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83%E6%8A%80%E6%9C%AF/README.html">README<small>07 大模型训练技术</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_07_%E5%A4%A7%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83%E6%8A%80%E6%9C%AF/1_%E5%88%86%E5%B8%83%E5%BC%8F%E8%AE%AD%E7%BB%83.html">1_分布式训练<small>分布式训练</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_07_%E5%A4%A7%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83%E6%8A%80%E6%9C%AF/2_%E6%B7%B7%E5%90%88%E7%B2%BE%E5%BA%A6%E4%B8%8E%E6%A1%86%E6%9E%B6.html">2_混合精度与框架<small>混合精度与训练框架</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_07_%E5%A4%A7%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83%E6%8A%80%E6%9C%AF/3_%E6%95%B0%E6%8D%AE%E5%B7%A5%E7%A8%8B%E4%B8%8ETokenizer.html">3_数据工程与Tokenizer<small>数据工程与 Tokenizer</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_07_%E5%A4%A7%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83%E6%8A%80%E6%9C%AF/4_%E5%AF%B9%E9%BD%90%E8%AE%AD%E7%BB%83%E5%AE%9E%E8%B7%B5.html">4_对齐训练实践<small>对齐训练实践</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_07_%E5%A4%A7%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83%E6%8A%80%E6%9C%AF/%E8%AE%BA%E6%96%87%E4%B8%8EFAQ.html">论文与FAQ<small>论文与 FAQ</small></a>
+</details>
+<details>
+<summary>08 大模型推理与部署</summary>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_08_%E5%A4%A7%E6%A8%A1%E5%9E%8B%E6%8E%A8%E7%90%86%E4%B8%8E%E9%83%A8%E7%BD%B2/README.html">README<small>08 大模型推理与部署</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_08_%E5%A4%A7%E6%A8%A1%E5%9E%8B%E6%8E%A8%E7%90%86%E4%B8%8E%E9%83%A8%E7%BD%B2/1_KVCache%E4%B8%8E%E6%8E%A8%E7%90%86%E4%BC%98%E5%8C%96.html">1_KVCache与推理优化<small>KV Cache 与推理优化</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_08_%E5%A4%A7%E6%A8%A1%E5%9E%8B%E6%8E%A8%E7%90%86%E4%B8%8E%E9%83%A8%E7%BD%B2/2_%E9%87%8F%E5%8C%96%E6%8A%80%E6%9C%AF.html">2_量化技术<small>量化技术</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_08_%E5%A4%A7%E6%A8%A1%E5%9E%8B%E6%8E%A8%E7%90%86%E4%B8%8E%E9%83%A8%E7%BD%B2/3_%E6%8E%A8%E7%90%86%E6%A1%86%E6%9E%B6%E4%B8%8E%E9%83%A8%E7%BD%B2.html">3_推理框架与部署<small>推理框架与部署</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_08_%E5%A4%A7%E6%A8%A1%E5%9E%8B%E6%8E%A8%E7%90%86%E4%B8%8E%E9%83%A8%E7%BD%B2/%E8%AE%BA%E6%96%87%E4%B8%8EFAQ.html">论文与FAQ<small>论文与FAQ</small></a>
+</details>
+<details>
+<summary>09 RAG与应用架构</summary>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_09_RAG%E4%B8%8E%E5%BA%94%E7%94%A8%E6%9E%B6%E6%9E%84/README.html">README<small>09 RAG与应用架构</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_09_RAG%E4%B8%8E%E5%BA%94%E7%94%A8%E6%9E%B6%E6%9E%84/1_RAG%E5%AE%8C%E6%95%B4%E6%B5%81%E7%A8%8B.html">1_RAG完整流程<small>RAG 完整流程</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_09_RAG%E4%B8%8E%E5%BA%94%E7%94%A8%E6%9E%B6%E6%9E%84/2_Embedding%E4%B8%8E%E5%90%91%E9%87%8F%E6%A3%80%E7%B4%A2.html">2_Embedding与向量检索<small>Embedding 与向量检索</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_09_RAG%E4%B8%8E%E5%BA%94%E7%94%A8%E6%9E%B6%E6%9E%84/3_%E9%AB%98%E7%BA%A7RAG%E6%8A%80%E6%9C%AF.html">3_高级RAG技术<small>高级 RAG 技术</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_09_RAG%E4%B8%8E%E5%BA%94%E7%94%A8%E6%9E%B6%E6%9E%84/%E8%AE%BA%E6%96%87%E4%B8%8EFAQ.html">论文与FAQ<small>论文与FAQ</small></a>
+</details>
+<details open>
+<summary>10 多模态模型</summary>
+<a class="doc-link" href="README.html">README<small>10 多模态模型</small></a>
+<a class="doc-link" href="1_ViT%E4%B8%8ECLIP.html">1_ViT与CLIP<small>ViT 与 CLIP</small></a>
+<a class="doc-link active" href="2_%E5%A4%9A%E6%A8%A1%E6%80%81%E5%A4%A7%E6%A8%A1%E5%9E%8B.html">2_多模态大模型<small>多模态大模型</small></a>
+<a class="doc-link" href="3_%E8%A7%86%E9%A2%91%E4%B8%8E%E8%AF%AD%E9%9F%B3.html">3_视频与语音<small>视频与语音</small></a>
+<a class="doc-link" href="%E8%AE%BA%E6%96%87%E4%B8%8EFAQ.html">论文与FAQ<small>论文与FAQ</small></a>
+<a class="doc-link" href="%E6%97%B6%E6%95%88%E6%80%A7%E8%AF%B4%E6%98%8E.html">时效性说明<small>时效性说明</small></a>
+</details>
+<details>
+<summary>11 推理与思维链</summary>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_11_%E6%8E%A8%E7%90%86%E4%B8%8E%E6%80%9D%E7%BB%B4%E9%93%BE/README.html">README<small>11 推理与思维链</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_11_%E6%8E%A8%E7%90%86%E4%B8%8E%E6%80%9D%E7%BB%B4%E9%93%BE/1_%E6%80%9D%E7%BB%B4%E9%93%BE%E6%8F%90%E7%A4%BA.html">1_思维链提示<small>思维链提示</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_11_%E6%8E%A8%E7%90%86%E4%B8%8E%E6%80%9D%E7%BB%B4%E9%93%BE/2_%E9%AB%98%E7%BA%A7%E6%8E%A8%E7%90%86%E6%96%B9%E6%B3%95.html">2_高级推理方法<small>高级推理方法</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_11_%E6%8E%A8%E7%90%86%E4%B8%8E%E6%80%9D%E7%BB%B4%E9%93%BE/3_%E6%8E%A8%E7%90%86%E6%A8%A1%E5%9E%8B%E4%B8%8ETTC.html">3_推理模型与TTC<small>推理模型与 Test-time Compute Scaling</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_11_%E6%8E%A8%E7%90%86%E4%B8%8E%E6%80%9D%E7%BB%B4%E9%93%BE/%E8%AE%BA%E6%96%87%E4%B8%8EFAQ.html">论文与FAQ<small>论文与FAQ</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_11_%E6%8E%A8%E7%90%86%E4%B8%8E%E6%80%9D%E7%BB%B4%E9%93%BE/%E6%97%B6%E6%95%88%E6%80%A7%E8%AF%B4%E6%98%8E.html">时效性说明<small>时效性说明</small></a>
+</details>
+<details>
+<summary>12 Agent与工具使用</summary>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_12_Agent%E4%B8%8E%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/README.html">README<small>12 Agent与工具使用</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_12_Agent%E4%B8%8E%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/1_Agent%E6%A1%86%E6%9E%B6%E5%8E%9F%E7%90%86.html">1_Agent框架原理<small>Agent 框架原理</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_12_Agent%E4%B8%8E%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/2_%E8%AE%B0%E5%BF%86%E4%B8%8E%E7%8A%B6%E6%80%81%E7%AE%A1%E7%90%86.html">2_记忆与状态管理<small>记忆与状态管理</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_12_Agent%E4%B8%8E%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/3_%E5%A4%9AAgent%E4%B8%8EMCP.html">3_多Agent与MCP<small>多 Agent 与 MCP</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_12_Agent%E4%B8%8E%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/%E8%AE%BA%E6%96%87%E4%B8%8EFAQ.html">论文与FAQ<small>论文与FAQ</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_12_Agent%E4%B8%8E%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/%E6%97%B6%E6%95%88%E6%80%A7%E8%AF%B4%E6%98%8E.html">时效性说明<small>时效性说明</small></a>
+</details>
+<details>
+<summary>13 长文本与高效架构</summary>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_13_%E9%95%BF%E6%96%87%E6%9C%AC%E4%B8%8E%E9%AB%98%E6%95%88%E6%9E%B6%E6%9E%84/README.html">README<small>13 长文本与高效架构</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_13_%E9%95%BF%E6%96%87%E6%9C%AC%E4%B8%8E%E9%AB%98%E6%95%88%E6%9E%B6%E6%9E%84/1_%E9%95%BF%E6%96%87%E6%9C%AC%E6%8A%80%E6%9C%AF.html">1_长文本技术<small>长文本技术</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_13_%E9%95%BF%E6%96%87%E6%9C%AC%E4%B8%8E%E9%AB%98%E6%95%88%E6%9E%B6%E6%9E%84/2_MoE%E6%9E%B6%E6%9E%84.html">2_MoE架构<small>Mixture of Experts（MoE）架构</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_13_%E9%95%BF%E6%96%87%E6%9C%AC%E4%B8%8E%E9%AB%98%E6%95%88%E6%9E%B6%E6%9E%84/3_%E9%AB%98%E6%95%88Transformer.html">3_高效Transformer<small>高效 Transformer 变体</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_13_%E9%95%BF%E6%96%87%E6%9C%AC%E4%B8%8E%E9%AB%98%E6%95%88%E6%9E%B6%E6%9E%84/%E8%AE%BA%E6%96%87%E4%B8%8EFAQ.html">论文与FAQ<small>论文与FAQ</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_13_%E9%95%BF%E6%96%87%E6%9C%AC%E4%B8%8E%E9%AB%98%E6%95%88%E6%9E%B6%E6%9E%84/%E6%97%B6%E6%95%88%E6%80%A7%E8%AF%B4%E6%98%8E.html">时效性说明<small>时效性说明</small></a>
+</details></nav><div class="sidebar-rule"></div><details class="page-toc" open><summary>当前页目录</summary><a class="depth-2" href="#1-怎么让-llm-看见图像">1. 怎么让 LLM 看见图像</a>
+<a class="depth-3" href="#11-核心问题怎么让-llm-看见">1.1 核心问题：怎么让 LLM &quot;看见&quot;？</a>
+<a class="depth-3" href="#12-多模态大模型的通用架构">1.2 多模态大模型的通用架构</a>
+<a class="depth-3" href="#13-三个核心技术问题">1.3 三个核心技术问题</a>
+<a class="depth-2" href="#2-多模态大模型的架构与对齐">2. 多模态大模型的架构与对齐</a>
+<a class="depth-3" href="#21-gpt-4v-gpt-4o-的架构分析">2.1 GPT-4V / GPT-4o 的架构分析</a>
+<a class="depth-4" href="#gpt-4v20239">GPT-4V（2023.9）</a>
+<a class="depth-4" href="#gpt-4o20245">GPT-4o（2024.5）</a>
+<a class="depth-3" href="#22-llava-系列开源多模态大模型的标杆">2.2 LLaVA 系列——开源多模态大模型的标杆</a>
+<a class="depth-4" href="#221-llava-架构">2.2.1 LLaVA 架构</a>
+<a class="depth-4" href="#222-llava-的两阶段训练">2.2.2 LLaVA 的两阶段训练</a>
+<a class="depth-4" href="#223-llava-系列演进">2.2.3 LLaVA 系列演进</a>
+<a class="depth-3" href="#23-多模态对齐的三种范式">2.3 多模态对齐的三种范式</a>
+<a class="depth-4" href="#范式-1线性mlp-投影llava-路线">范式 1：线性/MLP 投影（LLaVA 路线）</a>
+<a class="depth-4" href="#范式-2q-formerblip-2-路线">范式 2：Q-Former（BLIP-2 路线）</a>
+<a class="depth-4" href="#范式-3perceiver-resamplerflamingo-路线">范式 3：Perceiver Resampler（Flamingo 路线）</a>
+<a class="depth-4" href="#三种范式对比">三种范式对比</a>
+<a class="depth-3" href="#24-多模态对齐的数学理解">2.4 多模态对齐的数学理解</a>
+<a class="depth-3" href="#25-开源多模态大模型全景截至-20264">2.5 开源多模态大模型全景（截至 2026.4）</a>
+<a class="depth-2" href="#本节小结">本节小结</a></details></aside>
+    <main class="page">
+      <article class="markdown-body">
+<h1 id="多模态大模型">多模态大模型</h1>
+<blockquote><p><strong>前置知识</strong>：<a href="1_ViT%E4%B8%8ECLIP.html">1_ViT与CLIP</a>（ViT 架构、CLIP 图文对齐）、<a href="../AI%E5%AD%A6%E4%B9%A0_05_GPT%E7%B3%BB%E5%88%97%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90/README.html">05 GPT系列</a>（LLM 架构、指令微调）<br>
+<strong>本节目标</strong>：理解多模态大模型的主流架构范式（视觉编码器 + 桥接模块 + LLM）、GPT-4V/4o 的设计思路、LLaVA 系列的开源实现、以及多模态对齐的核心技术。<br>
+<strong>内容时效</strong>：截至 2026 年 4 月。</p></blockquote>
+<hr>
+<h2 id="1-怎么让-llm-看见图像">1. 怎么让 LLM 看见图像</h2>
+<h3 id="11-核心问题怎么让-llm-看见">1.1 核心问题：怎么让 LLM &quot;看见&quot;？</h3>
+<p>上一节我们学了 CLIP——它能把图像和文本编码到同一个向量空间。但 CLIP 只能做&quot;匹配&quot;（图文检索、零样本分类），无法做&quot;理解&quot;——它不能回答&quot;图中的人在做什么？&quot;这种开放式问题。</p>
+<p>为什么？因为 CLIP 的输出是一个<strong>固定长度的向量</strong>（如 512 维），压缩了太多信息。你不能指望一个 512 维向量包含图中所有物体、它们的关系、场景语义等完整信息。</p>
+<p><strong>多模态大模型的核心思路</strong>：不只要一个向量，而是要一组&quot;视觉 token&quot;——把图像编码为一系列 token，作为 LLM 的输入上下文，让 LLM 基于这些视觉 token 来&quot;推理&quot;和&quot;回答&quot;。</p>
+<p>类比：<strong>CLIP 是看一眼照片然后给个标签；多模态大模型是仔细看照片然后跟你聊它看到了什么</strong>。</p>
+<h3 id="12-多模态大模型的通用架构">1.2 多模态大模型的通用架构</h3>
+<p>大多数开源多模态大模型（LLaVA、InternVL、Qwen-VL 等）都遵循同一个架构范式（注：GPT-4o 是端到端训练的统一模型，不属于此类模块拼装架构，详见后文）：</p>
+<pre><code>                    输入图像
+                       │
+                       ▼
+            ┌─────────────────┐
+            │   视觉编码器      │  ← 通常是 CLIP ViT 或其变体
+            │  (Visual Encoder) │     将图像编码为视觉特征序列
+            └────────┬────────┘
+                     │
+                     ▼  视觉特征 (N_v 个向量)
+            ┌─────────────────┐
+            │   桥接模块        │  ← MLP / Q-Former / Perceiver
+            │  (Projector)     │     将视觉特征&quot;翻译&quot;到 LLM 的语义空间
+            └────────┬────────┘
+                     │
+                     ▼  视觉 token (N_t 个向量)
+            ┌─────────────────────────────────────┐
+            │        大语言模型（LLM）                │
+            │                                      │
+            │  输入 = [视觉token] + [文本token]      │
+            │                                      │
+            │  &quot;这张图片里有一只橘猫躺在沙发上，      │
+            │   看起来很放松...&quot;                     │
+            └──────────────────────────────────────┘</code></pre>
+<h3 id="13-三个核心技术问题">1.3 三个核心技术问题</h3>
+<div class="table-wrap"><table><thead><tr><th>问题</th><th>关键挑战</th><th>主流方案</th></tr></thead><tbody><tr><td><strong>用什么&quot;看&quot;？</strong></td><td>选择哪个视觉编码器</td><td>CLIP ViT-L/14、SigLIP、InternViT</td></tr><tr><td><strong>怎么&quot;翻译&quot;？</strong></td><td>视觉特征如何映射到 LLM 空间</td><td>MLP 投影、Q-Former、Perceiver Resampler</td></tr><tr><td><strong>怎么&quot;训练&quot;？</strong></td><td>如何高效对齐视觉和语言模态</td><td>两阶段训练：预训练对齐 → 指令微调</td></tr></tbody></table></div>
+<hr>
+<h2 id="2-多模态大模型的架构与对齐">2. 多模态大模型的架构与对齐</h2>
+<h3 id="21-gpt-4v-gpt-4o-的架构分析">2.1 GPT-4V / GPT-4o 的架构分析</h3>
+<p>OpenAI 没有公开 GPT-4V/4o 的详细架构，但基于公开信息和技术报告可以做合理推断（<strong>注意：以下关于 GPT-4V/4o 内部架构的描述均为社区推测，OpenAI 未官方确认</strong>）：</p>
+<h4 id="gpt-4v20239">GPT-4V（2023.9）</h4>
+<pre><code>图像 → 视觉编码器（推测为改进的 ViT）
+            │
+            ▼
+     视觉特征序列
+            │
+       适配层/投影
+            │
+            ▼
+     视觉 token → 插入到 GPT-4 的输入序列中
+            │
+            ▼
+  GPT-4 处理混合序列（视觉 token + 文本 token）
+            │
+            ▼
+       文本输出</code></pre>
+<p><strong>关键技术推断</strong>（社区推测，OpenAI 未官方确认）：</p>
+<ul>
+<li>支持可变分辨率输入（通过自适应 patch 数量）</li>
+<li>视觉 token 数量与图像分辨率正相关（高分辨率 → 更多 token）</li>
+<li>使用&quot;平铺&quot;策略处理高分辨率图像：将大图切分为多个区块分别编码</li>
+</ul>
+<h4 id="gpt-4o20245">GPT-4o（2024.5）</h4>
+<p>GPT-4o 的&quot;o&quot;代表&quot;omni&quot;（全能），其核心创新是<strong>原生多模态</strong>：</p>
+<pre><code>GPT-4V 的路线：         图像 → 视觉编码器 → 适配 → LLM → 文本
+                        文本 ──────────────────→ LLM → 文本
+
+GPT-4o 的路线：         图像 ─┐
+                        文本 ─┼──→ 统一编码 → 统一模型 → 多模态输出
+                        语音 ─┘                          (文本/语音/图像)</code></pre>
+<div class="table-wrap"><table><thead><tr><th>维度</th><th>GPT-4V</th><th>GPT-4o</th></tr></thead><tbody><tr><td>输入模态</td><td>图像 + 文本</td><td>图像 + 文本 + 语音</td></tr><tr><td>输出模态</td><td>文本</td><td>文本 + 语音（+ 图像，2024 后期）</td></tr><tr><td>架构</td><td>视觉编码器 + GPT-4</td><td>原生多模态统一模型</td></tr><tr><td>语音处理</td><td>语音→文本→LLM→文本→语音</td><td>端到端，不经过文本中间表示</td></tr><tr><td>延迟</td><td>语音约 2-5 秒</td><td>语音约 320ms（人类对话级）</td></tr></tbody></table></div>
+<h3 id="22-llava-系列开源多模态大模型的标杆">2.2 LLaVA 系列——开源多模态大模型的标杆</h3>
+<p>LLaVA（Large Language and Vision Assistant, Liu et al., 2023）是最重要的开源多模态大模型系列，因为：</p>
+<ol>
+<li><strong>架构极简</strong>——MLP 投影就够了，不需要复杂的桥接模块</li>
+<li><strong>完全开源</strong>——代码、数据、模型权重全部公开</li>
+<li><strong>效果强大</strong>——简单架构 + 好数据 = 惊人效果</li>
+</ol>
+<h4 id="221-llava-架构">2.2.1 LLaVA 架构</h4>
+<pre><code>输入图像 (例如 336×336)
+    │
+    ▼
+┌────────────────────┐
+│ CLIP ViT-L/14      │  ← 冻结的预训练 CLIP 视觉编码器
+│ @336px             │
+│                    │
+│ 输出: 576 个视觉   │     576 = 24×24（336/14 = 24）
+│ 特征向量 (576, D_v)│     D_v = 1024（ViT-L 的隐藏维度）
+└────────┬───────────┘
+         │
+         ▼
+┌────────────────────┐
+│ MLP 投影层          │  ← 可训练
+│ (线性 → GELU → 线性)│
+│                    │
+│ D_v → D_llm        │     将 1024 维映射到 LLM 的维度（如 4096）
+│ 输出: (576, D_llm)  │
+└────────┬───────────┘
+         │
+         ▼
+┌─────────────────────────────────────────────┐
+│            LLM (Vicuna / LLaMA)             │
+│                                             │
+│  输入序列 = [系统提示] + [视觉token×576]      │
+│             + [用户问题文本token]              │
+│                                             │
+│  自回归生成回答                               │
+└─────────────────────────────────────────────┘</code></pre>
+<p><strong>LLaVA 的核心洞察</strong>：视觉编码器和 LLM 都已经很强了，关键是怎么&quot;连接&quot;它们。答案出人意料地简单——<strong>两层 MLP 就够了</strong>。</p>
+<h4 id="222-llava-的两阶段训练">2.2.2 LLaVA 的两阶段训练</h4>
+<pre><code>┌──────────────────────────────────────────────┐
+│ 阶段 1：预训练对齐（Feature Alignment）         │
+│                                              │
+│ 目的：让 MLP 学会将视觉特征&quot;翻译&quot;到 LLM 语义空间│
+│                                              │
+│ 数据：558K 图像-文本描述对                      │
+│ 训练：只训练 MLP 投影层                         │
+│       视觉编码器 ❄️ 冻结                       │
+│       LLM ❄️ 冻结                             │
+│ 学习率：较高（1e-3）                           │
+│ 训练时间：约 4 小时 (8×A100)                   │
+└────────────────────┬─────────────────────────┘
+                     │
+                     ▼
+┌──────────────────────────────────────────────┐
+│ 阶段 2：指令微调（Visual Instruction Tuning）   │
+│                                              │
+│ 目的：让模型学会根据图像回答各种问题             │
+│                                              │
+│ 数据：665K 多模态指令数据                       │
+│       (对话、详细描述、复杂推理)                 │
+│ 训练：MLP + LLM 一起训练                       │
+│       视觉编码器 ❄️ 冻结                       │
+│ 学习率：较低（2e-5）                           │
+│ 训练时间：约 10 小时 (8×A100)                  │
+└──────────────────────────────────────────────┘</code></pre>
+<h4 id="223-llava-系列演进">2.2.3 LLaVA 系列演进</h4>
+<div class="table-wrap"><table><thead><tr><th>版本</th><th>时间</th><th>关键改进</th></tr></thead><tbody><tr><td>LLaVA</td><td>2023.4</td><td>首个简洁有效的开源多模态 LLM</td></tr><tr><td>LLaVA-1.5</td><td>2023.10</td><td>MLP 投影（替代线性投影）、更高分辨率、更多数据</td></tr><tr><td>LLaVA-1.6 (NeXT)</td><td>2024.1</td><td>动态高分辨率（AnyRes）、更强 LLM backbone</td></tr><tr><td>LLaVA-OneVision</td><td>2024.8</td><td>统一图像/视频/多图理解</td></tr><tr><td>LLaVA-Video</td><td>2024.11</td><td>长视频理解优化</td></tr></tbody></table></div>
+<h3 id="23-多模态对齐的三种范式">2.3 多模态对齐的三种范式</h3>
+<p>不同的模型使用不同的&quot;桥接模块&quot;来对齐视觉和语言特征空间：</p>
+<h4 id="范式-1线性mlp-投影llava-路线">范式 1：线性/MLP 投影（LLaVA 路线）</h4>
+<pre><code>视觉特征 (N, D_v) → Linear/MLP → 视觉token (N, D_llm)</code></pre>
+<ul>
+<li><strong>优点</strong>：简单高效，训练快</li>
+<li><strong>缺点</strong>：视觉 token 数量 = 原始 patch 数量，高分辨率时 token 数爆炸</li>
+<li><strong>代表</strong>：LLaVA、InternVL</li>
+</ul>
+<h4 id="范式-2q-formerblip-2-路线">范式 2：Q-Former（BLIP-2 路线）</h4>
+<pre><code>视觉特征 (N, D_v)
+        │
+        ▼
+┌────────────────────────────┐
+│ Q-Former                    │
+│                            │
+│ 可学习的查询向量 (M, D)     │  M &lt;&lt; N（如 M=32 vs N=256）
+│     │                      │
+│     ├── Cross-Attention ←── 视觉特征
+│     │                      │
+│     └── Self-Attention      │
+│                            │
+│ 输出: (M, D_llm)           │  ← 将 N 个视觉特征压缩为 M 个
+└────────────────────────────┘</code></pre>
+<ul>
+<li><strong>优点</strong>：固定数量的视觉 token（如 32 个），不随分辨率增长</li>
+<li><strong>缺点</strong>：压缩可能丢失细节信息</li>
+<li><strong>代表</strong>：BLIP-2、InstructBLIP</li>
+</ul>
+<h4 id="范式-3perceiver-resamplerflamingo-路线">范式 3：Perceiver Resampler（Flamingo 路线）</h4>
+<pre><code>视觉特征 (N, D_v)
+        │
+        ▼
+┌────────────────────────────┐
+│ Perceiver Resampler         │
+│                            │
+│ 可学习的潜在向量 (M, D)     │
+│     │                      │
+│     └── Cross-Attention ←── 视觉特征（交替堆叠多层）
+│                            │
+│ 输出: (M, D_llm)           │
+└────────────────────────────┘</code></pre>
+<ul>
+<li><strong>优点</strong>：类似 Q-Former 但更灵活，可处理可变长度输入</li>
+<li><strong>缺点</strong>：训练复杂度较高</li>
+<li><strong>代表</strong>：Flamingo、Emu</li>
+</ul>
+<h4 id="三种范式对比">三种范式对比</h4>
+<div class="table-wrap"><table><thead><tr><th>维度</th><th>MLP 投影</th><th>Q-Former</th><th>Perceiver</th></tr></thead><tbody><tr><td>复杂度</td><td>低</td><td>中</td><td>中</td></tr><tr><td>视觉 token 数</td><td>N（与 patch 数相同）</td><td>M（固定，如 32）</td><td>M（固定）</td></tr><tr><td>信息保留</td><td>高</td><td>中（有压缩损失）</td><td>中</td></tr><tr><td>训练效率</td><td>高</td><td>中</td><td>中</td></tr><tr><td>2025 趋势</td><td>主流选择</td><td>逐渐式微</td><td>小众</td></tr></tbody></table></div>
+<p><strong>2024-2025 年的共识</strong>：简单的 MLP 投影 + 高质量数据，效果不逊于甚至优于复杂的桥接模块。LLaVA 用实验证明了&quot;简洁即正义&quot;。</p>
+<h3 id="24-多模态对齐的数学理解">2.4 多模态对齐的数学理解</h3>
+<p>多模态对齐的本质是让两个异构特征空间产生映射关系。</p>
+<p>设视觉编码器输出 $\mathbf{V} = [\mathbf{v}_1, \ldots, \mathbf{v}_N] \in \mathbb{R}^{N \times D_v}$，LLM 的嵌入空间维度为 $D_l$。</p>
+<p><strong>MLP 投影的目标</strong>：学习映射 $f: \mathbb{R}^{D_v} \to \mathbb{R}^{D_l}$，使得：</p>
+<div class="math-block">$$\mathbf{H}_v = f(\mathbf{V}) = \text{GELU}(\mathbf{V} \mathbf{W}_1 + \mathbf{b}_1) \mathbf{W}_2 + \mathbf{b}_2$$</div>
+<p>其中 $\mathbf{W}_1 \in \mathbb{R}^{D_v \times D_h}$，$\mathbf{W}_2 \in \mathbb{R}^{D_h \times D_l}$。</p>
+<p>投影后的视觉 token $\mathbf{H}_v$ 与文本 token $\mathbf{H}_t$ 拼接为 LLM 的输入序列：</p>
+<div class="math-block">$$\mathbf{H}_{\text{input}} = [\mathbf{H}_{\text{sys}},\; \mathbf{H}_v,\; \mathbf{H}_t]$$</div>
+<p>LLM 在此混合序列上进行标准的因果语言建模（next token prediction）。</p>
+<p><strong>对齐训练的损失函数</strong>就是标准的语言建模交叉熵：</p>
+<div class="math-block">$$\mathcal{L} = -\sum_{i=1}^{L} \log P_\theta(w_i \mid \mathbf{H}_v, w_{&lt;i})$$</div>
+<p>即让模型在给定视觉 token 和之前的文本 token 的条件下，正确预测下一个文本 token。</p>
+<h3 id="25-开源多模态大模型全景截至-20264">2.5 开源多模态大模型全景（截至 2026.4）</h3>
+<div class="table-wrap"><table><thead><tr><th>模型</th><th>机构</th><th>视觉编码器</th><th>LLM</th><th>桥接模块</th><th>特点</th></tr></thead><tbody><tr><td>LLaVA-1.5</td><td>UW-Madison</td><td>CLIP ViT-L/14</td><td>Vicuna-13B</td><td>MLP</td><td>简洁高效的标杆</td></tr><tr><td>LLaVA-NeXT</td><td>UW-Madison</td><td>CLIP ViT-L/14</td><td>多种 LLM</td><td>MLP + AnyRes</td><td>动态分辨率</td></tr><tr><td>InternVL-2.5</td><td>上海 AI Lab</td><td>InternViT-6B</td><td>InternLM2-Chat</td><td>MLP</td><td>超大视觉编码器</td></tr><tr><td>Qwen-VL-2.5</td><td>阿里</td><td>ViT（自训练）</td><td>Qwen2.5</td><td>Cross-Attention</td><td>多语言强</td></tr><tr><td>LLaMA-3.2-Vision</td><td>Meta</td><td>ViT（自训练）</td><td>LLaMA-3.2</td><td>Cross-Attention</td><td>Meta 生态</td></tr><tr><td>DeepSeek-VL2</td><td>DeepSeek</td><td>SigLIP</td><td>DeepSeek-MoE</td><td>MLP</td><td>MoE 架构</td></tr><tr><td>Cambrian-1</td><td>NYU</td><td>多编码器融合</td><td>LLaMA-3</td><td>MLP</td><td>视觉中心设计</td></tr></tbody></table></div>
+<hr>
+<h2 id="本节小结">本节小结</h2>
+<div class="table-wrap"><table><thead><tr><th>概念</th><th>一句话总结</th></tr></thead><tbody><tr><td><strong>多模态大模型</strong></td><td>视觉编码器 + 桥接模块 + LLM 的三段式架构，让 LLM 能&quot;看图说话&quot;</td></tr><tr><td><strong>GPT-4V/4o</strong></td><td>闭源标杆；4o 实现原生多模态，语音延迟降至 320ms</td></tr><tr><td><strong>LLaVA</strong></td><td>开源标杆；证明了 MLP 投影 + 好数据 = 强效果</td></tr><tr><td><strong>两阶段训练</strong></td><td>第一阶段对齐（训练投影层）→ 第二阶段指令微调（训练投影层 + LLM）</td></tr><tr><td><strong>MLP vs Q-Former</strong></td><td>MLP 简单信息保留多（主流），Q-Former 压缩 token 但有信息损失</td></tr><tr><td><strong>多模态对齐</strong></td><td>本质是将视觉特征映射到 LLM 的语义空间，让 LLM 能&quot;理解&quot;视觉 token</td></tr><tr><td><strong>高分辨率</strong></td><td>AnyRes 动态切块是处理高分辨率的主流方案</td></tr></tbody></table></div>
+<p><strong>下一节</strong>：从图像拓展到视频和语音——Sora 如何生成视频，Whisper 如何理解语音？</p>
+<hr>
+<blockquote><p><strong>时效性说明</strong>（截至 2026 年 4 月）：多模态大模型是迭代最快的方向之一。本节描述的 LLaVA 风格架构（视觉编码器 + MLP + LLM）是 2024-2025 的主流范式，但正在出现新趋势：(1) 原生多模态预训练（如 GPT-4o、Gemini）可能取代&quot;拼接式&quot;架构；(2) 视觉编码器从 CLIP ViT 向自训练的更大 ViT 转移（InternViT-6B）；(3) 开源模型（InternVL-2.5、Qwen-VL-2.5）在主要 benchmark 上快速逼近甚至追平闭源模型。具体的模型排名和最佳选择请参考最新的 OpenCompass / LMSYS 评测。</p></blockquote>
+      </article>
+      <nav class="doc-nav"><a href="1_ViT%E4%B8%8ECLIP.html">← ViT 与 CLIP</a><a href="3_%E8%A7%86%E9%A2%91%E4%B8%8E%E8%AF%AD%E9%9F%B3.html">视频与语音 →</a></nav>
+    </main>
+  </div>
+</body>
+</html>

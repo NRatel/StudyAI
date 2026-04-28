@@ -1,0 +1,342 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>思维链提示 · AI学习</title>
+  <link rel="stylesheet" href="../assets/study.css">
+  <script>
+    window.MathJax = {
+      tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], displayMath: [['$$', '$$'], ['\\[', '\\]']] },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="../index.html"><span class="brand-mark">AI</span><span>AI学习 HTML 预览</span></a>
+    <span class="crumb">11 推理与思维链 / 1_思维链提示.md</span>
+  </header>
+  <div class="shell doc-shell">
+    <aside class="toc"><div class="toc-title">完整目录</div><nav class="site-tree"><details>
+<summary>总览与附录</summary>
+<a class="doc-link" href="../README.html">README<small>StudyAI — AI 及大模型原理系统学习教材</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0%E7%9B%AE%E5%BD%95%E7%B4%A2%E5%BC%95.html">AI学习目录索引<small>AI 及大模型原理 — 学习目录索引</small></a>
+<a class="doc-link" href="../%E6%95%B4%E4%BD%93%E7%9F%A5%E8%AF%86%E4%BD%93%E7%B3%BB%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE.html">整体知识体系思维导图<small>AI 及大模型原理 — 整体知识体系思维导图</small></a>
+<a class="doc-link" href="../%E9%99%84%E5%BD%95_%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%80%E9%80%9F%E8%A7%88.html">附录_数学基础速览<small>附录：数学基础速览</small></a>
+<a class="doc-link" href="../%E9%99%84%E5%BD%95_%E4%BB%A3%E7%A0%81%E7%A4%BA%E4%BE%8B%E9%9B%86.html">附录_代码示例集<small>附录：代码示例集（精选版）</small></a>
+</details>
+<details>
+<summary>01 神经网络基础</summary>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_01_%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/README.html">README<small>01 神经网络基础</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_01_%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/1_%E6%84%9F%E7%9F%A5%E6%9C%BA%E4%B8%8E%E5%A4%9A%E5%B1%82%E7%BD%91%E7%BB%9C.html">1_感知机与多层网络<small>感知机与多层网络</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_01_%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/2_%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0.html">2_激活函数<small>激活函数</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_01_%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/3_%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0.html">3_损失函数<small>损失函数</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_01_%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/4_%E5%8F%8D%E5%90%91%E4%BC%A0%E6%92%AD.html">4_反向传播<small>反向传播</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_01_%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/5_%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D%E4%B8%8E%E4%BC%98%E5%8C%96%E5%99%A8.html">5_梯度下降与优化器<small>梯度下降与优化器</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_01_%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/6_%E6%AD%A3%E5%88%99%E5%8C%96.html">6_正则化<small>正则化（Regularization）</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_01_%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/%E8%AE%BA%E6%96%87%E4%B8%8EFAQ.html">论文与FAQ<small>论文与FAQ</small></a>
+</details>
+<details>
+<summary>02 经典网络架构</summary>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_02_%E7%BB%8F%E5%85%B8%E7%BD%91%E7%BB%9C%E6%9E%B6%E6%9E%84/README.html">README<small>02 经典网络架构</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_02_%E7%BB%8F%E5%85%B8%E7%BD%91%E7%BB%9C%E6%9E%B6%E6%9E%84/1_CNN%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C.html">1_CNN卷积神经网络<small>CNN 卷积神经网络</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_02_%E7%BB%8F%E5%85%B8%E7%BD%91%E7%BB%9C%E6%9E%B6%E6%9E%84/2_RNN%E5%BE%AA%E7%8E%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C.html">2_RNN循环神经网络<small>RNN 循环神经网络</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_02_%E7%BB%8F%E5%85%B8%E7%BD%91%E7%BB%9C%E6%9E%B6%E6%9E%84/3_LSTM%E4%B8%8EGRU.html">3_LSTM与GRU<small>LSTM 与 GRU</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_02_%E7%BB%8F%E5%85%B8%E7%BD%91%E7%BB%9C%E6%9E%B6%E6%9E%84/4_%E7%BC%96%E7%A0%81%E5%99%A8%E8%A7%A3%E7%A0%81%E5%99%A8%E6%A1%86%E6%9E%B6.html">4_编码器解码器框架<small>编码器-解码器框架（Seq2Seq）</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_02_%E7%BB%8F%E5%85%B8%E7%BD%91%E7%BB%9C%E6%9E%B6%E6%9E%84/%E8%AE%BA%E6%96%87%E4%B8%8EFAQ.html">论文与FAQ<small>论文与FAQ</small></a>
+</details>
+<details>
+<summary>03 注意力机制与Transformer</summary>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_03_%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%9C%BA%E5%88%B6%E4%B8%8ETransformer/README.html">README<small>03 注意力机制与 Transformer</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_03_%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%9C%BA%E5%88%B6%E4%B8%8ETransformer/1_%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%9C%BA%E5%88%B6.html">1_注意力机制<small>注意力机制</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_03_%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%9C%BA%E5%88%B6%E4%B8%8ETransformer/2_SelfAttention%E4%B8%8EMultiHead.html">2_SelfAttention与MultiHead<small>Self-Attention 与 Multi-Head Attention</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_03_%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%9C%BA%E5%88%B6%E4%B8%8ETransformer/3_Transformer%E6%9E%B6%E6%9E%84.html">3_Transformer架构<small>Transformer 完整架构</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_03_%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%9C%BA%E5%88%B6%E4%B8%8ETransformer/4_%E4%BD%8D%E7%BD%AE%E7%BC%96%E7%A0%81.html">4_位置编码<small>位置编码</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_03_%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%9C%BA%E5%88%B6%E4%B8%8ETransformer/%E8%AE%BA%E6%96%87%E4%B8%8EFAQ.html">论文与FAQ<small>论文与FAQ</small></a>
+</details>
+<details>
+<summary>04 预训练语言模型演进</summary>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_04_%E9%A2%84%E8%AE%AD%E7%BB%83%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%BC%94%E8%BF%9B/README.html">README<small>04 预训练语言模型演进</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_04_%E9%A2%84%E8%AE%AD%E7%BB%83%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%BC%94%E8%BF%9B/1_%E8%AF%8D%E8%A1%A8%E7%A4%BA%E7%9A%84%E6%BC%94%E8%BF%9B.html">1_词表示的演进<small>词表示的演进</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_04_%E9%A2%84%E8%AE%AD%E7%BB%83%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%BC%94%E8%BF%9B/2_%E8%87%AA%E7%9B%91%E7%9D%A3%E9%A2%84%E8%AE%AD%E7%BB%83%E8%8C%83%E5%BC%8F.html">2_自监督预训练范式<small>自监督预训练范式</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_04_%E9%A2%84%E8%AE%AD%E7%BB%83%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%BC%94%E8%BF%9B/3_BERT%E4%B8%8EGPT.html">3_BERT与GPT<small>BERT 与 GPT：两大路线</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_04_%E9%A2%84%E8%AE%AD%E7%BB%83%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%BC%94%E8%BF%9B/4_%E5%BE%AE%E8%B0%83%E4%B8%8E%E8%BF%81%E7%A7%BB%E5%AD%A6%E4%B9%A0.html">4_微调与迁移学习<small>微调与迁移学习</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_04_%E9%A2%84%E8%AE%AD%E7%BB%83%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%BC%94%E8%BF%9B/%E8%AE%BA%E6%96%87%E4%B8%8EFAQ.html">论文与FAQ<small>论文与FAQ</small></a>
+</details>
+<details>
+<summary>05 GPT系列深度解析</summary>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_05_GPT%E7%B3%BB%E5%88%97%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90/README.html">README<small>05 GPT 系列深度解析</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_05_GPT%E7%B3%BB%E5%88%97%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90/1_GPT%E7%B3%BB%E5%88%97%E6%9E%B6%E6%9E%84%E6%BC%94%E8%BF%9B.html">1_GPT系列架构演进<small>GPT 系列架构演进</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_05_GPT%E7%B3%BB%E5%88%97%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90/2_ScalingLaws%E4%B8%8E%E6%B6%8C%E7%8E%B0.html">2_ScalingLaws与涌现<small>Scaling Laws 与涌现能力</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_05_GPT%E7%B3%BB%E5%88%97%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90/3_%E5%AF%B9%E9%BD%90%E6%8A%80%E6%9C%AF.html">3_对齐技术<small>对齐技术：从预训练到有用又安全</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_05_GPT%E7%B3%BB%E5%88%97%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90/4_GPT4%E4%B9%8B%E5%90%8E%E7%9A%84%E6%BC%94%E8%BF%9B.html">4_GPT4之后的演进<small>GPT-4 之后的演进（截至 2026.4）</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_05_GPT%E7%B3%BB%E5%88%97%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90/%E8%AE%BA%E6%96%87%E4%B8%8EFAQ.html">论文与FAQ<small>论文与FAQ</small></a>
+</details>
+<details>
+<summary>06 生成模型与扩散模型</summary>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_06_%E7%94%9F%E6%88%90%E6%A8%A1%E5%9E%8B%E4%B8%8E%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B/README.html">README<small>06 生成模型与扩散模型</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_06_%E7%94%9F%E6%88%90%E6%A8%A1%E5%9E%8B%E4%B8%8E%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B/1_%E7%94%9F%E6%88%90%E6%A8%A1%E5%9E%8B%E8%B0%B1%E7%B3%BB.html">1_生成模型谱系<small>生成模型谱系</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_06_%E7%94%9F%E6%88%90%E6%A8%A1%E5%9E%8B%E4%B8%8E%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B/2_%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B%E5%8E%9F%E7%90%86.html">2_扩散模型原理<small>扩散模型原理</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_06_%E7%94%9F%E6%88%90%E6%A8%A1%E5%9E%8B%E4%B8%8E%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B/3_%E6%9D%A1%E4%BB%B6%E7%94%9F%E6%88%90%E4%B8%8E%E5%BC%95%E5%AF%BC.html">3_条件生成与引导<small>条件生成与引导</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_06_%E7%94%9F%E6%88%90%E6%A8%A1%E5%9E%8B%E4%B8%8E%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B/4_%E6%9E%B6%E6%9E%84%E4%B8%8E%E5%BA%94%E7%94%A8.html">4_架构与应用<small>架构与应用</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_06_%E7%94%9F%E6%88%90%E6%A8%A1%E5%9E%8B%E4%B8%8E%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B/%E8%AE%BA%E6%96%87%E4%B8%8EFAQ.html">论文与FAQ<small>论文与FAQ</small></a>
+</details>
+<details>
+<summary>07 大模型训练技术</summary>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_07_%E5%A4%A7%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83%E6%8A%80%E6%9C%AF/README.html">README<small>07 大模型训练技术</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_07_%E5%A4%A7%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83%E6%8A%80%E6%9C%AF/1_%E5%88%86%E5%B8%83%E5%BC%8F%E8%AE%AD%E7%BB%83.html">1_分布式训练<small>分布式训练</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_07_%E5%A4%A7%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83%E6%8A%80%E6%9C%AF/2_%E6%B7%B7%E5%90%88%E7%B2%BE%E5%BA%A6%E4%B8%8E%E6%A1%86%E6%9E%B6.html">2_混合精度与框架<small>混合精度与训练框架</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_07_%E5%A4%A7%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83%E6%8A%80%E6%9C%AF/3_%E6%95%B0%E6%8D%AE%E5%B7%A5%E7%A8%8B%E4%B8%8ETokenizer.html">3_数据工程与Tokenizer<small>数据工程与 Tokenizer</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_07_%E5%A4%A7%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83%E6%8A%80%E6%9C%AF/4_%E5%AF%B9%E9%BD%90%E8%AE%AD%E7%BB%83%E5%AE%9E%E8%B7%B5.html">4_对齐训练实践<small>对齐训练实践</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_07_%E5%A4%A7%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83%E6%8A%80%E6%9C%AF/%E8%AE%BA%E6%96%87%E4%B8%8EFAQ.html">论文与FAQ<small>论文与 FAQ</small></a>
+</details>
+<details>
+<summary>08 大模型推理与部署</summary>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_08_%E5%A4%A7%E6%A8%A1%E5%9E%8B%E6%8E%A8%E7%90%86%E4%B8%8E%E9%83%A8%E7%BD%B2/README.html">README<small>08 大模型推理与部署</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_08_%E5%A4%A7%E6%A8%A1%E5%9E%8B%E6%8E%A8%E7%90%86%E4%B8%8E%E9%83%A8%E7%BD%B2/1_KVCache%E4%B8%8E%E6%8E%A8%E7%90%86%E4%BC%98%E5%8C%96.html">1_KVCache与推理优化<small>KV Cache 与推理优化</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_08_%E5%A4%A7%E6%A8%A1%E5%9E%8B%E6%8E%A8%E7%90%86%E4%B8%8E%E9%83%A8%E7%BD%B2/2_%E9%87%8F%E5%8C%96%E6%8A%80%E6%9C%AF.html">2_量化技术<small>量化技术</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_08_%E5%A4%A7%E6%A8%A1%E5%9E%8B%E6%8E%A8%E7%90%86%E4%B8%8E%E9%83%A8%E7%BD%B2/3_%E6%8E%A8%E7%90%86%E6%A1%86%E6%9E%B6%E4%B8%8E%E9%83%A8%E7%BD%B2.html">3_推理框架与部署<small>推理框架与部署</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_08_%E5%A4%A7%E6%A8%A1%E5%9E%8B%E6%8E%A8%E7%90%86%E4%B8%8E%E9%83%A8%E7%BD%B2/%E8%AE%BA%E6%96%87%E4%B8%8EFAQ.html">论文与FAQ<small>论文与FAQ</small></a>
+</details>
+<details>
+<summary>09 RAG与应用架构</summary>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_09_RAG%E4%B8%8E%E5%BA%94%E7%94%A8%E6%9E%B6%E6%9E%84/README.html">README<small>09 RAG与应用架构</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_09_RAG%E4%B8%8E%E5%BA%94%E7%94%A8%E6%9E%B6%E6%9E%84/1_RAG%E5%AE%8C%E6%95%B4%E6%B5%81%E7%A8%8B.html">1_RAG完整流程<small>RAG 完整流程</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_09_RAG%E4%B8%8E%E5%BA%94%E7%94%A8%E6%9E%B6%E6%9E%84/2_Embedding%E4%B8%8E%E5%90%91%E9%87%8F%E6%A3%80%E7%B4%A2.html">2_Embedding与向量检索<small>Embedding 与向量检索</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_09_RAG%E4%B8%8E%E5%BA%94%E7%94%A8%E6%9E%B6%E6%9E%84/3_%E9%AB%98%E7%BA%A7RAG%E6%8A%80%E6%9C%AF.html">3_高级RAG技术<small>高级 RAG 技术</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_09_RAG%E4%B8%8E%E5%BA%94%E7%94%A8%E6%9E%B6%E6%9E%84/%E8%AE%BA%E6%96%87%E4%B8%8EFAQ.html">论文与FAQ<small>论文与FAQ</small></a>
+</details>
+<details>
+<summary>10 多模态模型</summary>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_10_%E5%A4%9A%E6%A8%A1%E6%80%81%E6%A8%A1%E5%9E%8B/README.html">README<small>10 多模态模型</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_10_%E5%A4%9A%E6%A8%A1%E6%80%81%E6%A8%A1%E5%9E%8B/1_ViT%E4%B8%8ECLIP.html">1_ViT与CLIP<small>ViT 与 CLIP</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_10_%E5%A4%9A%E6%A8%A1%E6%80%81%E6%A8%A1%E5%9E%8B/2_%E5%A4%9A%E6%A8%A1%E6%80%81%E5%A4%A7%E6%A8%A1%E5%9E%8B.html">2_多模态大模型<small>多模态大模型</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_10_%E5%A4%9A%E6%A8%A1%E6%80%81%E6%A8%A1%E5%9E%8B/3_%E8%A7%86%E9%A2%91%E4%B8%8E%E8%AF%AD%E9%9F%B3.html">3_视频与语音<small>视频与语音</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_10_%E5%A4%9A%E6%A8%A1%E6%80%81%E6%A8%A1%E5%9E%8B/%E8%AE%BA%E6%96%87%E4%B8%8EFAQ.html">论文与FAQ<small>论文与FAQ</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_10_%E5%A4%9A%E6%A8%A1%E6%80%81%E6%A8%A1%E5%9E%8B/%E6%97%B6%E6%95%88%E6%80%A7%E8%AF%B4%E6%98%8E.html">时效性说明<small>时效性说明</small></a>
+</details>
+<details open>
+<summary>11 推理与思维链</summary>
+<a class="doc-link" href="README.html">README<small>11 推理与思维链</small></a>
+<a class="doc-link active" href="1_%E6%80%9D%E7%BB%B4%E9%93%BE%E6%8F%90%E7%A4%BA.html">1_思维链提示<small>思维链提示</small></a>
+<a class="doc-link" href="2_%E9%AB%98%E7%BA%A7%E6%8E%A8%E7%90%86%E6%96%B9%E6%B3%95.html">2_高级推理方法<small>高级推理方法</small></a>
+<a class="doc-link" href="3_%E6%8E%A8%E7%90%86%E6%A8%A1%E5%9E%8B%E4%B8%8ETTC.html">3_推理模型与TTC<small>推理模型与 Test-time Compute Scaling</small></a>
+<a class="doc-link" href="%E8%AE%BA%E6%96%87%E4%B8%8EFAQ.html">论文与FAQ<small>论文与FAQ</small></a>
+<a class="doc-link" href="%E6%97%B6%E6%95%88%E6%80%A7%E8%AF%B4%E6%98%8E.html">时效性说明<small>时效性说明</small></a>
+</details>
+<details>
+<summary>12 Agent与工具使用</summary>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_12_Agent%E4%B8%8E%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/README.html">README<small>12 Agent与工具使用</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_12_Agent%E4%B8%8E%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/1_Agent%E6%A1%86%E6%9E%B6%E5%8E%9F%E7%90%86.html">1_Agent框架原理<small>Agent 框架原理</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_12_Agent%E4%B8%8E%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/2_%E8%AE%B0%E5%BF%86%E4%B8%8E%E7%8A%B6%E6%80%81%E7%AE%A1%E7%90%86.html">2_记忆与状态管理<small>记忆与状态管理</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_12_Agent%E4%B8%8E%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/3_%E5%A4%9AAgent%E4%B8%8EMCP.html">3_多Agent与MCP<small>多 Agent 与 MCP</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_12_Agent%E4%B8%8E%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/%E8%AE%BA%E6%96%87%E4%B8%8EFAQ.html">论文与FAQ<small>论文与FAQ</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_12_Agent%E4%B8%8E%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/%E6%97%B6%E6%95%88%E6%80%A7%E8%AF%B4%E6%98%8E.html">时效性说明<small>时效性说明</small></a>
+</details>
+<details>
+<summary>13 长文本与高效架构</summary>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_13_%E9%95%BF%E6%96%87%E6%9C%AC%E4%B8%8E%E9%AB%98%E6%95%88%E6%9E%B6%E6%9E%84/README.html">README<small>13 长文本与高效架构</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_13_%E9%95%BF%E6%96%87%E6%9C%AC%E4%B8%8E%E9%AB%98%E6%95%88%E6%9E%B6%E6%9E%84/1_%E9%95%BF%E6%96%87%E6%9C%AC%E6%8A%80%E6%9C%AF.html">1_长文本技术<small>长文本技术</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_13_%E9%95%BF%E6%96%87%E6%9C%AC%E4%B8%8E%E9%AB%98%E6%95%88%E6%9E%B6%E6%9E%84/2_MoE%E6%9E%B6%E6%9E%84.html">2_MoE架构<small>Mixture of Experts（MoE）架构</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_13_%E9%95%BF%E6%96%87%E6%9C%AC%E4%B8%8E%E9%AB%98%E6%95%88%E6%9E%B6%E6%9E%84/3_%E9%AB%98%E6%95%88Transformer.html">3_高效Transformer<small>高效 Transformer 变体</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_13_%E9%95%BF%E6%96%87%E6%9C%AC%E4%B8%8E%E9%AB%98%E6%95%88%E6%9E%B6%E6%9E%84/%E8%AE%BA%E6%96%87%E4%B8%8EFAQ.html">论文与FAQ<small>论文与FAQ</small></a>
+<a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_13_%E9%95%BF%E6%96%87%E6%9C%AC%E4%B8%8E%E9%AB%98%E6%95%88%E6%9E%B6%E6%9E%84/%E6%97%B6%E6%95%88%E6%80%A7%E8%AF%B4%E6%98%8E.html">时效性说明<small>时效性说明</small></a>
+</details></nav><div class="sidebar-rule"></div><details class="page-toc" open><summary>当前页目录</summary><a class="depth-2" href="#一直觉为什么模型需要一步步想">一、直觉：为什么模型需要&quot;一步步想&quot;？</a>
+<a class="depth-3" href="#人类的经验">人类的经验</a>
+<a class="depth-3" href="#大模型的困境">大模型的困境</a>
+<a class="depth-2" href="#二原理chain-of-thought-prompting">二、原理：Chain-of-Thought Prompting</a>
+<a class="depth-3" href="#21-经典-cotwei-et-al-2022">2.1 经典 CoT（Wei et al., 2022）</a>
+<a class="depth-4" href="#标准-few-shot-vs-cot-few-shot">标准 few-shot vs CoT few-shot</a>
+<a class="depth-3" href="#22-为什么-cot-有效机制假说">2.2 为什么 CoT 有效？——机制假说</a>
+<a class="depth-2" href="#三zero-shot-cotlets-think-step-by-step">三、Zero-shot CoT：&quot;Let&#x27;s think step by step&quot;</a>
+<a class="depth-3" href="#31-原理kojima-et-al-2022">3.1 原理（Kojima et al., 2022）</a>
+<a class="depth-4" href="#两阶段流程">两阶段流程</a>
+<a class="depth-3" href="#32-效果对比">3.2 效果对比</a>
+<a class="depth-2" href="#四self-consistency多路径采样-投票">四、Self-Consistency：多路径采样 + 投票</a>
+<a class="depth-3" href="#41-核心问题">4.1 核心问题</a>
+<a class="depth-3" href="#42-原理wang-et-al-2023">4.2 原理（Wang et al., 2023）</a>
+<a class="depth-3" href="#43-关键设计选择">4.3 关键设计选择</a>
+<a class="depth-3" href="#44-效果">4.4 效果</a>
+<a class="depth-3" href="#46-self-consistency-的成本分析">4.6 Self-Consistency 的成本分析</a>
+<a class="depth-2" href="#五cot-变体汇总">五、CoT 变体汇总</a>
+<a class="depth-3" href="#51-技术对比">5.1 技术对比</a>
+<a class="depth-3" href="#52-实用选择指南">5.2 实用选择指南</a>
+<a class="depth-2" href="#六从-cot-到推理模型的演进">六、从 CoT 到推理模型的演进</a>
+<a class="depth-2" href="#本节小结">本节小结</a>
+<a class="depth-2" href="#时效性说明">时效性说明</a></details></aside>
+    <main class="page">
+      <article class="markdown-body">
+<h1 id="思维链提示">思维链提示</h1>
+<blockquote><p><strong>前置知识</strong>：<a href="../AI%E5%AD%A6%E4%B9%A0_05_GPT%E7%B3%BB%E5%88%97%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90/README.html">05 GPT系列深度解析</a><br>
+<strong>内容时效</strong>：截至 2026 年 4 月</p></blockquote>
+<hr>
+<h2 id="一直觉为什么模型需要一步步想">一、直觉：为什么模型需要&quot;一步步想&quot;？</h2>
+<h3 id="人类的经验">人类的经验</h3>
+<p>考虑一道小学数学题：</p>
+<blockquote><p>一个停车场有 3 排车，每排 8 辆。开走了 5 辆，还剩几辆？</p></blockquote>
+<p>你不会直接蹦出答案&quot;19&quot;。你的思考过程是：</p>
+<ol>
+<li>3 排 x 8 辆 = 24 辆</li>
+<li>24 - 5 = 19 辆</li>
+</ol>
+<p>这个&quot;写出中间步骤&quot;的过程，就是人类的<strong>思维链</strong>。</p>
+<h3 id="大模型的困境">大模型的困境</h3>
+<p>早期使用 LLM 时，我们直接问问题、直接要答案：</p>
+<pre><code>Q: 一个停车场有 3 排车，每排 8 辆。开走了 5 辆，还剩几辆？
+A: 17  ← 错误！模型跳过了中间步骤，直接&quot;猜&quot;了一个答案</code></pre>
+<p>2022 年，Google 的 Wei 等人发现了一个简单却影响深远的现象：<strong>如果你让模型把中间步骤写出来，准确率会大幅提升</strong>。</p>
+<pre><code>Q: 一个停车场有 3 排车，每排 8 辆。开走了 5 辆，还剩几辆？
+A: 首先，3 排 x 8 辆 = 24 辆。然后，24 - 5 = 19 辆。答案是 19。  ← 正确！</code></pre>
+<p>这就是 <strong>Chain-of-Thought (CoT) Prompting</strong> 的核心直觉：</p>
+<blockquote><p><strong>不要让模型直接给答案，让它先&quot;想&quot;再&quot;答&quot;。</strong></p></blockquote>
+<p>为什么有效？因为自回归模型每次只生成一个 token，中间步骤的 token 提供了&quot;工作记忆&quot;——模型可以在后续 token 中&quot;看到&quot;自己之前算出的中间结果，而不必在一个 token 中完成所有计算。</p>
+<hr>
+<h2 id="二原理chain-of-thought-prompting">二、原理：Chain-of-Thought Prompting</h2>
+<h3 id="21-经典-cotwei-et-al-2022">2.1 经典 CoT（Wei et al., 2022）</h3>
+<p><strong>论文</strong>：<em>Chain-of-Thought Prompting Elicits Reasoning in Large Language Models</em>（Wei et al., NeurIPS 2022）</p>
+<p><strong>方法极其简单</strong>：在 few-shot prompt 的示例中，加入人工编写的推理过程。</p>
+<h4 id="标准-few-shot-vs-cot-few-shot">标准 few-shot vs CoT few-shot</h4>
+<pre><code># ===== 标准 few-shot =====
+Q: Roger 有 5 个网球。他又买了 2 罐网球，每罐 3 个。他现在有多少网球？
+A: 11
+
+Q: 自助餐厅有 23 个苹果。用了 20 个做午餐，又买了 6 个。有多少苹果？
+A: 9
+
+# ===== CoT few-shot =====
+Q: Roger 有 5 个网球。他又买了 2 罐网球，每罐 3 个。他现在有多少网球？
+A: Roger 一开始有 5 个球。2 罐 x 3 个 = 6 个新球。5 + 6 = 11。答案是 11。
+
+Q: 自助餐厅有 23 个苹果。用了 20 个做午餐，又买了 6 个。有多少苹果？
+A: 一开始有 23 个苹果。用了 20 个后剩 23 - 20 = 3 个。又买了 6 个，3 + 6 = 9。答案是 9。</code></pre>
+<p><strong>核心发现</strong>：</p>
+<div class="table-wrap"><table><thead><tr><th>模型规模</th><th>标准 few-shot</th><th>CoT few-shot</th><th>提升</th></tr></thead><tbody><tr><td>PaLM 8B</td><td>33.0%</td><td>33.6%</td><td>+0.6%</td></tr><tr><td>PaLM 62B</td><td>43.6%</td><td>58.6%</td><td>+15.0%</td></tr><tr><td>PaLM 540B</td><td>56.9%</td><td>74.4%</td><td>+17.5%</td></tr></tbody></table></div>
+<p><strong>关键洞察</strong>：</p>
+<ol>
+<li><strong>CoT 是涌现能力</strong>：只在大模型（约 100B+ 参数）上才显著生效。小模型不仅不受益，甚至可能产生错误的推理链。</li>
+<li><strong>越难的问题，CoT 提升越大</strong>：对简单问题（如单步运算）几乎无提升，对多步推理问题提升巨大。</li>
+<li><strong>无需训练</strong>：CoT 不改变模型参数，只改变提示方式。这意味着推理能力已经&quot;潜伏&quot;在预训练模型中，CoT 只是&quot;激活&quot;了它。</li>
+</ol>
+<h3 id="22-为什么-cot-有效机制假说">2.2 为什么 CoT 有效？——机制假说</h3>
+<p>CoT 为什么能提升推理能力？目前有几种互补的解释：</p>
+<p><strong>假说 1：扩展工作记忆</strong></p>
+<p>自回归模型本质上是一个固定深度的计算图——每个 token 经过相同的 L 层 Transformer 计算。模型的&quot;思考能力&quot;受限于这 L 层能做的计算量。</p>
+<p>CoT 通过在输出中生成中间步骤，相当于把&quot;一次性完成的计算&quot;分解成了&quot;多步顺序计算&quot;。每个中间 token 都为后续计算提供了额外的信息，本质上<strong>扩展了模型的有效计算深度</strong>。</p>
+<pre><code>直接回答: 输入 → [L层计算] → 答案        # 受限于 L 层的计算能力
+CoT:     输入 → [L层] → 步骤1 → [L层] → 步骤2 → [L层] → 答案
+         # 有效计算深度 = L × 步骤数</code></pre>
+<p><strong>假说 2：将困难问题分解为简单子问题</strong></p>
+<p>多步推理问题的难度在于需要同时处理多个子计算。CoT 将一个困难的多步问题分解为多个简单的单步子问题，每个子问题都在模型的能力范围内。</p>
+<p><strong>假说 3：预训练数据中的推理模式</strong></p>
+<p>模型在预训练时见过大量&quot;问题 → 推理步骤 → 答案&quot;的文本（教科书、数学论坛、编程教程等）。CoT 提示&quot;激活&quot;了模型对这些模式的记忆。</p>
+<hr>
+<h2 id="三zero-shot-cotlets-think-step-by-step">三、Zero-shot CoT：&quot;Let&#x27;s think step by step&quot;</h2>
+<h3 id="31-原理kojima-et-al-2022">3.1 原理（Kojima et al., 2022）</h3>
+<p><strong>论文</strong>：<em>Large Language Models are Zero-Shot Reasoners</em>（Kojima et al., NeurIPS 2022）</p>
+<p>Wei 2022 的 CoT 需要人工编写示例（few-shot），这有两个问题：</p>
+<ol>
+<li><strong>需要领域知识</strong>：你得自己先会解题，才能写出正确的推理示例</li>
+<li><strong>不同任务需要不同示例</strong>：数学题、逻辑题、常识推理的示例格式各不相同</li>
+</ol>
+<p>Kojima 等人的发现令人惊讶：<strong>只需在问题后面加一句 &quot;Let&#x27;s think step by step&quot;，模型就会自动生成推理过程</strong>，效果接近精心设计的 few-shot CoT。</p>
+<h4 id="两阶段流程">两阶段流程</h4>
+<pre><code># 第 1 阶段：提取推理过程
+Prompt: &quot;Q: [问题]\nA: Let&#x27;s think step by step.&quot;
+Output: &quot;首先...然后...所以...&quot;  # 模型自动生成推理链
+
+# 第 2 阶段：提取最终答案
+Prompt: &quot;[第 1 阶段的完整输出]\nTherefore, the answer is&quot;
+Output: &quot;42&quot;</code></pre>
+<h3 id="32-效果对比">3.2 效果对比</h3>
+<div class="table-wrap"><table><thead><tr><th>方法</th><th>MultiArith</th><th>GSM8K</th><th>SVAMP</th></tr></thead><tbody><tr><td>标准 zero-shot</td><td>17.7%</td><td>10.4%</td><td>58.8%</td></tr><tr><td>Zero-shot CoT</td><td>78.7%</td><td>40.7%</td><td>79.0%</td></tr><tr><td>Few-shot CoT (8-shot)</td><td>83.8%</td><td>46.9%</td><td>79.0%</td></tr></tbody></table></div>
+<p><strong>核心发现</strong>：</p>
+<ul>
+<li>Zero-shot CoT 在大多数推理任务上接近 few-shot CoT</li>
+<li>不需要任何示例，通用性极强</li>
+<li>不同的触发短语效果差异很大：&quot;Let&#x27;s think step by step&quot; 显著优于 &quot;Let&#x27;s solve this problem&quot; 等变体</li>
+</ul>
+<h2 id="四self-consistency多路径采样-投票">四、Self-Consistency：多路径采样 + 投票</h2>
+<h3 id="41-核心问题">4.1 核心问题</h3>
+<p>CoT 的一个弱点：<strong>模型可能生成一条看似合理但实际错误的推理链</strong>。就像学生做题时，可能某一步计算错了，导致整条推理链和最终答案都错。</p>
+<h3 id="42-原理wang-et-al-2023">4.2 原理（Wang et al., 2023）</h3>
+<p><strong>论文</strong>：<em>Self-Consistency Improves Chain of Thought Reasoning in Language Models</em>（Wang et al., ICLR 2023）</p>
+<p><strong>核心思想极其朴素</strong>：一道题让模型做多次，取最常见的答案。</p>
+<pre><code>同一个问题，让模型&quot;思考&quot;多次（用较高的 temperature 采样）：
+
+路径 1: ... 3 × 8 = 24, 24 - 5 = 19     → 答案 19
+路径 2: ... 3 + 8 = 11, 11 - 5 = 6      → 答案 6   ← 错误路径
+路径 3: ... 8 × 3 = 24, 24 - 5 = 19     → 答案 19
+路径 4: ... 3 × 8 = 24, 24 - 5 = 19     → 答案 19
+路径 5: ... 每排 8 辆 × 3 = 24, 减 5 = 19 → 答案 19
+
+多数投票：19 (4票) vs 6 (1票) → 最终答案 19</code></pre>
+<p><strong>为什么有效？</strong></p>
+<ul>
+<li><strong>正确的推理路径比错误的更&quot;常见&quot;</strong>：对于模型能力范围内的问题，正确的推理步骤通常有更高的概率，因此在多次采样中更容易出现。</li>
+<li><strong>错误的路径是多样的</strong>：不同的错误方式导致不同的错误答案，这些错误票数被分散了，而正确答案的票数集中。</li>
+<li><strong>本质上是一种集成学习（Ensemble）</strong>：多次采样相当于多个&quot;推理器&quot;的投票。</li>
+</ul>
+<h3 id="43-关键设计选择">4.3 关键设计选择</h3>
+<div class="table-wrap"><table><thead><tr><th>设计维度</th><th>选择</th><th>原因</th></tr></thead><tbody><tr><td>采样温度</td><td>0.5~0.7</td><td>太低(0)则所有路径相同，太高(1.0+)则推理质量下降</td></tr><tr><td>采样次数</td><td>5~40 次</td><td>收益递减：5→10 提升明显，20→40 提升很小</td></tr><tr><td>投票方式</td><td>多数投票</td><td>对答案做频率统计，取频率最高的</td></tr><tr><td>答案提取</td><td>最终数字/选项</td><td>只对最终答案投票，不对推理过程投票</td></tr></tbody></table></div>
+<h3 id="44-效果">4.4 效果</h3>
+<div class="table-wrap"><table><thead><tr><th>方法</th><th>GSM8K</th><th>SVAMP</th><th>AQuA</th></tr></thead><tbody><tr><td>CoT (greedy, 1 path)</td><td>56.5%</td><td>79.0%</td><td>52.0%</td></tr><tr><td>Self-Consistency (40 paths)</td><td>74.4%</td><td>86.6%</td><td>62.2%</td></tr><tr><td>提升</td><td>+17.9%</td><td>+7.6%</td><td>+10.2%</td></tr></tbody></table></div>
+<h3 id="46-self-consistency-的成本分析">4.6 Self-Consistency 的成本分析</h3>
+<p>Self-Consistency 的主要代价是<strong>推理成本成倍增加</strong>：</p>
+<pre><code>单次 CoT 推理成本:        C
+Self-Consistency (N=10):  10 × C
+Self-Consistency (N=40):  40 × C</code></pre>
+<p><strong>实际权衡</strong>：</p>
+<hr>
+<h2 id="五cot-变体汇总">五、CoT 变体汇总</h2>
+<h3 id="51-技术对比">5.1 技术对比</h3>
+<div class="table-wrap"><table><thead><tr><th>方法</th><th>提出时间</th><th>核心机制</th><th>是否需要示例</th><th>额外成本</th></tr></thead><tbody><tr><td>Few-shot CoT</td><td>2022.01</td><td>手动编写推理示例</td><td>是（需要人工编写）</td><td>无（单次推理）</td></tr><tr><td>Zero-shot CoT</td><td>2022.05</td><td>&quot;Let&#x27;s think step by step&quot;</td><td>否</td><td>无（单次推理）</td></tr><tr><td>Self-Consistency</td><td>2022.03</td><td>多次采样 + 多数投票</td><td>可选</td><td>N 倍推理成本</td></tr><tr><td>Auto-CoT</td><td>2022.10</td><td>自动生成 CoT 示例</td><td>自动生成</td><td>一次性构建</td></tr><tr><td>Complexity-based</td><td>2023</td><td>选择推理步骤最多的答案</td><td>可选</td><td>N 倍推理成本</td></tr></tbody></table></div>
+<h3 id="52-实用选择指南">5.2 实用选择指南</h3>
+<pre><code>你想提升推理任务的效果吗？
+│
+├── 模型规模 &lt; 10B？
+│   └── CoT 可能效果有限，考虑微调或换更大模型
+│
+├── 模型规模 ≥ 10B？
+│   │
+│   ├── 有时间写示例？
+│   │   └── 用 Few-shot CoT（效果最稳定）
+│   │
+│   ├── 没时间 / 任务太多样？
+│   │   └── 用 Zero-shot CoT（加一句 &quot;Let&#x27;s think step by step&quot;）
+│   │
+│   └── 对准确率要求高，预算充足？
+│       └── 用 Self-Consistency（5~10 次采样，投票）
+│
+└── 有专门的推理模型 API（如 o1/o3）？
+    └── 直接使用推理模型（见第 3 节）</code></pre>
+<hr>
+<h2 id="六从-cot-到推理模型的演进">六、从 CoT 到推理模型的演进</h2>
+<p>CoT 提示技术揭示了一个核心洞察：</p>
+<blockquote><p><strong>让模型&quot;思考更多&quot;能显著提升推理能力。</strong></p></blockquote>
+<p>这个洞察催生了两条技术路线：</p>
+<pre><code>CoT (2022)
+├── 提示工程路线 → Zero-shot CoT → Self-Consistency → ToT/GoT（→ 第 2 节）
+│   核心：不改模型，改提示和解码策略
+│
+└── 模型训练路线 → 训练模型自动产生长推理链 → o1/o3/R1（→ 第 3 节）
+    核心：通过 RL 训练模型主动&quot;慢思考&quot;</code></pre>
+<p>下一节我们将探讨提示工程路线的高级方法：Tree-of-Thought、Reflexion 等。第 3 节将转向模型训练路线。</p>
+<hr>
+<h2 id="本节小结">本节小结</h2>
+<div class="table-wrap"><table><thead><tr><th>概念</th><th>一句话解释</th></tr></thead><tbody><tr><td>Chain-of-Thought</td><td>在示例中展示推理步骤，激活模型的推理能力</td></tr><tr><td>Zero-shot CoT</td><td>一句 &quot;Let&#x27;s think step by step&quot; 即可触发推理</td></tr><tr><td>Self-Consistency</td><td>多次采样 + 多数投票，提升推理可靠性</td></tr><tr><td>CoT 为何有效</td><td>扩展工作记忆 + 分解复杂问题 + 激活预训练知识</td></tr><tr><td>涌现性</td><td>CoT 只在大模型(100B+)上有效，小模型反而可能更差</td></tr></tbody></table></div>
+<hr>
+<h2 id="时效性说明">时效性说明</h2>
+<blockquote><p>本节内容基于 2022-2023 年的经典论文，方法本身已相对稳定。但需注意：<br>
+- 截至 2026.4，CoT 相关的理论解释仍在研究中，&quot;为什么 CoT 有效&quot;尚无定论<br>
+- 随着推理模型（o1/o3 等）的普及，手动 CoT 提示的必要性可能降低——模型本身会自动进行长链推理<br>
+- Self-Consistency 的&quot;多数投票&quot;是最简单的聚合方法，更高级的聚合方法（如加权投票、验证器过滤）在 2024-2025 年有较多进展</p></blockquote>
+<hr>
+<blockquote><p>返回 <a href="README.html">本模块 README</a> | 下一节 <a href="2_%E9%AB%98%E7%BA%A7%E6%8E%A8%E7%90%86%E6%96%B9%E6%B3%95.html">高级推理方法</a></p></blockquote>
+      </article>
+      <nav class="doc-nav"><a href="README.html">← 11 推理与思维链</a><a href="2_%E9%AB%98%E7%BA%A7%E6%8E%A8%E7%90%86%E6%96%B9%E6%B3%95.html">高级推理方法 →</a></nav>
+    </main>
+  </div>
+</body>
+</html>

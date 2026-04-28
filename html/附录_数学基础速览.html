@@ -1,0 +1,390 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>附录：数学基础速览 · AI学习</title>
+  <link rel="stylesheet" href="assets/study.css">
+  <script>
+    window.MathJax = {
+      tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], displayMath: [['$$', '$$'], ['\\[', '\\]']] },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="index.html"><span class="brand-mark">AI</span><span>AI学习 HTML 预览</span></a>
+    <span class="crumb">总览与附录 / 附录_数学基础速览.md</span>
+  </header>
+  <div class="shell doc-shell">
+    <aside class="toc"><div class="toc-title">完整目录</div><nav class="site-tree"><details open>
+<summary>总览与附录</summary>
+<a class="doc-link" href="README.html">README<small>StudyAI — AI 及大模型原理系统学习教材</small></a>
+<a class="doc-link" href="AI%E5%AD%A6%E4%B9%A0%E7%9B%AE%E5%BD%95%E7%B4%A2%E5%BC%95.html">AI学习目录索引<small>AI 及大模型原理 — 学习目录索引</small></a>
+<a class="doc-link" href="%E6%95%B4%E4%BD%93%E7%9F%A5%E8%AF%86%E4%BD%93%E7%B3%BB%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE.html">整体知识体系思维导图<small>AI 及大模型原理 — 整体知识体系思维导图</small></a>
+<a class="doc-link active" href="%E9%99%84%E5%BD%95_%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%80%E9%80%9F%E8%A7%88.html">附录_数学基础速览<small>附录：数学基础速览</small></a>
+<a class="doc-link" href="%E9%99%84%E5%BD%95_%E4%BB%A3%E7%A0%81%E7%A4%BA%E4%BE%8B%E9%9B%86.html">附录_代码示例集<small>附录：代码示例集（精选版）</small></a>
+</details>
+<details>
+<summary>01 神经网络基础</summary>
+<a class="doc-link" href="AI%E5%AD%A6%E4%B9%A0_01_%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/README.html">README<small>01 神经网络基础</small></a>
+<a class="doc-link" href="AI%E5%AD%A6%E4%B9%A0_01_%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/1_%E6%84%9F%E7%9F%A5%E6%9C%BA%E4%B8%8E%E5%A4%9A%E5%B1%82%E7%BD%91%E7%BB%9C.html">1_感知机与多层网络<small>感知机与多层网络</small></a>
+<a class="doc-link" href="AI%E5%AD%A6%E4%B9%A0_01_%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/2_%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0.html">2_激活函数<small>激活函数</small></a>
+<a class="doc-link" href="AI%E5%AD%A6%E4%B9%A0_01_%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/3_%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0.html">3_损失函数<small>损失函数</small></a>
+<a class="doc-link" href="AI%E5%AD%A6%E4%B9%A0_01_%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/4_%E5%8F%8D%E5%90%91%E4%BC%A0%E6%92%AD.html">4_反向传播<small>反向传播</small></a>
+<a class="doc-link" href="AI%E5%AD%A6%E4%B9%A0_01_%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/5_%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D%E4%B8%8E%E4%BC%98%E5%8C%96%E5%99%A8.html">5_梯度下降与优化器<small>梯度下降与优化器</small></a>
+<a class="doc-link" href="AI%E5%AD%A6%E4%B9%A0_01_%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/6_%E6%AD%A3%E5%88%99%E5%8C%96.html">6_正则化<small>正则化（Regularization）</small></a>
+<a class="doc-link" href="AI%E5%AD%A6%E4%B9%A0_01_%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/%E8%AE%BA%E6%96%87%E4%B8%8EFAQ.html">论文与FAQ<small>论文与FAQ</small></a>
+</details>
+<details>
+<summary>02 经典网络架构</summary>
+<a class="doc-link" href="AI%E5%AD%A6%E4%B9%A0_02_%E7%BB%8F%E5%85%B8%E7%BD%91%E7%BB%9C%E6%9E%B6%E6%9E%84/README.html">README<small>02 经典网络架构</small></a>
+<a class="doc-link" href="AI%E5%AD%A6%E4%B9%A0_02_%E7%BB%8F%E5%85%B8%E7%BD%91%E7%BB%9C%E6%9E%B6%E6%9E%84/1_CNN%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C.html">1_CNN卷积神经网络<small>CNN 卷积神经网络</small></a>
+<a class="doc-link" href="AI%E5%AD%A6%E4%B9%A0_02_%E7%BB%8F%E5%85%B8%E7%BD%91%E7%BB%9C%E6%9E%B6%E6%9E%84/2_RNN%E5%BE%AA%E7%8E%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C.html">2_RNN循环神经网络<small>RNN 循环神经网络</small></a>
+<a class="doc-link" href="AI%E5%AD%A6%E4%B9%A0_02_%E7%BB%8F%E5%85%B8%E7%BD%91%E7%BB%9C%E6%9E%B6%E6%9E%84/3_LSTM%E4%B8%8EGRU.html">3_LSTM与GRU<small>LSTM 与 GRU</small></a>
+<a class="doc-link" href="AI%E5%AD%A6%E4%B9%A0_02_%E7%BB%8F%E5%85%B8%E7%BD%91%E7%BB%9C%E6%9E%B6%E6%9E%84/4_%E7%BC%96%E7%A0%81%E5%99%A8%E8%A7%A3%E7%A0%81%E5%99%A8%E6%A1%86%E6%9E%B6.html">4_编码器解码器框架<small>编码器-解码器框架（Seq2Seq）</small></a>
+<a class="doc-link" href="AI%E5%AD%A6%E4%B9%A0_02_%E7%BB%8F%E5%85%B8%E7%BD%91%E7%BB%9C%E6%9E%B6%E6%9E%84/%E8%AE%BA%E6%96%87%E4%B8%8EFAQ.html">论文与FAQ<small>论文与FAQ</small></a>
+</details>
+<details>
+<summary>03 注意力机制与Transformer</summary>
+<a class="doc-link" href="AI%E5%AD%A6%E4%B9%A0_03_%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%9C%BA%E5%88%B6%E4%B8%8ETransformer/README.html">README<small>03 注意力机制与 Transformer</small></a>
+<a class="doc-link" href="AI%E5%AD%A6%E4%B9%A0_03_%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%9C%BA%E5%88%B6%E4%B8%8ETransformer/1_%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%9C%BA%E5%88%B6.html">1_注意力机制<small>注意力机制</small></a>
+<a class="doc-link" href="AI%E5%AD%A6%E4%B9%A0_03_%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%9C%BA%E5%88%B6%E4%B8%8ETransformer/2_SelfAttention%E4%B8%8EMultiHead.html">2_SelfAttention与MultiHead<small>Self-Attention 与 Multi-Head Attention</small></a>
+<a class="doc-link" href="AI%E5%AD%A6%E4%B9%A0_03_%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%9C%BA%E5%88%B6%E4%B8%8ETransformer/3_Transformer%E6%9E%B6%E6%9E%84.html">3_Transformer架构<small>Transformer 完整架构</small></a>
+<a class="doc-link" href="AI%E5%AD%A6%E4%B9%A0_03_%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%9C%BA%E5%88%B6%E4%B8%8ETransformer/4_%E4%BD%8D%E7%BD%AE%E7%BC%96%E7%A0%81.html">4_位置编码<small>位置编码</small></a>
+<a class="doc-link" href="AI%E5%AD%A6%E4%B9%A0_03_%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%9C%BA%E5%88%B6%E4%B8%8ETransformer/%E8%AE%BA%E6%96%87%E4%B8%8EFAQ.html">论文与FAQ<small>论文与FAQ</small></a>
+</details>
+<details>
+<summary>04 预训练语言模型演进</summary>
+<a class="doc-link" href="AI%E5%AD%A6%E4%B9%A0_04_%E9%A2%84%E8%AE%AD%E7%BB%83%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%BC%94%E8%BF%9B/README.html">README<small>04 预训练语言模型演进</small></a>
+<a class="doc-link" href="AI%E5%AD%A6%E4%B9%A0_04_%E9%A2%84%E8%AE%AD%E7%BB%83%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%BC%94%E8%BF%9B/1_%E8%AF%8D%E8%A1%A8%E7%A4%BA%E7%9A%84%E6%BC%94%E8%BF%9B.html">1_词表示的演进<small>词表示的演进</small></a>
+<a class="doc-link" href="AI%E5%AD%A6%E4%B9%A0_04_%E9%A2%84%E8%AE%AD%E7%BB%83%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%BC%94%E8%BF%9B/2_%E8%87%AA%E7%9B%91%E7%9D%A3%E9%A2%84%E8%AE%AD%E7%BB%83%E8%8C%83%E5%BC%8F.html">2_自监督预训练范式<small>自监督预训练范式</small></a>
+<a class="doc-link" href="AI%E5%AD%A6%E4%B9%A0_04_%E9%A2%84%E8%AE%AD%E7%BB%83%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%BC%94%E8%BF%9B/3_BERT%E4%B8%8EGPT.html">3_BERT与GPT<small>BERT 与 GPT：两大路线</small></a>
+<a class="doc-link" href="AI%E5%AD%A6%E4%B9%A0_04_%E9%A2%84%E8%AE%AD%E7%BB%83%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%BC%94%E8%BF%9B/4_%E5%BE%AE%E8%B0%83%E4%B8%8E%E8%BF%81%E7%A7%BB%E5%AD%A6%E4%B9%A0.html">4_微调与迁移学习<small>微调与迁移学习</small></a>
+<a class="doc-link" href="AI%E5%AD%A6%E4%B9%A0_04_%E9%A2%84%E8%AE%AD%E7%BB%83%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%BC%94%E8%BF%9B/%E8%AE%BA%E6%96%87%E4%B8%8EFAQ.html">论文与FAQ<small>论文与FAQ</small></a>
+</details>
+<details>
+<summary>05 GPT系列深度解析</summary>
+<a class="doc-link" href="AI%E5%AD%A6%E4%B9%A0_05_GPT%E7%B3%BB%E5%88%97%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90/README.html">README<small>05 GPT 系列深度解析</small></a>
+<a class="doc-link" href="AI%E5%AD%A6%E4%B9%A0_05_GPT%E7%B3%BB%E5%88%97%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90/1_GPT%E7%B3%BB%E5%88%97%E6%9E%B6%E6%9E%84%E6%BC%94%E8%BF%9B.html">1_GPT系列架构演进<small>GPT 系列架构演进</small></a>
+<a class="doc-link" href="AI%E5%AD%A6%E4%B9%A0_05_GPT%E7%B3%BB%E5%88%97%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90/2_ScalingLaws%E4%B8%8E%E6%B6%8C%E7%8E%B0.html">2_ScalingLaws与涌现<small>Scaling Laws 与涌现能力</small></a>
+<a class="doc-link" href="AI%E5%AD%A6%E4%B9%A0_05_GPT%E7%B3%BB%E5%88%97%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90/3_%E5%AF%B9%E9%BD%90%E6%8A%80%E6%9C%AF.html">3_对齐技术<small>对齐技术：从预训练到有用又安全</small></a>
+<a class="doc-link" href="AI%E5%AD%A6%E4%B9%A0_05_GPT%E7%B3%BB%E5%88%97%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90/4_GPT4%E4%B9%8B%E5%90%8E%E7%9A%84%E6%BC%94%E8%BF%9B.html">4_GPT4之后的演进<small>GPT-4 之后的演进（截至 2026.4）</small></a>
+<a class="doc-link" href="AI%E5%AD%A6%E4%B9%A0_05_GPT%E7%B3%BB%E5%88%97%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90/%E8%AE%BA%E6%96%87%E4%B8%8EFAQ.html">论文与FAQ<small>论文与FAQ</small></a>
+</details>
+<details>
+<summary>06 生成模型与扩散模型</summary>
+<a class="doc-link" href="AI%E5%AD%A6%E4%B9%A0_06_%E7%94%9F%E6%88%90%E6%A8%A1%E5%9E%8B%E4%B8%8E%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B/README.html">README<small>06 生成模型与扩散模型</small></a>
+<a class="doc-link" href="AI%E5%AD%A6%E4%B9%A0_06_%E7%94%9F%E6%88%90%E6%A8%A1%E5%9E%8B%E4%B8%8E%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B/1_%E7%94%9F%E6%88%90%E6%A8%A1%E5%9E%8B%E8%B0%B1%E7%B3%BB.html">1_生成模型谱系<small>生成模型谱系</small></a>
+<a class="doc-link" href="AI%E5%AD%A6%E4%B9%A0_06_%E7%94%9F%E6%88%90%E6%A8%A1%E5%9E%8B%E4%B8%8E%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B/2_%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B%E5%8E%9F%E7%90%86.html">2_扩散模型原理<small>扩散模型原理</small></a>
+<a class="doc-link" href="AI%E5%AD%A6%E4%B9%A0_06_%E7%94%9F%E6%88%90%E6%A8%A1%E5%9E%8B%E4%B8%8E%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B/3_%E6%9D%A1%E4%BB%B6%E7%94%9F%E6%88%90%E4%B8%8E%E5%BC%95%E5%AF%BC.html">3_条件生成与引导<small>条件生成与引导</small></a>
+<a class="doc-link" href="AI%E5%AD%A6%E4%B9%A0_06_%E7%94%9F%E6%88%90%E6%A8%A1%E5%9E%8B%E4%B8%8E%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B/4_%E6%9E%B6%E6%9E%84%E4%B8%8E%E5%BA%94%E7%94%A8.html">4_架构与应用<small>架构与应用</small></a>
+<a class="doc-link" href="AI%E5%AD%A6%E4%B9%A0_06_%E7%94%9F%E6%88%90%E6%A8%A1%E5%9E%8B%E4%B8%8E%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B/%E8%AE%BA%E6%96%87%E4%B8%8EFAQ.html">论文与FAQ<small>论文与FAQ</small></a>
+</details>
+<details>
+<summary>07 大模型训练技术</summary>
+<a class="doc-link" href="AI%E5%AD%A6%E4%B9%A0_07_%E5%A4%A7%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83%E6%8A%80%E6%9C%AF/README.html">README<small>07 大模型训练技术</small></a>
+<a class="doc-link" href="AI%E5%AD%A6%E4%B9%A0_07_%E5%A4%A7%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83%E6%8A%80%E6%9C%AF/1_%E5%88%86%E5%B8%83%E5%BC%8F%E8%AE%AD%E7%BB%83.html">1_分布式训练<small>分布式训练</small></a>
+<a class="doc-link" href="AI%E5%AD%A6%E4%B9%A0_07_%E5%A4%A7%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83%E6%8A%80%E6%9C%AF/2_%E6%B7%B7%E5%90%88%E7%B2%BE%E5%BA%A6%E4%B8%8E%E6%A1%86%E6%9E%B6.html">2_混合精度与框架<small>混合精度与训练框架</small></a>
+<a class="doc-link" href="AI%E5%AD%A6%E4%B9%A0_07_%E5%A4%A7%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83%E6%8A%80%E6%9C%AF/3_%E6%95%B0%E6%8D%AE%E5%B7%A5%E7%A8%8B%E4%B8%8ETokenizer.html">3_数据工程与Tokenizer<small>数据工程与 Tokenizer</small></a>
+<a class="doc-link" href="AI%E5%AD%A6%E4%B9%A0_07_%E5%A4%A7%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83%E6%8A%80%E6%9C%AF/4_%E5%AF%B9%E9%BD%90%E8%AE%AD%E7%BB%83%E5%AE%9E%E8%B7%B5.html">4_对齐训练实践<small>对齐训练实践</small></a>
+<a class="doc-link" href="AI%E5%AD%A6%E4%B9%A0_07_%E5%A4%A7%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83%E6%8A%80%E6%9C%AF/%E8%AE%BA%E6%96%87%E4%B8%8EFAQ.html">论文与FAQ<small>论文与 FAQ</small></a>
+</details>
+<details>
+<summary>08 大模型推理与部署</summary>
+<a class="doc-link" href="AI%E5%AD%A6%E4%B9%A0_08_%E5%A4%A7%E6%A8%A1%E5%9E%8B%E6%8E%A8%E7%90%86%E4%B8%8E%E9%83%A8%E7%BD%B2/README.html">README<small>08 大模型推理与部署</small></a>
+<a class="doc-link" href="AI%E5%AD%A6%E4%B9%A0_08_%E5%A4%A7%E6%A8%A1%E5%9E%8B%E6%8E%A8%E7%90%86%E4%B8%8E%E9%83%A8%E7%BD%B2/1_KVCache%E4%B8%8E%E6%8E%A8%E7%90%86%E4%BC%98%E5%8C%96.html">1_KVCache与推理优化<small>KV Cache 与推理优化</small></a>
+<a class="doc-link" href="AI%E5%AD%A6%E4%B9%A0_08_%E5%A4%A7%E6%A8%A1%E5%9E%8B%E6%8E%A8%E7%90%86%E4%B8%8E%E9%83%A8%E7%BD%B2/2_%E9%87%8F%E5%8C%96%E6%8A%80%E6%9C%AF.html">2_量化技术<small>量化技术</small></a>
+<a class="doc-link" href="AI%E5%AD%A6%E4%B9%A0_08_%E5%A4%A7%E6%A8%A1%E5%9E%8B%E6%8E%A8%E7%90%86%E4%B8%8E%E9%83%A8%E7%BD%B2/3_%E6%8E%A8%E7%90%86%E6%A1%86%E6%9E%B6%E4%B8%8E%E9%83%A8%E7%BD%B2.html">3_推理框架与部署<small>推理框架与部署</small></a>
+<a class="doc-link" href="AI%E5%AD%A6%E4%B9%A0_08_%E5%A4%A7%E6%A8%A1%E5%9E%8B%E6%8E%A8%E7%90%86%E4%B8%8E%E9%83%A8%E7%BD%B2/%E8%AE%BA%E6%96%87%E4%B8%8EFAQ.html">论文与FAQ<small>论文与FAQ</small></a>
+</details>
+<details>
+<summary>09 RAG与应用架构</summary>
+<a class="doc-link" href="AI%E5%AD%A6%E4%B9%A0_09_RAG%E4%B8%8E%E5%BA%94%E7%94%A8%E6%9E%B6%E6%9E%84/README.html">README<small>09 RAG与应用架构</small></a>
+<a class="doc-link" href="AI%E5%AD%A6%E4%B9%A0_09_RAG%E4%B8%8E%E5%BA%94%E7%94%A8%E6%9E%B6%E6%9E%84/1_RAG%E5%AE%8C%E6%95%B4%E6%B5%81%E7%A8%8B.html">1_RAG完整流程<small>RAG 完整流程</small></a>
+<a class="doc-link" href="AI%E5%AD%A6%E4%B9%A0_09_RAG%E4%B8%8E%E5%BA%94%E7%94%A8%E6%9E%B6%E6%9E%84/2_Embedding%E4%B8%8E%E5%90%91%E9%87%8F%E6%A3%80%E7%B4%A2.html">2_Embedding与向量检索<small>Embedding 与向量检索</small></a>
+<a class="doc-link" href="AI%E5%AD%A6%E4%B9%A0_09_RAG%E4%B8%8E%E5%BA%94%E7%94%A8%E6%9E%B6%E6%9E%84/3_%E9%AB%98%E7%BA%A7RAG%E6%8A%80%E6%9C%AF.html">3_高级RAG技术<small>高级 RAG 技术</small></a>
+<a class="doc-link" href="AI%E5%AD%A6%E4%B9%A0_09_RAG%E4%B8%8E%E5%BA%94%E7%94%A8%E6%9E%B6%E6%9E%84/%E8%AE%BA%E6%96%87%E4%B8%8EFAQ.html">论文与FAQ<small>论文与FAQ</small></a>
+</details>
+<details>
+<summary>10 多模态模型</summary>
+<a class="doc-link" href="AI%E5%AD%A6%E4%B9%A0_10_%E5%A4%9A%E6%A8%A1%E6%80%81%E6%A8%A1%E5%9E%8B/README.html">README<small>10 多模态模型</small></a>
+<a class="doc-link" href="AI%E5%AD%A6%E4%B9%A0_10_%E5%A4%9A%E6%A8%A1%E6%80%81%E6%A8%A1%E5%9E%8B/1_ViT%E4%B8%8ECLIP.html">1_ViT与CLIP<small>ViT 与 CLIP</small></a>
+<a class="doc-link" href="AI%E5%AD%A6%E4%B9%A0_10_%E5%A4%9A%E6%A8%A1%E6%80%81%E6%A8%A1%E5%9E%8B/2_%E5%A4%9A%E6%A8%A1%E6%80%81%E5%A4%A7%E6%A8%A1%E5%9E%8B.html">2_多模态大模型<small>多模态大模型</small></a>
+<a class="doc-link" href="AI%E5%AD%A6%E4%B9%A0_10_%E5%A4%9A%E6%A8%A1%E6%80%81%E6%A8%A1%E5%9E%8B/3_%E8%A7%86%E9%A2%91%E4%B8%8E%E8%AF%AD%E9%9F%B3.html">3_视频与语音<small>视频与语音</small></a>
+<a class="doc-link" href="AI%E5%AD%A6%E4%B9%A0_10_%E5%A4%9A%E6%A8%A1%E6%80%81%E6%A8%A1%E5%9E%8B/%E8%AE%BA%E6%96%87%E4%B8%8EFAQ.html">论文与FAQ<small>论文与FAQ</small></a>
+<a class="doc-link" href="AI%E5%AD%A6%E4%B9%A0_10_%E5%A4%9A%E6%A8%A1%E6%80%81%E6%A8%A1%E5%9E%8B/%E6%97%B6%E6%95%88%E6%80%A7%E8%AF%B4%E6%98%8E.html">时效性说明<small>时效性说明</small></a>
+</details>
+<details>
+<summary>11 推理与思维链</summary>
+<a class="doc-link" href="AI%E5%AD%A6%E4%B9%A0_11_%E6%8E%A8%E7%90%86%E4%B8%8E%E6%80%9D%E7%BB%B4%E9%93%BE/README.html">README<small>11 推理与思维链</small></a>
+<a class="doc-link" href="AI%E5%AD%A6%E4%B9%A0_11_%E6%8E%A8%E7%90%86%E4%B8%8E%E6%80%9D%E7%BB%B4%E9%93%BE/1_%E6%80%9D%E7%BB%B4%E9%93%BE%E6%8F%90%E7%A4%BA.html">1_思维链提示<small>思维链提示</small></a>
+<a class="doc-link" href="AI%E5%AD%A6%E4%B9%A0_11_%E6%8E%A8%E7%90%86%E4%B8%8E%E6%80%9D%E7%BB%B4%E9%93%BE/2_%E9%AB%98%E7%BA%A7%E6%8E%A8%E7%90%86%E6%96%B9%E6%B3%95.html">2_高级推理方法<small>高级推理方法</small></a>
+<a class="doc-link" href="AI%E5%AD%A6%E4%B9%A0_11_%E6%8E%A8%E7%90%86%E4%B8%8E%E6%80%9D%E7%BB%B4%E9%93%BE/3_%E6%8E%A8%E7%90%86%E6%A8%A1%E5%9E%8B%E4%B8%8ETTC.html">3_推理模型与TTC<small>推理模型与 Test-time Compute Scaling</small></a>
+<a class="doc-link" href="AI%E5%AD%A6%E4%B9%A0_11_%E6%8E%A8%E7%90%86%E4%B8%8E%E6%80%9D%E7%BB%B4%E9%93%BE/%E8%AE%BA%E6%96%87%E4%B8%8EFAQ.html">论文与FAQ<small>论文与FAQ</small></a>
+<a class="doc-link" href="AI%E5%AD%A6%E4%B9%A0_11_%E6%8E%A8%E7%90%86%E4%B8%8E%E6%80%9D%E7%BB%B4%E9%93%BE/%E6%97%B6%E6%95%88%E6%80%A7%E8%AF%B4%E6%98%8E.html">时效性说明<small>时效性说明</small></a>
+</details>
+<details>
+<summary>12 Agent与工具使用</summary>
+<a class="doc-link" href="AI%E5%AD%A6%E4%B9%A0_12_Agent%E4%B8%8E%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/README.html">README<small>12 Agent与工具使用</small></a>
+<a class="doc-link" href="AI%E5%AD%A6%E4%B9%A0_12_Agent%E4%B8%8E%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/1_Agent%E6%A1%86%E6%9E%B6%E5%8E%9F%E7%90%86.html">1_Agent框架原理<small>Agent 框架原理</small></a>
+<a class="doc-link" href="AI%E5%AD%A6%E4%B9%A0_12_Agent%E4%B8%8E%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/2_%E8%AE%B0%E5%BF%86%E4%B8%8E%E7%8A%B6%E6%80%81%E7%AE%A1%E7%90%86.html">2_记忆与状态管理<small>记忆与状态管理</small></a>
+<a class="doc-link" href="AI%E5%AD%A6%E4%B9%A0_12_Agent%E4%B8%8E%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/3_%E5%A4%9AAgent%E4%B8%8EMCP.html">3_多Agent与MCP<small>多 Agent 与 MCP</small></a>
+<a class="doc-link" href="AI%E5%AD%A6%E4%B9%A0_12_Agent%E4%B8%8E%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/%E8%AE%BA%E6%96%87%E4%B8%8EFAQ.html">论文与FAQ<small>论文与FAQ</small></a>
+<a class="doc-link" href="AI%E5%AD%A6%E4%B9%A0_12_Agent%E4%B8%8E%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/%E6%97%B6%E6%95%88%E6%80%A7%E8%AF%B4%E6%98%8E.html">时效性说明<small>时效性说明</small></a>
+</details>
+<details>
+<summary>13 长文本与高效架构</summary>
+<a class="doc-link" href="AI%E5%AD%A6%E4%B9%A0_13_%E9%95%BF%E6%96%87%E6%9C%AC%E4%B8%8E%E9%AB%98%E6%95%88%E6%9E%B6%E6%9E%84/README.html">README<small>13 长文本与高效架构</small></a>
+<a class="doc-link" href="AI%E5%AD%A6%E4%B9%A0_13_%E9%95%BF%E6%96%87%E6%9C%AC%E4%B8%8E%E9%AB%98%E6%95%88%E6%9E%B6%E6%9E%84/1_%E9%95%BF%E6%96%87%E6%9C%AC%E6%8A%80%E6%9C%AF.html">1_长文本技术<small>长文本技术</small></a>
+<a class="doc-link" href="AI%E5%AD%A6%E4%B9%A0_13_%E9%95%BF%E6%96%87%E6%9C%AC%E4%B8%8E%E9%AB%98%E6%95%88%E6%9E%B6%E6%9E%84/2_MoE%E6%9E%B6%E6%9E%84.html">2_MoE架构<small>Mixture of Experts（MoE）架构</small></a>
+<a class="doc-link" href="AI%E5%AD%A6%E4%B9%A0_13_%E9%95%BF%E6%96%87%E6%9C%AC%E4%B8%8E%E9%AB%98%E6%95%88%E6%9E%B6%E6%9E%84/3_%E9%AB%98%E6%95%88Transformer.html">3_高效Transformer<small>高效 Transformer 变体</small></a>
+<a class="doc-link" href="AI%E5%AD%A6%E4%B9%A0_13_%E9%95%BF%E6%96%87%E6%9C%AC%E4%B8%8E%E9%AB%98%E6%95%88%E6%9E%B6%E6%9E%84/%E8%AE%BA%E6%96%87%E4%B8%8EFAQ.html">论文与FAQ<small>论文与FAQ</small></a>
+<a class="doc-link" href="AI%E5%AD%A6%E4%B9%A0_13_%E9%95%BF%E6%96%87%E6%9C%AC%E4%B8%8E%E9%AB%98%E6%95%88%E6%9E%B6%E6%9E%84/%E6%97%B6%E6%95%88%E6%80%A7%E8%AF%B4%E6%98%8E.html">时效性说明<small>时效性说明</small></a>
+</details></nav><div class="sidebar-rule"></div><details class="page-toc" open><summary>当前页目录</summary><a class="depth-2" href="#使用说明">使用说明</a>
+<a class="depth-3" href="#快速定位表">快速定位表</a>
+<a class="depth-3" href="#高频回查-top-5">高频回查 Top 5</a>
+<a class="depth-2" href="#一线性代数">一、线性代数</a>
+<a class="depth-3" href="#11-向量与矩阵运算">1.1 向量与矩阵运算</a>
+<a class="depth-3" href="#12-特征值与特征向量">1.2 特征值与特征向量</a>
+<a class="depth-3" href="#13-矩阵分解svd-与-pca">1.3 矩阵分解（SVD 与 PCA）</a>
+<a class="depth-3" href="#14-向量范数l1-l2">1.4 向量范数（L1 / L2）</a>
+<a class="depth-3" href="#15-广播机制">1.5 广播机制</a>
+<a class="depth-2" href="#二概率与统计">二、概率与统计</a>
+<a class="depth-3" href="#21-概率分布">2.1 概率分布</a>
+<a class="depth-3" href="#22-条件概率与贝叶斯定理">2.2 条件概率与贝叶斯定理</a>
+<a class="depth-3" href="#23-最大似然估计mle">2.3 最大似然估计（MLE）</a>
+<a class="depth-3" href="#24-期望与方差">2.4 期望与方差</a>
+<a class="depth-3" href="#25-信息论基础熵kl-散度交叉熵">2.5 信息论基础（熵、KL 散度、交叉熵）</a>
+<a class="depth-2" href="#三微积分与优化">三、微积分与优化</a>
+<a class="depth-3" href="#31-导数与偏导数">3.1 导数与偏导数</a>
+<a class="depth-3" href="#32-梯度">3.2 梯度</a>
+<a class="depth-3" href="#33-链式法则反向传播的数学基础">3.3 链式法则（反向传播的数学基础）</a>
+<a class="depth-3" href="#34-凸函数与凸优化">3.4 凸函数与凸优化</a>
+<a class="depth-3" href="#35-梯度下降的数学视角">3.5 梯度下降的数学视角</a>
+<a class="depth-2" href="#数学符号速查表">数学符号速查表</a>
+<a class="depth-2" href="#常见误区与-faq">常见误区与 FAQ</a>
+<a class="depth-2" href="#关键论文与里程碑延伸阅读">关键论文与里程碑（延伸阅读）</a>
+<a class="depth-2" href="#概念关联图数学---ai-组件">概念关联图：数学 &lt;-&gt; AI 组件</a></details></aside>
+    <main class="page">
+      <article class="markdown-body">
+<h1 id="附录数学基础速览">附录：数学基础速览</h1>
+<h2 id="使用说明">使用说明</h2>
+<ul>
+<li>本附录是<strong>参考手册</strong>，不需要从头到尾学习</li>
+<li>各主线模块在需要数学知识时会指向本附录对应章节</li>
+<li>每个概念配有&quot;一句话直觉&quot;帮助快速回忆</li>
+<li>预估查阅时间：6~8 小时（完整通读），实际按需使用时间更短</li>
+</ul>
+<h3 id="快速定位表">快速定位表</h3>
+<div class="table-wrap"><table><thead><tr><th>遇到这个概念</th><th>查阅章节</th></tr></thead><tbody><tr><td>权重矩阵、线性变换</td><td>1.1 向量与矩阵运算</td></tr><tr><td>PCA 降维、SVD 分解</td><td>1.2 特征值与特征向量、1.3 矩阵分解</td></tr><tr><td>L1/L2 正则化</td><td>1.4 向量范数</td></tr><tr><td>张量运算、维度对齐</td><td>1.5 广播机制</td></tr><tr><td>概率分布、采样</td><td>2.1 概率分布</td></tr><tr><td>贝叶斯、后验</td><td>2.2 条件概率与贝叶斯定理</td></tr><tr><td>最大似然、损失函数推导</td><td>2.3 最大似然估计</td></tr><tr><td>均值、方差、标准化</td><td>2.4 期望与方差</td></tr><tr><td>交叉熵损失、KL 散度</td><td>2.5 信息论基础</td></tr><tr><td>求导、偏导</td><td>3.1 导数与偏导数</td></tr><tr><td>梯度、梯度方向</td><td>3.2 梯度</td></tr><tr><td>反向传播推导</td><td>3.3 链式法则</td></tr><tr><td>凸优化、局部最优</td><td>3.4 凸函数与凸优化</td></tr><tr><td>学习率、SGD、Adam</td><td>3.5 梯度下降</td></tr></tbody></table></div>
+<h3 id="高频回查-top-5">高频回查 Top 5</h3>
+<p>以下 5 个知识点在各模块中被引用频率最高，建议优先熟悉：</p>
+<div class="table-wrap"><table><thead><tr><th>排名</th><th>知识点</th><th>一句话回忆</th><th>章节</th><th>高频出现于</th></tr></thead><tbody><tr><td>1</td><td><strong>矩阵乘法</strong></td><td>批量线性变换——全连接层、注意力的 Q·K^T 本质都是矩阵乘法</td><td>1.1</td><td>01/03/04/05/08</td></tr><tr><td>2</td><td><strong>交叉熵 / KL 散度</strong></td><td>交叉熵 = 衡量模型输出与真实分布的差距；KL 散度 = 两个分布的不对称&quot;距离&quot;</td><td>2.5</td><td>01/04/05/06/07</td></tr><tr><td>3</td><td><strong>链式法则</strong></td><td>复合函数求导 = 外层导数 x 内层导数，反向传播的数学基础</td><td>3.3</td><td>01/03/07</td></tr><tr><td>4</td><td><strong>梯度下降</strong></td><td>沿梯度反方向迭代更新参数，SGD/Adam 是其工程化变体</td><td>3.5</td><td>01/05/07</td></tr><tr><td>5</td><td><strong>Softmax</strong></td><td>把任意实数向量归一化为概率分布：$\text{softmax}(x_i)=e^{x_i}/\sum e^{x_j}$</td><td>2.1</td><td>01/03/05/08</td></tr></tbody></table></div>
+<hr>
+<h2 id="一线性代数">一、线性代数</h2>
+<h3 id="11-向量与矩阵运算">1.1 向量与矩阵运算</h3>
+<blockquote><p><strong>一句话直觉</strong>：矩阵乘法就是&quot;批量做线性变换&quot;——每一行对输入做一次加权求和，整个矩阵一次性完成所有变换。<br>
+<strong>用于</strong>：01 神经网络基础（全连接层 y = Wx + b）、03 Transformer（Q/K/V 投影）、04 预训练语言模型（Embedding 查找本质是矩阵乘法）</p></blockquote>
+<p><strong>向量</strong>：一个有序的数字列表，可以理解为高维空间中的一个点或一个方向。</p>
+<p><strong>点积</strong>（内积）：两个等长向量对应元素相乘再求和。几何上等于 $\|\mathbf{a}\|\|\mathbf{b}\|\cos\theta$，衡量两个向量的&quot;相似程度&quot;。</p>
+<div class="math-block">$$\mathbf{a} \cdot \mathbf{b} = \sum_{i=1}^{n} a_i b_i$$</div>
+<p><strong>矩阵乘法</strong>：矩阵 A (m x n) 乘以矩阵 B (n x p)，结果 C (m x p) 中每个元素 $C_{ij}$ 是 A 的第 i 行与 B 的第 j 列的点积。</p>
+<p><strong>转置</strong>：矩阵的行列互换，记作 $A^T$。若 A 是 m x n，则 $A^T$ 是 n x m。</p>
+<p><strong>关键洞察</strong>：神经网络的每一层本质上就是 <code>y = Wx + b</code>，即矩阵乘法加偏置。理解了矩阵乘法，就理解了神经网络前向传播的核心计算。</p>
+<hr>
+<h3 id="12-特征值与特征向量">1.2 特征值与特征向量</h3>
+<blockquote><p><strong>一句话直觉</strong>：特征向量是矩阵变换中&quot;方向不变&quot;的特殊方向，特征值告诉你这个方向被拉伸了多少倍。就像拉橡皮筋时，有些方向只被拉长而没有改变方向。<br>
+<strong>用于</strong>：01 神经网络基础（权重矩阵分析）、06 生成模型（PCA 降维、协方差矩阵分析）</p></blockquote>
+<p><strong>定义</strong>：对于方阵 A，若存在非零向量 $\mathbf{v}$ 和标量 $\lambda$，使得：</p>
+<div class="math-block">$$A\mathbf{v} = \lambda\mathbf{v}$$</div>
+<p>则 $\mathbf{v}$ 是特征向量，$\lambda$ 是对应的特征值。</p>
+<hr>
+<h3 id="13-矩阵分解svd-与-pca">1.3 矩阵分解（SVD 与 PCA）</h3>
+<blockquote><p><strong>一句话直觉</strong>：SVD 把任意矩阵拆成&quot;旋转-拉伸-旋转&quot;三步操作；PCA 找到数据散布最广的方向，让你用更少的维度保留最多的信息，就像给高维数据拍一张最能反映全貌的低维&quot;照片&quot;。<br>
+<strong>用于</strong>：09 RAG（Embedding 降维与可视化）、06 生成模型（VAE 的潜空间理解）、08 推理与部署（模型压缩中的低秩近似）</p></blockquote>
+<p><strong>SVD（奇异值分解）</strong>：任意 m x n 矩阵 A 可分解为：</p>
+<div class="math-block">$$A = U \Sigma V^T$$</div>
+<ul>
+<li>U (m x m)：左奇异向量矩阵（正交矩阵）</li>
+<li>$\Sigma$ (m x n)：对角矩阵，对角线上是奇异值（非负，降序排列）</li>
+<li>$V^T$ (n x n)：右奇异向量矩阵（正交矩阵）</li>
+</ul>
+<p><strong>PCA（主成分分析）</strong>：对数据做中心化后，求协方差矩阵的特征分解（或等价地对数据矩阵做 SVD），取前 k 个最大特征值对应的方向作为新坐标轴。</p>
+<hr>
+<h3 id="14-向量范数l1-l2">1.4 向量范数（L1 / L2）</h3>
+<blockquote><p><strong>一句话直觉</strong>：范数就是衡量向量&quot;有多大&quot;的尺子。L2 是直线距离（欧几里得距离），L1 是&quot;走街区&quot;的距离（曼哈顿距离）。在 AI 中，范数用来约束权重不要太大，防止过拟合。<br>
+<strong>用于</strong>：01 神经网络基础（L1/L2 正则化）、03 Transformer（Layer Norm 用到 L2 范数）、09 RAG（余弦相似度中的向量归一化）</p></blockquote>
+<p><strong>L1 范数</strong>：各元素绝对值之和，$\|\mathbf{x}\|_1 = \sum_i |x_i|$。倾向于产生稀疏解（很多权重变为 0）。</p>
+<p><strong>L2 范数</strong>：各元素平方和的平方根，$\|\mathbf{x}\|_2 = \sqrt{\sum_i x_i^2}$。倾向于让权重均匀地小。</p>
+<hr>
+<h3 id="15-广播机制">1.5 广播机制</h3>
+<blockquote><p><strong>一句话直觉</strong>：广播是 numpy 的&quot;自动对齐&quot;功能——当两个不同形状的数组做运算时，numpy 会自动把小的数组&quot;复制&quot;成大的形状来匹配，避免你手动写循环。就像 Excel 里一个公式自动应用到整列。<br>
+<strong>用于</strong>：01 神经网络基础（偏置加法 y = Wx + b）、03 Transformer（注意力掩码 mask 的广播）、多数模块的张量形状理解</p></blockquote>
+<p><strong>广播规则</strong>（从最右维度开始逐维比较）：</p>
+<ol>
+<li>若两个维度大小相同，直接通过</li>
+<li>若某个维度大小为 1，自动扩展到匹配另一个的大小</li>
+<li>若维度数不同，在较短的形状前面补 1</li>
+<li>若两个维度大小不同且都不为 1，报错</li>
+</ol>
+<p><strong>常见广播场景速查</strong>：</p>
+<div class="table-wrap"><table><thead><tr><th>操作</th><th>形状 A</th><th>形状 B</th><th>结果形状</th></tr></thead><tbody><tr><td>加偏置</td><td>(32, 128)</td><td>(128,)</td><td>(32, 128)</td></tr><tr><td>注意力掩码</td><td>(B, H, L, L)</td><td>(1, 1, L, L)</td><td>(B, H, L, L)</td></tr><tr><td>逐样本缩放</td><td>(32, 128)</td><td>(32, 1)</td><td>(32, 128)</td></tr><tr><td>标量操作</td><td>(32, 128)</td><td>()</td><td>(32, 128)</td></tr></tbody></table></div>
+<hr>
+<h2 id="二概率与统计">二、概率与统计</h2>
+<h3 id="21-概率分布">2.1 概率分布</h3>
+<blockquote><p><strong>一句话直觉</strong>：概率分布描述了&quot;随机事件各种结果出现的可能性&quot;。高斯分布是自然界最常见的&quot;钟形曲线&quot;，伯努利是&quot;抛硬币&quot;，Categorical 是&quot;扔骰子&quot;。<br>
+<strong>用于</strong>：01 神经网络基础（权重初始化用高斯分布）、05 GPT 系列（Softmax 输出就是 Categorical 分布）、06 生成模型（VAE 的潜空间假设为高斯分布、扩散模型的噪声是高斯分布）</p></blockquote>
+<p><strong>高斯分布</strong>（正态分布）：由均值 $\mu$ 和标准差 $\sigma$ 决定形状。</p>
+<div class="math-block">$$p(x) = \frac{1}{\sigma\sqrt{2\pi}} \exp\left(-\frac{(x-\mu)^2}{2\sigma^2}\right)$$</div>
+<p><strong>伯努利分布</strong>：只有两种结果（0 或 1），由成功概率 p 决定。$P(X=1) = p, \; P(X=0) = 1-p$</p>
+<p><strong>Categorical 分布</strong>（多项式分布的单次试验）：k 种结果中选一个，由概率向量 $(p_1, p_2, \dots, p_k)$ 决定，其中 $\sum p_i = 1$。</p>
+<hr>
+<h3 id="22-条件概率与贝叶斯定理">2.2 条件概率与贝叶斯定理</h3>
+<blockquote><p><strong>一句话直觉</strong>：条件概率是&quot;已知某件事发生后，另一件事的概率&quot;。贝叶斯定理是&quot;用新证据更新你的信念&quot;——先有一个先验猜测，看到数据后变成后验判断。<br>
+<strong>用于</strong>：05 GPT 系列（自回归生成就是连续计算条件概率 P(下一个词|前面的词)）、06 生成模型（VAE 和扩散模型的推导核心就是贝叶斯后验）</p></blockquote>
+<p><strong>条件概率</strong>：在 B 已发生的条件下 A 发生的概率：</p>
+<div class="math-block">$$P(A|B) = \frac{P(A \cap B)}{P(B)}$$</div>
+<p><strong>贝叶斯定理</strong>：</p>
+<div class="math-block">$$P(\theta|\text{data}) = \frac{P(\text{data}|\theta) \cdot P(\theta)}{P(\text{data})}$$</div>
+<ul>
+<li>$P(\theta)$：先验（你在看到数据之前的信念）</li>
+<li>$P(\text{data}|\theta)$：似然（在这个假设下数据出现的概率）</li>
+<li>$P(\theta|\text{data})$：后验（看到数据后更新的信念）</li>
+</ul>
+<hr>
+<h3 id="23-最大似然估计mle">2.3 最大似然估计（MLE）</h3>
+<blockquote><p><strong>一句话直觉</strong>：MLE 就是&quot;找到一组参数，让已观察到的数据出现的概率最大&quot;。好比侦探推理——你看到了现场证据，要推断最可能的犯罪过程。神经网络训练本质上就是在做最大似然估计。<br>
+<strong>用于</strong>：01 神经网络基础（交叉熵损失 = 负对数似然）、04 预训练语言模型（语言模型的训练目标就是最大化文本的似然）、06 生成模型（VAE 的 ELBO 是似然的下界）</p></blockquote>
+<p><strong>定义</strong>：给定数据集 $\{x_1, \dots, x_n\}$ 和参数化的概率模型 $p(x|\theta)$，MLE 找到使似然函数最大的参数：</p>
+<div class="math-block">$$\hat{\theta} = \arg\max_\theta \prod_{i=1}^n p(x_i|\theta)$$</div>
+<p>实际计算中取对数（因为乘法变加法，更稳定）：</p>
+<div class="math-block">$$\hat{\theta} = \arg\max_\theta \sum_{i=1}^n \log p(x_i|\theta)$$</div>
+<p>等价于最小化<strong>负对数似然</strong>（Negative Log-Likelihood, NLL）——这就是交叉熵损失的来源。</p>
+<p><strong>关键联系</strong>：训练神经网络时我们最小化&quot;损失函数&quot;，而分类任务最常用的交叉熵损失本质就是负对数似然。所以训练神经网络 = 最大似然估计。</p>
+<hr>
+<h3 id="24-期望与方差">2.4 期望与方差</h3>
+<blockquote><p><strong>一句话直觉</strong>：期望是&quot;加权平均&quot;——结果乘以概率再求和，告诉你&quot;平均来说会得到什么&quot;。方差衡量&quot;结果离平均值有多散&quot;，方差大说明不确定性高。<br>
+<strong>用于</strong>：01 神经网络基础（Batch Normalization 计算均值和方差）、03 Transformer（Layer Normalization）、06 生成模型（VAE 的重参数化技巧、扩散模型的噪声调度）</p></blockquote>
+<p><strong>期望</strong>（均值）：</p>
+<div class="math-block">$$E[X] = \sum_i x_i \cdot P(x_i) \quad \text{（离散）} \qquad E[X] = \int x \cdot p(x) \, dx \quad \text{（连续）}$$</div>
+<p><strong>方差</strong>：</p>
+<div class="math-block">$$\text{Var}(X) = E[(X - E[X])^2] = E[X^2] - (E[X])^2$$</div>
+<p><strong>标准差</strong>：$\sigma = \sqrt{\text{Var}(X)}$</p>
+<hr>
+<h3 id="25-信息论基础熵kl-散度交叉熵">2.5 信息论基础（熵、KL 散度、交叉熵）</h3>
+<blockquote><p><strong>一句话直觉</strong>：熵衡量&quot;不确定性&quot;——抛硬币（50/50）的不确定性最大，熵最高。KL 散度衡量&quot;两个分布差多少&quot;。交叉熵 = 真实分布的熵 + KL 散度，因此最小化交叉熵就是在让模型的分布尽量靠近真实分布。<br>
+<strong>用于</strong>：01 神经网络基础（交叉熵损失函数）、04 预训练语言模型（语言模型的困惑度 = exp(交叉熵)）、05 GPT 系列（RLHF 中用 KL 散度约束策略不要偏离太远）、06 生成模型（VAE 的 ELBO 中包含 KL 散度项）</p></blockquote>
+<p><strong>熵</strong>（信息量）：分布的&quot;不确定度&quot;。</p>
+<div class="math-block">$$H(P) = -\sum_i p_i \log p_i$$</div>
+<p><strong>KL 散度</strong>（Kullback-Leibler Divergence）：度量分布 Q 偏离分布 P 的程度。不对称：$D_{KL}(P \| Q) \neq D_{KL}(Q \| P)$。</p>
+<div class="math-block">$$D_{KL}(P \| Q) = \sum_i p_i \log \frac{p_i}{q_i}$$</div>
+<p><strong>交叉熵</strong>：</p>
+<div class="math-block">$$H(P, Q) = -\sum_i p_i \log q_i = H(P) + D_{KL}(P \| Q)$$</div>
+<p>当 P 是真实分布时，$H(P)$ 是常数，所以最小化交叉熵等价于最小化 KL 散度。</p>
+<hr>
+<h2 id="三微积分与优化">三、微积分与优化</h2>
+<h3 id="31-导数与偏导数">3.1 导数与偏导数</h3>
+<blockquote><p><strong>一句话直觉</strong>：导数就是&quot;变化率&quot;——输入变化一点点，输出变化多少。偏导数是多变量函数对其中一个变量的导数，其他变量当常数处理。就像问&quot;只调节音量旋钮，音响的响度变化多快&quot;。<br>
+<strong>用于</strong>：01 神经网络基础（反向传播计算每个参数的导数）、03 Transformer（注意力分数对权重的导数）</p></blockquote>
+<p><strong>导数</strong>：函数 $f(x)$ 在 $x$ 处的导数：</p>
+<div class="math-block">$$f&#x27;(x) = \lim_{\Delta x \to 0} \frac{f(x + \Delta x) - f(x)}{\Delta x}$$</div>
+<p><strong>偏导数</strong>：多变量函数对其中一个变量求导，其他变量视为常数：</p>
+<div class="math-block">$$\frac{\partial f}{\partial x_i} = \lim_{\Delta x_i \to 0} \frac{f(\dots, x_i + \Delta x_i, \dots) - f(\dots, x_i, \dots)}{\Delta x_i}$$</div>
+<hr>
+<h3 id="32-梯度">3.2 梯度</h3>
+<blockquote><p><strong>一句话直觉</strong>：梯度是所有偏导数组成的向量，指向函数值增长最快的方向。想象你站在山上，梯度就是&quot;最陡峭的上坡方向&quot;。要下山（最小化损失），就沿梯度的反方向走。<br>
+<strong>用于</strong>：01 神经网络基础（梯度下降优化）、03 Transformer（多参数的联合优化）、全部涉及训练的模块</p></blockquote>
+<p><strong>定义</strong>：多变量函数 $f(x_1, x_2, \dots, x_n)$ 的梯度是各偏导数组成的向量：</p>
+<div class="math-block">$$\nabla f = \left[\frac{\partial f}{\partial x_1}, \frac{\partial f}{\partial x_2}, \dots, \frac{\partial f}{\partial x_n}\right]$$</div>
+<p>梯度指向函数值增长最快的方向，其模长是该方向上的变化率。</p>
+<hr>
+<h3 id="33-链式法则反向传播的数学基础">3.3 链式法则（反向传播的数学基础）</h3>
+<blockquote><p><strong>一句话直觉</strong>：链式法则说的是&quot;复合函数的导数 = 外层导数 x 内层导数&quot;。反向传播就是从输出到输入，沿着计算图一层一层地用链式法则传递梯度。就像多米诺骨牌，最后一张的倒下力度由每一张传递的比例决定。<br>
+<strong>用于</strong>：01 神经网络基础（反向传播算法的数学推导）、03 Transformer（多层 Transformer 的梯度流动）、07 训练技术（梯度消失/爆炸问题的根源）</p></blockquote>
+<p><strong>单变量链式法则</strong>：若 $y = f(g(x))$，则 $\frac{dy}{dx} = \frac{dy}{dg} \cdot \frac{dg}{dx}$</p>
+<p><strong>多变量链式法则</strong>：若 $L = f(g_1(w), g_2(w))$，则 $\frac{\partial L}{\partial w} = \frac{\partial L}{\partial g_1}\frac{\partial g_1}{\partial w} + \frac{\partial L}{\partial g_2}\frac{\partial g_2}{\partial w}$</p>
+<p><strong>关键洞察</strong>：反向传播没有什么&quot;魔法&quot;，就是从损失出发，用链式法则一步步把梯度传回每个参数。深度学习框架（PyTorch）自动完成这个过程，但理解它有助于 debug 和设计新架构。</p>
+<hr>
+<h3 id="34-凸函数与凸优化">3.4 凸函数与凸优化</h3>
+<blockquote><p><strong>一句话直觉</strong>：凸函数就像一个碗——无论从哪里开始沿下坡走，最终都能到达最低点。非凸函数像连绵的山脉——有很多局部低谷，可能走到某个山谷就出不来了。神经网络的损失函数是非凸的，但实践中梯度下降仍然有效。<br>
+<strong>用于</strong>：01 神经网络基础（理解为什么 SGD 能训练神经网络）、05 GPT 系列（大规模训练的收敛性）、07 训练技术（学习率调度策略的理论依据）</p></blockquote>
+<p><strong>凸函数定义</strong>：对于任意两点 $x_1, x_2$ 和 $\lambda \in [0,1]$：</p>
+<div class="math-block">$$f(\lambda x_1 + (1-\lambda) x_2) \leq \lambda f(x_1) + (1-\lambda) f(x_2)$$</div>
+<p>几何直觉：函数曲线上任意两点的连线段，总是在曲线的上方。</p>
+<p><strong>关键性质</strong>：</p>
+<ul>
+<li>凸函数的任何局部最小值都是全局最小值</li>
+<li>凸函数的梯度为零的点就是最小值点</li>
+</ul>
+<hr>
+<h3 id="35-梯度下降的数学视角">3.5 梯度下降的数学视角</h3>
+<blockquote><p><strong>一句话直觉</strong>：梯度下降就是&quot;反复沿最陡下坡方向走一小步&quot;。学习率决定步幅——太大会跳过最低点来回震荡，太小则收敛太慢。SGD 用少量样本估算梯度来加速，Adam 则自适应调整每个参数的步幅。<br>
+<strong>用于</strong>：01 神经网络基础（SGD、Adam 优化器）、05 GPT 系列（大模型训练的学习率调度）、07 训练技术（分布式训练中的梯度同步）</p></blockquote>
+<p><strong>梯度下降更新规则</strong>：</p>
+<div class="math-block">$$\theta_{t+1} = \theta_t - \eta \nabla L(\theta_t)$$</div>
+<p>其中 $\eta$ 是学习率，$\nabla L(\theta_t)$ 是损失函数对参数的梯度。</p>
+<p><strong>SGD（随机梯度下降）</strong>：不用全部数据计算梯度，而用随机小批量（mini-batch）估算，大幅降低计算量。</p>
+<p><strong>带动量的 SGD</strong>：</p>
+<div class="math-block">$$v_t = \beta v_{t-1} + \nabla L(\theta_t), \quad \theta_{t+1} = \theta_t - \eta v_t$$</div>
+<p><strong>Adam</strong>：结合动量和自适应学习率，为每个参数维护独立的步幅。</p>
+<p><strong>优化器选择指南</strong>：</p>
+<div class="table-wrap"><table><thead><tr><th>优化器</th><th>特点</th><th>典型场景</th></tr></thead><tbody><tr><td>SGD</td><td>最基础，需仔细调学习率</td><td>传统 CV 模型（配合动量和权重衰减）</td></tr><tr><td>SGD + Momentum</td><td>加速收敛，减少震荡</td><td>中等规模模型训练</td></tr><tr><td>Adam</td><td>自适应学习率，开箱即用</td><td>大多数深度学习任务的默认选择</td></tr><tr><td>AdamW</td><td>Adam + 解耦的权重衰减</td><td>GPT、BERT 等大模型的标准选择</td></tr></tbody></table></div>
+<hr>
+<h2 id="数学符号速查表">数学符号速查表</h2>
+<div class="table-wrap"><table><thead><tr><th>符号</th><th>含义</th><th>示例</th></tr></thead><tbody><tr><td>$\mathbf{x}$</td><td>向量（粗体小写）</td><td>输入特征向量</td></tr><tr><td>$W$</td><td>矩阵（大写）</td><td>权重矩阵</td></tr><tr><td>$W^T$</td><td>矩阵转置</td><td>转置后行变列</td></tr><tr><td>$W^{-1}$</td><td>矩阵的逆</td><td>$W W^{-1} = I$</td></tr><tr><td>$\</td><td>\mathbf{x}\</td><td>$</td><td>向量范数</td><td>默认指 L2 范数</td></tr><tr><td>$\nabla f$</td><td>梯度</td><td>所有偏导数组成的向量</td></tr><tr><td>$\frac{\partial f}{\partial x}$</td><td>偏导数</td><td>f 对 x 的偏导</td></tr><tr><td>$\sum$</td><td>求和</td><td>$\sum_{i=1}^n x_i$</td></tr><tr><td>$\prod$</td><td>连乘</td><td>$\prod_{i=1}^n p(x_i)$</td></tr><tr><td>$\arg\max$</td><td>取最大值时的参数</td><td>$\arg\max_\theta L(\theta)$</td></tr><tr><td>$\arg\min$</td><td>取最小值时的参数</td><td>$\arg\min_\theta \text{Loss}(\theta)$</td></tr><tr><td>$\propto$</td><td>正比于</td><td>$P(\theta</td><td>D) \propto P(D</td><td>\theta)P(\theta)$</td></tr><tr><td>$\sim$</td><td>服从某分布</td><td>$x \sim \mathcal{N}(0, 1)$</td></tr><tr><td>$\mathcal{N}(\mu, \sigma^2)$</td><td>高斯分布</td><td>均值 $\mu$，方差 $\sigma^2$</td></tr><tr><td>$\mathbb{E}[X]$</td><td>期望</td><td>随机变量的加权平均</td></tr><tr><td>$\log$</td><td>自然对数（AI 中默认）</td><td>$\log e = 1$</td></tr></tbody></table></div>
+<hr>
+<h2 id="常见误区与-faq">常见误区与 FAQ</h2>
+<p><strong>误区 1：矩阵乘法满足交换律</strong></p>
+<blockquote><p>AB ≠ BA（一般情况下）。神经网络中矩阵乘法顺序至关重要：<code>Wx + b</code> 和 <code>xW + b</code> 的含义完全不同。做矩阵运算时要注意 shape 对齐方向。</p></blockquote>
+<p><strong>误区 2：KL 散度是&quot;距离&quot;</strong></p>
+<blockquote><p>KL(P‖Q) ≠ KL(Q‖P)，KL 散度不对称，不满足距离的三角不等式。在 RLHF 中用 KL(π‖π_ref) 约束策略偏离，方向选择有讲究。</p></blockquote>
+<p><strong>误区 3：梯度方向就是最优方向</strong></p>
+<blockquote><p>梯度只是当前点的局部最速下降方向，不是全局最优方向。在高维非凸损失曲面中，鞍点比局部最小值更常见，这也是为什么需要 Momentum/Adam 等优化器。</p></blockquote>
+<p><strong>误区 4：学习率越小收敛越稳</strong></p>
+<blockquote><p>学习率过小会卡在鞍点或 sharp minima 附近，收敛到泛化性能差的解。实践中 warmup + cosine decay 往往比固定小学习率效果好。</p></blockquote>
+<p><strong>FAQ：为什么 AI 中对数默认是自然对数（ln）而不是 log₂？</strong></p>
+<blockquote><p>信息论原始定义用 log₂（单位是 bit），但 AI 优化中用 ln（自然对数）更方便，因为 ln 的导数是 1/x，求梯度简洁。交叉熵损失中的 log 就是 ln。两者只差一个常数系数，不影响优化方向。</p></blockquote>
+<hr>
+<h2 id="关键论文与里程碑延伸阅读">关键论文与里程碑（延伸阅读）</h2>
+<ol>
+<li><strong>Shannon, 1948</strong> — <em>A Mathematical Theory of Communication</em>：信息论奠基之作，定义了熵、互信息等概念，是交叉熵损失的理论源头。</li>
+<li><strong>Rumelhart, Hinton &amp; Williams, 1986</strong> — <em>Learning representations by back-propagating errors</em>：反向传播算法的经典论文，链式法则在神经网络训练中的核心应用。</li>
+<li><strong>Kingma &amp; Ba, 2015</strong> — <em>Adam: A Method for Stochastic Optimization</em>：Adam 优化器的原始论文，融合了 Momentum 和 RMSProp 的自适应学习率方法。</li>
+<li><strong>Loshchilov &amp; Hutter, 2019</strong> — <em>Decoupled Weight Decay Regularization</em>：提出 AdamW，修正了 Adam 中权重衰减和 L2 正则化混淆的问题，现为大模型训练标配。</li>
+</ol>
+<hr>
+<h2 id="概念关联图数学---ai-组件">概念关联图：数学 &lt;-&gt; AI 组件</h2>
+<pre><code>线性代数                          AI 组件
+─────────                        ─────────
+矩阵乘法        ←──────────→     全连接层 / 注意力的 Q·K^T
+转置             ←──────────→     注意力中 K 的转置
+向量范数         ←──────────→     正则化 / Layer Norm / 余弦相似度
+SVD/PCA          ←──────────→     降维 / 模型压缩 / Embedding 可视化
+广播机制         ←──────────→     偏置加法 / 掩码 / 几乎所有张量运算
+
+概率与统计                        AI 组件
+─────────                        ─────────
+高斯分布         ←──────────→     权重初始化 / VAE / 扩散模型噪声
+Softmax+Categorical ←─────→     模型输出层 / token 采样
+贝叶斯定理       ←──────────→     自回归生成 / VAE 后验推断
+MLE/交叉熵       ←──────────→     损失函数（分类） / 语言模型训练目标
+KL 散度          ←──────────→     VAE 正则项 / RLHF 约束 / 知识蒸馏
+熵               ←──────────→     困惑度(PPL) / 信息瓶颈
+
+微积分与优化                      AI 组件
+─────────                        ─────────
+偏导数           ←──────────→     每个参数的梯度
+链式法则         ←──────────→     反向传播（自动微分）
+梯度             ←──────────→     参数更新方向
+凸优化           ←──────────→     理解收敛性 / 损失曲面
+梯度下降/Adam    ←──────────→     优化器（模型训练的核心循环）
+学习率调度       ←──────────→     Warmup + Cosine Decay</code></pre>
+      </article>
+      <nav class="doc-nav"><a href="%E6%95%B4%E4%BD%93%E7%9F%A5%E8%AF%86%E4%BD%93%E7%B3%BB%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE.html">← AI 及大模型原理 — 整体知识体系思维导图</a><a href="%E9%99%84%E5%BD%95_%E4%BB%A3%E7%A0%81%E7%A4%BA%E4%BE%8B%E9%9B%86.html">附录：代码示例集（精选版） →</a></nav>
+    </main>
+  </div>
+</body>
+</html>

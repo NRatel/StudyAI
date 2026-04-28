@@ -6,7 +6,7 @@
 
 ---
 
-## 1. 风趣易懂的直觉讲解
+## 1. Embedding 如何把语义放进向量
 ### 1.1 Embedding 是什么？
 
 Embedding 是将离散的文本（词、句子、段落）映射为连续的高维向量的过程。在 RAG 场景中，核心需求是**句子级 / 段落级 Embedding**——将一整段话压缩为一个向量，使得语义相近的文本在向量空间中距离相近。
@@ -48,7 +48,7 @@ Embedding 模型            向量数据库              Chunking 策略
 
 ---
 
-## 2. 准确概念定义与核心原理
+## 2. 向量检索与分块策略
 ### 2.1 句子 Embedding 的训练
 
 现代句子 Embedding 模型（如 Sentence-BERT、BGE、GTE）的训练通常基于**对比学习（Contrastive Learning）**。
