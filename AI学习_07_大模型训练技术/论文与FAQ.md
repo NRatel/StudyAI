@@ -353,48 +353,6 @@ InstructGPT 的关键发现:
 
 ### Q10: 如何估算训练所需的 GPU 时间？
 
-```python
-# 训练时间估算公式
-def estimate_training_time(
-    model_params_B: float,     # 模型参数 (十亿)
-    tokens_T: float,           # 训练 tokens (万亿)
-    gpu_count: int,            # GPU 数量
-    gpu_tflops: float,         # 单卡算力 (TFLOPS, BF16)
-    mfu: float = 0.4,         # 模型 FLOPs 利用率
-):
-    """
-    近似公式: 6 × P × D / (GPU数 × 单卡算力 × MFU)
-
-    6PD 是训练的总 FLOPs:
-    - 前向: 2PD (每个 token 经过每个参数约 2 次浮点运算)
-    - 反向: 4PD (反向约为前向的 2 倍)
-    """
-    P = model_params_B * 1e9
-    D = tokens_T * 1e12
-    total_flops = 6 * P * D
-
-    effective_tflops = gpu_count * gpu_tflops * 1e12 * mfu
-    seconds = total_flops / effective_tflops
-    days = seconds / 86400
-
-    return {
-        "total_flops": f"{total_flops:.2e}",
-        "days": f"{days:.1f}",
-        "gpu_hours": f"{seconds * gpu_count / 3600:.0f}",
-    }
-
-# 示例
-configs = [
-    ("7B, 2T tokens, 64×A100", 7, 2, 64, 312),
-    ("70B, 2T tokens, 512×A100", 70, 2, 512, 312),
-    ("70B, 15T tokens, 2048×H100", 70, 15, 2048, 989),
-    ("175B, 0.3T tokens, 1024×A100", 175, 0.3, 1024, 312),
-]
-
-for name, P, D, gpus, tflops in configs:
-    result = estimate_training_time(P, D, gpus, tflops)
-    print(f"{name}: {result['days']} 天, {result['gpu_hours']} GPU-hours")
-```
 
 ---
 
@@ -427,5 +385,5 @@ for name, P, D, gpus, tflops in configs:
 
 工程:
   7. Llama-2 技术报告 — 完整的训练工程细节
-  8. Llama-3 技术报告 — 最新的数据工程实践
+  8. Llama-3 技术报告 — 最新的数据实际应用
 ```

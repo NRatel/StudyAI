@@ -172,7 +172,7 @@ output = unconditional + s * (conditional - unconditional)
 
 **直觉理解**：guidance scale 相当于"对条件文本的强调程度"。适度强调让生成更贴合文本描述，过度强调则把图像推向了分布边缘的极端区域。
 
-**实践建议**：
+**学习建议**：
 - 文生图一般用 7-12。
 - 图生图或控制精细程度的场景可以适当降低到 3-7。
 - 具体最优值因模型和任务而异，建议实验调节。
@@ -211,4 +211,4 @@ output = unconditional + s * (conditional - unconditional)
 
 3. **Hugging Face Diffusion Models Course**
    - 链接：https://github.com/huggingface/diffusion-models-class
-   - 配套代码的实战课程，覆盖从 DDPM 基础实现到 Stable Diffusion 微调的完整流程，适合动手实践。
+   - 配套演示课程，覆盖从 DDPM 基础机制到 Stable Diffusion 微调流程，适合作为可选补充来观察扩散模型如何落地。

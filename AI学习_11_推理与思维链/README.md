@@ -4,7 +4,7 @@
 
 ## 本模块导读
 
-**学什么**：大语言模型如何"思考"——从 Chain-of-Thought 提示到 Tree-of-Thought 搜索，从提示工程到专门训练的推理模型（o1/o3/o4-mini），再到 Test-time Compute Scaling 的理论基础。理解模型推理能力的来源、增强方法和工程实践。
+**学什么**：大语言模型如何"思考"——从 Chain-of-Thought 提示到 Tree-of-Thought 搜索，从提示工程到专门训练的推理模型（o1/o3/o4-mini），再到 Test-time Compute Scaling 的理论基础。理解模型推理能力的来源、增强方法和实际应用。
 
 **为什么学**：推理能力是 2024-2026 年大模型最核心的进化方向。GPT-4 之后，行业共识从"让模型更大"转向"让模型更会想"。理解推理技术，才能回答这些关键问题：
 - 为什么一句 "Let's think step by step" 就能提升数学题的准确率？

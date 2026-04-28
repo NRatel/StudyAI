@@ -11,7 +11,7 @@
 - 理解 RNN 为什么能处理变长序列，以及为什么原始 RNN 不够用（梯度消失）
 - 理解 LSTM/GRU 如何通过门控机制解决长距离依赖
 - 理解 Seq2Seq 编码器-解码器框架，为学习 Transformer 做准备
-- 看懂 PyTorch 中 nn.Conv2d, nn.LSTM, nn.GRU 等模块的使用
+- 为后续注意力机制、Transformer、多模态模型建立架构直觉
 
 **建议学习顺序**：CNN → RNN → LSTM/GRU → Seq2Seq，本模块最终目的是为 Transformer 做铺垫。
 

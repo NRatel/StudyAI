@@ -233,7 +233,7 @@ Q 每步都是新 token 的 → 无需缓存
 | 社区模型 | 更多（TheBloke 早期主推） | 快速增长 |
 | 理论基础 | Hessian 误差补偿 | Activation-aware Scaling |
 
-**实践建议**：
+**学习建议**：
 1. 先试 AWQ，精度通常更好
 2. 如果推理框架只支持 GPTQ，就用 GPTQ
 3. 如果是 CPU/边缘设备，两个都不用——用 GGUF
