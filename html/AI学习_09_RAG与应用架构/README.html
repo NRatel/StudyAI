@@ -148,6 +148,7 @@
 <a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_13_%E9%95%BF%E6%96%87%E6%9C%AC%E4%B8%8E%E9%AB%98%E6%95%88%E6%9E%B6%E6%9E%84/%E6%97%B6%E6%95%88%E6%80%A7%E8%AF%B4%E6%98%8E.html">时效性说明<small>时效性说明</small></a>
 </details></nav><div class="sidebar-rule"></div><details class="page-toc"><summary>当前页目录</summary><a class="depth-2" href="#本模块导读">本模块导读</a>
 <a class="depth-2" href="#目录">目录</a>
+<a class="depth-2" href="#学完本模块你应该能回答">学完本模块，你应该能回答</a>
 <a class="depth-2" href="#学习建议">学习建议</a>
 <a class="depth-2" href="#本模块在整体知识体系中的位置">本模块在整体知识体系中的位置</a></details></aside>
     <div class="toc-backdrop" data-sidebar-backdrop></div>
@@ -167,9 +168,17 @@
 <li>设计生产级 RAG 架构，理解 Agentic RAG 的演进方向</li>
 </ul>
 <p><strong>前置知识</strong>：<a href="../AI%E5%AD%A6%E4%B9%A0_04_%E9%A2%84%E8%AE%AD%E7%BB%83%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%BC%94%E8%BF%9B/README.html">04 预训练语言模型演进</a>（需理解 Encoder/Decoder 架构、Embedding 概念、预训练范式）</p>
-<p><strong>预估学习时间</strong>：10~14 小时</p>
+<p><strong>预估学习时间</strong>：6~8 小时</p>
 <h2 id="目录">目录</h2>
 <div class="table-wrap"><table><thead><tr><th>序号</th><th>文件</th><th>内容</th></tr></thead><tbody><tr><td>1</td><td><a href="1_RAG%E5%AE%8C%E6%95%B4%E6%B5%81%E7%A8%8B.html">RAG完整流程</a></td><td>RAG 三阶段（索引→检索→生成）、Naive RAG vs Advanced RAG</td></tr><tr><td>2</td><td><a href="2_Embedding%E4%B8%8E%E5%90%91%E9%87%8F%E6%A3%80%E7%B4%A2.html">Embedding与向量检索</a></td><td>Embedding 模型、向量数据库、相似度搜索、Chunking 策略</td></tr><tr><td>3</td><td><a href="3_%E9%AB%98%E7%BA%A7RAG%E6%8A%80%E6%9C%AF.html">高级RAG技术</a></td><td>Query 改写/HyDE、Reranker、混合检索、Agentic RAG、评估方法</td></tr><tr><td>-</td><td><a href="%E8%AE%BA%E6%96%87%E4%B8%8EFAQ.html">论文与FAQ</a></td><td>关键论文、常见误区、延伸资源</td></tr></tbody></table></div>
+<h2 id="学完本模块你应该能回答">学完本模块，你应该能回答</h2>
+<ol>
+<li>RAG 为什么能缓解幻觉、时效性和私有知识问题？</li>
+<li>一个 RAG 系统里，索引、检索、重排、生成分别影响什么？</li>
+<li>Chunking 为什么不是简单“按字数切块”？切得太大或太小各有什么问题？</li>
+<li>Embedding 相似度高为什么不等于答案一定好？</li>
+<li>长上下文和 RAG 是替代关系，还是互补关系？</li>
+</ol>
 <h2 id="学习建议">学习建议</h2>
 <p>按序号 1→3 顺序阅读，每个文件都会从具体问题切入，再讲清关键机制，最后澄清常见误区。</p>
 <ul>

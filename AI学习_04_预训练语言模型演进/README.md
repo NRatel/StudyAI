@@ -15,7 +15,7 @@
 
 **前置知识**：[03 注意力机制与 Transformer](../AI学习_03_注意力机制与Transformer/README.md)
 
-**预估学习时间**：6~8 小时
+**预估学习时间**：8~10 小时
 
 ## 目录
 
@@ -26,6 +26,13 @@
 | 3 | [BERT与GPT](3_BERT与GPT.md) | 两大路线的核心差异和适用场景 |
 | 4 | [微调与迁移学习](4_微调与迁移学习.md) | Fine-tuning、Prompt Tuning、三大架构路线对比 |
 | - | [论文与FAQ](论文与FAQ.md) | 关键论文、常见误区、延伸资源 |
+
+## 学完本模块，你应该能回答
+
+1. One-Hot、Word2Vec、ELMo、BERT/GPT 的表示能力为什么一代比一代强？
+2. MLM 和 CLM 的训练目标有什么区别？它们分别适合什么任务？
+3. BERT 的 Encoder-only 路线和 GPT 的 Decoder-only 路线为什么会分化？
+4. 预训练、微调、Prompt Tuning/LoRA 分别改变了模型学习的哪个环节？
 
 ## 下一步
 

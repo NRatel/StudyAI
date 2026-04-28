@@ -149,6 +149,7 @@
 </details></nav><div class="sidebar-rule"></div><details class="page-toc"><summary>当前页目录</summary><a class="depth-2" href="#本模块导读">本模块导读</a>
 <a class="depth-2" href="#目录">目录</a>
 <a class="depth-2" href="#本模块三条线的关系">本模块三条线的关系</a>
+<a class="depth-2" href="#学完本模块你应该能回答">学完本模块，你应该能回答</a>
 <a class="depth-2" href="#学习建议">学习建议</a>
 <a class="depth-2" href="#与其他模块的关系">与其他模块的关系</a></details></aside>
     <div class="toc-backdrop" data-sidebar-backdrop></div>
@@ -169,7 +170,7 @@
 </ul>
 <p><strong>前置知识</strong>：<a href="../AI%E5%AD%A6%E4%B9%A0_03_%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%9C%BA%E5%88%B6%E4%B8%8ETransformer/README.html">03 注意力机制与 Transformer</a>（特别是 Self-Attention、Multi-Head Attention、RoPE 位置编码、FFN 的作用）</p>
 <p><strong>预估学习时间</strong>：4~6 小时</p>
-<p><strong>模块定位</strong>：前沿篇 ★★★——了解主要原理和设计思想即可，不要求推导每一个数学细节。</p>
+<p><strong>模块定位</strong>：高级选读 ★★★——建议先完成 GPT 主线和推理部署模块，再把本模块作为架构前沿补充。了解主要原理和设计思想即可，不要求推导每一个数学细节。</p>
 <h2 id="目录">目录</h2>
 <div class="table-wrap"><table><thead><tr><th>序号</th><th>文件</th><th>内容</th></tr></thead><tbody><tr><td>1</td><td><a href="1_%E9%95%BF%E6%96%87%E6%9C%AC%E6%8A%80%E6%9C%AF.html">长文本技术</a></td><td>为什么长文本难（O(n^2) 瓶颈、位置编码外推问题）、RoPE 扩展方案（PI / NTK-Aware / YaRN）、Ring Attention（序列并行）、Infini-Attention（压缩记忆）</td></tr><tr><td>2</td><td><a href="2_MoE%E6%9E%B6%E6%9E%84.html">MoE架构</a></td><td>Mixture of Experts 原理（路由机制、稀疏激活）、Switch Transformer、Mixtral、DeepSeekMoE、负载均衡、MoE 的优缺点</td></tr><tr><td>3</td><td><a href="3_%E9%AB%98%E6%95%88Transformer.html">高效Transformer</a></td><td>线性注意力（Performer）、稀疏注意力（Longformer / BigBird）、状态空间模型 SSM（S4 / Mamba / Mamba-2）、RWKV、与标准 Transformer 的全面对比</td></tr><tr><td>-</td><td><a href="%E8%AE%BA%E6%96%87%E4%B8%8EFAQ.html">论文与FAQ</a></td><td>关键论文（Reformer / Longformer / Switch / Mamba / Infini-Attention 等）、常见误区、延伸资源</td></tr></tbody></table></div>
 <h2 id="本模块三条线的关系">本模块三条线的关系</h2>
@@ -178,6 +179,14 @@
 - <strong>MoE 架构</strong>（文件 2）解决的是<strong>模型容量问题</strong>：如何在不成比例增加推理计算量的前提下，大幅增加模型的参数量（知识容量）？方案是稀疏激活——每个 token 只使用部分专家。<br>
 - <strong>高效 Transformer</strong>（文件 3）解决的是<strong>计算效率问题</strong>：能否从注意力机制本身下手，用计算复杂度更低的替代方案（稀疏注意力、线性注意力、SSM/Mamba）取代标准的 O(n^2) 注意力？<br>
 三者是互补关系，可以同时使用：例如 DeepSeek-V3 同时使用了 MoE（模型容量）+ RoPE 扩展（长序列）+ FlashAttention（计算效率）。</p></blockquote>
+<h2 id="学完本模块你应该能回答">学完本模块，你应该能回答</h2>
+<ol>
+<li>标准 Attention 在长文本上为什么会遇到 O(n^2) 计算与显存瓶颈？</li>
+<li>RoPE 扩展、Ring Attention、压缩记忆分别在解决长上下文的哪个问题？</li>
+<li>MoE 为什么能增加模型容量，却不同比例增加每个 token 的计算量？</li>
+<li>线性注意力、稀疏注意力、SSM/Mamba 与标准 Transformer 的取舍是什么？</li>
+<li>长文本、MoE、高效注意力三类技术可以如何组合？</li>
+</ol>
 <h2 id="学习建议">学习建议</h2>
 <ol>
 <li><strong>先读文件 1</strong>：长文本技术是最直观的切入点——你已经理解了标准注意力的 O(n^2) 瓶颈，自然会问&quot;怎么办&quot;</li>

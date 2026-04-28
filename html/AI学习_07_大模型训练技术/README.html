@@ -148,6 +148,7 @@
 <a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_13_%E9%95%BF%E6%96%87%E6%9C%AC%E4%B8%8E%E9%AB%98%E6%95%88%E6%9E%B6%E6%9E%84/%E6%97%B6%E6%95%88%E6%80%A7%E8%AF%B4%E6%98%8E.html">时效性说明<small>时效性说明</small></a>
 </details></nav><div class="sidebar-rule"></div><details class="page-toc"><summary>当前页目录</summary><a class="depth-2" href="#本模块导读">本模块导读</a>
 <a class="depth-2" href="#目录">目录</a>
+<a class="depth-2" href="#学完本模块你应该能回答">学完本模块，你应该能回答</a>
 <a class="depth-2" href="#学习建议">学习建议</a></details></aside>
     <div class="toc-backdrop" data-sidebar-backdrop></div>
     <main class="page">
@@ -163,7 +164,7 @@
 <li>理解混合精度训练的原理和实际应用</li>
 <li>理解预训练数据工程和 Tokenizer（BPE/SentencePiece）的设计思路</li>
 <li>理解 SFT → RLHF → DPO 的完整对齐训练流程</li>
-<li>具备&quot;给我 N 张卡和数据，我知道该怎么配置训练&quot;的工程能力</li>
+<li>理解大模型训练配置背后的主要取舍：显存、吞吐、通信、稳定性和数据质量</li>
 </ul>
 <p><strong>本模块默认前提</strong>：多卡训练环境、显存是主要瓶颈、数据规模在 TB 级别。如果你只有单卡或数据量很小，本模块的部分内容（如 3D 并行、TB 级数据工程）可能暂时用不到，但理解这些概念对全局认知仍然重要。</p>
 <p><strong>前置知识</strong>：<a href="../AI%E5%AD%A6%E4%B9%A0_05_GPT%E7%B3%BB%E5%88%97%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90/README.html">05 GPT系列深度解析</a></p>
@@ -171,6 +172,14 @@
 <p><strong>重要程度</strong>：★★★★</p>
 <h2 id="目录">目录</h2>
 <div class="table-wrap"><table><thead><tr><th>序号</th><th>文件</th><th>内容</th></tr></thead><tbody><tr><td>1</td><td><a href="1_%E5%88%86%E5%B8%83%E5%BC%8F%E8%AE%AD%E7%BB%83.html">分布式训练</a></td><td>数据并行(DDP)、模型并行(张量/流水线)、ZeRO优化(三阶段)、3D并行</td></tr><tr><td>2</td><td><a href="2_%E6%B7%B7%E5%90%88%E7%B2%BE%E5%BA%A6%E4%B8%8E%E6%A1%86%E6%9E%B6.html">混合精度与框架</a></td><td>FP16/BF16混合精度、DeepSpeed配置、FSDP、梯度累积/检查点</td></tr><tr><td>3</td><td><a href="3_%E6%95%B0%E6%8D%AE%E5%B7%A5%E7%A8%8B%E4%B8%8ETokenizer.html">数据工程与Tokenizer</a></td><td>预训练数据收集清洗、数据配比、BPE/SentencePiece、课程学习</td></tr><tr><td>4</td><td><a href="4_%E5%AF%B9%E9%BD%90%E8%AE%AD%E7%BB%83%E5%AE%9E%E8%B7%B5.html">对齐训练实践</a></td><td>SFT数据构建、RLHF实际应用(PPO四模型)、DPO实践、数据质量</td></tr><tr><td>-</td><td><a href="%E8%AE%BA%E6%96%87%E4%B8%8EFAQ.html">论文与FAQ</a></td><td>关键论文(ZeRO/Megatron/3D并行/混合精度/InstructGPT)、常见问题</td></tr></tbody></table></div>
+<h2 id="学完本模块你应该能回答">学完本模块，你应该能回答</h2>
+<ol>
+<li>为什么大模型训练的核心瓶颈不只是“算力”，还包括显存、通信和数据？</li>
+<li>数据并行、张量并行、流水线并行、ZeRO 分别在切分什么？</li>
+<li>FP16/BF16 混合精度为什么能加速训练，又为什么需要防止数值不稳定？</li>
+<li>Tokenizer 和数据配比为什么会影响最终模型能力？</li>
+<li>SFT、RLHF、DPO 从工程实践上分别需要什么数据和训练流程？</li>
+</ol>
 <h2 id="学习建议">学习建议</h2>
 <ol>
 <li><strong>先读第1章</strong>：分布式训练是后续所有内容的基础，搞清楚&quot;为什么单卡不够&quot;</li>

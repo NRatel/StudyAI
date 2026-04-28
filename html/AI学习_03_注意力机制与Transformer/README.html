@@ -147,14 +147,15 @@
 <a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_13_%E9%95%BF%E6%96%87%E6%9C%AC%E4%B8%8E%E9%AB%98%E6%95%88%E6%9E%B6%E6%9E%84/%E8%AE%BA%E6%96%87%E4%B8%8EFAQ.html">论文与FAQ<small>论文与FAQ</small></a>
 <a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0_13_%E9%95%BF%E6%96%87%E6%9C%AC%E4%B8%8E%E9%AB%98%E6%95%88%E6%9E%B6%E6%9E%84/%E6%97%B6%E6%95%88%E6%80%A7%E8%AF%B4%E6%98%8E.html">时效性说明<small>时效性说明</small></a>
 </details></nav><div class="sidebar-rule"></div><details class="page-toc"><summary>当前页目录</summary><a class="depth-2" href="#本模块导读">本模块导读</a>
-<a class="depth-2" href="#目录">目录</a></details></aside>
+<a class="depth-2" href="#目录">目录</a>
+<a class="depth-2" href="#学完本模块你应该能回答">学完本模块，你应该能回答</a></details></aside>
     <div class="toc-backdrop" data-sidebar-backdrop></div>
     <main class="page">
       <article class="markdown-body">
 <h1 id="03-注意力机制与-transformer">03 注意力机制与 Transformer</h1>
 <h2 id="本模块导读">本模块导读</h2>
 <p><strong>学什么</strong>：从注意力机制的直觉出发，完整拆解 Transformer 架构——现代 AI 最核心的基础设施。几乎所有大语言模型（GPT、BERT、LLaMA）和视觉模型（ViT）都基于 Transformer。</p>
-<p><strong>为什么学</strong>：Transformer 是理解后续所有模块（GPT、扩散模型中的 DiT、多模态模型等）的绝对前提。没有 Transformer 的知识，后面的内容完全无法理解。</p>
+<p><strong>为什么学</strong>：Transformer 是理解 GPT、BERT、LLaMA、ViT 等模型的核心前提。没有这部分知识，后面的语言模型和多模态内容会变成一串熟悉但连不起来的名词。</p>
 <p><strong>学完能做什么</strong>：</p>
 <ul>
 <li>理解 Self-Attention 的计算过程和直觉（为什么 QKV？为什么除以 √d？）</li>
@@ -163,7 +164,7 @@
 <li>理解位置编码（正弦、RoPE）为什么需要以及如何工作</li>
 <li>能用概念和公式解释 Transformer 为什么能替代 RNN 处理序列</li>
 </ul>
-<p><strong>前置知识</strong>：<a href="../AI%E5%AD%A6%E4%B9%A0_02_%E7%BB%8F%E5%85%B8%E7%BD%91%E7%BB%9C%E6%9E%B6%E6%9E%84/README.html">02 经典网络架构</a>（特别是编码器-解码器框架和 Bahdanau 注意力）</p>
+<p><strong>推荐前置</strong>：<a href="../AI%E5%AD%A6%E4%B9%A0_01_%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/README.html">01 神经网络基础</a>。如果对序列建模、RNN、编码器-解码器不熟，再回补 <a href="../AI%E5%AD%A6%E4%B9%A0_02_%E7%BB%8F%E5%85%B8%E7%BD%91%E7%BB%9C%E6%9E%B6%E6%9E%84/README.html">02 经典网络架构</a>。</p>
 <p><strong>预估学习时间</strong>：10~12 小时</p>
 <p><strong>本模块常见卡点</strong>：</p>
 <ul>
@@ -173,6 +174,14 @@
 </ul>
 <h2 id="目录">目录</h2>
 <div class="table-wrap"><table><thead><tr><th>序号</th><th>文件</th><th>内容</th></tr></thead><tbody><tr><td>1</td><td><a href="1_%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%9C%BA%E5%88%B6.html">注意力机制</a></td><td>注意力的直觉与数学、缩放点积注意力、为什么需要 QKV</td></tr><tr><td>2</td><td><a href="2_SelfAttention%E4%B8%8EMultiHead.html">Self-Attention与Multi-Head</a></td><td>自注意力、多头注意力、掩码注意力</td></tr><tr><td>3</td><td><a href="3_Transformer%E6%9E%B6%E6%9E%84.html">Transformer架构</a></td><td>完整的编码器和解码器、FFN、残差连接、Layer Norm</td></tr><tr><td>4</td><td><a href="4_%E4%BD%8D%E7%BD%AE%E7%BC%96%E7%A0%81.html">位置编码</a></td><td>正弦位置编码、可学习位置编码、RoPE 旋转位置编码</td></tr><tr><td>-</td><td><a href="%E8%AE%BA%E6%96%87%E4%B8%8EFAQ.html">论文与FAQ</a></td><td>关键论文、常见误区、延伸资源</td></tr></tbody></table></div>
+<h2 id="学完本模块你应该能回答">学完本模块，你应该能回答</h2>
+<ol>
+<li>Attention 为什么可以理解为“按相关性加权读取信息”？</li>
+<li>Q、K、V 各自承担什么角色？为什么要除以 $\sqrt{d}$？</li>
+<li>Multi-Head Attention 相比单头注意力多解决了什么问题？</li>
+<li>Transformer 里的残差连接、Layer Norm、FFN 和位置编码分别为什么存在？</li>
+<li>为什么 Decoder-only Transformer 能成为 GPT 这类模型的基础？</li>
+</ol>
       </article>
       <nav class="doc-nav"><a href="../AI%E5%AD%A6%E4%B9%A0_02_%E7%BB%8F%E5%85%B8%E7%BD%91%E7%BB%9C%E6%9E%B6%E6%9E%84/%E8%AE%BA%E6%96%87%E4%B8%8EFAQ.html">← 论文与FAQ</a><a href="1_%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%9C%BA%E5%88%B6.html">注意力机制 →</a></nav>
     </main>

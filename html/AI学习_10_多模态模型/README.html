@@ -151,6 +151,7 @@
 <a class="depth-2" href="#学习建议">学习建议</a>
 <a class="depth-2" href="#本模块在整体知识体系中的位置">本模块在整体知识体系中的位置</a>
 <a class="depth-2" href="#两条技术路线的定位">两条技术路线的定位</a>
+<a class="depth-2" href="#学完本模块你应该能回答">学完本模块，你应该能回答</a>
 <a class="depth-2" href="#多模态技术全景图截至-20264">多模态技术全景图（截至 2026.4）</a></details></aside>
     <div class="toc-backdrop" data-sidebar-backdrop></div>
     <main class="page">
@@ -199,6 +200,14 @@
 - <strong>开源桥接路线（LLaVA / InternVL 等）</strong>：将已有的视觉编码器（如 CLIP ViT）通过桥接模块（MLP / Q-Former）连接到已有的 LLM，本质是&quot;模块拼装&quot;。优势是门槛低、迭代快、完全开源，劣势是模态间的融合深度受限于桥接层的表达能力。<br>
 - <strong>原生统一多模态路线（GPT-4o / Gemini 等）</strong>：从预训练阶段就同时在多模态数据上训练一个统一模型，不依赖外挂的视觉编码器。优势是跨模态理解更深（如 GPT-4o 的端到端语音能力），劣势是训练成本极高，目前仅闭源模型采用。<br>
 本模块的内容覆盖两条路线。第 1 节（ViT/CLIP）和第 2 节中的 LLaVA 属于桥接路线的基础；第 2 节中的 GPT-4o 属于统一路线的代表。理解桥接路线是基础，理解统一路线是趋势。</p></blockquote>
+<h2 id="学完本模块你应该能回答">学完本模块，你应该能回答</h2>
+<ol>
+<li>ViT 为什么可以把图像变成 Transformer 能处理的 token 序列？</li>
+<li>CLIP 的图文对齐解决了什么问题？为什么它能支持零样本分类？</li>
+<li>“视觉编码器 + LLM”桥接路线和原生统一多模态路线有什么本质差别？</li>
+<li>视频模型相比图像模型多了什么难点？</li>
+<li>扩散模型、DiT、LLM 在图像/视频生成里分别承担什么角色？</li>
+</ol>
 <h2 id="多模态技术全景图截至-20264">多模态技术全景图（截至 2026.4）</h2>
 <pre><code>多模态模型技术栈
 │
