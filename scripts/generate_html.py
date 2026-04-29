@@ -23,14 +23,18 @@ from urllib.parse import quote
 ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_OUTPUT = ROOT / "html"
 GENERATED_SOURCES: set[Path] = set()
-ROOT_MARKDOWN_FILES = [
+OVERVIEW_MARKDOWN_FILES = [
     "README.md",
     "AI学习目录索引.md",
     "整体知识体系思维导图.md",
+]
+APPENDIX_MARKDOWN_FILES = [
     "附录_数学基础速览.md",
     "附录_代码示例集.md",
 ]
-ROOT_DOC_MODULE = "总览与附录"
+OVERVIEW_DOC_MODULE = "总览"
+APPENDIX_DOC_MODULE = "附录"
+ROOT_DOC_MODULES = {OVERVIEW_DOC_MODULE, APPENDIX_DOC_MODULE}
 
 
 STYLE_CSS = r"""
@@ -1162,7 +1166,7 @@ def render_index(docs: list[Document], output_root: Path) -> None:
     modules: dict[str, list[Document]] = {}
     for doc in docs:
         modules.setdefault(doc.module, []).append(doc)
-    module_count = sum(1 for module in modules if module != ROOT_DOC_MODULE)
+    module_count = sum(1 for module in modules if module not in ROOT_DOC_MODULES)
 
     cards = []
     for module, module_docs in modules.items():
@@ -1191,7 +1195,7 @@ def render_index(docs: list[Document], output_root: Path) -> None:
       <span class="sidebar-toggle-icon" aria-hidden="true"></span><span>目录</span>
     </button>
     <a class="brand" href="index.html"><span class="brand-mark">AI</span><span>AI学习</span></a>
-    <span class="crumb">已生成 {module_count} 个模块 + 总览附录，{len(docs)} 个文档</span>
+    <span class="crumb">已生成 总览 + {module_count} 个模块 + 附录，{len(docs)} 个文档</span>
   </header>
   <div class="shell doc-shell">
     {render_sidebar(docs, None, output_root / "index.html", output_root)}
@@ -1199,7 +1203,7 @@ def render_index(docs: list[Document], output_root: Path) -> None:
     <main>
       <section class="index-hero">
         <h1>AI学习</h1>
-        <p>这是从 Markdown 生成的 HTML 版本。可通过左侧完整目录浏览总览、附录和各学习模块。</p>
+        <p>这是从 Markdown 生成的 HTML 版本。可通过左侧完整目录浏览总览、各学习模块和附录。</p>
       </section>
       {''.join(cards)}
     </main>
@@ -1213,12 +1217,16 @@ def render_index(docs: list[Document], output_root: Path) -> None:
 
 def build_documents(dirs: list[Path], output_root: Path, include_root_docs: bool = False) -> list[Document]:
     docs: list[Document] = []
-    if include_root_docs:
-        for name in ROOT_MARKDOWN_FILES:
+
+    def append_root_documents(names: list[str], module: str) -> None:
+        for name in names:
             source = ROOT / name
             if source.exists():
                 output = (output_root / source.relative_to(ROOT)).with_suffix(".html")
-                docs.append(Document(source=source, output=output, title=title_from_markdown(source), module=ROOT_DOC_MODULE))
+                docs.append(Document(source=source, output=output, title=title_from_markdown(source), module=module))
+
+    if include_root_docs:
+        append_root_documents(OVERVIEW_MARKDOWN_FILES, OVERVIEW_DOC_MODULE)
 
     for module_dir in dirs:
         markdown_files = sorted(module_dir.glob("*.md"), key=sort_key)
@@ -1226,6 +1234,9 @@ def build_documents(dirs: list[Path], output_root: Path, include_root_docs: bool
             rel = source.relative_to(ROOT)
             output = (output_root / rel).with_suffix(".html")
             docs.append(Document(source=source, output=output, title=title_from_markdown(source), module=module_dir.name))
+
+    if include_root_docs:
+        append_root_documents(APPENDIX_MARKDOWN_FILES, APPENDIX_DOC_MODULE)
     return docs
 
 
