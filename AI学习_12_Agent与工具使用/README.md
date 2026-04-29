@@ -12,10 +12,10 @@
 
 **学完能做什么**：
 - 理解 AI Agent 的核心循环：感知 → 推理 → 规划 → 行动 → 反思
-- 掌握 ReAct、Tool Use、Planning 等关键设计模式
+- 理解 ReAct、Tool Use、Planning 等关键设计模式
 - 理解短期/长期/工作记忆的实现方案与工程取舍
 - 了解多 Agent 协作的主流模式与 MCP 协议
-- 能基于 LangGraph / CrewAI / OpenAI Agents SDK 等框架搭建 Agent 系统
+- 知道 LangGraph / CrewAI / OpenAI Agents SDK 等框架大致如何组织 Agent 系统，但不把框架 API 当作主线学习目标
 
 **前置知识**：[04 预训练语言模型演进](../AI学习_04_预训练语言模型演进/README.md)（理解 LLM 的基本能力边界与 In-Context Learning）
 

@@ -191,7 +191,7 @@
 1. 开源追赶    LLaMA → Mistral → DeepSeek → Qwen
    ─────────  开源模型从&quot;能用&quot;到&quot;好用&quot;到&quot;某些场景超越闭源&quot;
 
-2. 推理增强    o1 → o3 → DeepSeek-R1 → QwQ
+2. 推理增强    o1 / DeepSeek-R1 / o3 / o4-mini / QwQ / Qwen3
    ─────────  模型学会&quot;想一想再回答&quot;，推理时间换准确率
 
 3. 多模态融合  GPT-4V → GPT-4o → Gemini → LLaMA 4
@@ -362,7 +362,7 @@ GPT-4o（原生多模态）:
 </ul>
 <p><strong>o3-mini（2025.1）与 o3（2025.4）</strong></p>
 <ul>
-<li>o3 在 ARC-AGI 基准上取得突破性成绩</li>
+<li>o3 在 ARC-AGI 等高难推理基准上表现突出</li>
 <li>o3-mini 先于 o3 正式开放，以更低成本提供强推理能力</li>
 <li>跳过了 o2（据传因商标问题）</li>
 </ul>
@@ -491,8 +491,8 @@ MoE FFN:
 <h2 id="本章小结">本章小结</h2>
 <ol>
 <li><strong>开源追赶</strong>：LLaMA/Mistral/DeepSeek/Qwen 在 2024~2025 接近甚至部分超越闭源</li>
-<li><strong>多模态融合</strong>：GPT-4V(插件) → GPT-4o(原生) → LLaMA 4(开源)，趋势是 early fusion</li>
-<li><strong>推理模型</strong>：o1 → o3/o4-mini → R1 → QwQ/Qwen3，核心是 test-time compute scaling</li>
+<li><strong>多模态融合</strong>：GPT-4V(图像输入) → GPT-4o(原生多模态) → LLaMA 4(开源多模态)，趋势是 early fusion</li>
+<li><strong>推理模型</strong>：o1、DeepSeek-R1、o3/o4-mini、QwQ/Qwen3 共同推动 test-time compute scaling 成为主线</li>
 <li><strong>效率创新</strong>：GQA(共享KV头) → MLA(低秩压缩,省93%) → MoE(稀疏激活)</li>
 <li><strong>上下文与工作流能力扩展</strong>：4K → 128K → 1M → 长期任务、工具使用、计算机操作</li>
 </ol>

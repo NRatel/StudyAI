@@ -158,15 +158,15 @@
 <h1 id="13-长文本与高效架构">13 长文本与高效架构</h1>
 <blockquote><p><strong>内容时效</strong>：截至 2026 年 4 月。本模块涉及快速演进的前沿领域，部分内容可能在 6-12 个月内发生变化。</p></blockquote>
 <h2 id="本模块导读">本模块导读</h2>
-<p><strong>学什么</strong>：当序列长度从 512 增长到 128K 甚至 1M+ 时，标准 Transformer 的 O(n^2) 注意力成为不可逾越的计算与内存瓶颈。本模块系统梳理三大前沿方向——长文本技术（位置编码外推、序列并行、压缩记忆）、MoE 稀疏架构（用更少的计算调动更多的参数）、高效 Transformer 变体（线性注意力、状态空间模型）——帮你理解&quot;如何让大模型既长又快又强&quot;。</p>
-<p><strong>为什么学</strong>：2024-2026 年的大模型竞争焦点已从&quot;参数规模&quot;转向&quot;长上下文 + 高效推理&quot;。GPT-4 Turbo 128K、Claude 200K/1M、Gemini 1M+、Kimi 的长文本能力均依赖本模块讨论的技术。MoE 架构则是 Mixtral、DeepSeek-V2/V3、Qwen-MoE 等模型的核心设计。理解这些技术，才能跟上当下模型架构的演进节奏。</p>
+<p><strong>学什么</strong>：当序列长度从 512 增长到 128K 甚至 1M+ 时，标准 Transformer 的 O(n^2) 注意力会成为主要计算与内存瓶颈。本模块系统梳理三大前沿方向——长文本技术（位置编码外推、序列并行、压缩记忆）、MoE 稀疏架构（用更少的计算调动更多的参数）、高效 Transformer 变体（线性注意力、状态空间模型）——帮你理解&quot;如何让大模型既长又快又强&quot;。</p>
+<p><strong>为什么学</strong>：2024-2026 年的大模型竞争焦点已从&quot;参数规模&quot;转向&quot;长上下文 + 高效推理&quot;。GPT-4 Turbo 128K、Claude 200K/1M、Gemini 1M+、Kimi 等模型体现了本模块讨论的核心问题和技术方向；MoE 架构则是 Mixtral、DeepSeek-V2/V3、Qwen-MoE 等模型的核心设计之一。理解这些技术，才能跟上当下模型架构的演进节奏。</p>
 <p><strong>学完能做什么</strong>：</p>
 <ul>
 <li>理解为什么标准注意力在长序列上不可行，以及 RoPE 扩展（PI/NTK-Aware/YaRN）如何让模型外推到超长上下文</li>
 <li>理解 Ring Attention 如何实现百万级序列长度的分布式计算</li>
 <li>理解 MoE（Mixture of Experts）的路由机制、稀疏激活原理，以及 Switch Transformer / Mixtral / DeepSeekMoE 的设计差异</li>
 <li>理解线性注意力、稀疏注意力、状态空间模型（SSM/Mamba）与标准 Transformer 的本质区别</li>
-<li>能对不同场景（长文档理解、高吞吐推理、大参数小计算）选择合适的架构方案</li>
+<li>能解释不同场景（长文档理解、高吞吐推理、大参数小计算）为什么会选择不同架构方案</li>
 </ul>
 <p><strong>前置知识</strong>：<a href="../AI%E5%AD%A6%E4%B9%A0_03_%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%9C%BA%E5%88%B6%E4%B8%8ETransformer/README.html">03 注意力机制与 Transformer</a>（特别是 Self-Attention、Multi-Head Attention、RoPE 位置编码、FFN 的作用）</p>
 <p><strong>预估学习时间</strong>：4~6 小时</p>

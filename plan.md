@@ -34,7 +34,7 @@
 ### 第二层：核心篇（重点突破）
 | 模块 | 内容概要 | 重要度 | 预估时间 | 依赖 |
 |------|----------|--------|----------|------|
-| **03_注意力机制与Transformer** | Attention 的直觉与数学、Self-Attention、Multi-Head Attention、Transformer 完整架构（编码器+解码器）、位置编码 | ★★★★★ | 10~12h | 02 |
+| **03_注意力机制与Transformer** | Attention 的直觉与数学、Self-Attention、Multi-Head Attention、Transformer 完整架构（编码器+解码器）、位置编码 | ★★★★★ | 10~12h | 01；02 可补读 |
 | **04_预训练语言模型演进** | Word2Vec→ELMo→BERT→GPT 路线、自监督学习范式（MLM/CLM）、微调(Fine-tuning)与迁移学习 | ★★★★★ | 8~10h | 03 |
 | **05_GPT系列深度解析** | GPT-1/2/3/4 及后续演进（截至2026.4）、Scaling Laws、In-Context Learning、涌现能力、Instruct 系列与 RLHF/DPO、GPT-4 之后的重要架构变化 | ★★★★★ | 10~12h | 04 |
 | **06_生成模型与扩散模型** | 生成模型谱系（VAE/GAN/Flow/Diffusion）、扩散模型完整原理（前向噪声过程/反向去噪/训练目标ELBO）、DDPM/DDIM采样、条件生成(Classifier-Free Guidance)、U-Net与DiT架构、Stable Diffusion 完整管线、与 Transformer 路线的关系与融合 | ★★★★★ | 10~12h | 02 |
@@ -122,7 +122,7 @@
 - **模块列表**（按推荐阅读顺序排列），每条包含：
   - `顺序`：推荐阅读位置
   - `模块名`
-  - `定位`（必修、补读、应用核心、工程选读、高级选读）
+  - `定位`（必修、补读、应用核心、系统核心、工程进阶、高级选读）
   - `推荐前置`
   - `读完能回答的问题`
 

@@ -166,7 +166,7 @@
     <main class="page">
       <article class="markdown-body">
 <h1 id="附录代码示例集精选版">附录：代码示例集（精选版）</h1>
-<blockquote><p>本附录只保留少量能显著帮助理解概念的代表性代码、配置和短伪代码示例。主线文档以概念定义、风趣讲解和核心原理为主；代码不构成主线学习要求。</p></blockquote>
+<blockquote><p>本附录只保留少量能显著帮助理解概念的代表性代码、配置和短伪代码示例。主线文档以概念定义、直觉解释和核心原理为主；代码不构成主线学习要求。</p></blockquote>
 <h2 id="使用方式">使用方式</h2>
 <ul>
 <li>先读主线正文，再按需查看对应模块的示例。</li>
@@ -191,8 +191,7 @@
 <li><code>附录_数学基础速览.md</code></li>
 </ol>
 <h2 id="1-ai学习_01_神经网络基础-1_感知机与多层网络">1. AI学习_01_神经网络基础 / 1_感知机与多层网络</h2>
-<blockquote><p>来源：<code>AI学习_01_神经网络基础/1_感知机与多层网络.md</code><br>
-原上下文：3. Python 代码示例</p></blockquote>
+<blockquote><p>来源：<code>AI学习_01_神经网络基础/1_感知机与多层网络.md</code></p></blockquote>
 <pre><code class="language-python">import numpy as np
 
 # ============================================================
@@ -267,8 +266,7 @@ for xi, yi in zip(X, y):
 print(f&quot;\n学到的参数: w={p.w}, b={p.b:.1f}&quot;)
 print(f&quot;决策边界: {p.w[0]:.1f}*x1 + {p.w[1]:.1f}*x2 + ({p.b:.1f}) = 0&quot;)</code></pre>
 <h2 id="2-ai学习_02_经典网络架构-1_cnn卷积神经网络">2. AI学习_02_经典网络架构 / 1_CNN卷积神经网络</h2>
-<blockquote><p>来源：<code>AI学习_02_经典网络架构/1_CNN卷积神经网络.md</code><br>
-原上下文：Python 代码示例</p></blockquote>
+<blockquote><p>来源：<code>AI学习_02_经典网络架构/1_CNN卷积神经网络.md</code></p></blockquote>
 <pre><code class="language-python">import numpy as np
 
 # ============================================================
@@ -341,8 +339,7 @@ for W, Ks, S, P, name in [(28,5,1,0,&quot;LeNet&quot;), (224,7,2,3,&quot;ResNet&
     Y_t = conv2d(np.random.randn(W, W), np.random.randn(Ks, Ks), S, P)
     print(f&quot;  {name}: W={W},K={Ks},S={S},P={P} → O={O} (实际={Y_t.shape[0]}) OK&quot;)</code></pre>
 <h2 id="3-ai学习_03_注意力机制与transformer-1_注意力机制">3. AI学习_03_注意力机制与Transformer / 1_注意力机制</h2>
-<blockquote><p>来源：<code>AI学习_03_注意力机制与Transformer/1_注意力机制.md</code><br>
-原上下文：3. Python 代码示例</p></blockquote>
+<blockquote><p>来源：<code>AI学习_03_注意力机制与Transformer/1_注意力机制.md</code></p></blockquote>
 <pre><code class="language-python">import numpy as np
 
 # ============================================================
@@ -401,8 +398,7 @@ np.set_printoptions(precision=4, suppress=True)
 print(weights)
 print(f&quot;每行之和: {weights.sum(axis=-1)}&quot;)</code></pre>
 <h2 id="4-ai学习_04_预训练语言模型演进-1_词表示的演进">4. AI学习_04_预训练语言模型演进 / 1_词表示的演进</h2>
-<blockquote><p>来源：<code>AI学习_04_预训练语言模型演进/1_词表示的演进.md</code><br>
-原上下文：3. Python 代码示例</p></blockquote>
+<blockquote><p>来源：<code>AI学习_04_预训练语言模型演进/1_词表示的演进.md</code></p></blockquote>
 <pre><code class="language-python">import numpy as np
 
 class SimpleWord2Vec:
@@ -497,8 +493,7 @@ for w in [&#x27;king&#x27;, &#x27;man&#x27;, &#x27;woman&#x27;]:
 print(f&quot;\n类比: king - man + woman ≈ {i2w[cos.argmax()]} (cos={cos.max():.3f})&quot;)
 print(&quot;（小语料结果不稳定，大语料上效果显著）&quot;)</code></pre>
 <h2 id="5-ai学习_05_gpt系列深度解析-1_gpt系列架构演进">5. AI学习_05_GPT系列深度解析 / 1_GPT系列架构演进</h2>
-<blockquote><p>来源：<code>AI学习_05_GPT系列深度解析/1_GPT系列架构演进.md</code><br>
-原上下文：Python 代码示例</p></blockquote>
+<blockquote><p>来源：<code>AI学习_05_GPT系列深度解析/1_GPT系列架构演进.md</code></p></blockquote>
 <pre><code class="language-python">from transformers import GPT2LMHeadModel, GPT2Tokenizer
 import torch
 
@@ -541,8 +536,7 @@ Review: &quot;Terrible waste of time.&quot; Sentiment: Negative
 Review: &quot;I loved every minute of it!&quot; Sentiment:&quot;&quot;&quot;
 print(generate(sentiment_prompt, max_new_tokens=5, temperature=0.1))</code></pre>
 <h2 id="6-ai学习_06_生成模型与扩散模型-1_生成模型谱系">6. AI学习_06_生成模型与扩散模型 / 1_生成模型谱系</h2>
-<blockquote><p>来源：<code>AI学习_06_生成模型与扩散模型/1_生成模型谱系.md</code><br>
-原上下文：3. Python 代码示例</p></blockquote>
+<blockquote><p>来源：<code>AI学习_06_生成模型与扩散模型/1_生成模型谱系.md</code></p></blockquote>
 <pre><code class="language-python">import torch
 import torch.nn as nn
 import torch.optim as optim
@@ -646,8 +640,7 @@ fig.suptitle(&quot;VAE Generated Digits&quot;)
 plt.tight_layout(); plt.savefig(&quot;vae_generated.png&quot;, dpi=100)
 print(&quot;生成结果已保存到 vae_generated.png&quot;)</code></pre>
 <h2 id="7-ai学习_07_大模型训练技术-1_分布式训练">7. AI学习_07_大模型训练技术 / 1_分布式训练</h2>
-<blockquote><p>来源：<code>AI学习_07_大模型训练技术/1_分布式训练.md</code><br>
-原上下文：Python 代码示例</p></blockquote>
+<blockquote><p>来源：<code>AI学习_07_大模型训练技术/1_分布式训练.md</code></p></blockquote>
 <pre><code class="language-python">&quot;&quot;&quot;
 PyTorch DistributedDataParallel 基础示例
 展示数据并行的标准写法
@@ -745,8 +738,7 @@ def train_ddp():
 if __name__ == &quot;__main__&quot;:
     train_ddp()</code></pre>
 <h2 id="8-ai学习_08_大模型推理与部署-1_kvcache与推理优化">8. AI学习_08_大模型推理与部署 / 1_KVCache与推理优化</h2>
-<blockquote><p>来源：<code>AI学习_08_大模型推理与部署/1_KVCache与推理优化.md</code><br>
-原上下文：Python 代码示例</p></blockquote>
+<blockquote><p>来源：<code>AI学习_08_大模型推理与部署/1_KVCache与推理优化.md</code></p></blockquote>
 <pre><code class="language-python">import torch
 import torch.nn as nn
 import time
@@ -824,8 +816,7 @@ print(f&quot;\n理论分析: 无缓存总注意力计算 ~ O(n^2), 有缓存 ~ O
 print(f&quot;KV Cache 最终大小: {kv[0].shape}&quot;)
 # 典型输出: 无缓存约 2~3s, 有缓存约 0.3s, 加速约 6~10x</code></pre>
 <h2 id="9-ai学习_09_rag与应用架构-1_rag完整流程">9. AI学习_09_RAG与应用架构 / 1_RAG完整流程</h2>
-<blockquote><p>来源：<code>AI学习_09_RAG与应用架构/1_RAG完整流程.md</code><br>
-原上下文：3. Python 代码实战</p></blockquote>
+<blockquote><p>来源：<code>AI学习_09_RAG与应用架构/1_RAG完整流程.md</code></p></blockquote>
 <pre><code class="language-python">&quot;&quot;&quot;
 最小 RAG 系统：不依赖上层框架，理解每一步在做什么。
 依赖: pip install faiss-cpu sentence-transformers
@@ -925,8 +916,7 @@ print(f&quot;\n=== 生成的 Prompt（前 400 字符）===\n{prompt[:400]}...&qu
 # )
 # print(response.choices[0].message.content)</code></pre>
 <h2 id="10-ai学习_10_多模态模型-1_vit与clip">10. AI学习_10_多模态模型 / 1_ViT与CLIP</h2>
-<blockquote><p>来源：<code>AI学习_10_多模态模型/1_ViT与CLIP.md</code><br>
-原上下文：3. Python 代码实战</p></blockquote>
+<blockquote><p>来源：<code>AI学习_10_多模态模型/1_ViT与CLIP.md</code></p></blockquote>
 <pre><code class="language-python">&quot;&quot;&quot;
 简化版 ViT：理解 Patch Embedding → Transformer → 分类 的完整流程。
 依赖: pip install torch torchvision
@@ -1042,8 +1032,7 @@ if __name__ == &quot;__main__&quot;:
     print(f&quot;\nPatch Embedding 输出: {patches.shape}&quot;)  # (2, 196, 384)
     print(f&quot;Patch 数量: {model.patch_embed.num_patches}&quot;)  # 196 = 14*14</code></pre>
 <h2 id="11-ai学习_11_推理与思维链-1_思维链提示">11. AI学习_11_推理与思维链 / 1_思维链提示</h2>
-<blockquote><p>来源：<code>AI学习_11_推理与思维链/1_思维链提示.md</code><br>
-原上下文：3.3 Python 实践</p></blockquote>
+<blockquote><p>来源：<code>AI学习_11_推理与思维链/1_思维链提示.md</code></p></blockquote>
 <pre><code class="language-python">&quot;&quot;&quot;
 Zero-shot CoT 实践示例
 使用 OpenAI API 对比标准回答和 CoT 回答
@@ -1092,8 +1081,7 @@ print(zero_shot_cot(question))
 # 周三：90 / 2 - 10 = 35 本
 # 总计：45 + 90 + 35 = 170 本</code></pre>
 <h2 id="12-ai学习_12_agent与工具使用-1_agent框架原理">12. AI学习_12_Agent与工具使用 / 1_Agent框架原理</h2>
-<blockquote><p>来源：<code>AI学习_12_Agent与工具使用/1_Agent框架原理.md</code><br>
-原上下文：3. Python 代码实践</p></blockquote>
+<blockquote><p>来源：<code>AI学习_12_Agent与工具使用/1_Agent框架原理.md</code></p></blockquote>
 <pre><code class="language-python">&quot;&quot;&quot;
 最小 ReAct Agent 实现
 不依赖任何 Agent 框架，仅使用 OpenAI API，展示核心循环
@@ -1221,8 +1209,7 @@ if __name__ == &quot;__main__&quot;:
     answer = run_react_agent(&quot;Python 3.12 有哪些新特性？帮我算一下 3.12 * 100 是多少。&quot;)
     print(f&quot;\n最终答案：{answer}&quot;)</code></pre>
 <h2 id="13-ai学习_13_长文本与高效架构-1_长文本技术">13. AI学习_13_长文本与高效架构 / 1_长文本技术</h2>
-<blockquote><p>来源：<code>AI学习_13_长文本与高效架构/1_长文本技术.md</code><br>
-原上下文：Python 代码示例</p></blockquote>
+<blockquote><p>来源：<code>AI学习_13_长文本与高效架构/1_长文本技术.md</code></p></blockquote>
 <pre><code class="language-python">import torch
 import math
 
@@ -1290,8 +1277,7 @@ for idx in [0, dim//8, dim//4, 3*dim//8, dim//2-1]:
     ratio_ntk = angles_ntk[-1, idx].item() / angles_train[-1, idx].item()
     print(f&quot;  {idx:&lt;6} {ratio_std:&lt;12.2f} {ratio_pi:&lt;12.2f} {ratio_ntk:&lt;12.2f}&quot;)</code></pre>
 <h2 id="14-附录_数学基础速览-11-向量与矩阵运算">14. . / 附录_数学基础速览 / 1.1 向量与矩阵运算</h2>
-<blockquote><p>来源：<code>附录_数学基础速览.md</code><br>
-原上下文：1.1 向量与矩阵运算</p></blockquote>
+<blockquote><p>来源：<code>附录_数学基础速览.md</code></p></blockquote>
 <pre><code class="language-python">import numpy as np
 
 # === 向量 ===
