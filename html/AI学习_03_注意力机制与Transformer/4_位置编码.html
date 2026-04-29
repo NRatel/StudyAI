@@ -147,6 +147,7 @@
 </details>
 <details>
 <summary>附录</summary>
+<a class="doc-link" href="../%E9%99%84%E5%BD%95_%E6%9C%AF%E8%AF%AD%E9%80%9F%E6%9F%A5.html">附录_术语速查<small>附录：术语速查</small></a>
 <a class="doc-link" href="../%E9%99%84%E5%BD%95_%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%80%E9%80%9F%E8%A7%88.html">附录_数学基础速览<small>附录：数学基础速览</small></a>
 <a class="doc-link" href="../%E9%99%84%E5%BD%95_%E4%BB%A3%E7%A0%81%E7%A4%BA%E4%BE%8B%E9%9B%86.html">附录_代码示例集<small>附录：代码示例集（精选版）</small></a>
 </details></nav><div class="sidebar-rule"></div><details class="page-toc"><summary>当前页目录</summary><a class="depth-2" href="#1-self-attention-为什么需要位置">1. Self-Attention 为什么需要位置</a>
@@ -168,7 +169,7 @@
     <main class="page">
       <article class="markdown-body">
 <h1 id="位置编码">位置编码</h1>
-<blockquote><p><strong>前置知识</strong>：已学完 <a href="3_Transformer%E6%9E%B6%E6%9E%84.html">Transformer 架构</a>，理解 Self-Attention 的计算过程（$\text{Attention}(Q,K,V) = \text{softmax}(\frac{QK^T}{\sqrt{d_k}})V$）、Multi-Head Attention、残差连接和 Layer Norm。数学符号不熟悉可查阅 <a href="../%E9%99%84%E5%BD%95_%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%80%E9%80%9F%E8%A7%88.html">附录：数学基础速览</a>。<br>
+<blockquote><p><strong>前置知识</strong>：已读过 <a href="3_Transformer%E6%9E%B6%E6%9E%84.html">Transformer 架构</a>，理解 Self-Attention 的计算过程（$\text{Attention}(Q,K,V) = \text{softmax}(\frac{QK^T}{\sqrt{d_k}})V$）、Multi-Head Attention、残差连接和 Layer Norm。数学符号不熟悉可查阅 <a href="../%E9%99%84%E5%BD%95_%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%80%E9%80%9F%E8%A7%88.html">附录：数学基础速览</a>。<br>
 <strong>本节目标</strong>：理解为什么 Transformer 需要位置编码，掌握正弦位置编码、可学习位置编码、RoPE 的核心思想，并理解位置编码与长文本能力的关系。</p></blockquote>
 <hr>
 <h2 id="1-self-attention-为什么需要位置">1. Self-Attention 为什么需要位置</h2>

@@ -157,7 +157,7 @@ Transformer 是实现这个框架的一种强大架构
    适合补充 CNN 和视觉架构直觉。
 
 2. **The Illustrated Transformer — Jay Alammar**
-   适合在学完 Seq2Seq 和注意力后，建立 Transformer 全局图像。
+   适合在读完 Seq2Seq 和注意力后，建立 Transformer 全局图像。
 
 3. **Dive into Deep Learning**
    覆盖 CNN、RNN、LSTM、注意力与 Transformer，可作为系统补充材料。

@@ -299,7 +299,7 @@ TTC Scaling 理论 (2024): 系统研究推理时计算的最优分配
 ### 4. Hugging Face Open Reasoning Leaderboard
 
 - **链接**：https://huggingface.co/spaces/open-llm-leaderboard/
-- **推荐理由**：实时追踪各推理模型在 AIME、MATH、代码等基准上的表现。适合在学完本模块后，了解当前各模型的真实水平和排名变化。
+- **推荐理由**：实时追踪各推理模型在 AIME、MATH、代码等基准上的表现。适合在读完本模块后，了解当前各模型的真实水平和排名变化。
 
 ### 5. Qwen3 技术博客
 

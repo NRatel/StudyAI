@@ -1,6 +1,8 @@
 # AI学习：13 长文本与高效架构
 
 > **内容时效**：截至 2026 年 4 月。本模块涉及快速演进的前沿领域，部分内容可能在 6-12 个月内发生变化。
+>
+> 本模块是高级选读。读的时候先抓住长上下文、MoE 和高效注意力为什么出现：它们分别在优化长度、容量和计算效率，不需要掌握每个变体的数学细节。
 
 ## 本模块导读
 
@@ -8,18 +10,18 @@
 
 **为什么学**：2024-2026 年的大模型竞争焦点已从"参数规模"转向"长上下文 + 高效推理"。GPT-4 Turbo 128K、Claude 200K/1M、Gemini 1M+、Kimi 等模型体现了本模块讨论的核心问题和技术方向；MoE 架构则是 Mixtral、DeepSeek-V2/V3、Qwen-MoE 等模型的核心设计之一。理解这些技术，才能跟上当下模型架构的演进节奏。
 
-**学完能做什么**：
+**读完能看懂的主线**：
 - 理解为什么标准注意力在长序列上不可行，以及 RoPE 扩展（PI/NTK-Aware/YaRN）如何让模型外推到超长上下文
-- 理解 Ring Attention 如何实现百万级序列长度的分布式计算
-- 理解 MoE（Mixture of Experts）的路由机制、稀疏激活原理，以及 Switch Transformer / Mixtral / DeepSeekMoE 的设计差异
+- 理解为什么长序列需要序列并行，以及 Ring Attention 这类方法大致在解决什么
+- 理解 MoE（Mixture of Experts）的路由机制、稀疏激活原理，以及不同 MoE 模型大致在取舍什么
 - 理解线性注意力、稀疏注意力、状态空间模型（SSM/Mamba）与标准 Transformer 的本质区别
 - 能解释不同场景（长文档理解、高吞吐推理、大参数小计算）为什么会选择不同架构方案
 
 **前置知识**：[03 注意力机制与 Transformer](../AI学习_03_注意力机制与Transformer/README.md)（特别是 Self-Attention、Multi-Head Attention、RoPE 位置编码、FFN 的作用）
 
-**预估学习时间**：4~6 小时
+**预估阅读时间**：4~6 小时
 
-**模块定位**：高级选读 ★★★——建议先完成 GPT 主线和推理部署模块，再把本模块作为架构前沿补充。了解主要原理和设计思想即可，不要求推导每一个数学细节。
+**模块建议**：高级选读 ★★★——建议先完成 GPT 主线和推理部署模块，再把本模块作为架构前沿补充。主要看原理和设计思想，不要求推导每一个数学细节。
 
 ## 目录
 
@@ -27,7 +29,7 @@
 |------|------|------|
 | 1 | [长文本技术](1_长文本技术.md) | 为什么长文本难（O(n^2) 瓶颈、位置编码外推问题）、RoPE 扩展方案（PI / NTK-Aware / YaRN）、Ring Attention（序列并行）、Infini-Attention（压缩记忆） |
 | 2 | [MoE架构](2_MoE架构.md) | Mixture of Experts 原理（路由机制、稀疏激活）、Switch Transformer、Mixtral、DeepSeekMoE、负载均衡、MoE 的优缺点 |
-| 3 | [高效Transformer](3_高效Transformer.md) | 线性注意力（Performer）、稀疏注意力（Longformer / BigBird）、状态空间模型 SSM（S4 / Mamba / Mamba-2）、RWKV、与标准 Transformer 的全面对比 |
+| 3 | [高效Transformer](3_高效Transformer.md) | 线性注意力、稀疏注意力、状态空间模型 SSM/Mamba、RWKV，以及它们与标准 Transformer 的核心取舍 |
 | - | [论文与FAQ](论文与FAQ.md) | 关键论文（Reformer / Longformer / Switch / Mamba / Infini-Attention 等）、常见误区、延伸资源 |
 
 ## 本模块三条线的关系
@@ -40,7 +42,7 @@
 >
 > 三者是互补关系，可以同时使用：例如 DeepSeek-V3 同时使用了 MoE（模型容量）+ RoPE 扩展（长序列）+ FlashAttention（计算效率）。
 
-## 学完本模块，你应该能回答
+## 读完能解释
 
 1. 标准 Attention 在长文本上为什么会遇到 O(n^2) 计算与显存瓶颈？
 2. RoPE 扩展、Ring Attention、压缩记忆分别在解决长上下文的哪个问题？
@@ -48,7 +50,7 @@
 4. 线性注意力、稀疏注意力、SSM/Mamba 与标准 Transformer 的取舍是什么？
 5. 长文本、MoE、高效注意力三类技术可以如何组合？
 
-## 学习建议
+## 阅读建议
 
 1. **先读文件 1**：长文本技术是最直观的切入点——你已经理解了标准注意力的 O(n^2) 瓶颈，自然会问"怎么办"
 2. **再读文件 2**：MoE 架构解决的是另一个维度的效率问题——"参数量大但计算量小"

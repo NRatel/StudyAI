@@ -147,22 +147,24 @@
 </details>
 <details>
 <summary>附录</summary>
+<a class="doc-link" href="../%E9%99%84%E5%BD%95_%E6%9C%AF%E8%AF%AD%E9%80%9F%E6%9F%A5.html">附录_术语速查<small>附录：术语速查</small></a>
 <a class="doc-link" href="../%E9%99%84%E5%BD%95_%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%80%E9%80%9F%E8%A7%88.html">附录_数学基础速览<small>附录：数学基础速览</small></a>
 <a class="doc-link" href="../%E9%99%84%E5%BD%95_%E4%BB%A3%E7%A0%81%E7%A4%BA%E4%BE%8B%E9%9B%86.html">附录_代码示例集<small>附录：代码示例集（精选版）</small></a>
 </details></nav><div class="sidebar-rule"></div><details class="page-toc"><summary>当前页目录</summary><a class="depth-2" href="#本模块导读">本模块导读</a>
 <a class="depth-2" href="#目录">目录</a>
-<a class="depth-2" href="#学完本模块你应该能回答">学完本模块，你应该能回答</a>
-<a class="depth-2" href="#学习建议">学习建议</a>
+<a class="depth-2" href="#读完能解释">读完能解释</a>
+<a class="depth-2" href="#阅读建议">阅读建议</a>
 <a class="depth-2" href="#本模块在整体知识体系中的位置">本模块在整体知识体系中的位置</a></details></aside>
     <div class="toc-backdrop" data-sidebar-backdrop></div>
     <main class="page">
       <article class="markdown-body">
 <h1 id="09-rag与应用架构">09 RAG与应用架构</h1>
+<blockquote><p>读本模块时，先抓住大模型为什么需要外部知识，以及 RAG 的检索、重排、生成、评估分别在解决什么问题。不需要直接搭建生产级知识库。</p></blockquote>
 <h2 id="本模块导读">本模块导读</h2>
 <p><strong>学什么</strong>：检索增强生成（Retrieval-Augmented Generation, RAG）——当前将大语言模型接入外部知识的核心架构。本模块从&quot;为什么需要 RAG&quot;出发，贯穿索引构建、向量检索、高级检索策略，直到完整 RAG 系统的设计思路。</p>
 <p><strong>RAG 与长上下文的关系</strong>：RAG 与长上下文窗口不是替代关系，而是互补关系。RAG 负责从海量数据（可能是百万篇文档）中<strong>检索</strong>出少量相关内容，长上下文负责在这些检索结果之间进行<strong>推理和综合</strong>。即使模型支持 128K 甚至更长的上下文，也不可能把整个知识库塞进去——RAG 负责&quot;找到&quot;，长上下文负责&quot;理解&quot;，两者配合效果最好。</p>
 <p><strong>为什么学</strong>：大语言模型有三个根本性弱点——幻觉（编造不存在的事实）、时效性（训练数据有截止日期）、私有数据隔离（无法访问企业内部知识）。RAG 是工业界解决这三个问题的主流方案，也是当前 AI 应用最密集的工程方向。无论你要构建智能客服、企业知识库、代码助手还是研究工具，RAG 都是核心技术栈。</p>
-<p><strong>学完能做什么</strong>：</p>
+<p><strong>读完能看懂的主线</strong>：</p>
 <ul>
 <li>理解 RAG 的完整流程：文档索引构建 → 语义检索 → 增强生成</li>
 <li>理解 Embedding、向量数据库、Chunking 策略分别影响什么</li>
@@ -171,10 +173,10 @@
 <li>理解 RAG 系统的主要设计取舍，以及 Agentic RAG 的演进方向</li>
 </ul>
 <p><strong>前置知识</strong>：<a href="../AI%E5%AD%A6%E4%B9%A0_04_%E9%A2%84%E8%AE%AD%E7%BB%83%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%BC%94%E8%BF%9B/README.html">04 预训练语言模型演进</a>（需理解 Encoder/Decoder 架构、Embedding 概念、预训练范式）</p>
-<p><strong>预估学习时间</strong>：6~8 小时</p>
+<p><strong>预估阅读时间</strong>：6~8 小时</p>
 <h2 id="目录">目录</h2>
 <div class="table-wrap"><table><thead><tr><th>序号</th><th>文件</th><th>内容</th></tr></thead><tbody><tr><td>1</td><td><a href="1_RAG%E5%AE%8C%E6%95%B4%E6%B5%81%E7%A8%8B.html">RAG完整流程</a></td><td>RAG 三阶段（索引→检索→生成）、Naive RAG vs Advanced RAG</td></tr><tr><td>2</td><td><a href="2_Embedding%E4%B8%8E%E5%90%91%E9%87%8F%E6%A3%80%E7%B4%A2.html">Embedding与向量检索</a></td><td>Embedding 模型、向量数据库、相似度搜索、Chunking 策略</td></tr><tr><td>3</td><td><a href="3_%E9%AB%98%E7%BA%A7RAG%E6%8A%80%E6%9C%AF.html">高级RAG技术</a></td><td>Query 改写/HyDE、Reranker、混合检索、Agentic RAG、评估方法</td></tr><tr><td>-</td><td><a href="%E8%AE%BA%E6%96%87%E4%B8%8EFAQ.html">论文与FAQ</a></td><td>关键论文、常见误区、延伸资源</td></tr></tbody></table></div>
-<h2 id="学完本模块你应该能回答">学完本模块，你应该能回答</h2>
+<h2 id="读完能解释">读完能解释</h2>
 <ol>
 <li>RAG 为什么能缓解幻觉、时效性和私有知识问题？</li>
 <li>一个 RAG 系统里，索引、检索、重排、生成分别影响什么？</li>
@@ -182,7 +184,7 @@
 <li>Embedding 相似度高为什么不等于答案一定好？</li>
 <li>长上下文和 RAG 是替代关系，还是互补关系？</li>
 </ol>
-<h2 id="学习建议">学习建议</h2>
+<h2 id="阅读建议">阅读建议</h2>
 <p>按序号 1→3 顺序阅读，每个文件都会从具体问题切入，再讲清关键机制，最后澄清常见误区。</p>
 <ul>
 <li><strong>第 1 节</strong>是全局地图——先建立对 RAG 全流程的整体认知</li>

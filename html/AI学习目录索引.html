@@ -147,6 +147,7 @@
 </details>
 <details>
 <summary>附录</summary>
+<a class="doc-link" href="%E9%99%84%E5%BD%95_%E6%9C%AF%E8%AF%AD%E9%80%9F%E6%9F%A5.html">附录_术语速查<small>附录：术语速查</small></a>
 <a class="doc-link" href="%E9%99%84%E5%BD%95_%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%80%E9%80%9F%E8%A7%88.html">附录_数学基础速览<small>附录：数学基础速览</small></a>
 <a class="doc-link" href="%E9%99%84%E5%BD%95_%E4%BB%A3%E7%A0%81%E7%A4%BA%E4%BE%8B%E9%9B%86.html">附录_代码示例集<small>附录：代码示例集（精选版）</small></a>
 </details></nav><div class="sidebar-rule"></div><details class="page-toc"><summary>当前页目录</summary><a class="depth-2" href="#四条学习路径">四条学习路径</a>
@@ -161,10 +162,10 @@
     <main class="page">
       <article class="markdown-body">
 <h1 id="ai-及大模型原理-学习目录索引">AI 及大模型原理 — 学习目录索引</h1>
-<p>这份索引的作用不是催你把所有章节一次性读完，而是帮你选路线。AI 原理很大，合理的读法是：先抓主干，再按兴趣和问题回补。</p>
+<p>这份索引的作用不是催你把所有章节一次性读完，而是帮你选路线。AI 原理很大，合理的读法是：先抓主干，再按兴趣和问题回补。读每个概念时优先问四件事：它是什么，为什么出现，解决什么问题，和前后技术有什么关系。</p>
 <h2 id="四条学习路径">四条学习路径</h2>
 <h3 id="路径-a核心原理快速路径">路径 A：核心原理快速路径</h3>
-<p>目标：先理解大语言模型到底怎么工作。</p>
+<p>目标：先抓住大语言模型到底怎么工作。</p>
 <pre><code>01 神经网络基础
   → 03 注意力机制与 Transformer
   → 04 预训练语言模型演进
@@ -180,7 +181,7 @@
   → 05 GPT 系列深度解析
   → 06 生成模型与扩散模型
   → 10 多模态模型</code></pre>
-<p>适合：希望系统理解“AI 模型谱系”的学习者，尤其是想同时理解文本、图像、视频生成路线的人。</p>
+<p>适合：希望把“AI 模型谱系”串起来的人，尤其是想同时看懂文本、图像、视频生成路线的人。</p>
 <h3 id="路径-c完整大模型系统路径">路径 C：完整大模型系统路径</h3>
 <p>目标：理解大模型从训练、推理、接入外部知识到工具行动的完整系统链路。</p>
 <pre><code>01 神经网络基础
@@ -210,17 +211,18 @@
   → 13 长文本与高效架构</code></pre>
 <p>适合：希望系统补齐全部 AI 与大模型知识体系的人。13 属于高级选读，建议最后阅读。</p>
 <h2 id="模块索引">模块索引</h2>
-<div class="table-wrap"><table><thead><tr><th>顺序</th><th>模块</th><th>定位</th><th>推荐前置</th><th>读完能回答</th></tr></thead><tbody><tr><td>01</td><td><a href="AI%E5%AD%A6%E4%B9%A0_01_%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/README.html">神经网络基础</a></td><td>必修地基</td><td>无</td><td>神经网络如何从输入、损失、梯度和参数更新中“学会”东西？</td></tr><tr><td>02</td><td><a href="AI%E5%AD%A6%E4%B9%A0_02_%E7%BB%8F%E5%85%B8%E7%BD%91%E7%BB%9C%E6%9E%B6%E6%9E%84/README.html">经典网络架构</a></td><td>背景桥梁 / 推荐补读</td><td>01</td><td>CNN、RNN、LSTM、Seq2Seq 分别在解决什么问题？</td></tr><tr><td>03</td><td><a href="AI%E5%AD%A6%E4%B9%A0_03_%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%9C%BA%E5%88%B6%E4%B8%8ETransformer/README.html">注意力机制与 Transformer</a></td><td>核心必修</td><td>01；02 可补读</td><td>Self-Attention 为什么能替代 RNN？Transformer 为什么成为大模型底座？</td></tr><tr><td>04</td><td><a href="AI%E5%AD%A6%E4%B9%A0_04_%E9%A2%84%E8%AE%AD%E7%BB%83%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%BC%94%E8%BF%9B/README.html">预训练语言模型演进</a></td><td>核心必修</td><td>03</td><td>BERT 和 GPT 为什么走向不同路线？预训练为什么有效？</td></tr><tr><td>05</td><td><a href="AI%E5%AD%A6%E4%B9%A0_05_GPT%E7%B3%BB%E5%88%97%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90/README.html">GPT 系列深度解析</a></td><td>核心必修</td><td>04</td><td>GPT 如何从语言模型变成通用能力平台？Scaling Laws、涌现、对齐各自解决什么问题？</td></tr><tr><td>06</td><td><a href="AI%E5%AD%A6%E4%B9%A0_06_%E7%94%9F%E6%88%90%E6%A8%A1%E5%9E%8B%E4%B8%8E%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B/README.html">生成模型与扩散模型</a></td><td>完整模型原理路径</td><td>02</td><td>图像/视频生成为什么常用扩散模型？前向加噪和反向去噪到底在做什么？</td></tr><tr><td>07</td><td><a href="AI%E5%AD%A6%E4%B9%A0_07_%E5%A4%A7%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83%E6%8A%80%E6%9C%AF/README.html">大模型训练技术</a></td><td>系统核心 / 工程进阶</td><td>05</td><td>一个大模型为什么不能“直接单卡训练”？分布式训练、混合精度、数据工程各解决什么瓶颈？</td></tr><tr><td>08</td><td><a href="AI%E5%AD%A6%E4%B9%A0_08_%E5%A4%A7%E6%A8%A1%E5%9E%8B%E6%8E%A8%E7%90%86%E4%B8%8E%E9%83%A8%E7%BD%B2/README.html">大模型推理与部署</a></td><td>核心工程</td><td>05</td><td>模型生成为什么慢？KV Cache、量化、vLLM 这些技术为什么能降成本？</td></tr><tr><td>09</td><td><a href="AI%E5%AD%A6%E4%B9%A0_09_RAG%E4%B8%8E%E5%BA%94%E7%94%A8%E6%9E%B6%E6%9E%84/README.html">RAG 与应用架构</a></td><td>应用核心</td><td>04</td><td>为什么有了长上下文还需要 RAG？检索、重排、生成各自影响什么？</td></tr><tr><td>10</td><td><a href="AI%E5%AD%A6%E4%B9%A0_10_%E5%A4%9A%E6%A8%A1%E6%80%81%E6%A8%A1%E5%9E%8B/README.html">多模态模型</a></td><td>前沿主线</td><td>05、06</td><td>图像、视频、语音如何接入语言模型？CLIP、ViT、扩散模型分别扮演什么角色？</td></tr><tr><td>11</td><td><a href="AI%E5%AD%A6%E4%B9%A0_11_%E6%8E%A8%E7%90%86%E4%B8%8E%E6%80%9D%E7%BB%B4%E9%93%BE/README.html">推理与思维链</a></td><td>前沿主线</td><td>05</td><td>为什么 CoT 能提升推理？推理模型和普通聊天模型的差别在哪里？</td></tr><tr><td>12</td><td><a href="AI%E5%AD%A6%E4%B9%A0_12_Agent%E4%B8%8E%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/README.html">Agent 与工具使用</a></td><td>应用前沿</td><td>04；建议了解 11</td><td>Agent 为什么不只是多轮聊天？工具调用、记忆、规划分别解决什么问题？</td></tr><tr><td>13</td><td><a href="AI%E5%AD%A6%E4%B9%A0_13_%E9%95%BF%E6%96%87%E6%9C%AC%E4%B8%8E%E9%AB%98%E6%95%88%E6%9E%B6%E6%9E%84/README.html">长文本与高效架构</a></td><td>高级选读</td><td>03；建议先读 05、08</td><td>长上下文、MoE、Mamba/SSM 为什么出现？它们各自优化的是长度、容量还是计算效率？</td></tr></tbody></table></div>
+<div class="table-wrap"><table><thead><tr><th>顺序</th><th>模块</th><th>定位</th><th>推荐前置</th><th>能解释的问题</th></tr></thead><tbody><tr><td>01</td><td><a href="AI%E5%AD%A6%E4%B9%A0_01_%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/README.html">神经网络基础</a></td><td>必修地基</td><td>无</td><td>神经网络如何从输入、损失、梯度和参数更新中“学会”东西？</td></tr><tr><td>02</td><td><a href="AI%E5%AD%A6%E4%B9%A0_02_%E7%BB%8F%E5%85%B8%E7%BD%91%E7%BB%9C%E6%9E%B6%E6%9E%84/README.html">经典网络架构</a></td><td>背景桥梁 / 推荐补读</td><td>01</td><td>CNN、RNN、LSTM、Seq2Seq 分别在解决什么问题？</td></tr><tr><td>03</td><td><a href="AI%E5%AD%A6%E4%B9%A0_03_%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%9C%BA%E5%88%B6%E4%B8%8ETransformer/README.html">注意力机制与 Transformer</a></td><td>核心必修</td><td>01；02 可补读</td><td>Self-Attention 为什么能替代 RNN？Transformer 为什么成为大模型底座？</td></tr><tr><td>04</td><td><a href="AI%E5%AD%A6%E4%B9%A0_04_%E9%A2%84%E8%AE%AD%E7%BB%83%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%BC%94%E8%BF%9B/README.html">预训练语言模型演进</a></td><td>核心必修</td><td>03</td><td>BERT 和 GPT 为什么走向不同路线？预训练为什么有效？</td></tr><tr><td>05</td><td><a href="AI%E5%AD%A6%E4%B9%A0_05_GPT%E7%B3%BB%E5%88%97%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90/README.html">GPT 系列深度解析</a></td><td>核心必修</td><td>04</td><td>GPT 如何从语言模型变成通用能力平台？Scaling Laws、涌现、对齐各自解决什么问题？</td></tr><tr><td>06</td><td><a href="AI%E5%AD%A6%E4%B9%A0_06_%E7%94%9F%E6%88%90%E6%A8%A1%E5%9E%8B%E4%B8%8E%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B/README.html">生成模型与扩散模型</a></td><td>完整模型原理路径</td><td>02</td><td>图像/视频生成为什么常用扩散模型？前向加噪和反向去噪到底在做什么？</td></tr><tr><td>07</td><td><a href="AI%E5%AD%A6%E4%B9%A0_07_%E5%A4%A7%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83%E6%8A%80%E6%9C%AF/README.html">大模型训练技术</a></td><td>系统核心 / 工程进阶</td><td>05</td><td>一个大模型为什么不能“直接单卡训练”？分布式训练、混合精度、数据工程各解决什么瓶颈？</td></tr><tr><td>08</td><td><a href="AI%E5%AD%A6%E4%B9%A0_08_%E5%A4%A7%E6%A8%A1%E5%9E%8B%E6%8E%A8%E7%90%86%E4%B8%8E%E9%83%A8%E7%BD%B2/README.html">大模型推理与部署</a></td><td>核心工程</td><td>05</td><td>模型生成为什么慢？KV Cache、量化、vLLM 这些技术为什么能降成本？</td></tr><tr><td>09</td><td><a href="AI%E5%AD%A6%E4%B9%A0_09_RAG%E4%B8%8E%E5%BA%94%E7%94%A8%E6%9E%B6%E6%9E%84/README.html">RAG 与应用架构</a></td><td>应用核心</td><td>04</td><td>为什么有了长上下文还需要 RAG？检索、重排、生成各自影响什么？</td></tr><tr><td>10</td><td><a href="AI%E5%AD%A6%E4%B9%A0_10_%E5%A4%9A%E6%A8%A1%E6%80%81%E6%A8%A1%E5%9E%8B/README.html">多模态模型</a></td><td>前沿主线</td><td>05、06</td><td>图像、视频、语音如何接入语言模型？CLIP、ViT、扩散模型分别扮演什么角色？</td></tr><tr><td>11</td><td><a href="AI%E5%AD%A6%E4%B9%A0_11_%E6%8E%A8%E7%90%86%E4%B8%8E%E6%80%9D%E7%BB%B4%E9%93%BE/README.html">推理与思维链</a></td><td>前沿主线</td><td>05</td><td>为什么 CoT 能提升推理？推理模型和普通聊天模型的差别在哪里？</td></tr><tr><td>12</td><td><a href="AI%E5%AD%A6%E4%B9%A0_12_Agent%E4%B8%8E%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/README.html">Agent 与工具使用</a></td><td>应用前沿</td><td>04；建议了解 11</td><td>Agent 为什么不只是多轮聊天？工具调用、记忆、规划分别解决什么问题？</td></tr><tr><td>13</td><td><a href="AI%E5%AD%A6%E4%B9%A0_13_%E9%95%BF%E6%96%87%E6%9C%AC%E4%B8%8E%E9%AB%98%E6%95%88%E6%9E%B6%E6%9E%84/README.html">长文本与高效架构</a></td><td>高级选读</td><td>03；建议先读 05、08</td><td>长上下文、MoE、Mamba/SSM 为什么出现？它们各自优化的是长度、容量还是计算效率？</td></tr></tbody></table></div>
 <h2 id="推荐节奏">推荐节奏</h2>
-<div class="table-wrap"><table><thead><tr><th>目标</th><th>建议投入</th><th>适合人群</th></tr></thead><tbody><tr><td>核心原理快速路径</td><td>约 36~44 小时</td><td>想先理解神经网络、Transformer、预训练和 GPT 主线的学习者</td></tr><tr><td>完整模型原理路径</td><td>约 60~74 小时</td><td>想完整理解语言、生成、多模态模型谱系的人</td></tr><tr><td>完整大模型系统路径</td><td>约 64~82 小时</td><td>想理解训练、推理、RAG、推理模型和 Agent 的学习者</td></tr><tr><td>全量学习路径</td><td>约 92~118 小时</td><td>想系统补齐全部模块的人</td></tr></tbody></table></div>
+<div class="table-wrap"><table><thead><tr><th>目标</th><th>建议投入</th><th>适合人群</th></tr></thead><tbody><tr><td>核心原理快速路径</td><td>约 36~44 小时</td><td>想先了解神经网络、Transformer、预训练和 GPT 主线的学习者</td></tr><tr><td>完整模型原理路径</td><td>约 60~74 小时</td><td>想完整了解语言、生成、多模态模型谱系的人</td></tr><tr><td>完整大模型系统路径</td><td>约 64~82 小时</td><td>想了解训练、推理、RAG、推理模型和 Agent 的学习者</td></tr><tr><td>全量学习路径</td><td>约 92~118 小时</td><td>想系统浏览全部模块的人</td></tr></tbody></table></div>
 <p>数学和代码都不建议抢跑：</p>
 <ul>
+<li><a href="%E9%99%84%E5%BD%95_%E6%9C%AF%E8%AF%AD%E9%80%9F%E6%9F%A5.html">术语速查</a>：看到陌生概念时先查一句话定义和常见误解。</li>
 <li><a href="%E9%99%84%E5%BD%95_%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%80%E9%80%9F%E8%A7%88.html">数学基础速览</a>：遇到向量、梯度、概率、熵这些概念时再查。</li>
 <li><a href="%E9%99%84%E5%BD%95_%E4%BB%A3%E7%A0%81%E7%A4%BA%E4%BE%8B%E9%9B%86.html">代码示例集</a>：概念读通后，用来验证直觉，不作为主线学习材料。</li>
 <li><a href="%E6%95%B4%E4%BD%93%E7%9F%A5%E8%AF%86%E4%BD%93%E7%B3%BB%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE.html">整体知识体系思维导图</a>：读完几个模块后回看，帮助把知识点挂回全局。</li>
 </ul>
 <h2 id="怎么判断自己该继续还是回补">怎么判断自己该继续还是回补</h2>
-<p>读每个模块时，只要能回答模块 README 里的“学完本模块，你应该能回答”问题，就可以继续往后走。不必追求把每个公式、每个工程细节都一次性吃透。</p>
+<p>读每个模块时，只要能用自己的话解释模块 README 里的关键问题，就可以继续往后走。不必追求把每个公式、每个工程细节都一次性吃透。</p>
 <p>如果连续两节都出现“术语认识但关系不清”的感觉，先回到最近的前置模块补地基。AI 学习最怕的不是慢，而是带着一串半懂的词继续往前冲。</p>
       </article>
       <nav class="doc-nav"><a href="README.html">← AI 及大模型原理系统学习</a><a href="%E6%95%B4%E4%BD%93%E7%9F%A5%E8%AF%86%E4%BD%93%E7%B3%BB%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE.html">AI 及大模型原理 — 整体知识体系思维导图 →</a></nav>

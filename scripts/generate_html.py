@@ -29,6 +29,7 @@ OVERVIEW_MARKDOWN_FILES = [
     "整体知识体系思维导图.md",
 ]
 APPENDIX_MARKDOWN_FILES = [
+    "附录_术语速查.md",
     "附录_数学基础速览.md",
     "附录_代码示例集.md",
 ]
