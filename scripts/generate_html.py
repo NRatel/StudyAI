@@ -38,7 +38,8 @@ OVERVIEW_DOC_MODULE = "总览"
 APPENDIX_DOC_MODULE = "附录"
 ROOT_DOC_MODULES = {OVERVIEW_DOC_MODULE, APPENDIX_DOC_MODULE}
 IMG_CONFIG_FILE = ROOT / "imgCfg.json"
-COVER_IMAGE_FILE = ROOT / "assets" / "ai-study-cover.png"
+COVER_IMAGE_FILE = ROOT / "assets" / "ai-study-cover.webp"
+COVER_DOC_SOURCE = ROOT / "封面.md"
 IMAGE_MARKER_RE = re.compile(r"^\{\{img:([^{}\s]+)\}\}$")
 MARKDOWN_IMAGE_RE = re.compile(r"^!\[([^\]]*)\]\(([^)]+)\)$")
 
@@ -466,6 +467,20 @@ a:hover {
   box-shadow: 0 14px 38px rgba(17, 24, 39, 0.1);
 }
 
+.cover-page {
+  margin: 0;
+}
+
+.cover-page img {
+  display: block;
+  width: min(100%, 680px);
+  margin: 0 auto;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0 16px 42px rgba(17, 24, 39, 0.12);
+}
+
 .missing-image {
   margin: 1.35rem 0;
   padding: 0.72rem 0.9rem;
@@ -612,16 +627,6 @@ tr:last-child td {
   color: var(--muted);
   font-size: 0.92rem;
   line-height: 1.55;
-}
-
-.index-cover {
-  display: block;
-  width: min(100%, 440px);
-  margin: 0 auto 1.35rem;
-  border: 1px solid var(--line);
-  border-radius: 12px;
-  background: #fff;
-  box-shadow: 0 16px 42px rgba(17, 24, 39, 0.1);
 }
 
 .module-card {
@@ -939,6 +944,14 @@ def render_markdown_image(alt: str, url: str, current_source: Path, current_outp
     )
 
 
+def is_readme_cover_image(source: Path, url: str) -> bool:
+    normalized_url = url.strip().replace("\\", "/")
+    return source.name == "README.md" and normalized_url in {
+        "assets/ai-study-cover.png",
+        "assets/ai-study-cover.webp",
+    }
+
+
 def render_image_slot(img_id: str, current_output: Path, output_root: Path) -> str:
     config = IMG_CONFIG.get(img_id, {})
     caption = str(config.get("imgCaption", "")).strip()
@@ -1163,7 +1176,8 @@ def markdown_to_html(source: Path, output: Path, output_root: Path) -> tuple[str
         markdown_image = MARKDOWN_IMAGE_RE.match(stripped)
         if markdown_image:
             flush_paragraph()
-            parts.append(render_markdown_image(markdown_image.group(1), markdown_image.group(2), source, output, output_root))
+            if not is_readme_cover_image(source, markdown_image.group(2)):
+                parts.append(render_markdown_image(markdown_image.group(1), markdown_image.group(2), source, output, output_root))
             i += 1
             continue
 
@@ -1305,8 +1319,35 @@ def sidebar_script() -> str:
 </script>"""
 
 
+def is_cover_doc(doc: Document) -> bool:
+    return doc.source == COVER_DOC_SOURCE
+
+
+def render_cover_body(current_output: Path, output_root: Path) -> tuple[str, list[Heading]]:
+    if not COVER_IMAGE_FILE.exists():
+        body = '<h1 id="封面">封面</h1><div class="missing-image">[缺图：封面]</div>'
+        return body, [Heading(1, "封面", "封面")]
+
+    cover_target = output_root / "assets" / COVER_IMAGE_FILE.name
+    cover_target.parent.mkdir(parents=True, exist_ok=True)
+    if COVER_IMAGE_FILE.resolve() != cover_target.resolve():
+        shutil.copy2(COVER_IMAGE_FILE, cover_target)
+
+    src = quote(os.path.relpath(cover_target, current_output.parent).replace(os.sep, "/"), safe="/#:._-%")
+    body = (
+        '<h1 id="封面">封面</h1>'
+        '<figure class="cover-page">'
+        f'<img src="{src}" alt="AI 及大模型原理系统学习封面" loading="eager">'
+        "</figure>"
+    )
+    return body, [Heading(1, "封面", "封面")]
+
+
 def render_doc(doc: Document, docs: list[Document], output_root: Path) -> None:
-    body, headings = markdown_to_html(doc.source, doc.output, output_root)
+    if is_cover_doc(doc):
+        body, headings = render_cover_body(doc.output, output_root)
+    else:
+        body, headings = markdown_to_html(doc.source, doc.output, output_root)
     css_href = relative_link(doc.output, output_root / "assets" / "study.css")
     index_href = relative_link(doc.output, output_root / "index.html")
     current_index = docs.index(doc)
@@ -1325,6 +1366,7 @@ def render_doc(doc: Document, docs: list[Document], output_root: Path) -> None:
     else:
         nav.append("<span></span>")
     nav.append("</nav>")
+    crumb_name = display_title(doc.title) if is_cover_doc(doc) else doc.source.name
 
     html_text = f"""<!doctype html>
 <html lang="zh-CN">
@@ -1347,7 +1389,7 @@ def render_doc(doc: Document, docs: list[Document], output_root: Path) -> None:
       <span class="sidebar-toggle-icon" aria-hidden="true"></span><span>目录</span>
     </button>
     <a class="brand" href="{index_href}"><span class="brand-mark">AI</span><span>AI学习</span></a>
-    <span class="crumb">{html.escape(display_module_name(doc.module))} / {html.escape(doc.source.name)}</span>
+    <span class="crumb">{html.escape(display_module_name(doc.module))} / {html.escape(crumb_name)}</span>
   </header>
   <div class="shell doc-shell">
     {sidebar}
@@ -1372,17 +1414,6 @@ def render_index(docs: list[Document], output_root: Path) -> None:
     for doc in docs:
         modules.setdefault(doc.module, []).append(doc)
     module_count = sum(1 for module in modules if module not in ROOT_DOC_MODULES)
-
-    cover_html = ""
-    if COVER_IMAGE_FILE.exists():
-        cover_target = output_root / "assets" / COVER_IMAGE_FILE.name
-        cover_target.parent.mkdir(parents=True, exist_ok=True)
-        if COVER_IMAGE_FILE.resolve() != cover_target.resolve():
-            shutil.copy2(COVER_IMAGE_FILE, cover_target)
-        cover_html = (
-            f'<img class="index-cover" src="assets/{html.escape(COVER_IMAGE_FILE.name, quote=True)}" '
-            'alt="AI 及大模型原理系统学习封面" loading="lazy">'
-        )
 
     cards = []
     for module, module_docs in modules.items():
@@ -1418,7 +1449,6 @@ def render_index(docs: list[Document], output_root: Path) -> None:
     <div class="toc-backdrop" data-sidebar-backdrop></div>
     <main>
       <section class="index-hero">
-        {cover_html}
         <h1>AI学习</h1>
         <p>GPT-5.5 生成正文，GPT-Image-2 生成配图，围绕 AI 与大模型原理整理成完整 13 章学习路径。重点不是堆术语，而是帮你看懂定义、机制、脉络和常见误区。</p>
         <div class="index-highlights" aria-label="内容特点">
@@ -1448,6 +1478,14 @@ def build_documents(dirs: list[Path], output_root: Path, include_root_docs: bool
                 docs.append(Document(source=source, output=output, title=title_from_markdown(source), module=module))
 
     if include_root_docs:
+        docs.append(
+            Document(
+                source=COVER_DOC_SOURCE,
+                output=output_root / "封面.html",
+                title="封面",
+                module=OVERVIEW_DOC_MODULE,
+            )
+        )
         append_root_documents(OVERVIEW_MARKDOWN_FILES, OVERVIEW_DOC_MODULE)
 
     for module_dir in dirs:

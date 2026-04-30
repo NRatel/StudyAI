@@ -24,6 +24,7 @@
   <div class="shell doc-shell">
     <aside class="toc" id="site-toc" aria-label="完整目录"><div class="toc-header"><div class="toc-title">完整目录</div><button class="toc-close" type="button" aria-label="收起目录" data-sidebar-close>&times;</button></div><nav class="site-tree"><details>
 <summary>总览</summary>
+<a class="doc-link" href="../%E5%B0%81%E9%9D%A2.html">封面<small>封面</small></a>
 <a class="doc-link" href="../README.html">README<small>AI 及大模型原理系统学习</small></a>
 <a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0%E7%9B%AE%E5%BD%95%E7%B4%A2%E5%BC%95.html">AI学习目录索引<small>AI 及大模型原理 — 学习目录索引</small></a>
 <a class="doc-link" href="../%E6%95%B4%E4%BD%93%E7%9F%A5%E8%AF%86%E4%BD%93%E7%B3%BB%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE.html">整体知识体系思维导图<small>AI 及大模型原理 — 整体知识体系思维导图</small></a>
@@ -181,7 +182,7 @@
 <li>解码器生成第 $t$ 个词时，怎么保证它看不到第 $t+1$ 个词？</li>
 </ol>
 <p>Transformer 的回答是：<strong>把 Multi-Head Attention 与残差连接、Layer Norm、前馈网络组装成标准化的&quot;层&quot;，然后把这些层堆叠成编码器和解码器</strong>。整个架构完全不依赖 RNN，训练时所有位置可以并行计算。</p>
-<figure class="ai-image"><img src="../assets/generated-images/ch03_03_transformer_block_stack.png" alt="ch03_03_transformer_block_stack" loading="lazy"><figcaption>图 3-2 Transformer 层堆叠：上半部分展示注意力、前馈与残差结构，下半部分用楼层工坊类比模块协作。</figcaption></figure>
+<figure class="ai-image"><img src="../assets/generated-images/ch03_03_transformer_block_stack.webp" alt="ch03_03_transformer_block_stack" loading="lazy"><figcaption>图 3-2 Transformer 层堆叠：上半部分展示注意力、前馈与残差结构，下半部分用楼层工坊类比模块协作。</figcaption></figure>
 <h3 id="attention-is-all-you-need-的含义">&quot;Attention Is All You Need&quot; 的含义</h3>
 <p>2017 年 Vaswani 等人的论文标题并不是说只需要注意力就能解决一切，而是说：</p>
 <ul>

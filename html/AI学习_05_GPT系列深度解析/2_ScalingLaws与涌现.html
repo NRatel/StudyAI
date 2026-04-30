@@ -24,6 +24,7 @@
   <div class="shell doc-shell">
     <aside class="toc" id="site-toc" aria-label="完整目录"><div class="toc-header"><div class="toc-title">完整目录</div><button class="toc-close" type="button" aria-label="收起目录" data-sidebar-close>&times;</button></div><nav class="site-tree"><details>
 <summary>总览</summary>
+<a class="doc-link" href="../%E5%B0%81%E9%9D%A2.html">封面<small>封面</small></a>
 <a class="doc-link" href="../README.html">README<small>AI 及大模型原理系统学习</small></a>
 <a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0%E7%9B%AE%E5%BD%95%E7%B4%A2%E5%BC%95.html">AI学习目录索引<small>AI 及大模型原理 — 学习目录索引</small></a>
 <a class="doc-link" href="../%E6%95%B4%E4%BD%93%E7%9F%A5%E8%AF%86%E4%BD%93%E7%B3%BB%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE.html">整体知识体系思维导图<small>AI 及大模型原理 — 整体知识体系思维导图</small></a>
@@ -184,7 +185,7 @@
       │       ╲        ← 双对数坐标下是直线
       └────────╲──→ log(参数量 N)</code></pre>
 <p>这意味着：在训练之前，仅凭资源预算就能预测最终模型表现。训练大模型从&quot;炼丹&quot;变成了<strong>工程优化问题</strong>。</p>
-<figure class="ai-image"><img src="../assets/generated-images/ch05_02_scaling_laws_emergence.png" alt="ch05_02_scaling_laws_emergence" loading="lazy"><figcaption>图 5-2 Scaling Laws：上半部分展示规模增长与损失下降，下半部分用引擎变强类比能力涌现。</figcaption></figure>
+<figure class="ai-image"><img src="../assets/generated-images/ch05_02_scaling_laws_emergence.webp" alt="ch05_02_scaling_laws_emergence" loading="lazy"><figcaption>图 5-2 Scaling Laws：上半部分展示规模增长与损失下降，下半部分用引擎变强类比能力涌现。</figcaption></figure>
 <h3 id="四个核心概念">四个核心概念</h3>
 <div class="table-wrap"><table><thead><tr><th>概念</th><th>年份</th><th>核心结论</th></tr></thead><tbody><tr><td><strong>Kaplan Scaling Laws</strong></td><td>2020</td><td>Loss 与 N/D/C 存在幂律关系；偏向增大模型</td></tr><tr><td><strong>Chinchilla Scaling Laws</strong></td><td>2022</td><td>参数量和数据量应等比例增长（D/N $\approx$ 20）</td></tr><tr><td><strong>In-Context Learning</strong></td><td>2020</td><td>推理时通过 prompt 示例学习新任务，不更新参数</td></tr><tr><td><strong>涌现能力</strong></td><td>2022</td><td>某些能力在小模型中不存在，大模型中突然出现</td></tr></tbody></table></div>
 <hr>

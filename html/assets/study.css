@@ -420,6 +420,20 @@ a:hover {
   box-shadow: 0 14px 38px rgba(17, 24, 39, 0.1);
 }
 
+.cover-page {
+  margin: 0;
+}
+
+.cover-page img {
+  display: block;
+  width: min(100%, 680px);
+  margin: 0 auto;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0 16px 42px rgba(17, 24, 39, 0.12);
+}
+
 .missing-image {
   margin: 1.35rem 0;
   padding: 0.72rem 0.9rem;
@@ -566,16 +580,6 @@ tr:last-child td {
   color: var(--muted);
   font-size: 0.92rem;
   line-height: 1.55;
-}
-
-.index-cover {
-  display: block;
-  width: min(100%, 440px);
-  margin: 0 auto 1.35rem;
-  border: 1px solid var(--line);
-  border-radius: 12px;
-  background: #fff;
-  box-shadow: 0 16px 42px rgba(17, 24, 39, 0.1);
 }
 
 .module-card {

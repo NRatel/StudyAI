@@ -24,6 +24,7 @@
   <div class="shell doc-shell">
     <aside class="toc" id="site-toc" aria-label="完整目录"><div class="toc-header"><div class="toc-title">完整目录</div><button class="toc-close" type="button" aria-label="收起目录" data-sidebar-close>&times;</button></div><nav class="site-tree"><details>
 <summary>总览</summary>
+<a class="doc-link" href="../%E5%B0%81%E9%9D%A2.html">封面<small>封面</small></a>
 <a class="doc-link" href="../README.html">README<small>AI 及大模型原理系统学习</small></a>
 <a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0%E7%9B%AE%E5%BD%95%E7%B4%A2%E5%BC%95.html">AI学习目录索引<small>AI 及大模型原理 — 学习目录索引</small></a>
 <a class="doc-link" href="../%E6%95%B4%E4%BD%93%E7%9F%A5%E8%AF%86%E4%BD%93%E7%B3%BB%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE.html">整体知识体系思维导图<small>AI 及大模型原理 — 整体知识体系思维导图</small></a>
@@ -190,7 +191,7 @@
 ...</code></pre>
 <p>问题在于：<strong>每生成一个 token，模型都要对之前所有 token 做一次完整的注意力计算</strong>。如果你的序列有 1000 个 token，生成第 1001 个 token 时，模型需要重新计算所有 1000 个 token 的 K 和 V 向量——尽管这 1000 个向量和上一步完全相同。</p>
 <p>这就像<strong>每次续写一篇论文时，都要从第一个字重新读一遍</strong>。显然，人类不会这样做——我们会记住之前读过的内容。KV Cache 就是让模型也&quot;记住&quot;之前计算过的内容。</p>
-<figure class="ai-image"><img src="../assets/generated-images/ch08_01_kv_cache_library.png" alt="ch08_01_kv_cache_library" loading="lazy"><figcaption>图 8-1 KV Cache：上半部分展示缓存和复用 K/V，下半部分用图书馆索引类比避免重复阅读。</figcaption></figure>
+<figure class="ai-image"><img src="../assets/generated-images/ch08_01_kv_cache_library.webp" alt="ch08_01_kv_cache_library" loading="lazy"><figcaption>图 8-1 KV Cache：上半部分展示缓存和复用 K/V，下半部分用图书馆索引类比避免重复阅读。</figcaption></figure>
 <h3 id="真正的瓶颈内存带宽而非算力">真正的瓶颈：内存带宽，而非算力</h3>
 <p>一个反直觉的事实：<strong>大模型推理的瓶颈通常不是 GPU 算力不够，而是显存带宽不够</strong>。</p>
 <pre><code>NVIDIA A100 (80GB):

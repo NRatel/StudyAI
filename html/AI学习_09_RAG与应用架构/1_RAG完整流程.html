@@ -24,6 +24,7 @@
   <div class="shell doc-shell">
     <aside class="toc" id="site-toc" aria-label="完整目录"><div class="toc-header"><div class="toc-title">完整目录</div><button class="toc-close" type="button" aria-label="收起目录" data-sidebar-close>&times;</button></div><nav class="site-tree"><details>
 <summary>总览</summary>
+<a class="doc-link" href="../%E5%B0%81%E9%9D%A2.html">封面<small>封面</small></a>
 <a class="doc-link" href="../README.html">README<small>AI 及大模型原理系统学习</small></a>
 <a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0%E7%9B%AE%E5%BD%95%E7%B4%A2%E5%BC%95.html">AI学习目录索引<small>AI 及大模型原理 — 学习目录索引</small></a>
 <a class="doc-link" href="../%E6%95%B4%E4%BD%93%E7%9F%A5%E8%AF%86%E4%BD%93%E7%B3%BB%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE.html">整体知识体系思维导图<small>AI 及大模型原理 — 整体知识体系思维导图</small></a>
@@ -172,7 +173,7 @@
 <div class="table-wrap"><table><thead><tr><th>问题</th><th>表现</th><th>根因</th></tr></thead><tbody><tr><td><strong>幻觉（Hallucination）</strong></td><td>一本正经地编造不存在的论文、API、数据</td><td>模型是概率分布采样器，不是知识数据库</td></tr><tr><td><strong>时效性缺失</strong></td><td>无法回答训练截止日期之后发生的事</td><td>参数在训练后就&quot;冻结&quot;了</td></tr><tr><td><strong>无法访问私有数据</strong></td><td>回答不了公司内部文档的问题</td><td>预训练语料中没有这些内容</td></tr></tbody></table></div>
 <p><strong>RAG 的核心思路</strong>：不让模型&quot;记住&quot;所有知识，而是在生成前先从外部知识库<strong>检索</strong>相关信息，把检索结果作为<strong>上下文</strong>喂给模型，让它&quot;有据可依&quot;地回答。</p>
 <p>类比：<strong>RAG = 开卷考试</strong>。你不需要记住所有内容，只要能快速翻到正确的参考资料，就能写出高质量答案。</p>
-<figure class="ai-image"><img src="../assets/generated-images/ch09_01_rag_pipeline.png" alt="ch09_01_rag_pipeline" loading="lazy"><figcaption>图 9-1 RAG 流程：上半部分展示检索增强生成管线，下半部分用开卷考试类比外部知识引用。</figcaption></figure>
+<figure class="ai-image"><img src="../assets/generated-images/ch09_01_rag_pipeline.webp" alt="ch09_01_rag_pipeline" loading="lazy"><figcaption>图 9-1 RAG 流程：上半部分展示检索增强生成管线，下半部分用开卷考试类比外部知识引用。</figcaption></figure>
 <h3 id="12-rag-三阶段总览">1.2 RAG 三阶段总览</h3>
 <pre><code>┌───────────────────────────────────────────────────────┐
 │                 离线阶段（Indexing）                    │

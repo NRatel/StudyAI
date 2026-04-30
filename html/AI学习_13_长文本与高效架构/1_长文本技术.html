@@ -24,6 +24,7 @@
   <div class="shell doc-shell">
     <aside class="toc" id="site-toc" aria-label="完整目录"><div class="toc-header"><div class="toc-title">完整目录</div><button class="toc-close" type="button" aria-label="收起目录" data-sidebar-close>&times;</button></div><nav class="site-tree"><details>
 <summary>总览</summary>
+<a class="doc-link" href="../%E5%B0%81%E9%9D%A2.html">封面<small>封面</small></a>
 <a class="doc-link" href="../README.html">README<small>AI 及大模型原理系统学习</small></a>
 <a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0%E7%9B%AE%E5%BD%95%E7%B4%A2%E5%BC%95.html">AI学习目录索引<small>AI 及大模型原理 — 学习目录索引</small></a>
 <a class="doc-link" href="../%E6%95%B4%E4%BD%93%E7%9F%A5%E8%AF%86%E4%BD%93%E7%B3%BB%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE.html">整体知识体系思维导图<small>AI 及大模型原理 — 整体知识体系思维导图</small></a>
@@ -186,7 +187,7 @@
 <li><strong>计算与内存的二次方瓶颈</strong>：Self-Attention 的 $QK^T$ 矩阵大小为 $n \times n$，计算量和内存占用都是 $O(n^2)$。序列长度翻倍，计算量翻四倍。</li>
 <li><strong>位置编码的外推难题</strong>：模型在 4K 长度上训练，推理时面对 32K 甚至 128K 的序列，位置编码能否正常工作？</li>
 </ol>
-<figure class="ai-image"><img src="../assets/generated-images/ch13_01_long_context_memory_window.png" alt="ch13_01_long_context_memory_window" loading="lazy"><figcaption>图 13-1 长上下文：上半部分展示注意力窗口与压缩记忆，下半部分用长卷轴和记忆胶囊类比信息延续。</figcaption></figure>
+<figure class="ai-image"><img src="../assets/generated-images/ch13_01_long_context_memory_window.webp" alt="ch13_01_long_context_memory_window" loading="lazy"><figcaption>图 13-1 长上下文：上半部分展示注意力窗口与压缩记忆，下半部分用长卷轴和记忆胶囊类比信息延续。</figcaption></figure>
 <h3 id="为什么-on2-是瓶颈">为什么 O(n^2) 是瓶颈</h3>
 <p>Self-Attention 的核心是计算 $QK^T$，其中 $Q, K \in \mathbb{R}^{n \times d}$，结果是 $n \times n$ 的注意力矩阵。让我们看看具体数字：</p>
 <pre><code>序列长度 n    注意力矩阵元素数    FP16 内存占用（单层单头）

@@ -24,6 +24,7 @@
   <div class="shell doc-shell">
     <aside class="toc" id="site-toc" aria-label="完整目录"><div class="toc-header"><div class="toc-title">完整目录</div><button class="toc-close" type="button" aria-label="收起目录" data-sidebar-close>&times;</button></div><nav class="site-tree"><details>
 <summary>总览</summary>
+<a class="doc-link" href="../%E5%B0%81%E9%9D%A2.html">封面<small>封面</small></a>
 <a class="doc-link" href="../README.html">README<small>AI 及大模型原理系统学习</small></a>
 <a class="doc-link" href="../AI%E5%AD%A6%E4%B9%A0%E7%9B%AE%E5%BD%95%E7%B4%A2%E5%BC%95.html">AI学习目录索引<small>AI 及大模型原理 — 学习目录索引</small></a>
 <a class="doc-link" href="../%E6%95%B4%E4%BD%93%E7%9F%A5%E8%AF%86%E4%BD%93%E7%B3%BB%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE.html">整体知识体系思维导图<small>AI 及大模型原理 — 整体知识体系思维导图</small></a>
@@ -172,7 +173,7 @@
 <p>如果只有一个参数，可以试着把它调大一点、调小一点，看损失怎么变。但现代神经网络有成千上万个甚至上万亿个参数，逐个试错不可行。</p>
 <p><strong>反向传播（Backpropagation）</strong>的价值就在这里：它用一次前向传播记录中间结果，再用一次反向传播，沿计算路径把&quot;责任&quot;分摊回每个参数，从而算出所有参数的梯度。</p>
 <h3 id="生产线类比">生产线类比</h3>
-<figure class="ai-image"><img src="../assets/generated-images/ch01_04_backprop_error_flow.png" alt="ch01_04_backprop_error_flow" loading="lazy"><figcaption>图 1-3 反向传播：上半部分展示梯度从损失反传，下半部分用质检返工类比责任分配。</figcaption></figure>
+<figure class="ai-image"><img src="../assets/generated-images/ch01_04_backprop_error_flow.webp" alt="ch01_04_backprop_error_flow" loading="lazy"><figcaption>图 1-3 反向传播：上半部分展示梯度从损失反传，下半部分用质检返工类比责任分配。</figcaption></figure>
 <p>想象一条生产线：</p>
 <pre><code>原材料 → [切割] → [打磨] → [组装] → 成品不合格</code></pre>
 <p>质检员不会只盯着最终成品，而是从后往前追：</p>
