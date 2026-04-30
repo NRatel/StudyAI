@@ -1450,11 +1450,11 @@ def render_index(docs: list[Document], output_root: Path) -> None:
     <main>
       <section class="index-hero">
         <h1>AI学习</h1>
-        <p>GPT-5.5 生成正文，GPT-Image-2 生成配图，围绕 AI 与大模型原理整理成完整 13 章学习路径。重点不是堆术语，而是帮你看懂定义、机制、脉络和常见误区。</p>
+        <p>GPT-5.5 生成正文，GPT-Image-2 生成配图，围绕 AI 与大模型原理整理成完整 13 章主线。重点不是堆术语，而是讲清概念定义、机制直觉、技术关系和常见误区。</p>
         <div class="index-highlights" aria-label="内容特点">
-          <div class="index-highlight"><strong>正文先讲清楚</strong><span>每节优先回答是什么、为什么出现、解决什么问题，以及和前后技术的关系。</span></div>
-          <div class="index-highlight"><strong>配图帮助理解</strong><span>用专业结构加生动类比呈现神经网络、注意力、扩散、RAG、Agent 等机制。</span></div>
-          <div class="index-highlight"><strong>13 章完整主线</strong><span>从神经网络基础一路串到 Transformer、GPT、训练推理、多模态、Agent 和长文本架构。</span></div>
+          <div class="index-highlight"><strong>概念先讲清楚</strong><span>每节先回答是什么、为什么出现、解决什么问题，以及和前后技术的关系。</span></div>
+          <div class="index-highlight"><strong>机制变得有画面</strong><span>用专业结构加生动类比呈现神经网络、注意力、扩散、RAG、Agent 等抽象机制。</span></div>
+          <div class="index-highlight"><strong>主线能串起来</strong><span>13 章串起模型、训练、推理、应用架构和高效架构，同时提醒常见误区。</span></div>
         </div>
       </section>
       {''.join(cards)}
