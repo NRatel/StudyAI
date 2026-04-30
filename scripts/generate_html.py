@@ -587,6 +587,33 @@ tr:last-child td {
   color: var(--muted);
 }
 
+.index-highlights {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 0.75rem;
+  margin-top: 1.25rem;
+}
+
+.index-highlight {
+  padding: 0.8rem 0.9rem;
+  border: 1px solid var(--line-soft);
+  border-radius: 10px;
+  background: #fbfcff;
+}
+
+.index-highlight strong {
+  display: block;
+  margin-bottom: 0.22rem;
+  color: var(--ink);
+}
+
+.index-highlight span {
+  display: block;
+  color: var(--muted);
+  font-size: 0.92rem;
+  line-height: 1.55;
+}
+
 .index-cover {
   display: block;
   width: min(100%, 440px);
@@ -1393,7 +1420,12 @@ def render_index(docs: list[Document], output_root: Path) -> None:
       <section class="index-hero">
         {cover_html}
         <h1>AI学习</h1>
-        <p>这是从 Markdown 生成的 HTML 版本。可通过左侧完整目录浏览总览、各学习模块和附录。</p>
+        <p>GPT-5.5 生成正文，GPT-Image-2 生成配图，围绕 AI 与大模型原理整理成完整 13 章学习路径。重点不是堆术语，而是帮你看懂定义、机制、脉络和常见误区。</p>
+        <div class="index-highlights" aria-label="内容特点">
+          <div class="index-highlight"><strong>正文先讲清楚</strong><span>每节优先回答是什么、为什么出现、解决什么问题，以及和前后技术的关系。</span></div>
+          <div class="index-highlight"><strong>配图帮助理解</strong><span>用专业结构加生动类比呈现神经网络、注意力、扩散、RAG、Agent 等机制。</span></div>
+          <div class="index-highlight"><strong>13 章完整主线</strong><span>从神经网络基础一路串到 Transformer、GPT、训练推理、多模态、Agent 和长文本架构。</span></div>
+        </div>
       </section>
       {''.join(cards)}
     </main>

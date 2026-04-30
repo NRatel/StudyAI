@@ -541,6 +541,33 @@ tr:last-child td {
   color: var(--muted);
 }
 
+.index-highlights {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 0.75rem;
+  margin-top: 1.25rem;
+}
+
+.index-highlight {
+  padding: 0.8rem 0.9rem;
+  border: 1px solid var(--line-soft);
+  border-radius: 10px;
+  background: #fbfcff;
+}
+
+.index-highlight strong {
+  display: block;
+  margin-bottom: 0.22rem;
+  color: var(--ink);
+}
+
+.index-highlight span {
+  display: block;
+  color: var(--muted);
+  font-size: 0.92rem;
+  line-height: 1.55;
+}
+
 .index-cover {
   display: block;
   width: min(100%, 440px);
