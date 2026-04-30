@@ -186,6 +186,7 @@
 <li><strong>计算与内存的二次方瓶颈</strong>：Self-Attention 的 $QK^T$ 矩阵大小为 $n \times n$，计算量和内存占用都是 $O(n^2)$。序列长度翻倍，计算量翻四倍。</li>
 <li><strong>位置编码的外推难题</strong>：模型在 4K 长度上训练，推理时面对 32K 甚至 128K 的序列，位置编码能否正常工作？</li>
 </ol>
+<figure class="ai-image"><img src="../assets/generated-images/ch13_01_long_context_memory_window.png" alt="ch13_01_long_context_memory_window" loading="lazy"><figcaption>图 13-1 长上下文：上半部分展示注意力窗口与压缩记忆，下半部分用长卷轴和记忆胶囊类比信息延续。</figcaption></figure>
 <h3 id="为什么-on2-是瓶颈">为什么 O(n^2) 是瓶颈</h3>
 <p>Self-Attention 的核心是计算 $QK^T$，其中 $Q, K \in \mathbb{R}^{n \times d}$，结果是 $n \times n$ 的注意力矩阵。让我们看看具体数字：</p>
 <pre><code>序列长度 n    注意力矩阵元素数    FP16 内存占用（单层单头）

@@ -178,6 +178,7 @@
 <h3 id="11-核心问题模型为什么需要动手">1.1 核心问题：模型为什么需要&quot;动手&quot;？</h3>
 <p>一个纯粹的 LLM 只能做一件事：<strong>给定上文，预测下一个 token</strong>。它不能查数据库、不能调 API、不能执行代码、不能浏览网页。就像一个知识渊博但被锁在房间里的专家——能回答问题，但无法亲手做任何事。</p>
 <p>Agent 的本质就是给这个专家<strong>一双手和一双眼睛</strong>：</p>
+<figure class="ai-image"><img src="../assets/generated-images/ch12_01_agent_loop_tools.png" alt="ch12_01_agent_loop_tools" loading="lazy"><figcaption>图 12-1 Agent 循环：上半部分展示观察、计划、工具调用与反馈，下半部分用指挥台类比多步行动。</figcaption></figure>
 <pre><code>纯 LLM：          用户提问 → 模型生成回答 → 结束
                   （一次性，只靠模型内部知识）
 

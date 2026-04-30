@@ -190,6 +190,7 @@
 ...</code></pre>
 <p>问题在于：<strong>每生成一个 token，模型都要对之前所有 token 做一次完整的注意力计算</strong>。如果你的序列有 1000 个 token，生成第 1001 个 token 时，模型需要重新计算所有 1000 个 token 的 K 和 V 向量——尽管这 1000 个向量和上一步完全相同。</p>
 <p>这就像<strong>每次续写一篇论文时，都要从第一个字重新读一遍</strong>。显然，人类不会这样做——我们会记住之前读过的内容。KV Cache 就是让模型也&quot;记住&quot;之前计算过的内容。</p>
+<figure class="ai-image"><img src="../assets/generated-images/ch08_01_kv_cache_library.png" alt="ch08_01_kv_cache_library" loading="lazy"><figcaption>图 8-1 KV Cache：上半部分展示缓存和复用 K/V，下半部分用图书馆索引类比避免重复阅读。</figcaption></figure>
 <h3 id="真正的瓶颈内存带宽而非算力">真正的瓶颈：内存带宽，而非算力</h3>
 <p>一个反直觉的事实：<strong>大模型推理的瓶颈通常不是 GPU 算力不够，而是显存带宽不够</strong>。</p>
 <pre><code>NVIDIA A100 (80GB):

@@ -11,6 +11,7 @@ from __future__ import annotations
 
 import argparse
 import html
+import json
 import os
 import re
 import shutil
@@ -36,6 +37,8 @@ APPENDIX_MARKDOWN_FILES = [
 OVERVIEW_DOC_MODULE = "总览"
 APPENDIX_DOC_MODULE = "附录"
 ROOT_DOC_MODULES = {OVERVIEW_DOC_MODULE, APPENDIX_DOC_MODULE}
+IMG_CONFIG_FILE = ROOT / "imgCfg.json"
+IMAGE_MARKER_RE = re.compile(r"^\{\{img:([^{}\s]+)\}\}$")
 
 
 STYLE_CSS = r"""
@@ -420,6 +423,44 @@ a:hover {
   margin-bottom: 0;
 }
 
+.ai-image {
+  margin: 1.5rem 0;
+}
+
+.ai-image img {
+  display: block;
+  width: min(100%, 760px);
+  max-height: none;
+  object-fit: contain;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: #fff;
+}
+
+.ai-image figcaption {
+  width: min(100%, 760px);
+  margin-top: 0.55rem;
+  color: var(--muted);
+  font-size: 0.92rem;
+  line-height: 1.55;
+}
+
+.ai-image .missing-image {
+  width: min(100%, 760px);
+  margin: 0;
+}
+
+.missing-image {
+  margin: 1.35rem 0;
+  padding: 0.72rem 0.9rem;
+  border: 1px dashed #b6c2d2;
+  border-radius: 8px;
+  color: #64748b;
+  background: #f8fafc;
+  font-size: 0.94rem;
+  font-weight: 700;
+}
+
 .markdown-body ul,
 .markdown-body ol {
   padding-left: 1.45rem;
@@ -679,6 +720,35 @@ class Heading:
     anchor: str
 
 
+def load_img_config() -> dict[str, dict[str, str]]:
+    if not IMG_CONFIG_FILE.exists():
+        return {}
+    try:
+        raw = json.loads(IMG_CONFIG_FILE.read_text(encoding="utf-8"))
+    except json.JSONDecodeError as exc:
+        raise SystemExit(f"Invalid {IMG_CONFIG_FILE.name}: {exc}") from exc
+
+    if not isinstance(raw, list):
+        raise SystemExit(f"{IMG_CONFIG_FILE.name} must contain a JSON array.")
+
+    config: dict[str, dict[str, str]] = {}
+    for index, item in enumerate(raw, start=1):
+        if not isinstance(item, dict):
+            raise SystemExit(f"{IMG_CONFIG_FILE.name} item #{index} must be an object.")
+        img_id = str(item.get("imgInsertId", "")).strip()
+        if not img_id:
+            raise SystemExit(f"{IMG_CONFIG_FILE.name} item #{index} is missing imgInsertId.")
+        config[img_id] = {
+            "imgCaption": str(item.get("imgCaption", "")).strip(),
+            "imgPrompt": str(item.get("imgPrompt", "")),
+            "imgLocalPath": str(item.get("imgLocalPath", "")).strip(),
+        }
+    return config
+
+
+IMG_CONFIG = load_img_config()
+
+
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Generate HTML from study Markdown files.")
     parser.add_argument(
@@ -778,6 +848,37 @@ def html_href(url: str, current_source: Path, current_output: Path, output_root:
     if sep:
         href += "#" + anchor
     return quote(href, safe="/#:._-%?=&")
+
+
+def render_image_slot(img_id: str, current_output: Path, output_root: Path) -> str:
+    config = IMG_CONFIG.get(img_id, {})
+    caption = str(config.get("imgCaption", "")).strip()
+    caption_html = f"<figcaption>{html.escape(caption)}</figcaption>" if caption else ""
+    missing_html = f'<div class="missing-image">[缺图：{html.escape(img_id)}]</div>'
+    local_path = str(config.get("imgLocalPath", "")).strip()
+    if not local_path:
+        return f'<figure class="ai-image ai-image-missing">{missing_html}{caption_html}</figure>'
+
+    source_path = Path(local_path)
+    if not source_path.is_absolute():
+        source_path = ROOT / source_path
+    if not source_path.exists():
+        return f'<figure class="ai-image ai-image-missing">{missing_html}{caption_html}</figure>'
+
+    image_dir = output_root / "assets" / "generated-images"
+    image_dir.mkdir(parents=True, exist_ok=True)
+    target_name = f"{img_id}{source_path.suffix.lower() or '.png'}"
+    target_path = image_dir / target_name
+    if source_path.resolve() != target_path.resolve():
+        shutil.copy2(source_path, target_path)
+
+    src = quote(os.path.relpath(target_path, current_output.parent).replace(os.sep, "/"), safe="/#:._-%")
+    return (
+        '<figure class="ai-image">'
+        f'<img src="{src}" alt="{html.escape(img_id, quote=True)}" loading="lazy">'
+        f"{caption_html}"
+        "</figure>"
+    )
 
 
 def render_inline(text: str, current_source: Path, current_output: Path, output_root: Path) -> str:
@@ -960,6 +1061,13 @@ def markdown_to_html(source: Path, output: Path, output_root: Path) -> tuple[str
 
         if not stripped:
             flush_paragraph()
+            i += 1
+            continue
+
+        image_marker = IMAGE_MARKER_RE.match(stripped)
+        if image_marker:
+            flush_paragraph()
+            parts.append(render_image_slot(image_marker.group(1), output, output_root))
             i += 1
             continue
 

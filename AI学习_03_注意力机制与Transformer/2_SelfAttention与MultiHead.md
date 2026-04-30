@@ -15,6 +15,8 @@
 
 "他"要理解自己指谁，就需要回头看"小明"。Self-Attention 让每个位置都能动态选择该看哪些位置。
 
+{{img:ch03_02_attention_qkv_matching}}
+
 ### Multi-Head：别只用一种眼光看句子
 
 一句话里的关系不止一种：

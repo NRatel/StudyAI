@@ -172,6 +172,7 @@
 <div class="table-wrap"><table><thead><tr><th>问题</th><th>表现</th><th>根因</th></tr></thead><tbody><tr><td><strong>幻觉（Hallucination）</strong></td><td>一本正经地编造不存在的论文、API、数据</td><td>模型是概率分布采样器，不是知识数据库</td></tr><tr><td><strong>时效性缺失</strong></td><td>无法回答训练截止日期之后发生的事</td><td>参数在训练后就&quot;冻结&quot;了</td></tr><tr><td><strong>无法访问私有数据</strong></td><td>回答不了公司内部文档的问题</td><td>预训练语料中没有这些内容</td></tr></tbody></table></div>
 <p><strong>RAG 的核心思路</strong>：不让模型&quot;记住&quot;所有知识，而是在生成前先从外部知识库<strong>检索</strong>相关信息，把检索结果作为<strong>上下文</strong>喂给模型，让它&quot;有据可依&quot;地回答。</p>
 <p>类比：<strong>RAG = 开卷考试</strong>。你不需要记住所有内容，只要能快速翻到正确的参考资料，就能写出高质量答案。</p>
+<figure class="ai-image"><img src="../assets/generated-images/ch09_01_rag_pipeline.png" alt="ch09_01_rag_pipeline" loading="lazy"><figcaption>图 9-1 RAG 流程：上半部分展示检索增强生成管线，下半部分用开卷考试类比外部知识引用。</figcaption></figure>
 <h3 id="12-rag-三阶段总览">1.2 RAG 三阶段总览</h3>
 <pre><code>┌───────────────────────────────────────────────────────┐
 │                 离线阶段（Indexing）                    │

@@ -379,6 +379,44 @@ a:hover {
   margin-bottom: 0;
 }
 
+.ai-image {
+  margin: 1.5rem 0;
+}
+
+.ai-image img {
+  display: block;
+  width: min(100%, 760px);
+  max-height: none;
+  object-fit: contain;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: #fff;
+}
+
+.ai-image figcaption {
+  width: min(100%, 760px);
+  margin-top: 0.55rem;
+  color: var(--muted);
+  font-size: 0.92rem;
+  line-height: 1.55;
+}
+
+.ai-image .missing-image {
+  width: min(100%, 760px);
+  margin: 0;
+}
+
+.missing-image {
+  margin: 1.35rem 0;
+  padding: 0.72rem 0.9rem;
+  border: 1px dashed #b6c2d2;
+  border-radius: 8px;
+  color: #64748b;
+  background: #f8fafc;
+  font-size: 0.94rem;
+  font-weight: 700;
+}
+
 .markdown-body ul,
 .markdown-body ol {
   padding-left: 1.45rem;

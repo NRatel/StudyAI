@@ -179,6 +179,7 @@
 <blockquote><p><strong>常见误区前置</strong>：MoE 经常被描述为&quot;训练省算力&quot;，但这个说法需要精确理解。MoE 的&quot;训练省算力&quot;指的是：<strong>在同样的计算预算下，可以训练参数量更大的模型</strong>（因为每个 token 只激活少数专家，FLOPs 与激活参数成正比而非总参数）。但在推理时，<strong>显存占用并不省</strong>——所有专家的参数都要加载到 GPU 内存中，即使每个 token 只用到其中几个。例如 DeepSeek-V3 总参数 671B，推理时每个 token 只激活 37B 的计算量，但 671B 的参数必须全部驻留在内存中。这意味着 MoE 模型对推理硬件的<strong>内存要求</strong>并不比同总参数的 Dense 模型低，它节省的是<strong>计算量</strong>（FLOPs），不是<strong>内存</strong>。</p></blockquote>
 <p>大模型的性能与参数量高度正相关。但参数越多，推理计算量越大。有没有一种方法能<strong>拥有巨大的参数量，但推理时只使用一小部分</strong>？</p>
 <p>这就是 MoE 的核心思想：一个模型包含许多&quot;专家&quot;（Expert），但每个输入只激活其中少数几个。</p>
+<figure class="ai-image"><img src="../assets/generated-images/ch13_02_moe_router_experts.png" alt="ch13_02_moe_router_experts" loading="lazy"><figcaption>图 13-2 MoE 路由：上半部分展示路由器选择少数专家，下半部分用调度室类比稀疏激活。</figcaption></figure>
 <h3 id="直觉类比">直觉类比</h3>
 <p>想象一家大型医院：</p>
 <ul>

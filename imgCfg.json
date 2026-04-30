@@ -1,0 +1,117 @@
+[
+  {
+    "imgInsertId": "ch01_00_nn_learning_loop",
+    "imgCaption": "图 1-1 神经网络学习闭环：上半部分展示训练流程，下半部分用机器调参类比误差反馈。",
+    "imgPrompt": "16:18 educational vector illustration split into two stacked horizontal panels with a thin horizontal divider, white background, blue teal orange accents; top panel is a professional accurate neural network learning loop diagram with data blocks, model layers, prediction output, target comparison, loss signal, gradient feedback, and parameter update loop; bottom panel is a lively metaphor of data blocks entering a model machine, output compared on a balance scale, an error ribbon returning to slider controls; align corresponding elements by color, position, and arrow direction; explain the idea through icons, shapes, arrows, colors, layout, and a few clear concise bilingual labels in Chinese and English for key objects only; labels should be short, accurate, and placed near the object they describe; avoid formulas, long sentences, dense text, or decorative gibberish; no watermark",
+    "imgLocalPath": "assets/generated-images/ch01_00_nn_learning_loop.png"
+  },
+  {
+    "imgInsertId": "ch01_01_perceptron_decision_gate",
+    "imgCaption": "图 1-2 感知机决策：上半部分展示加权求和与阈值输出，下半部分用决策门类比信号筛选。",
+    "imgPrompt": "16:18 educational vector illustration split into two stacked horizontal panels with a thin horizontal divider, white background, blue teal orange accents; top panel is a professional accurate perceptron diagram showing multiple inputs with different weight thicknesses, weighted sum node, bias input, activation threshold, and binary output path; bottom panel is a lively metaphor of signal cards carrying differently sized backpacks into a decision booth, a threshold lever flips, and the result exits through one of two gates; match inputs, weights, threshold, and output by color and layout; explain the idea through icons, shapes, arrows, colors, layout, and a few clear concise bilingual labels in Chinese and English for key objects only; labels should be short, accurate, and placed near the object they describe; avoid formulas, long sentences, dense text, or decorative gibberish; no watermark",
+    "imgLocalPath": "assets/generated-images/ch01_01_perceptron_decision_gate.png"
+  },
+  {
+    "imgInsertId": "ch01_04_backprop_error_flow",
+    "imgCaption": "图 1-3 反向传播：上半部分展示梯度从损失反传，下半部分用质检返工类比责任分配。",
+    "imgPrompt": "16:18 educational vector illustration split into two stacked horizontal panels with a thin horizontal divider, white background, blue teal orange accents; top panel is a professional accurate computation graph for backpropagation with forward activations flowing layer by layer to loss, and backward gradients flowing from loss to earlier parameters; bottom panel is a lively factory assembly line where a quality inspector finds an error and an orange feedback ribbon travels backward through stations while tools adjust each machine; keep forward arrows blue and backward arrows orange in both panels; explain the idea through icons, shapes, arrows, colors, layout, and a few clear concise bilingual labels in Chinese and English for key objects only; labels should be short, accurate, and placed near the object they describe; avoid formulas, long sentences, dense text, or decorative gibberish; no watermark",
+    "imgLocalPath": "assets/generated-images/ch01_04_backprop_error_flow.png"
+  },
+  {
+    "imgInsertId": "ch02_00_classic_architecture_bridge",
+    "imgCaption": "图 2-1 经典架构桥梁：上半部分串起 CNN、序列模型与编码器-解码器，下半部分用三条路线类比通向 Transformer。",
+    "imgPrompt": "16:18 educational vector illustration split into two stacked horizontal panels with a thin horizontal divider, white background, blue teal orange accents; top panel is a professional accurate architecture bridge map showing a spatial-grid convolution route, an ordered sequence-memory route, an encoder-decoder sequence mapping route, and a forward bridge arrow leading toward an attention-based architecture; bottom panel is a lively metaphor of three routes across a river: a sliding window scanner for images, a step-by-step reader for sequences, and a read-then-speak translator booth, all converging toward a tall attention tower; align the three routes and final architecture by matching colors and order; explain the idea through icons, shapes, arrows, colors, layout, and a few clear concise bilingual labels in Chinese and English for key objects only; labels should be short, accurate, and placed near the object they describe; avoid formulas, long sentences, dense text, or decorative gibberish; no watermark",
+    "imgLocalPath": "assets/generated-images/ch02_00_classic_architecture_bridge.png"
+  },
+  {
+    "imgInsertId": "ch03_02_attention_qkv_matching",
+    "imgCaption": "图 3-1 Self-Attention：上半部分展示 token 间的注意力匹配，下半部分用会议提问类比信息选择。",
+    "imgPrompt": "16:18 educational vector illustration split into two stacked horizontal panels with a thin horizontal divider, white background, blue teal orange accents; top panel is a professional accurate self-attention diagram with a row of token tiles, one highlighted query token, connections to key tokens with varied attention weights, and value vectors gathered back into the highlighted output; bottom panel is a lively meeting-room metaphor where one tile asks around with beams, other tiles show matching badges, and useful value gems return with different beam thickness; use identical colors and line weights to map both panels; explain the idea through icons, shapes, arrows, colors, layout, and a few clear concise bilingual labels in Chinese and English for key objects only; labels should be short, accurate, and placed near the object they describe; avoid formulas, long sentences, dense text, or decorative gibberish; no watermark",
+    "imgLocalPath": "assets/generated-images/ch03_02_attention_qkv_matching.png"
+  },
+  {
+    "imgInsertId": "ch03_03_transformer_block_stack",
+    "imgCaption": "图 3-2 Transformer 层堆叠：上半部分展示注意力、前馈与残差结构，下半部分用楼层工坊类比模块协作。",
+    "imgPrompt": "16:18 educational vector illustration split into two stacked horizontal panels with a thin horizontal divider, white background, blue teal orange accents; top panel is a professional accurate Transformer block stack showing token stream through repeated layers, multi-head attention module, feed-forward module, normalization points, and residual skip loops; bottom panel is a lively modular building where token parcels ride upward through floors with an attention room, feed-forward workshop, and curved shortcut slides; match each technical module to its playful room with the same colors and positions; explain the idea through icons, shapes, arrows, colors, layout, and a few clear concise bilingual labels in Chinese and English for key objects only; labels should be short, accurate, and placed near the object they describe; avoid formulas, long sentences, dense text, or decorative gibberish; no watermark",
+    "imgLocalPath": "assets/generated-images/ch03_03_transformer_block_stack.png"
+  },
+  {
+    "imgInsertId": "ch04_00_language_model_evolution_map",
+    "imgCaption": "图 4-1 语言模型演进：上半部分展示词表示到预训练模型的路线，下半部分用旅程分岔类比技术演进。",
+    "imgPrompt": "16:18 educational vector illustration split into two stacked horizontal panels with a thin horizontal divider, white background, blue teal orange accents; top panel is a professional accurate language model evolution map from sparse one-hot vectors to dense embeddings, contextual representations, encoder-only understanding branch, decoder-only generation branch, and large pretrained model; bottom panel is a lively journey map from a sparse pegboard to a vector constellation, then shifting context tiles, then two roads toward a telescope-like encoder and token-making decoder engine; align stages one-to-one by color and order; explain the idea through icons, shapes, arrows, colors, layout, and a few clear concise bilingual labels in Chinese and English for key objects only; labels should be short, accurate, and placed near the object they describe; avoid formulas, long sentences, dense text, or decorative gibberish; no watermark",
+    "imgLocalPath": "assets/generated-images/ch04_00_language_model_evolution_map.png"
+  },
+  {
+    "imgInsertId": "ch05_01_gpt_next_token_loop",
+    "imgCaption": "图 5-1 GPT 自回归生成：上半部分展示逐 token 生成循环，下半部分用车厢续接类比序列增长。",
+    "imgPrompt": "16:18 educational vector illustration split into two stacked horizontal panels with a thin horizontal divider, white background, blue teal orange accents; top panel is a professional accurate autoregressive GPT generation diagram where a prompt token sequence enters a decoder-only stack, produces exactly one next-token output, appends it to the sequence, then loops back for the next step; bottom panel is a lively token train entering a decoder machine, one new carriage pops out, attaches to the train, and the longer train circles back; map prompt, model, new token, and feedback loop between the top and bottom panels; explain the idea through icons, shapes, arrows, colors, layout, and a few clear concise bilingual labels in Chinese and English for key objects only; labels should be short, accurate, and placed near the object they describe; avoid formulas, long sentences, dense text, or decorative gibberish; no watermark",
+    "imgLocalPath": "assets/generated-images/ch05_01_gpt_next_token_loop.png"
+  },
+  {
+    "imgInsertId": "ch05_02_scaling_laws_emergence",
+    "imgCaption": "图 5-2 Scaling Laws：上半部分展示规模增长与损失下降，下半部分用引擎变强类比能力涌现。",
+    "imgPrompt": "16:18 educational vector illustration split into two stacked horizontal panels with a thin horizontal divider, white background, blue teal orange accents; top panel is a professional accurate scaling-laws diagram using only shapes: three increasing resource streams for model size, data size, and compute budget flow together, an unlabeled smooth decreasing curve represents loss, and several capability threshold markers light up at larger scale; bottom panel is a lively metaphor of a small workshop growing into a larger engine room where more fuel, bigger gears, and stronger power make new light bulbs turn on suddenly; align resources, improvement curve, and emergence thresholds by color and position; explain the idea through icons, shapes, arrows, colors, layout, and a few clear concise bilingual labels in Chinese and English for key objects only; labels should be short, accurate, and placed near the object they describe; avoid formulas, long sentences, dense text, or decorative gibberish; no watermark",
+    "imgLocalPath": "assets/generated-images/ch05_02_scaling_laws_emergence.png"
+  },
+  {
+    "imgInsertId": "ch05_03_alignment_pipeline",
+    "imgCaption": "图 5-3 对齐流水线：上半部分展示预训练到偏好优化，下半部分用训练助手类比行为校准。",
+    "imgPrompt": "16:18 educational vector illustration split into two stacked horizontal panels with a thin horizontal divider, white background, blue teal orange accents; top panel is a professional accurate alignment pipeline with pretrained model, supervised fine-tuning examples, preference comparison, reward or direct preference optimization path, and final aligned assistant behavior; bottom panel is a lively coaching route where a rough assistant robot practices with example cards, stands at a preference podium comparing two outputs, passes a safety checkpoint, and becomes a polished helper; keep each stage paired by color and order; explain the idea through icons, shapes, arrows, colors, layout, and a few clear concise bilingual labels in Chinese and English for key objects only; labels should be short, accurate, and placed near the object they describe; avoid formulas, long sentences, dense text, or decorative gibberish; no watermark",
+    "imgLocalPath": "assets/generated-images/ch05_03_alignment_pipeline.png"
+  },
+  {
+    "imgInsertId": "ch06_02_diffusion_denoising_steps",
+    "imgCaption": "图 6-1 扩散去噪：上半部分展示加噪与去噪过程，下半部分用逐步清理类比从噪声生成图像。",
+    "imgPrompt": "16:18 educational vector illustration split into two stacked horizontal panels with a thin horizontal divider, white background, blue teal orange accents; top panel is a professional accurate diffusion process diagram with forward noise addition from clean image to pure noise and reverse denoising from noise to clean image across multiple steps; bottom panel is a lively restoration metaphor where a messy confetti cloud is cleaned panel by panel with small brushes until a clear picture appears; use matching step positions and noise intensity gradients in both panels; explain the idea through icons, shapes, arrows, colors, layout, and a few clear concise bilingual labels in Chinese and English for key objects only; labels should be short, accurate, and placed near the object they describe; avoid formulas, long sentences, dense text, or decorative gibberish; no watermark",
+    "imgLocalPath": "assets/generated-images/ch06_02_diffusion_denoising_steps.png"
+  },
+  {
+    "imgInsertId": "ch07_01_distributed_training_split",
+    "imgCaption": "图 7-1 分布式训练：上半部分展示模型与数据拆分协作，下半部分用多岛拼图类比多卡训练。",
+    "imgPrompt": "16:18 educational vector illustration split into two stacked horizontal panels with a thin horizontal divider, white background, blue teal orange accents; top panel is a professional accurate distributed training diagram showing a large model split across multiple GPU devices, data shards, activation or gradient transfers, and synchronization arrows; bottom panel is a lively teamwork metaphor where a giant neural network puzzle is divided among GPU islands while data carts and gradient arrows shuttle between them; keep model shards, data shards, and sync arrows visually paired; explain the idea through icons, shapes, arrows, colors, layout, and a few clear concise bilingual labels in Chinese and English for key objects only; labels should be short, accurate, and placed near the object they describe; avoid formulas, long sentences, dense text, or decorative gibberish; no watermark",
+    "imgLocalPath": "assets/generated-images/ch07_01_distributed_training_split.png"
+  },
+  {
+    "imgInsertId": "ch08_01_kv_cache_library",
+    "imgCaption": "图 8-1 KV Cache：上半部分展示缓存和复用 K/V，下半部分用图书馆索引类比避免重复阅读。",
+    "imgPrompt": "16:18 educational vector illustration split into two stacked horizontal panels with a thin horizontal divider, white background, blue teal orange accents; top panel is a professional accurate KV Cache inference diagram showing prompt tokens producing cached key and value tensors, then each new token computes only its own query plus new key and value while reusing cached past key and value; bottom panel is a lively library metaphor where a model reads a long scroll once, stores key-value cards on shelves, then grabs cached cards for the next token instead of rereading the scroll; align cache, new token, and reuse arrows; explain the idea through icons, shapes, arrows, colors, layout, and a few clear concise bilingual labels in Chinese and English for key objects only; labels should be short, accurate, and placed near the object they describe; avoid formulas, long sentences, dense text, or decorative gibberish; no watermark",
+    "imgLocalPath": "assets/generated-images/ch08_01_kv_cache_library.png"
+  },
+  {
+    "imgInsertId": "ch09_01_rag_pipeline",
+    "imgCaption": "图 9-1 RAG 流程：上半部分展示检索增强生成管线，下半部分用开卷考试类比外部知识引用。",
+    "imgPrompt": "16:18 educational vector illustration split into two stacked horizontal panels with a thin horizontal divider, white background, blue teal orange accents; top panel is a professional accurate RAG pipeline diagram showing user query, embedding or search step, vector document store, retrieved chunks, context assembly, language model, and grounded answer output; bottom panel is a lively open-book-exam metaphor where a question card goes to a librarian magnifier, relevant snippets pop from shelves, and a model kitchen serves an answer with evidence ribbons; keep query, retrieval, context, and answer positions matched; explain the idea through icons, shapes, arrows, colors, layout, and a few clear concise bilingual labels in Chinese and English for key objects only; labels should be short, accurate, and placed near the object they describe; avoid formulas, long sentences, dense text, or decorative gibberish; no watermark",
+    "imgLocalPath": "assets/generated-images/ch09_01_rag_pipeline.png"
+  },
+  {
+    "imgInsertId": "ch10_00_multimodal_shared_space",
+    "imgCaption": "图 10-1 多模态共享表示：上半部分展示不同模态进入统一空间，下半部分用汇聚广场类比多源信息融合。",
+    "imgPrompt": "16:18 educational vector illustration split into two stacked horizontal panels with a thin horizontal divider, white background, blue teal orange accents; top panel is a professional accurate multimodal architecture diagram showing text tokens, image patches, audio waveform features, and video frame tokens projected into a shared embedding space and fused by a central model; bottom panel is a lively plaza metaphor where text tiles, image cards, audio waves, and video frames arrive from different paths, meet in a glowing shared square, then enter one AI control room; match modalities by color and path; explain the idea through icons, shapes, arrows, colors, layout, and a few clear concise bilingual labels in Chinese and English for key objects only; labels should be short, accurate, and placed near the object they describe; avoid formulas, long sentences, dense text, or decorative gibberish; no watermark",
+    "imgLocalPath": "assets/generated-images/ch10_00_multimodal_shared_space.png"
+  },
+  {
+    "imgInsertId": "ch11_01_cot_stepping_stones",
+    "imgCaption": "图 11-1 思维链：上半部分展示中间推理状态，下半部分用踏脚石类比一步步抵达答案。",
+    "imgPrompt": "16:18 educational vector illustration split into two stacked horizontal panels with a thin horizontal divider, white background, blue teal orange accents; top panel is a professional accurate chain-of-thought diagram showing problem input decomposed into ordered intermediate reasoning states that feed into the final answer, with each step depending on the previous step; bottom panel is a lively stepping-stone metaphor where a learner crosses a gap one stone at a time toward a bright answer platform; align each reasoning state with one stone using matching colors and sequence; explain the idea through icons, shapes, arrows, colors, layout, and a few clear concise bilingual labels in Chinese and English for key objects only; labels should be short, accurate, and placed near the object they describe; avoid formulas, long sentences, dense text, or decorative gibberish; no watermark",
+    "imgLocalPath": "assets/generated-images/ch11_01_cot_stepping_stones.png"
+  },
+  {
+    "imgInsertId": "ch12_01_agent_loop_tools",
+    "imgCaption": "图 12-1 Agent 循环：上半部分展示观察、计划、工具调用与反馈，下半部分用指挥台类比多步行动。",
+    "imgPrompt": "16:18 educational vector illustration split into two stacked horizontal panels with a thin horizontal divider, white background, blue teal orange accents; top panel is a professional accurate AI agent loop diagram showing observe, reason, plan, choose tool, act, receive environment result, update state, and repeat; bottom panel is a lively command-desk metaphor where an agent watches a screen, picks tools from a toolbox, uses search code and database devices, receives results, and updates a circular plan board; pair each loop stage by color and arrow position; explain the idea through icons, shapes, arrows, colors, layout, and a few clear concise bilingual labels in Chinese and English for key objects only; labels should be short, accurate, and placed near the object they describe; avoid formulas, long sentences, dense text, or decorative gibberish; no watermark",
+    "imgLocalPath": "assets/generated-images/ch12_01_agent_loop_tools.png"
+  },
+  {
+    "imgInsertId": "ch13_01_long_context_memory_window",
+    "imgCaption": "图 13-1 长上下文：上半部分展示注意力窗口与压缩记忆，下半部分用长卷轴和记忆胶囊类比信息延续。",
+    "imgPrompt": "16:18 educational vector illustration split into two stacked horizontal panels with a thin horizontal divider, white background, blue teal orange accents; top panel is a professional accurate long-context diagram showing a long token sequence, attention window, compressed memory tokens or summaries, and information carried forward across distant positions; bottom panel is a lively long-scroll metaphor where a glowing spotlight window moves along a coiling document while memory capsules carry earlier clues forward; align window, memory, and long sequence between the top and bottom panels; explain the idea through icons, shapes, arrows, colors, layout, and a few clear concise bilingual labels in Chinese and English for key objects only; labels should be short, accurate, and placed near the object they describe; avoid formulas, long sentences, dense text, or decorative gibberish; no watermark",
+    "imgLocalPath": "assets/generated-images/ch13_01_long_context_memory_window.png"
+  },
+  {
+    "imgInsertId": "ch13_02_moe_router_experts",
+    "imgCaption": "图 13-2 MoE 路由：上半部分展示路由器选择少数专家，下半部分用调度室类比稀疏激活。",
+    "imgPrompt": "16:18 educational vector illustration split into two stacked horizontal panels with a thin horizontal divider, white background, blue teal orange accents; top panel is a professional accurate Mixture of Experts diagram showing token representations entering a router, sparse selection of a few experts among many experts, selected expert computation, and merged output; bottom panel is a lively switchboard metaphor where token parcels arrive, only a few expert rooms light up, selected rooms process parcels, and a merge chute combines results; make sparse activation correspond exactly between panels; explain the idea through icons, shapes, arrows, colors, layout, and a few clear concise bilingual labels in Chinese and English for key objects only; labels should be short, accurate, and placed near the object they describe; avoid formulas, long sentences, dense text, or decorative gibberish; no watermark",
+    "imgLocalPath": "assets/generated-images/ch13_02_moe_router_experts.png"
+  }
+]
+

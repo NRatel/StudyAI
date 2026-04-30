@@ -181,6 +181,7 @@
 <li>解码器生成第 $t$ 个词时，怎么保证它看不到第 $t+1$ 个词？</li>
 </ol>
 <p>Transformer 的回答是：<strong>把 Multi-Head Attention 与残差连接、Layer Norm、前馈网络组装成标准化的&quot;层&quot;，然后把这些层堆叠成编码器和解码器</strong>。整个架构完全不依赖 RNN，训练时所有位置可以并行计算。</p>
+<figure class="ai-image"><img src="../assets/generated-images/ch03_03_transformer_block_stack.png" alt="ch03_03_transformer_block_stack" loading="lazy"><figcaption>图 3-2 Transformer 层堆叠：上半部分展示注意力、前馈与残差结构，下半部分用楼层工坊类比模块协作。</figcaption></figure>
 <h3 id="attention-is-all-you-need-的含义">&quot;Attention Is All You Need&quot; 的含义</h3>
 <p>2017 年 Vaswani 等人的论文标题并不是说只需要注意力就能解决一切，而是说：</p>
 <ul>

@@ -192,6 +192,7 @@
 <blockquote><p>在进入细节之前，先建立全局印象。下表对比本章涉及的三种核心对齐方法：</p></blockquote>
 <div class="table-wrap"><table><thead><tr><th>维度</th><th>SFT（监督微调）</th><th>RLHF（PPO）</th><th>DPO（直接偏好优化）</th></tr></thead><tbody><tr><td><strong>一句话</strong></td><td>用高质量问答对教模型&quot;好回答长什么样&quot;</td><td>用人类偏好排序 + 强化学习教模型&quot;哪个更好&quot;</td><td>用偏好数据直接优化，跳过奖励模型</td></tr><tr><td><strong>输入数据</strong></td><td>(指令, 优质回答) 对</td><td>(指令, 回答A &gt; 回答B) 排序对</td><td>同 RLHF（偏好对）</td></tr><tr><td><strong>模型数量</strong></td><td>1 个</td><td>4 个（策略 + 参考 + 奖励 + 价值）</td><td>2 个（策略 + 参考）</td></tr><tr><td><strong>训练稳定性</strong></td><td>稳定</td><td>较差（PPO 超参敏感）</td><td>稳定</td></tr><tr><td><strong>实现复杂度</strong></td><td>低</td><td>高（需 RL 框架）</td><td>低（标准监督学习）</td></tr><tr><td><strong>优化粒度</strong></td><td>token 级别</td><td>回答级别</td><td>回答级别</td></tr><tr><td><strong>适用场景</strong></td><td>必做的第一步</td><td>资源充足、追求极致</td><td>多数场景的首选</td></tr></tbody></table></div>
 <blockquote><p>三者<strong>不是互相替代关系</strong>，而是典型的三阶段流水线：<strong>预训练 -&gt; SFT -&gt; RLHF 或 DPO</strong>。以下各节将逐步展开。</p></blockquote>
+<figure class="ai-image"><img src="../assets/generated-images/ch05_03_alignment_pipeline.png" alt="ch05_03_alignment_pipeline" loading="lazy"><figcaption>图 5-3 对齐流水线：上半部分展示预训练到偏好优化，下半部分用训练助手类比行为校准。</figcaption></figure>
 <hr>
 <h2 id="一直觉与概述">一、直觉与概述</h2>
 <h3 id="11-预训练模型的人格缺陷">1.1 预训练模型的&quot;人格缺陷&quot;</h3>

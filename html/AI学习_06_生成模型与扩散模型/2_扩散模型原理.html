@@ -192,6 +192,7 @@
 <li><strong>反向过程</strong>（去噪）：需要神经网络来学习的过程</li>
 <li><strong>生成新图像</strong>：从纯噪声出发，执行反向过程，逐步去噪得到全新的图像</li>
 </ul>
+<figure class="ai-image"><img src="../assets/generated-images/ch06_02_diffusion_denoising_steps.png" alt="ch06_02_diffusion_denoising_steps" loading="lazy"><figcaption>图 6-1 扩散去噪：上半部分展示加噪与去噪过程，下半部分用逐步清理类比从噪声生成图像。</figcaption></figure>
 <h3 id="12-与-vaegan-的直觉对比">1.2 与 VAE/GAN 的直觉对比</h3>
 <div class="table-wrap"><table><thead><tr><th>模型</th><th>生成策略</th><th>类比</th></tr></thead><tbody><tr><td>VAE</td><td>一步到位：从隐变量 $z$ 直接解码出图像</td><td>画家一笔画完整幅画</td></tr><tr><td>GAN</td><td>一步到位：生成器从噪声直接映射到图像</td><td>造假者直接伪造一张画</td></tr><tr><td>Diffusion</td><td>逐步精修：从噪声出发，经过 $T$ 步逐渐去噪</td><td>雕塑家从石块逐步雕琢出作品</td></tr></tbody></table></div>
 <p>扩散模型的&quot;逐步精修&quot;策略带来两个关键优势：</p>

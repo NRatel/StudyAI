@@ -16,6 +16,8 @@
 
 Transformer 的回答是：**把 Multi-Head Attention 与残差连接、Layer Norm、前馈网络组装成标准化的"层"，然后把这些层堆叠成编码器和解码器**。整个架构完全不依赖 RNN，训练时所有位置可以并行计算。
 
+{{img:ch03_03_transformer_block_stack}}
+
 ### "Attention Is All You Need" 的含义
 
 2017 年 Vaswani 等人的论文标题并不是说只需要注意力就能解决一切，而是说：
