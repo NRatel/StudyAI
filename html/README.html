@@ -150,21 +150,11 @@
 <a class="doc-link" href="%E9%99%84%E5%BD%95_%E6%9C%AF%E8%AF%AD%E9%80%9F%E6%9F%A5.html">附录_术语速查<small>附录：术语速查</small></a>
 <a class="doc-link" href="%E9%99%84%E5%BD%95_%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%80%E9%80%9F%E8%A7%88.html">附录_数学基础速览<small>附录：数学基础速览</small></a>
 <a class="doc-link" href="%E9%99%84%E5%BD%95_%E4%BB%A3%E7%A0%81%E7%A4%BA%E4%BE%8B%E9%9B%86.html">附录_代码示例集<small>附录：代码示例集（精选版）</small></a>
-</details></nav><div class="sidebar-rule"></div><details class="page-toc"><summary>当前页目录</summary><a class="depth-2" href="#特点">特点</a>
-<a class="depth-2" href="#总览">总览</a>
-<a class="depth-2" href="#学习路径">学习路径</a>
-<a class="depth-3" href="#路径-a核心原理快速路径">路径 A：核心原理快速路径</a>
-<a class="depth-3" href="#路径-b完整模型原理路径">路径 B：完整模型原理路径</a>
-<a class="depth-3" href="#路径-c完整大模型系统路径">路径 C：完整大模型系统路径</a>
-<a class="depth-3" href="#路径-d全量学习路径">路径 D：全量学习路径</a>
-<a class="depth-2" href="#如何使用这套内容">如何使用这套内容</a>
-<a class="depth-2" href="#目录">目录</a>
-<a class="depth-3" href="#基础篇">基础篇</a>
-<a class="depth-3" href="#核心篇">核心篇</a>
-<a class="depth-3" href="#系统篇">系统篇</a>
-<a class="depth-3" href="#前沿篇截至-20264">前沿篇（截至 2026.4）</a>
-<a class="depth-3" href="#高级选读截至-20264">高级选读（截至 2026.4）</a>
-<a class="depth-3" href="#附录">附录</a>
+</details></nav><div class="sidebar-rule"></div><details class="page-toc"><summary>当前页目录</summary><a class="depth-2" href="#这份内容解决什么">这份内容解决什么</a>
+<a class="depth-2" href="#推荐入口">推荐入口</a>
+<a class="depth-2" href="#怎么读">怎么读</a>
+<a class="depth-2" href="#内容结构">内容结构</a>
+<a class="depth-2" href="#html-生成">HTML 生成</a>
 <a class="depth-2" href="#适合谁">适合谁</a>
 <a class="depth-2" href="#不适合谁">不适合谁</a>
 <a class="depth-2" href="#license">License</a></details></aside>
@@ -172,98 +162,48 @@
     <main class="page">
       <article class="markdown-body">
 <h1 id="ai-及大模型原理系统学习">AI 及大模型原理系统学习</h1>
-<p>从神经网络基础到 Transformer、GPT、扩散模型，再到多模态、Agent、推理等前沿方向的<strong>概念梳理材料</strong>。</p>
-<p>面向有编程经验但 AI 原理基础较少的读者，目标是建立 AI 与大模型核心原理的概念地图。读完后应能看懂主要术语、技术脉络和常见误区，不需要一次吃透数学推导、论文细节或工程复现。</p>
-<h2 id="特点">特点</h2>
+<figure class="markdown-image"><img src="assets/ai-study-cover.png" alt="AI 及大模型原理系统学习封面" loading="lazy"></figure>
+<p>这是一份面向有编程经验、但 AI 原理基础不多的读者的概念学习材料。它的重点不是训练你做论文复现或工程调参，而是帮你把 AI 与大模型的主线串起来：神经网络如何学习，Transformer 为什么重要，GPT 为什么能生成内容，RAG、Agent、多模态和推理模型又分别在补什么能力。</p>
+<p>读完后，你应该能更稳地看懂 AI 相关术语、技术脉络和常见讨论，不会一听到 Attention、Scaling Laws、RLHF、KV Cache、Embedding、CoT、Agent 就只能点头。</p>
+<h2 id="这份内容解决什么">这份内容解决什么</h2>
 <ul>
-<li><strong>先抓主干</strong>：先建立概念定义、直觉解释和技术脉络，不把推导和工程细节当作主线负担</li>
-<li><strong>概念自洽</strong>：每个知识点先从具体问题切入，再讲清准确概念、核心机制和常见误区</li>
-<li><strong>分层阅读</strong>：提供核心快速、完整模型原理、完整大模型系统和全量路径，按目标选择，不必一上来硬刷全部内容</li>
-<li><strong>代码附录化</strong>：代码、配置和短伪代码示例统一收纳到独立附录，主线正文不被代码打断</li>
-<li><strong>内容时效</strong>：前沿内容截至 2026 年 4 月</li>
+<li><strong>概念定义</strong>：优先讲清“是什么”，避免只留下模糊印象。</li>
+<li><strong>机制直觉</strong>：用日常类比、图示和简化解释说明“为什么这样设计”。</li>
+<li><strong>技术关系</strong>：把概念放回上下游脉络里，看清它解决的问题和留下的问题。</li>
+<li><strong>常见误区</strong>：提醒哪些说法容易听起来对、实际不严谨。</li>
+<li><strong>按需深入</strong>：数学、代码和工程细节放在附录或后续章节中，不抢主线。</li>
 </ul>
-<h2 id="总览">总览</h2>
-<div class="table-wrap"><table><thead><tr><th>指标</th><th>数值</th></tr></thead><tbody><tr><td>模块数</td><td>13 个学习模块 + 3 个附录</td></tr><tr><td>学习文档数</td><td>84 篇（仓库共 86 个 Markdown，含 prompt/plan 等项目文件）</td></tr><tr><td>总大小</td><td>~1.0 MB</td></tr><tr><td>预估阅读时间</td><td>核心快速路径约 36~44 小时；完整模型原理路径约 60~74 小时；完整大模型系统路径约 64~82 小时；全量路径约 92~118 小时</td></tr></tbody></table></div>
-<h2 id="学习路径">学习路径</h2>
-<p>不必把全部内容都当成同一条必修线。先按目标选路径，读到陌生概念再回补相关模块；目标是“看懂主线”，不是把每个公式、模型名和框架 API 都背下来。</p>
-<h3 id="路径-a核心原理快速路径">路径 A：核心原理快速路径</h3>
-<p>适合想先抓住大语言模型主干的学习者：</p>
-<pre><code>01 神经网络基础
-  → 03 注意力机制与 Transformer
-  → 04 预训练语言模型演进
-  → 05 GPT 系列深度解析</code></pre>
-<p>说明：<code>02 经典网络架构</code> 是背景桥梁，不是这条快速路径的硬前置。如果读 03 时对 CNN/RNN/Seq2Seq、编码器-解码器不熟，再回补 02。</p>
-<h3 id="路径-b完整模型原理路径">路径 B：完整模型原理路径</h3>
-<p>适合希望把神经网络、语言模型、生成模型和多模态模型串成完整“模型谱系”的学习者：</p>
-<pre><code>01 神经网络基础
-  → 02 经典网络架构
-  → 03 注意力机制与 Transformer
-  → 04 预训练语言模型演进
-  → 05 GPT 系列深度解析
-  → 06 生成模型与扩散模型
-  → 10 多模态模型</code></pre>
-<p>说明：06 不必等到 05 之后才能开始；只要完成 02，就可以和语言模型线并行学习。</p>
-<h3 id="路径-c完整大模型系统路径">路径 C：完整大模型系统路径</h3>
-<p>适合想理解大模型从训练、推理、接入外部知识到工具行动的完整系统链路的学习者：</p>
-<pre><code>01 神经网络基础
-  → 03 注意力机制与 Transformer
-  → 04 预训练语言模型演进
-  → 05 GPT 系列深度解析
-  → 07 大模型训练技术
-  → 08 大模型推理与部署
-  → 09 RAG 与应用架构
-  → 11 推理与思维链
-  → 12 Agent 与工具使用</code></pre>
-<p>说明：这条路径聚焦“大模型系统”，不强制学习扩散模型和多模态。如果读 03 时背景不够，仍然建议回补 02。</p>
-<h3 id="路径-d全量学习路径">路径 D：全量学习路径</h3>
-<p>适合希望把全部内容系统过一遍的学习者：</p>
-<pre><code>01 神经网络基础
-  → 02 经典网络架构
-  → 03 注意力机制与 Transformer
-  → 04 预训练语言模型演进
-  → 05 GPT 系列深度解析
-  → 06 生成模型与扩散模型
-  → 07 大模型训练技术
-  → 08 大模型推理与部署
-  → 09 RAG 与应用架构
-  → 10 多模态模型
-  → 11 推理与思维链
-  → 12 Agent 与工具使用
-  → 13 长文本与高效架构</code></pre>
-<p>说明：<code>13 长文本与高效架构</code> 建议放最后，作为高级选读。它技术上依赖 03，但读完 05/08 后再看，会更容易理解它为什么重要。</p>
-<p>附录：术语速查、数学基础速览、代码示例集按需查阅，不占主线。</p>
-<h2 id="如何使用这套内容">如何使用这套内容</h2>
-<ol>
-<li><strong>先读索引</strong>：从 <a href="AI%E5%AD%A6%E4%B9%A0%E7%9B%AE%E5%BD%95%E7%B4%A2%E5%BC%95.html">AI 学习目录索引</a> 开始，了解每个模块的内容摘要、前置依赖和推荐学习顺序。</li>
-<li><strong>按目标选路径</strong>：想快速了解 GPT 主线，走路径 A；想理解模型谱系，走路径 B；想理解完整大模型系统，走路径 C；想全量浏览，再走路径 D。</li>
-<li><strong>进入模块</strong>：每个模块文件夹下的 <code>README.md</code> 是模块入口，按其中列出的子文件顺序逐篇阅读。</li>
-<li><strong>按需查阅附录</strong>：<a href="%E9%99%84%E5%BD%95_%E6%9C%AF%E8%AF%AD%E9%80%9F%E6%9F%A5.html">术语速查</a>、<a href="%E9%99%84%E5%BD%95_%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%80%E9%80%9F%E8%A7%88.html">数学基础速览</a>、<a href="%E9%99%84%E5%BD%95_%E4%BB%A3%E7%A0%81%E7%A4%BA%E4%BE%8B%E9%9B%86.html">代码示例集</a> 和 <a href="%E6%95%B4%E4%BD%93%E7%9F%A5%E8%AF%86%E4%BD%93%E7%B3%BB%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE.html">整体知识体系思维导图</a> 不占主线，遇到陌生术语、数学概念或需要代码验证时再翻阅。</li>
-<li><strong>抓关系而非背细节</strong>：优先弄清“是什么、为什么出现、解决什么问题、和前后概念什么关系”。模型排行榜、框架 API、复杂公式可以二刷时再看。</li>
-</ol>
-<h2 id="目录">目录</h2>
-<h3 id="基础篇">基础篇</h3>
-<div class="table-wrap"><table><thead><tr><th>模块</th><th>内容</th><th>重要度</th><th>时间</th></tr></thead><tbody><tr><td><a href="AI%E5%AD%A6%E4%B9%A0_01_%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/">01 神经网络基础</a></td><td>感知机、激活函数、损失函数、反向传播、优化器、正则化</td><td>★★★★★</td><td>8~10h</td></tr><tr><td><a href="AI%E5%AD%A6%E4%B9%A0_02_%E7%BB%8F%E5%85%B8%E7%BD%91%E7%BB%9C%E6%9E%B6%E6%9E%84/">02 经典网络架构</a></td><td>CNN、RNN/LSTM/GRU、编码器-解码器(Seq2Seq)</td><td>★★★★</td><td>8~10h</td></tr></tbody></table></div>
-<h3 id="核心篇">核心篇</h3>
-<div class="table-wrap"><table><thead><tr><th>模块</th><th>内容</th><th>重要度</th><th>时间</th></tr></thead><tbody><tr><td><a href="AI%E5%AD%A6%E4%B9%A0_03_%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%9C%BA%E5%88%B6%E4%B8%8ETransformer/">03 注意力机制与 Transformer</a></td><td>注意力机制、Self/Multi-Head Attention、Transformer 完整架构、位置编码</td><td>★★★★★</td><td>10~12h</td></tr><tr><td><a href="AI%E5%AD%A6%E4%B9%A0_04_%E9%A2%84%E8%AE%AD%E7%BB%83%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%BC%94%E8%BF%9B/">04 预训练语言模型演进</a></td><td>Word2Vec→ELMo→BERT→GPT、MLM/CLM、微调与迁移学习、LoRA</td><td>★★★★★</td><td>8~10h</td></tr><tr><td><a href="AI%E5%AD%A6%E4%B9%A0_05_GPT%E7%B3%BB%E5%88%97%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90/">05 GPT 系列深度解析</a></td><td>GPT-1/2/3/4 及后续、Scaling Laws、涌现能力、RLHF/DPO</td><td>★★★★★</td><td>10~12h</td></tr><tr><td><a href="AI%E5%AD%A6%E4%B9%A0_06_%E7%94%9F%E6%88%90%E6%A8%A1%E5%9E%8B%E4%B8%8E%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B/">06 生成模型与扩散模型</a></td><td>VAE/GAN/Diffusion、DDPM/DDIM、条件生成(CFG)、Stable Diffusion</td><td>★★★★★</td><td>10~12h</td></tr></tbody></table></div>
-<h3 id="系统篇">系统篇</h3>
-<div class="table-wrap"><table><thead><tr><th>模块</th><th>内容</th><th>重要度</th><th>时间</th></tr></thead><tbody><tr><td><a href="AI%E5%AD%A6%E4%B9%A0_07_%E5%A4%A7%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83%E6%8A%80%E6%9C%AF/">07 大模型训练技术</a></td><td>分布式训练、混合精度、DeepSpeed/FSDP、数据工程、对齐训练</td><td>★★★★</td><td>8~10h</td></tr><tr><td><a href="AI%E5%AD%A6%E4%B9%A0_08_%E5%A4%A7%E6%A8%A1%E5%9E%8B%E6%8E%A8%E7%90%86%E4%B8%8E%E9%83%A8%E7%BD%B2/">08 大模型推理与部署</a></td><td>KV Cache、量化(GPTQ/AWQ)、vLLM、推测解码、Prompt Engineering</td><td>★★★★</td><td>6~8h</td></tr><tr><td><a href="AI%E5%AD%A6%E4%B9%A0_09_RAG%E4%B8%8E%E5%BA%94%E7%94%A8%E6%9E%B6%E6%9E%84/">09 RAG 与应用架构</a></td><td>RAG 完整流程、Embedding、向量数据库、Chunking、评估</td><td>★★★★</td><td>6~8h</td></tr></tbody></table></div>
-<h3 id="前沿篇截至-20264">前沿篇（截至 2026.4）</h3>
-<div class="table-wrap"><table><thead><tr><th>模块</th><th>内容</th><th>重要度</th><th>时间</th></tr></thead><tbody><tr><td><a href="AI%E5%AD%A6%E4%B9%A0_10_%E5%A4%9A%E6%A8%A1%E6%80%81%E6%A8%A1%E5%9E%8B/">10 多模态模型</a></td><td>ViT、CLIP、GPT-4V/4o、Sora、语音多模态</td><td>★★★★</td><td>6~8h</td></tr><tr><td><a href="AI%E5%AD%A6%E4%B9%A0_11_%E6%8E%A8%E7%90%86%E4%B8%8E%E6%80%9D%E7%BB%B4%E9%93%BE/">11 推理与思维链</a></td><td>CoT、ToT、o1/o3 推理模型、Test-time Compute Scaling</td><td>★★★</td><td>4~6h</td></tr><tr><td><a href="AI%E5%AD%A6%E4%B9%A0_12_Agent%E4%B8%8E%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/">12 Agent 与工具使用</a></td><td>ReAct、Tool Use、记忆管理、多 Agent、MCP 协议</td><td>★★★</td><td>4~6h</td></tr></tbody></table></div>
-<h3 id="高级选读截至-20264">高级选读（截至 2026.4）</h3>
-<div class="table-wrap"><table><thead><tr><th>模块</th><th>内容</th><th>重要度</th><th>时间</th></tr></thead><tbody><tr><td><a href="AI%E5%AD%A6%E4%B9%A0_13_%E9%95%BF%E6%96%87%E6%9C%AC%E4%B8%8E%E9%AB%98%E6%95%88%E6%9E%B6%E6%9E%84/">13 长文本与高效架构</a></td><td>RoPE 扩展、Ring Attention、MoE、Mamba/SSM</td><td>★★★</td><td>4~6h</td></tr></tbody></table></div>
-<h3 id="附录">附录</h3>
-<div class="table-wrap"><table><thead><tr><th>文件</th><th>内容</th></tr></thead><tbody><tr><td><a href="%E9%99%84%E5%BD%95_%E6%9C%AF%E8%AF%AD%E9%80%9F%E6%9F%A5.html">术语速查</a></td><td>高频 AI 与大模型术语的一句话定义、常见误解和所在章节</td></tr><tr><td><a href="%E9%99%84%E5%BD%95_%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%80%E9%80%9F%E8%A7%88.html">数学基础速览</a></td><td>线性代数、概率统计、微积分核心概念参考手册（按需查阅）</td></tr><tr><td><a href="%E9%99%84%E5%BD%95_%E4%BB%A3%E7%A0%81%E7%A4%BA%E4%BE%8B%E9%9B%86.html">代码示例集</a></td><td>精选代码、配置和短伪代码示例（按需查阅）</td></tr><tr><td><a href="%E6%95%B4%E4%BD%93%E7%9F%A5%E8%AF%86%E4%BD%93%E7%B3%BB%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE.html">整体知识体系思维导图</a></td><td>全部模块的树状结构总览</td></tr><tr><td><a href="AI%E5%AD%A6%E4%B9%A0%E7%9B%AE%E5%BD%95%E7%B4%A2%E5%BC%95.html">AI 学习目录索引</a></td><td>路径选择、模块定位、推荐学习顺序</td></tr></tbody></table></div>
+<p>内容中的前沿部分整理到 2026 年 4 月。AI 发展很快，具体模型排名、产品能力和工程框架细节需要结合阅读时的新资料判断。</p>
+<h2 id="推荐入口">推荐入口</h2>
+<ul>
+<li><strong>HTML 版本</strong>：本地打开 <code>html/index.html</code>，适合连续阅读；左侧有完整目录，已配置章节配图。</li>
+<li><strong>Markdown 版本</strong>：先看 <a href="AI%E5%AD%A6%E4%B9%A0%E7%9B%AE%E5%BD%95%E7%B4%A2%E5%BC%95.html">AI 学习目录索引</a>，按目标选择阅读路径。</li>
+<li><strong>模块入口</strong>：每个 <code>AI学习_*</code> 文件夹下的 <code>README.md</code> 是该模块的导读页。</li>
+<li><strong>附录</strong>：<a href="%E9%99%84%E5%BD%95_%E6%9C%AF%E8%AF%AD%E9%80%9F%E6%9F%A5.html">术语速查</a>、<a href="%E9%99%84%E5%BD%95_%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%80%E9%80%9F%E8%A7%88.html">数学基础速览</a>、<a href="%E9%99%84%E5%BD%95_%E4%BB%A3%E7%A0%81%E7%A4%BA%E4%BE%8B%E9%9B%86.html">代码示例集</a> 按需查阅。</li>
+</ul>
+<h2 id="怎么读">怎么读</h2>
+<p>不要把所有章节都当成同一条必修线。先选目标，再顺着问题往下读：</p>
+<div class="table-wrap"><table><thead><tr><th>目标</th><th>建议读法</th></tr></thead><tbody><tr><td>先看懂 GPT 主线</td><td>走索引中的“核心原理快速路径”</td></tr><tr><td>想串起语言、图像、视频生成</td><td>走“完整模型原理路径”</td></tr><tr><td>更关心训练、推理、RAG、Agent</td><td>走“完整大模型系统路径”</td></tr><tr><td>想完整浏览一遍</td><td>走“全量学习路径”</td></tr></tbody></table></div>
+<p>阅读时优先问四个问题：它是什么？为什么出现？解决什么问题？和前后技术有什么关系？如果连续几节都只是“词认识、关系不清”，先回到最近的前置模块补地基。</p>
+<h2 id="内容结构">内容结构</h2>
+<div class="table-wrap"><table><thead><tr><th>模块</th><th>主题</th><th>你会看懂什么</th></tr></thead><tbody><tr><td><a href="AI%E5%AD%A6%E4%B9%A0_01_%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/README.html">01 神经网络基础</a></td><td>感知机、激活函数、损失函数、反向传播、优化器、正则化</td><td>神经网络如何从数据和反馈中更新参数</td></tr><tr><td><a href="AI%E5%AD%A6%E4%B9%A0_02_%E7%BB%8F%E5%85%B8%E7%BD%91%E7%BB%9C%E6%9E%B6%E6%9E%84/README.html">02 经典网络架构</a></td><td>CNN、RNN、LSTM、Seq2Seq</td><td>深度学习在 Transformer 之前如何处理图像和序列</td></tr><tr><td><a href="AI%E5%AD%A6%E4%B9%A0_03_%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%9C%BA%E5%88%B6%E4%B8%8ETransformer/README.html">03 注意力机制与 Transformer</a></td><td>Attention、Self-Attention、Transformer、位置编码</td><td>Transformer 为什么成为大模型的核心底座</td></tr><tr><td><a href="AI%E5%AD%A6%E4%B9%A0_04_%E9%A2%84%E8%AE%AD%E7%BB%83%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%BC%94%E8%BF%9B/README.html">04 预训练语言模型演进</a></td><td>Word2Vec、ELMo、BERT、GPT、预训练与微调</td><td>语言模型如何从词向量走向通用预训练</td></tr><tr><td><a href="AI%E5%AD%A6%E4%B9%A0_05_GPT%E7%B3%BB%E5%88%97%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90/README.html">05 GPT 系列深度解析</a></td><td>GPT 演进、Scaling Laws、涌现、RLHF/DPO</td><td>GPT 如何从补全文本变成通用能力平台</td></tr><tr><td><a href="AI%E5%AD%A6%E4%B9%A0_06_%E7%94%9F%E6%88%90%E6%A8%A1%E5%9E%8B%E4%B8%8E%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B/README.html">06 生成模型与扩散模型</a></td><td>VAE、GAN、Diffusion、Stable Diffusion</td><td>图像和视频生成为什么常用“加噪再去噪”</td></tr><tr><td><a href="AI%E5%AD%A6%E4%B9%A0_07_%E5%A4%A7%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83%E6%8A%80%E6%9C%AF/README.html">07 大模型训练技术</a></td><td>分布式训练、混合精度、数据工程、对齐训练</td><td>大模型训练为什么难、成本主要花在哪里</td></tr><tr><td><a href="AI%E5%AD%A6%E4%B9%A0_08_%E5%A4%A7%E6%A8%A1%E5%9E%8B%E6%8E%A8%E7%90%86%E4%B8%8E%E9%83%A8%E7%BD%B2/README.html">08 大模型推理与部署</a></td><td>KV Cache、量化、vLLM、推测解码、Prompt Engineering</td><td>模型生成为什么慢，常见优化在优化什么</td></tr><tr><td><a href="AI%E5%AD%A6%E4%B9%A0_09_RAG%E4%B8%8E%E5%BA%94%E7%94%A8%E6%9E%B6%E6%9E%84/README.html">09 RAG 与应用架构</a></td><td>Embedding、向量数据库、Chunking、检索增强生成</td><td>为什么模型需要外部知识库，以及 RAG 的瓶颈在哪里</td></tr><tr><td><a href="AI%E5%AD%A6%E4%B9%A0_10_%E5%A4%9A%E6%A8%A1%E6%80%81%E6%A8%A1%E5%9E%8B/README.html">10 多模态模型</a></td><td>ViT、CLIP、视觉语言模型、语音与视频多模态</td><td>图像、语音和视频如何接入语言模型</td></tr><tr><td><a href="AI%E5%AD%A6%E4%B9%A0_11_%E6%8E%A8%E7%90%86%E4%B8%8E%E6%80%9D%E7%BB%B4%E9%93%BE/README.html">11 推理与思维链</a></td><td>CoT、ToT、推理模型、Test-time Compute</td><td>模型“多想一会儿”为什么可能答得更好</td></tr><tr><td><a href="AI%E5%AD%A6%E4%B9%A0_12_Agent%E4%B8%8E%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/README.html">12 Agent 与工具使用</a></td><td>ReAct、工具调用、记忆、规划、多 Agent、MCP</td><td>Agent 为什么不只是多轮聊天</td></tr><tr><td><a href="AI%E5%AD%A6%E4%B9%A0_13_%E9%95%BF%E6%96%87%E6%9C%AC%E4%B8%8E%E9%AB%98%E6%95%88%E6%9E%B6%E6%9E%84/README.html">13 长文本与高效架构</a></td><td>RoPE 扩展、Ring Attention、MoE、Mamba/SSM</td><td>长上下文和高效架构分别在优化什么</td></tr></tbody></table></div>
+<p>更详细的路径、前置关系和推荐节奏见 <a href="AI%E5%AD%A6%E4%B9%A0%E7%9B%AE%E5%BD%95%E7%B4%A2%E5%BC%95.html">AI 学习目录索引</a>。</p>
+<h2 id="html-生成">HTML 生成</h2>
+<p>本仓库已生成 <code>html/</code> 静态页面。需要重新生成时运行：</p>
+<pre><code class="language-powershell">python scripts/generate_html.py --all --output html --clean</code></pre>
+<p>配图由 <code>imgCfg.json</code> 控制。<code>imgLocalPath</code> 有值时会在 HTML 中渲染图片；为空或文件不存在时，会显示 <code>[缺图：图片位置Id]</code> 占位，方便后续补图。</p>
+<p>仓库中的 <code>.github/workflows/static.yml</code> 会在推送到 <code>main</code> 后部署 <code>html/</code> 到 GitHub Pages。Pages 地址以 GitHub Actions 部署结果或仓库 Pages 设置中显示的地址为准。</p>
 <h2 id="适合谁">适合谁</h2>
 <ul>
-<li>有 Python 编程经验，想系统了解 AI/大模型原理的学习者</li>
-<li>用过 ChatGPT/Claude 等工具，但想知道&quot;它们是怎么工作的&quot;</li>
-<li>不追求成为研究者或工程专家，但想把核心概念、技术脉络和关键原理真正讲明白</li>
+<li>有基本 Python 或编程经验，想补 AI 与大模型原理主线的人。</li>
+<li>经常使用 AI 工具，但想知道它们大致怎样工作的人。</li>
+<li>希望看懂技术讨论、产品能力边界和常见概念，而不是立刻投入论文复现的人。</li>
 </ul>
 <h2 id="不适合谁">不适合谁</h2>
 <ul>
-<li>零编程基础的初学者（需要基本的 Python 能力）</li>
-<li>希望通过大量练习、项目作业来训练实操能力的学习者（本项目更偏概念了解）</li>
-<li>追求严格数学证明的研究者（本项目重直觉、概念定义和核心原理）</li>
+<li>完全没有编程基础，且暂时不打算补基础的人。</li>
+<li>主要目标是刷项目、练部署、调框架参数的人。</li>
+<li>需要严格数学证明、论文级细节或可发表研究综述的人。</li>
 </ul>
 <h2 id="license">License</h2>
 <p>本项目内容仅供个人学习使用。</p>

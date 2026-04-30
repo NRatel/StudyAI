@@ -38,7 +38,9 @@ OVERVIEW_DOC_MODULE = "总览"
 APPENDIX_DOC_MODULE = "附录"
 ROOT_DOC_MODULES = {OVERVIEW_DOC_MODULE, APPENDIX_DOC_MODULE}
 IMG_CONFIG_FILE = ROOT / "imgCfg.json"
+COVER_IMAGE_FILE = ROOT / "assets" / "ai-study-cover.png"
 IMAGE_MARKER_RE = re.compile(r"^\{\{img:([^{}\s]+)\}\}$")
+MARKDOWN_IMAGE_RE = re.compile(r"^!\[([^\]]*)\]\(([^)]+)\)$")
 
 
 STYLE_CSS = r"""
@@ -450,6 +452,20 @@ a:hover {
   margin: 0;
 }
 
+.markdown-image {
+  margin: 0.5rem 0 1.8rem;
+}
+
+.markdown-image img {
+  display: block;
+  width: min(100%, 560px);
+  margin: 0 auto;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0 14px 38px rgba(17, 24, 39, 0.1);
+}
+
 .missing-image {
   margin: 1.35rem 0;
   padding: 0.72rem 0.9rem;
@@ -569,6 +585,16 @@ tr:last-child td {
   max-width: 760px;
   margin: 0;
   color: var(--muted);
+}
+
+.index-cover {
+  display: block;
+  width: min(100%, 440px);
+  margin: 0 auto 1.35rem;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0 16px 42px rgba(17, 24, 39, 0.1);
 }
 
 .module-card {
@@ -850,6 +876,42 @@ def html_href(url: str, current_source: Path, current_output: Path, output_root:
     return quote(href, safe="/#:._-%?=&")
 
 
+def image_href(url: str, current_source: Path, current_output: Path, output_root: Path) -> str:
+    if re.match(r"^(https?:|data:)", url):
+        return url
+
+    target, sep, anchor = url.partition("#")
+    if not target:
+        return "#" + anchor
+
+    source_target = (current_source.parent / target).resolve()
+    if source_target.exists() and source_target.is_file():
+        try:
+            rel_to_root = source_target.relative_to(ROOT)
+            target_path = output_root / rel_to_root
+            target_path.parent.mkdir(parents=True, exist_ok=True)
+            if source_target.resolve() != target_path.resolve():
+                shutil.copy2(source_target, target_path)
+            href = os.path.relpath(target_path, current_output.parent).replace(os.sep, "/")
+        except ValueError:
+            href = target
+    else:
+        href = html_href(url, current_source, current_output, output_root)
+
+    if sep:
+        href += "#" + anchor
+    return quote(href, safe="/#:._-%?=&")
+
+
+def render_markdown_image(alt: str, url: str, current_source: Path, current_output: Path, output_root: Path) -> str:
+    src = image_href(url.strip(), current_source, current_output, output_root)
+    return (
+        '<figure class="markdown-image">'
+        f'<img src="{html.escape(src, quote=True)}" alt="{html.escape(alt, quote=True)}" loading="lazy">'
+        "</figure>"
+    )
+
+
 def render_image_slot(img_id: str, current_output: Path, output_root: Path) -> str:
     config = IMG_CONFIG.get(img_id, {})
     caption = str(config.get("imgCaption", "")).strip()
@@ -1071,6 +1133,13 @@ def markdown_to_html(source: Path, output: Path, output_root: Path) -> tuple[str
             i += 1
             continue
 
+        markdown_image = MARKDOWN_IMAGE_RE.match(stripped)
+        if markdown_image:
+            flush_paragraph()
+            parts.append(render_markdown_image(markdown_image.group(1), markdown_image.group(2), source, output, output_root))
+            i += 1
+            continue
+
         if stripped.startswith("```"):
             flush_paragraph()
             language = stripped[3:].strip()
@@ -1277,6 +1346,17 @@ def render_index(docs: list[Document], output_root: Path) -> None:
         modules.setdefault(doc.module, []).append(doc)
     module_count = sum(1 for module in modules if module not in ROOT_DOC_MODULES)
 
+    cover_html = ""
+    if COVER_IMAGE_FILE.exists():
+        cover_target = output_root / "assets" / COVER_IMAGE_FILE.name
+        cover_target.parent.mkdir(parents=True, exist_ok=True)
+        if COVER_IMAGE_FILE.resolve() != cover_target.resolve():
+            shutil.copy2(COVER_IMAGE_FILE, cover_target)
+        cover_html = (
+            f'<img class="index-cover" src="assets/{html.escape(COVER_IMAGE_FILE.name, quote=True)}" '
+            'alt="AI 及大模型原理系统学习封面" loading="lazy">'
+        )
+
     cards = []
     for module, module_docs in modules.items():
         items = []
@@ -1311,6 +1391,7 @@ def render_index(docs: list[Document], output_root: Path) -> None:
     <div class="toc-backdrop" data-sidebar-backdrop></div>
     <main>
       <section class="index-hero">
+        {cover_html}
         <h1>AI学习</h1>
         <p>这是从 Markdown 生成的 HTML 版本。可通过左侧完整目录浏览总览、各学习模块和附录。</p>
       </section>
