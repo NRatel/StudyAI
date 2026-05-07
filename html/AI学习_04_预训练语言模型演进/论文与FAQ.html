@@ -155,7 +155,7 @@
 <a class="depth-3" href="#1-词表示从静态到上下文">1. 词表示：从静态到上下文</a>
 <a class="depth-3" href="#2-预训练范式三条架构路线">2. 预训练范式：三条架构路线</a>
 <a class="depth-3" href="#3-适配范式从微调到-prompt">3. 适配范式：从微调到 Prompt</a>
-<a class="depth-2" href="#二常见误区与faq">二、常见误区与FAQ</a>
+<a class="depth-2" href="#二faq">二、FAQ</a>
 <a class="depth-3" href="#q1bert-和-gpt-哪个更好">Q1：BERT 和 GPT 哪个更好？</a>
 <a class="depth-3" href="#q2为什么通用大模型主要走-gpt-路线">Q2：为什么通用大模型主要走 GPT 路线？</a>
 <a class="depth-3" href="#q3word2vec-现在还有用吗">Q3：Word2Vec 现在还有用吗？</a>
@@ -167,7 +167,7 @@
     <main class="page">
       <article class="markdown-body">
 <h1 id="论文与faq">论文与FAQ</h1>
-<blockquote><p>本文件用于补充论文脉络、澄清常见误区，不替代正文。正文优先讲概念；这里提供“想多看一点时”的地图。</p></blockquote>
+<blockquote><p>本文件用于补充论文脉络、收束关键疑问，不替代正文。正文优先讲概念；这里提供“想多看一点时”的地图。</p></blockquote>
 <hr>
 <h2 id="一关键论文脉络">一、关键论文脉络</h2>
 <h3 id="1-词表示从静态到上下文">1. 词表示：从静态到上下文</h3>
@@ -183,7 +183,7 @@
 <p>这组论文回答的是：<strong>预训练模型如何变成具体任务能力？</strong></p>
 <p>全量微调不是唯一选择。模型越大，Prompt、In-Context Learning、LoRA 等方法越重要，因为它们能更低成本地调用或调整模型已有能力。</p>
 <hr>
-<h2 id="二常见误区与faq">二、常见误区与FAQ</h2>
+<h2 id="二faq">二、FAQ</h2>
 <h3 id="q1bert-和-gpt-哪个更好">Q1：BERT 和 GPT 哪个更好？</h3>
 <p>没有绝对更好，只有更适合。</p>
 <div class="table-wrap"><table><thead><tr><th>维度</th><th>BERT</th><th>GPT</th></tr></thead><tbody><tr><td>核心直觉</td><td>看完整输入后理解</td><td>根据前文继续生成</td></tr><tr><td>注意力方向</td><td>双向</td><td>单向，因果掩码</td></tr><tr><td>典型任务</td><td>分类、NER、检索、抽取式问答</td><td>对话、续写、翻译、摘要、代码</td></tr></tbody></table></div>

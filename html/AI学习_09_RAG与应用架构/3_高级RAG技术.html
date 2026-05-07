@@ -160,8 +160,7 @@
 <a class="depth-3" href="#23-reranker交叉编码器重排">2.3 Reranker（交叉编码器重排）</a>
 <a class="depth-3" href="#24-混合检索hybrid-search">2.4 混合检索（Hybrid Search）</a>
 <a class="depth-3" href="#25-agentic-rag">2.5 Agentic RAG</a>
-<a class="depth-3" href="#26-rag-评估框架ragas">2.6 RAG 评估框架：RAGAS</a>
-<a class="depth-2" href="#本节小结">本节小结</a></details></aside>
+<a class="depth-3" href="#26-rag-评估框架ragas">2.6 RAG 评估框架：RAGAS</a></details></aside>
     <div class="toc-backdrop" data-sidebar-backdrop></div>
     <main class="page">
       <article class="markdown-body">
@@ -249,10 +248,6 @@ Cross-Encoder（重排阶段）:
 <h3 id="26-rag-评估框架ragas">2.6 RAG 评估框架：RAGAS</h3>
 <p>RAGAS（Retrieval Augmented Generation Assessment）提出四个核心维度：</p>
 <div class="table-wrap"><table><thead><tr><th>维度</th><th>评估什么</th><th>计算方式</th></tr></thead><tbody><tr><td><strong>Faithfulness</strong></td><td>答案是否忠于检索到的上下文</td><td>LLM 将答案分解为独立声明 → 逐一检查是否被上下文支持</td></tr><tr><td><strong>Answer Relevancy</strong></td><td>答案是否回答了用户的问题</td><td>从答案反向生成问题 → 与原始问题比较相似度</td></tr><tr><td><strong>Context Precision</strong></td><td>检索到的上下文中相关内容排名是否靠前</td><td>相关文档在 Top-K 中的加权位置</td></tr><tr><td><strong>Context Recall</strong></td><td>回答所需的信息是否都被检索到了</td><td>将参考答案分解为声明 → 检查每个声明是否在上下文中出现</td></tr></tbody></table></div>
-<hr>
-<h2 id="本节小结">本节小结</h2>
-<div class="table-wrap"><table><thead><tr><th>概念</th><th>一句话总结</th></tr></thead><tbody><tr><td><strong>Query 改写</strong></td><td>用 LLM 将模糊查询改写为检索友好形式</td></tr><tr><td><strong>HyDE</strong></td><td>用假设性回答的 Embedding 替代查询向量做检索</td></tr><tr><td><strong>Reranker</strong></td><td>Cross-Encoder 对粗排结果精排，精度高但只能处理少量候选</td></tr><tr><td><strong>混合检索</strong></td><td>BM25 + 向量检索 + RRF 融合，精确匹配与语义理解互补</td></tr><tr><td><strong>Agentic RAG</strong></td><td>Agent 自主决策：是否检索、检索什么、结果是否合格</td></tr><tr><td><strong>RAGAS</strong></td><td>四维度评估框架：Faithfulness / Relevancy / Precision / Recall</td></tr><tr><td><strong>Self-RAG</strong></td><td>模型在生成中自判断是否需要检索和检索质量</td></tr></tbody></table></div>
-<p><strong>下一节</strong>：<a href="%E8%AE%BA%E6%96%87%E4%B8%8EFAQ.html">论文与FAQ</a>——系统梳理 RAG 领域的关键论文和实际应用中的常见困惑。</p>
       </article>
       <nav class="doc-nav"><a href="2_Embedding%E4%B8%8E%E5%90%91%E9%87%8F%E6%A3%80%E7%B4%A2.html">← Embedding 与向量检索</a><a href="%E8%AE%BA%E6%96%87%E4%B8%8EFAQ.html">论文与FAQ →</a></nav>
     </main>

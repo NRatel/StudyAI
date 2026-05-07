@@ -168,11 +168,7 @@
 <a class="depth-2" href="#4-文本条件的实现">4. 文本条件的实现</a>
 <a class="depth-3" href="#41-文本编码器">4.1 文本编码器</a>
 <a class="depth-3" href="#42-cross-attention最常用">4.2 Cross-Attention（最常用）</a>
-<a class="depth-3" href="#43-adalndit-使用">4.3 AdaLN（DiT 使用）</a>
-<a class="depth-2" href="#7-常见误区">7. 常见误区</a>
-<a class="depth-2" href="#8-本章小结">8. 本章小结</a>
-<a class="depth-3" href="#核心知识点回顾">核心知识点回顾</a>
-<a class="depth-3" href="#与其他章节的联系">与其他章节的联系</a></details></aside>
+<a class="depth-3" href="#43-adalndit-使用">4.3 AdaLN（DiT 使用）</a></details></aside>
     <div class="toc-backdrop" data-sidebar-backdrop></div>
     <main class="page">
       <article class="markdown-body">
@@ -251,36 +247,6 @@
 <h3 id="43-adalndit-使用">4.3 AdaLN（DiT 使用）</h3>
 <p>条件向量通过 MLP 生成 LayerNorm 的缩放和偏移参数，间接控制特征分布：</p>
 <div class="table-wrap"><table><thead><tr><th>注入方式</th><th>条件粒度</th><th>典型使用</th></tr></thead><tbody><tr><td>Cross-Attention</td><td>逐 token（精细）</td><td>SD v1/v2/XL 的 U-Net</td></tr><tr><td>AdaLN</td><td>全局</td><td>DiT、SD3、Flux</td></tr></tbody></table></div>
-<hr>
-<h2 id="7-常见误区">7. 常见误区</h2>
-<p><strong>&quot;$s=1$ 是无条件生成&quot;</strong> —— 错。$s=1$ 时 CFG 公式化简为 $\hat\epsilon = \epsilon_\theta(x_t,t,c)$，这是标准条件生成。$s=0$ 才是无条件。</p>
-<p><strong>&quot;CFG 是线性插值&quot;</strong> —— $s &gt; 1$ 时是<strong>线性外推</strong>（extrapolation），放大了条件方向。这就是为什么 $s$ 太大会导致过饱和。</p>
-<p><strong>&quot;$p_{uncond}$ 不重要&quot;</strong> —— 太小（1%）则无条件预测不准，引导方向偏差；太大（50%）则条件能力减弱。经验最优：10%~20%。</p>
-<p><strong>&quot;Cross-Attention 只用在文生图&quot;</strong> —— 它是通用的条件注入机制。图像 CLIP 编码（IP-Adapter）、音频特征、姿态编码等都可以通过 Cross-Attention 注入。</p>
-<p><strong>&quot;CFG 系数越大质量越高&quot;</strong> —— 错。CFG 系数（guidance scale）控制的是生成质量与 prompt 遵循度之间的 trade-off。$s$ 过大时会出现：(1) <strong>过饱和</strong>——颜色异常鲜艳、对比度过高；(2) <strong>失真</strong>——物体形状扭曲、细节崩坏；(3) <strong>伪影</strong>——出现不自然的纹理和重复结构。这是因为 CFG 本质上是线性外推，$s$ 过大会把采样点推出真实数据分布的边界。最佳 $s$ 值因模型而异（SD 1.5 约 7~8，SDXL 约 5~7，SD3/Flux 约 3.5~5），需要根据具体任务实验确定。</p>
-<hr>
-<h2 id="8-本章小结">8. 本章小结</h2>
-<h3 id="核心知识点回顾">核心知识点回顾</h3>
-<pre><code>条件生成与引导
-├── 问题：从 p(x) 到 p(x|c)
-├── Classifier Guidance（2021）
-│   ├── 外部分类器梯度引导
-│   └── 局限：需额外模型，条件受限
-├── Classifier-Free Guidance（2022，重点）
-│   ├── 训练：随机以 p_uncond 概率丢弃条件
-│   ├── 推理：ε̂ = ε_uncond + s·(ε_cond - ε_uncond)
-│   ├── guidance scale s 控制引导强度
-│   └── 不需要分类器，更简单、灵活、效果好
-├── 文本条件实现
-│   ├── 文本编码器：CLIP / T5
-│   ├── Cross-Attention（U-Net）: Q=图像, K/V=文本
-│   └── AdaLN（DiT）: 条件生成归一化参数
-└── 工程要点
-    ├── guidance scale：模型越强，需要值越低
-    ├── 负提示词 = 替换无条件为负条件
-    └── CFG 是所有主流文生图模型的基石</code></pre>
-<h3 id="与其他章节的联系">与其他章节的联系</h3>
-<div class="table-wrap"><table><thead><tr><th>本章概念</th><th>关联内容</th><th>关系</th></tr></thead><tbody><tr><td>CFG 噪声预测公式</td><td><a href="2_%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B%E5%8E%9F%E7%90%86.html">2_扩散模型原理</a></td><td>修改 DDPM 采样过程中的噪声预测</td></tr><tr><td>Cross-Attention</td><td><a href="../AI%E5%AD%A6%E4%B9%A0_03_%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%9C%BA%E5%88%B6%E4%B8%8ETransformer/README.html">03_注意力机制</a></td><td>注意力机制在条件注入中的应用</td></tr><tr><td>CLIP / DiT / SD 管线</td><td><a href="4_%E6%9E%B6%E6%9E%84%E4%B8%8E%E5%BA%94%E7%94%A8.html">4_架构与应用</a></td><td>完整系统中各组件如何协作</td></tr><tr><td>Score function 分解</td><td><a href="2_%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B%E5%8E%9F%E7%90%86.html">2_扩散模型原理</a></td><td>CFG 的数学基础</td></tr></tbody></table></div>
       </article>
       <nav class="doc-nav"><a href="2_%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B%E5%8E%9F%E7%90%86.html">← 扩散模型原理</a><a href="4_%E6%9E%B6%E6%9E%84%E4%B8%8E%E5%BA%94%E7%94%A8.html">架构与应用 →</a></nav>
     </main>

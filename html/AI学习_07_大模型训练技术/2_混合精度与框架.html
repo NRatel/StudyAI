@@ -156,8 +156,7 @@
 <a class="depth-3" href="#loss-scaling把太小的信号临时放大">Loss Scaling：把太小的信号临时放大</a>
 <a class="depth-2" href="#训练框架到底在帮你管什么">训练框架到底在帮你管什么</a>
 <a class="depth-3" href="#deepspeed-和-fsdp-怎么看">DeepSpeed 和 FSDP 怎么看</a>
-<a class="depth-2" href="#几个容易混淆的取舍">几个容易混淆的取舍</a>
-<a class="depth-2" href="#本章小结">本章小结</a></details></aside>
+<a class="depth-2" href="#几个容易混淆的取舍">几个容易混淆的取舍</a></details></aside>
     <div class="toc-backdrop" data-sidebar-backdrop></div>
     <main class="page">
       <article class="markdown-body">
@@ -205,10 +204,6 @@
 <h2 id="几个容易混淆的取舍">几个容易混淆的取舍</h2>
 <div class="table-wrap"><table><thead><tr><th>做法</th><th>省了什么</th><th>换来了什么</th><th>一句话记忆</th></tr></thead><tbody><tr><td>混合精度</td><td>显存、计算时间</td><td>数值稳定性管理</td><td>快一点，但别把精密步骤也变粗</td></tr><tr><td>参数/状态分片</td><td>单卡显存</td><td>跨卡通信</td><td>少存一点，多聊一点</td></tr><tr><td>激活检查点</td><td>激活显存</td><td>反向时重算</td><td>少记一点，回头再算</td></tr><tr><td>梯度累积</td><td>单步显存</td><td>更新时间变长</td><td>小口吃饭，攒够再咽</td></tr><tr><td>Offload</td><td>GPU 显存</td><td>数据搬运延迟</td><td>桌面放不下，就搬到仓库</td></tr></tbody></table></div>
 <p>这些技术经常一起出现，因为大模型训练不是单一瓶颈。显存、吞吐、通信、稳定性会互相拉扯，训练系统就是在这些约束之间找平衡。</p>
-<hr>
-<h2 id="本章小结">本章小结</h2>
-<div class="table-wrap"><table><thead><tr><th>概念</th><th>一句话总结</th></tr></thead><tbody><tr><td>混合精度</td><td>大部分计算用低精度加速，关键更新保留高精度稳定性</td></tr><tr><td>FP16 / BF16</td><td>都是半精度思路；BF16 范围更大，通常更稳</td></tr><tr><td>Loss Scaling</td><td>临时放大 loss，保护 FP16 中容易消失的小梯度</td></tr><tr><td>ZeRO / FSDP</td><td>把参数、梯度、优化器状态切到多张卡上，降低单卡压力</td></tr><tr><td>激活检查点</td><td>少存中间激活，需要时重算，用计算换显存</td></tr><tr><td>梯度累积</td><td>多个小 batch 累积成一次大更新，用时间换稳定性</td></tr></tbody></table></div>
-<blockquote><p><strong>下一节</strong>：<a href="3_%E6%95%B0%E6%8D%AE%E5%B7%A5%E7%A8%8B%E4%B8%8ETokenizer.html">数据工程与Tokenizer</a> — 训练系统就绪后，下一个关键问题是“用什么数据来训练”。</p></blockquote>
       </article>
       <nav class="doc-nav"><a href="1_%E5%88%86%E5%B8%83%E5%BC%8F%E8%AE%AD%E7%BB%83.html">← 分布式训练</a><a href="3_%E6%95%B0%E6%8D%AE%E5%B7%A5%E7%A8%8B%E4%B8%8ETokenizer.html">数据工程与 Tokenizer →</a></nav>
     </main>

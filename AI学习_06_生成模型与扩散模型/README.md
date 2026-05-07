@@ -28,7 +28,7 @@
 | 2 | [扩散模型原理](2_扩散模型原理.md) | 前向过程、反向过程、训练目标、DDPM/DDIM |
 | 3 | [条件生成与引导](3_条件生成与引导.md) | Classifier Guidance、Classifier-Free Guidance |
 | 4 | [架构与应用](4_架构与应用.md) | U-Net、DiT、Stable Diffusion 管线、与 Transformer 的融合 |
-| - | [论文与FAQ](论文与FAQ.md) | 关键论文、常见误区、延伸资源 |
+| - | [论文与FAQ](论文与FAQ.md) | 关键论文、延伸资源 |
 
 ## 读完能解释
 

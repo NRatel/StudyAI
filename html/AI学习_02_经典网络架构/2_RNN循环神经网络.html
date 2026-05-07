@@ -160,9 +160,7 @@
 <a class="depth-3" href="#3-隐藏状态到底记了什么">3. 隐藏状态到底记了什么</a>
 <a class="depth-3" href="#4-rnn-的常见输入输出模式">4. RNN 的常见输入输出模式</a>
 <a class="depth-3" href="#5-bptt沿时间反向传播">5. BPTT：沿时间反向传播</a>
-<a class="depth-3" href="#6-为什么原始-rnn-记不住长距离依赖">6. 为什么原始 RNN 记不住长距离依赖</a>
-<a class="depth-2" href="#常见误区">常见误区</a>
-<a class="depth-2" href="#本节小结">本节小结</a></details></aside>
+<a class="depth-3" href="#6-为什么原始-rnn-记不住长距离依赖">6. 为什么原始 RNN 记不住长距离依赖</a></details></aside>
     <div class="toc-backdrop" data-sidebar-backdrop></div>
     <main class="page">
       <article class="markdown-body">
@@ -237,18 +235,6 @@
 <p>如果每一步都让梯度变小一点，最后就几乎没信号了。这就是<strong>梯度消失</strong>。</p>
 <p>如果每一步都让梯度变大一点，最后就会爆炸。这就是<strong>梯度爆炸</strong>。</p>
 <p>梯度爆炸可以用梯度裁剪缓解；梯度消失更棘手，因为早期信息根本传不回来。LSTM 和 GRU 就是为了解决这个问题而设计的。</p>
-<hr>
-<h2 id="常见误区">常见误区</h2>
-<p><strong>误区 1：RNN 的隐藏状态等于完整记忆。</strong></p>
-<p>不是。隐藏状态是压缩表示，不可能无损保存任意长历史。</p>
-<p><strong>误区 2：RNN 天然擅长所有长文本任务。</strong></p>
-<p>不对。RNN 能处理变长序列，但原始 RNN 很难学习长距离依赖。</p>
-<p><strong>误区 3：RNN 已经完全没用了。</strong></p>
-<p>也不准确。Transformer 成为主流后，RNN 在大规模语言建模中退居二线，但 RNN 的状态递推思想仍影响了很多高效序列模型。</p>
-<hr>
-<h2 id="本节小结">本节小结</h2>
-<div class="table-wrap"><table><thead><tr><th>概念</th><th>一句话总结</th></tr></thead><tbody><tr><td>RNN</td><td>带隐藏状态的序列模型</td></tr><tr><td>隐藏状态 $h_t$</td><td>对历史信息的压缩表示</td></tr><tr><td>参数共享</td><td>每个时间步使用同一套参数</td></tr><tr><td>BPTT</td><td>沿时间展开后做反向传播</td></tr><tr><td>梯度消失</td><td>长距离依赖学不到的关键原因</td></tr><tr><td>梯度爆炸</td><td>梯度过大导致训练不稳定，可用裁剪缓解</td></tr></tbody></table></div>
-<p><strong>下一篇</strong>：<a href="3_LSTM%E4%B8%8EGRU.html">LSTM 与 GRU</a>——如果普通 RNN 的记忆太差，门控机制如何帮它选择性记住和忘记？</p>
       </article>
       <nav class="doc-nav"><a href="1_CNN%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C.html">← CNN 卷积神经网络</a><a href="3_LSTM%E4%B8%8EGRU.html">LSTM 与 GRU →</a></nav>
     </main>

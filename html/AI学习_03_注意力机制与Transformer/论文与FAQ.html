@@ -152,7 +152,7 @@
 <a class="doc-link" href="../%E9%99%84%E5%BD%95_%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%80%E9%80%9F%E8%A7%88.html">附录_数学基础速览<small>附录：数学基础速览</small></a>
 <a class="doc-link" href="../%E9%99%84%E5%BD%95_%E4%BB%A3%E7%A0%81%E7%A4%BA%E4%BE%8B%E9%9B%86.html">附录_代码示例集<small>附录：代码示例集（精选版）</small></a>
 </details></nav><div class="sidebar-rule"></div><details class="page-toc"><summary>当前页目录</summary><a class="depth-2" href="#一关键论文脉络">一、关键论文脉络</a>
-<a class="depth-2" href="#二常见误区与-faq">二、常见误区与 FAQ</a>
+<a class="depth-2" href="#二faq">二、FAQ</a>
 <a class="depth-3" href="#q1transformer-没有-rnn怎么知道顺序">Q1：Transformer 没有 RNN，怎么知道顺序？</a>
 <a class="depth-3" href="#q2为什么要有-qkv">Q2：为什么要有 Q、K、V？</a>
 <a class="depth-3" href="#q3为什么要多头注意力">Q3：为什么要多头注意力？</a>
@@ -167,7 +167,7 @@
     <main class="page">
       <article class="markdown-body">
 <h1 id="论文与faq">论文与FAQ</h1>
-<blockquote><p>本文件用于补充注意力机制与 Transformer 的论文脉络和常见误区。正文优先讲清 Q/K/V、自注意力、多头、位置编码和 Transformer 架构；这里负责把常见疑问收束起来。</p></blockquote>
+<blockquote><p>本文件用于补充注意力机制与 Transformer 的论文脉络和关键疑问。正文优先讲清 Q/K/V、自注意力、多头、位置编码和 Transformer 架构；这里负责把常见疑问收束起来。</p></blockquote>
 <hr>
 <h2 id="一关键论文脉络">一、关键论文脉络</h2>
 <div class="table-wrap"><table><thead><tr><th>年份</th><th>论文/方法</th><th>为什么重要</th></tr></thead><tbody><tr><td>2014</td><td>Bahdanau Attention</td><td>让 Seq2Seq 解码时能动态关注输入的不同位置</td></tr><tr><td>2015</td><td>Luong Attention</td><td>简化并系统比较注意力打分方式，点积注意力影响很大</td></tr><tr><td>2017</td><td>Transformer</td><td>完全基于注意力的架构，替代 RNN 成为主线</td></tr><tr><td>2018</td><td>Relative Position</td><td>强调相对位置比绝对编号更符合语言直觉</td></tr><tr><td>2020</td><td>Pre-LN 分析</td><td>解释 LayerNorm 位置为何影响深层 Transformer 稳定性</td></tr><tr><td>2021</td><td>RoPE</td><td>用旋转方式把位置信息注入 Q/K，现代 LLM 常用</td></tr><tr><td>2022</td><td>FlashAttention</td><td>不改注意力定义，优化长序列注意力计算</td></tr></tbody></table></div>
@@ -178,7 +178,7 @@
 <li>FlashAttention、Pre-LN 这类内容作为进阶补充，不影响初次理解 Transformer。</li>
 </ol>
 <hr>
-<h2 id="二常见误区与-faq">二、常见误区与 FAQ</h2>
+<h2 id="二faq">二、FAQ</h2>
 <h3 id="q1transformer-没有-rnn怎么知道顺序">Q1：Transformer 没有 RNN，怎么知道顺序？</h3>
 <p>自注意力本身确实不天然知道顺序。它看的是 token 之间的内容关系，而不是第几个 token。</p>
 <p>所以 Transformer 必须加入<strong>位置编码</strong>：</p>

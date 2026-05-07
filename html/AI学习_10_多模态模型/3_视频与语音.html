@@ -173,8 +173,7 @@
 <a class="depth-3" href="#24-语音-llm端到端语音大模型">2.4 语音 + LLM：端到端语音大模型</a>
 <a class="depth-4" href="#241-传统级联方案-vs-端到端方案">2.4.1 传统级联方案 vs 端到端方案</a>
 <a class="depth-4" href="#242-语音-token-化方案">2.4.2 语音 token 化方案</a>
-<a class="depth-4" href="#243-语音多模态模型全景截至-20264">2.4.3 语音多模态模型全景（截至 2026.4）</a>
-<a class="depth-2" href="#本节小结">本节小结</a></details></aside>
+<a class="depth-4" href="#243-语音多模态模型全景截至-20264">2.4.3 语音多模态模型全景（截至 2026.4）</a></details></aside>
     <div class="toc-backdrop" data-sidebar-backdrop></div>
     <main class="page">
       <article class="markdown-body">
@@ -451,16 +450,6 @@ Hello, how are you?      ← 生成的文本
 <div class="table-wrap"><table><thead><tr><th>方案</th><th>做法</th><th>代表</th></tr></thead><tbody><tr><td><strong>语义 token</strong></td><td>用自监督模型（如 HuBERT）提取高层语义特征 → 量化</td><td>GSLM、AudioPaLM</td></tr><tr><td><strong>声学 token</strong></td><td>用神经编解码器（如 EnCodec）压缩为离散码本</td><td>VALL-E、SoundStorm</td></tr><tr><td><strong>混合 token</strong></td><td>语义 token + 声学 token 分层处理</td><td>GPT-4o（推测）、CosyVoice</td></tr><tr><td><strong>连续特征</strong></td><td>不做离散化，直接用连续特征接入 LLM</td><td>Qwen2-Audio</td></tr></tbody></table></div>
 <h4 id="243-语音多模态模型全景截至-20264">2.4.3 语音多模态模型全景（截至 2026.4）</h4>
 <div class="table-wrap"><table><thead><tr><th>模型</th><th>机构</th><th>输入</th><th>输出</th><th>特点</th></tr></thead><tbody><tr><td>GPT-4o</td><td>OpenAI</td><td>文本+图像+语音</td><td>文本+语音</td><td>原生多模态，320ms 延迟</td></tr><tr><td>Gemini 2.0</td><td>Google</td><td>文本+图像+视频+语音</td><td>文本+语音+图像</td><td>全模态输入输出</td></tr><tr><td>Qwen2-Audio</td><td>阿里</td><td>文本+语音</td><td>文本</td><td>语音理解（非生成）</td></tr><tr><td>SALMONN</td><td>字节</td><td>文本+语音</td><td>文本</td><td>语音理解</td></tr><tr><td>CosyVoice 2</td><td>阿里</td><td>文本</td><td>语音</td><td>高质量语音合成</td></tr><tr><td>Fish Speech</td><td>开源社区</td><td>文本</td><td>语音</td><td>开源 TTS</td></tr></tbody></table></div>
-<hr>
-<h2 id="本节小结">本节小结</h2>
-<div class="table-wrap"><table><thead><tr><th>概念</th><th>一句话总结</th></tr></thead><tbody><tr><td><strong>时空建模</strong></td><td>视频 = 空间(图像) + 时间(帧序列)，需要同时建模两个维度</td></tr><tr><td><strong>分解注意力</strong></td><td>将全局时空注意力分解为&quot;时间注意力+空间注意力&quot;，大幅降低计算量</td></tr><tr><td><strong>VideoMAE</strong></td><td>90-95% 掩码率的自监督预训练，利用视频的时间冗余</td></tr><tr><td><strong>Sora</strong></td><td>DiT + 时空 VAE + 大规模训练 = 高质量视频生成</td></tr><tr><td><strong>Whisper</strong></td><td>68 万小时弱监督数据 + Encoder-Decoder Transformer = 通用语音识别</td></tr><tr><td><strong>语音 token 化</strong></td><td>将连续语音转为离散 token，是端到端语音 LLM 的关键</td></tr><tr><td><strong>端到端语音 LLM</strong></td><td>跳过 ASR→LLM→TTS 级联，直接让 LLM 处理语音 token</td></tr></tbody></table></div>
-<hr>
-<blockquote><p><strong>时效性说明</strong>（截至 2026 年 4 月）：视频生成和语音多模态是迭代最快的方向。以下内容可能快速过时：<br>
-1. <strong>Sora 的技术细节</strong>：OpenAI 始终未公开完整论文。本文基于 2024.2 的技术报告和社区推测，实际实现可能有差异。<br>
-2. <strong>视频生成排行</strong>：CogVideoX、Wan 等开源方案在快速迭代，2026 年的 SOTA 可能已经更换。<br>
-3. <strong>语音 LLM</strong>：GPT-4o 级别的端到端语音对话在 2025 年仍是闭源领先，但 Qwen2-Audio、GLM-4-Voice 等开源方案正在快速追赶。<br>
-4. <strong>Whisper 版本</strong>：Whisper large-v3 turbo（2024.10）显著优化了速度，后续可能有 v4 或替代方案。<br>
-建议关注以下资源获取最新进展：HuggingFace 视频生成排行榜、OpenCompass 多模态评测、Papers With Code 视频理解/生成 benchmark。</p></blockquote>
       </article>
       <nav class="doc-nav"><a href="2_%E5%A4%9A%E6%A8%A1%E6%80%81%E5%A4%A7%E6%A8%A1%E5%9E%8B.html">← 多模态大模型</a><a href="%E8%AE%BA%E6%96%87%E4%B8%8EFAQ.html">论文与FAQ →</a></nav>
     </main>

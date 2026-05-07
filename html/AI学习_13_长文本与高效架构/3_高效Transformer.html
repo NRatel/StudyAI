@@ -157,7 +157,6 @@
 <a class="depth-2" href="#线性注意力别真的建那张巨大表">线性注意力：别真的建那张巨大表</a>
 <a class="depth-2" href="#ssm-mamba边读边更新状态">SSM / Mamba：边读边更新状态</a>
 <a class="depth-2" href="#为什么这些方案没有统一替代-transformer">为什么这些方案没有统一替代 Transformer</a>
-<a class="depth-2" href="#本章小结">本章小结</a>
 <a class="depth-2" href="#时效性说明">时效性说明</a></details></aside>
     <div class="toc-backdrop" data-sidebar-backdrop></div>
     <main class="page">
@@ -214,9 +213,6 @@ SSM：一路读一路更新笔记，后面主要查笔记</code></pre>
 <p>高效架构听起来很诱人，但真正落地会遇到几类问题：</p>
 <div class="table-wrap"><table><thead><tr><th>问题</th><th>含义</th></tr></thead><tbody><tr><td>质量不一定稳</td><td>少算或近似之后，某些任务会掉点</td></tr><tr><td>硬件不一定友好</td><td>理论复杂度低，不代表 GPU 上一定更快</td></tr><tr><td>生态不一定成熟</td><td>Transformer 的训练、推理、框架、工具链积累太深</td></tr><tr><td>任务需求不同</td><td>长文档分类、代码补全、对话、检索增强，对架构的要求并不一样</td></tr></tbody></table></div>
 <p>因此更现实的判断是：<strong>标准 Transformer 仍是主干，高效变体提供补充路线。</strong> 在长文本、低延迟、边缘设备、超长序列建模等场景里，这些路线会继续影响新模型设计。</p>
-<hr>
-<h2 id="本章小结">本章小结</h2>
-<div class="table-wrap"><table><thead><tr><th>概念</th><th>一句话总结</th><th>主要取舍</th></tr></thead><tbody><tr><td>标准 Attention</td><td>每个 token 直接看所有 token</td><td>强但贵</td></tr><tr><td>稀疏注意力</td><td>只看局部、全局或随机挑选的位置</td><td>省计算，但可能漏关系</td></tr><tr><td>线性注意力</td><td>避免显式构造两两关系大表</td><td>理论省，但近似和实现有代价</td></tr><tr><td>SSM / Mamba</td><td>用随输入更新的状态承载历史</td><td>长序列友好，但精确回看能力不同</td></tr><tr><td>混合架构</td><td>Attention 和高效状态更新搭配使用</td><td>兼顾质量和效率，但设计更复杂</td></tr></tbody></table></div>
 <hr>
 <h2 id="时效性说明">时效性说明</h2>
 <p>本文内容截至 <strong>2026 年 4 月</strong>。这一方向变化很快，阅读时可以重点关注三个问题：</p>

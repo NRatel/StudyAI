@@ -158,8 +158,7 @@
 <a class="depth-3" href="#1-sft-supervised-fine-tuning">1. SFT (Supervised Fine-Tuning)</a>
 <a class="depth-3" href="#2-rlhf-实际应用">2. RLHF 实际应用</a>
 <a class="depth-3" href="#3-dpo-direct-preference-optimization">3. DPO (Direct Preference Optimization)</a>
-<a class="depth-3" href="#4-数据质量的重要性">4. 数据质量的重要性</a>
-<a class="depth-2" href="#小结">小结</a></details></aside>
+<a class="depth-3" href="#4-数据质量的重要性">4. 数据质量的重要性</a></details></aside>
     <div class="toc-backdrop" data-sidebar-backdrop></div>
     <main class="page">
       <article class="markdown-body">
@@ -307,17 +306,6 @@ Step 3: 用 RL (PPO) 优化策略模型
 - 标注者培训和考试
 - 定期一致性检查
 - 多维度标注 (有用性、安全性、准确性 分开打分)</code></pre>
-<hr>
-<h2 id="小结">小结</h2>
-<div class="table-wrap"><table><thead><tr><th>阶段</th><th>目标</th><th>数据</th><th>关键超参</th><th>典型规模</th></tr></thead><tbody><tr><td>SFT</td><td>学会对话格式</td><td>指令-回复对</td><td>lr=2e-5, epochs=2-3</td><td>10K-100K 条</td></tr><tr><td>RM 训练</td><td>学习人类偏好</td><td>偏好排序</td><td>lr=1e-5, epochs=1</td><td>50K-500K 对</td></tr><tr><td>PPO (RLHF)</td><td>优化偏好</td><td>在线生成</td><td>β=0.01-0.1, clip=0.2</td><td>4 模型同时</td></tr><tr><td>DPO</td><td>直接偏好优化</td><td>离线偏好对</td><td>lr=5e-7, β=0.1</td><td>2 模型</td></tr></tbody></table></div>
-<p><strong>核心结论</strong>：</p>
-<ol>
-<li><strong>数据质量 &gt; 数据数量 &gt; 模型大小</strong>（InstructGPT 的发现）</li>
-<li>DPO 是目前性价比最高的对齐方案</li>
-<li>RLHF (PPO) 效果上限更高，但工程复杂度也高得多</li>
-<li>对齐训练的学习率要比预训练/SFT <strong>小一个量级</strong></li>
-</ol>
-<blockquote><p><strong>延伸阅读</strong>：<a href="%E8%AE%BA%E6%96%87%E4%B8%8EFAQ.html">论文与FAQ</a> — 包含 InstructGPT、ZeRO 等关键论文，以及常见问题解答。</p></blockquote>
       </article>
       <nav class="doc-nav"><a href="3_%E6%95%B0%E6%8D%AE%E5%B7%A5%E7%A8%8B%E4%B8%8ETokenizer.html">← 数据工程与 Tokenizer</a><a href="%E8%AE%BA%E6%96%87%E4%B8%8EFAQ.html">论文与 FAQ →</a></nav>
     </main>

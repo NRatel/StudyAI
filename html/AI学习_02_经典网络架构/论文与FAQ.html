@@ -152,7 +152,7 @@
 <a class="doc-link" href="../%E9%99%84%E5%BD%95_%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%80%E9%80%9F%E8%A7%88.html">附录_数学基础速览<small>附录：数学基础速览</small></a>
 <a class="doc-link" href="../%E9%99%84%E5%BD%95_%E4%BB%A3%E7%A0%81%E7%A4%BA%E4%BE%8B%E9%9B%86.html">附录_代码示例集<small>附录：代码示例集（精选版）</small></a>
 </details></nav><div class="sidebar-rule"></div><details class="page-toc"><summary>当前页目录</summary><a class="depth-2" href="#一关键论文脉络">一、关键论文脉络</a>
-<a class="depth-2" href="#二常见误区与-faq">二、常见误区与 FAQ</a>
+<a class="depth-2" href="#二faq">二、FAQ</a>
 <a class="depth-3" href="#q1cnn-只能用于图像吗">Q1：CNN 只能用于图像吗？</a>
 <a class="depth-3" href="#q2为什么-cnn-比全连接网络适合图像">Q2：为什么 CNN 比全连接网络适合图像？</a>
 <a class="depth-3" href="#q3rnn-为什么适合序列">Q3：RNN 为什么适合序列？</a>
@@ -166,7 +166,7 @@
     <main class="page">
       <article class="markdown-body">
 <h1 id="论文与faq">论文与FAQ</h1>
-<blockquote><p>本文件用于补充经典网络架构的历史脉络和常见误区。正文负责讲清概念；这里帮助你把 CNN、RNN、LSTM、Seq2Seq、Transformer 放到同一张地图上。</p></blockquote>
+<blockquote><p>本文件用于补充经典网络架构的历史脉络和关键疑问。正文负责讲清概念；这里帮助你把 CNN、RNN、LSTM、Seq2Seq、Transformer 放到同一张地图上。</p></blockquote>
 <hr>
 <h2 id="一关键论文脉络">一、关键论文脉络</h2>
 <div class="table-wrap"><table><thead><tr><th>年份</th><th>论文/方法</th><th>为什么重要</th></tr></thead><tbody><tr><td>1997</td><td>LSTM</td><td>用门控记忆缓解 RNN 长距离依赖问题</td></tr><tr><td>1998</td><td>LeNet-5</td><td>早期 CNN 代表，证明卷积适合图像识别</td></tr><tr><td>2012</td><td>AlexNet</td><td>让深度 CNN 在 ImageNet 上爆发，带动深度学习复兴</td></tr><tr><td>2014</td><td>VGG</td><td>用小卷积核堆深网络，结构规整，便于理解</td></tr><tr><td>2014</td><td>GoogLeNet/Inception</td><td>展示多尺度卷积组合的价值</td></tr><tr><td>2014</td><td>Seq2Seq</td><td>用编码器-解码器处理输入输出长度不同的序列任务</td></tr><tr><td>2014</td><td>Bahdanau Attention</td><td>解决 Seq2Seq 固定向量瓶颈，引出注意力机制</td></tr><tr><td>2015</td><td>ResNet</td><td>用残差连接让很深的网络更容易训练</td></tr><tr><td>2017</td><td>Transformer</td><td>用自注意力取代循环结构，成为后续大模型基础</td></tr></tbody></table></div>
@@ -178,7 +178,7 @@
 <li>ResNet 重点看：残差连接为什么让深层网络更容易训练。</li>
 </ul>
 <hr>
-<h2 id="二常见误区与-faq">二、常见误区与 FAQ</h2>
+<h2 id="二faq">二、FAQ</h2>
 <h3 id="q1cnn-只能用于图像吗">Q1：CNN 只能用于图像吗？</h3>
 <p>不是。CNN 的核心是“局部模式 + 权值共享”，这不只适用于图像。</p>
 <div class="table-wrap"><table><thead><tr><th>数据</th><th>CNN 关注什么</th></tr></thead><tbody><tr><td>图像</td><td>局部边缘、纹理、形状</td></tr><tr><td>文本</td><td>局部词组模式</td></tr><tr><td>音频</td><td>局部时间片段</td></tr><tr><td>时间序列</td><td>局部变化趋势</td></tr></tbody></table></div>

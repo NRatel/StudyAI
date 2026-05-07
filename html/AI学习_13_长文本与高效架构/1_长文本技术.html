@@ -169,7 +169,6 @@
 <a class="depth-3" href="#三infini-attention压缩记忆">三、Infini-Attention（压缩记忆）</a>
 <a class="depth-4" href="#问题序列真的无限长怎么办">问题：序列真的无限长怎么办？</a>
 <a class="depth-4" href="#核心思想munkhdalai-et-al-google-2024">核心思想（Munkhdalai et al., Google, 2024）</a>
-<a class="depth-2" href="#本章小结">本章小结</a>
 <a class="depth-2" href="#时效性说明">时效性说明</a></details></aside>
     <div class="toc-backdrop" data-sidebar-backdrop></div>
     <main class="page">
@@ -291,9 +290,6 @@ Step 3: 类似地继续...
 </ul>
 <p><strong>本质</strong>：Infini-Attention 在段内保留了完整注意力的精度，段间用线性注意力的形式做近似压缩——是精度与效率的折中。</p>
 <div class="table-wrap"><table><thead><tr><th>特性</th><th>值</th></tr></thead><tbody><tr><td>段内复杂度</td><td>$O(s^2)$，$s$ 为段长度</td></tr><tr><td>段间记忆大小</td><td>$O(d^2)$，固定不变</td></tr><tr><td>总复杂度</td><td>$O(n \cdot s)$，$n$ 为总长度</td></tr><tr><td>信息保真度</td><td>段内精确，段间有损压缩</td></tr></tbody></table></div>
-<hr>
-<h2 id="本章小结">本章小结</h2>
-<div class="table-wrap"><table><thead><tr><th>概念</th><th>一句话总结</th></tr></thead><tbody><tr><td><strong>O(n^2) 瓶颈</strong></td><td>Self-Attention 的 $QK^T$ 大小与序列长度平方成正比，128K 时已不可承受</td></tr><tr><td><strong>RoPE 外推失败</strong></td><td>训练时未见过的旋转角度导致注意力分数异常、困惑度飙升</td></tr><tr><td><strong>PI（位置插值）</strong></td><td>线性压缩位置索引到训练范围内，简单有效，需轻量微调</td></tr><tr><td><strong>NTK-Aware</strong></td><td>修改 RoPE base 实现不均匀缩放，高频少动低频多拉，免训练</td></tr><tr><td><strong>YaRN</strong></td><td>分频段混合 PI + NTK + 温度修正，综合效果最佳</td></tr><tr><td><strong>Ring Attention</strong></td><td>将序列分块到多 GPU，环形传递 KV，数学上与全注意力精确等价</td></tr><tr><td><strong>Infini-Attention</strong></td><td>段内全注意力 + 段间固定大小压缩记忆，理论上支持无限长序列</td></tr><tr><td><strong>长上下文 vs RAG</strong></td><td>互补关系：RAG 负责检索，长上下文负责推理</td></tr></tbody></table></div>
 <hr>
 <h2 id="时效性说明">时效性说明</h2>
 <p>本文内容截至 <strong>2026 年 4 月</strong>。以下领域仍在快速迭代：</p>

@@ -161,7 +161,7 @@
 <a class="depth-3" href="#6-classifier-free-guidance-无分类器引导">6. Classifier-Free Guidance — 无分类器引导</a>
 <a class="depth-3" href="#7-ldm-stable-diffusion-潜空间扩散模型">7. LDM / Stable Diffusion — 潜空间扩散模型</a>
 <a class="depth-3" href="#8-dit-基于-transformer-的扩散模型">8. DiT — 基于 Transformer 的扩散模型</a>
-<a class="depth-2" href="#常见误区与faq">常见误区与FAQ</a>
+<a class="depth-2" href="#faq">FAQ</a>
 <a class="depth-3" href="#q1扩散模型和-gan-哪个更好">Q1：扩散模型和 GAN 哪个更好？</a>
 <a class="depth-3" href="#q2为什么预测噪声而不是直接预测图像">Q2：为什么预测噪声而不是直接预测图像？</a>
 <a class="depth-3" href="#q3stable-diffusion-为什么在潜空间而不是像素空间">Q3：Stable Diffusion 为什么在潜空间而不是像素空间？</a>
@@ -260,7 +260,7 @@
 <li>为后续大规模扩散模型（如 Sora、SD3、FLUX）采用 Transformer 架构铺平了道路。</li>
 </ul>
 <hr>
-<h2 id="常见误区与faq">常见误区与FAQ</h2>
+<h2 id="faq">FAQ</h2>
 <h3 id="q1扩散模型和-gan-哪个更好">Q1：扩散模型和 GAN 哪个更好？</h3>
 <p><strong>没有绝对的&quot;更好&quot;，取决于应用场景。</strong></p>
 <div class="table-wrap"><table><thead><tr><th>维度</th><th>扩散模型</th><th>GAN</th></tr></thead><tbody><tr><td>生成质量（FID）</td><td>目前 SOTA，尤其在多样性上占优</td><td>高保真但易出现模式坍缩</td></tr><tr><td>训练稳定性</td><td>非常稳定，标准的去噪回归损失</td><td>对抗训练不稳定，需精心调参</td></tr><tr><td>采样速度</td><td>较慢（需迭代去噪，通常 20-50 步）</td><td>极快（单次前向传播）</td></tr><tr><td>模式覆盖</td><td>优秀，几乎不会模式坍缩</td><td>容易遗漏数据分布的部分模式</td></tr><tr><td>可控性</td><td>天然支持 guidance 和条件生成</td><td>需要额外设计条件注入机制</td></tr></tbody></table></div>

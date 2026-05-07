@@ -34,7 +34,7 @@
 | 1 | [思维链提示](1_思维链提示.md) | Chain-of-Thought (CoT) 原始论文、Zero-shot CoT、Self-Consistency（多次采样投票） |
 | 2 | [高级推理方法](2_高级推理方法.md) | Tree-of-Thought、Graph-of-Thought、Self-Reflection/Reflexion、ReAct 回顾 |
 | 3 | [推理模型与TTC](3_推理模型与TTC.md) | OpenAI o1/o3/o4-mini、Test-time Compute Scaling、GRPO/PRM、DeepSeek-R1、QwQ |
-| - | [论文与FAQ](论文与FAQ.md) | 关键论文、常见误区、延伸资源 |
+| - | [论文与FAQ](论文与FAQ.md) | 关键论文、延伸资源 |
 
 ## 模块知识图谱
 

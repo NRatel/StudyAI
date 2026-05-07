@@ -164,8 +164,7 @@
 <a class="depth-3" href="#23-rope-旋转位置编码rotary-position-embedding">2.3 RoPE 旋转位置编码（Rotary Position Embedding）</a>
 <a class="depth-4" href="#231-核心思想">2.3.1 核心思想</a>
 <a class="depth-4" href="#232-rope-的关键优势">2.3.2 RoPE 的关键优势</a>
-<a class="depth-3" href="#24-三种位置编码的对比总结">2.4 三种位置编码的对比总结</a>
-<a class="depth-2" href="#本节小结">本节小结</a></details></aside>
+<a class="depth-3" href="#24-三种位置编码的对比总结">2.4 三种位置编码的对比总结</a></details></aside>
     <div class="toc-backdrop" data-sidebar-backdrop></div>
     <main class="page">
       <article class="markdown-body">
@@ -231,16 +230,6 @@
 <h3 id="24-三种位置编码的对比总结">2.4 三种位置编码的对比总结</h3>
 <div class="table-wrap"><table><thead><tr><th>对比维度</th><th>正弦编码</th><th>可学习编码</th><th>RoPE</th></tr></thead><tbody><tr><td>类型</td><td>绝对位置</td><td>绝对位置</td><td>相对位置</td></tr><tr><td>注入方式</td><td>加到嵌入上</td><td>加到嵌入上</td><td>旋转 Q/K 向量</td></tr><tr><td>额外参数</td><td>0</td><td>$max\_len \times d$</td><td>0</td></tr><tr><td>外推能力</td><td>一般</td><td>差</td><td>较好</td></tr><tr><td>当前使用状况</td><td>较少</td><td>部分模型</td><td><strong>大模型标配</strong></td></tr></tbody></table></div>
 <blockquote><p><strong>一句话理清三者关系</strong>：绝对位置编码（正弦、可学习）给每个位置分配一个固定坐标；相对位置编码更关心两个位置之间隔多远；RoPE 用旋转 Q/K 的方式把相对位置信息写进注意力匹配过程，因此成为现代大模型的常见选择。</p></blockquote>
-<hr>
-<h2 id="本节小结">本节小结</h2>
-<div class="table-wrap"><table><thead><tr><th>概念</th><th>一句话总结</th></tr></thead><tbody><tr><td>置换不变性问题</td><td>Self-Attention 不关心词序，需要额外注入位置信息</td></tr><tr><td>正弦位置编码</td><td>用不同频率的 sin/cos 编码位置，有优美的线性变换性质</td></tr><tr><td>可学习位置编码</td><td>直接学一个嵌入表，简单但无法外推</td></tr><tr><td>RoPE</td><td>旋转 Q/K 向量，天然编码相对位置，现代大模型标配</td></tr><tr><td>绝对 vs 相对编码</td><td>绝对编码给位置贴标签，相对编码关注位置间距离</td></tr><tr><td>长度外推</td><td>训练短推理长，RoPE + PI/NTK/YaRN 是主流方案</td></tr><tr><td>ALiBi</td><td>Attention score 加线性偏置，简单但已被 RoPE 超越</td></tr></tbody></table></div>
-<p><strong>位置编码在知识体系中的位置</strong>：</p>
-<pre><code>Self-Attention（内容交互） + 位置编码（顺序信息）  ← 本节
-  = 完整的 Transformer 注意力机制
-    → BERT, GPT-2（绝对位置编码时代）
-      → LLaMA, Mistral, Qwen（RoPE 时代）
-        → 长文本技术（模块 13）</code></pre>
-<p><strong>回到模块首页</strong>：<a href="README.html">README</a></p>
       </article>
       <nav class="doc-nav"><a href="3_Transformer%E6%9E%B6%E6%9E%84.html">← Transformer 完整架构</a><a href="%E8%AE%BA%E6%96%87%E4%B8%8EFAQ.html">论文与FAQ →</a></nav>
     </main>

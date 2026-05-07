@@ -159,8 +159,7 @@
 <a class="depth-3" href="#2-张量并行-tensor-parallelism">2. 张量并行 (Tensor Parallelism)</a>
 <a class="depth-3" href="#3-流水线并行-pipeline-parallelism">3. 流水线并行 (Pipeline Parallelism)</a>
 <a class="depth-3" href="#4-zero-优化-zero-redundancy-optimizer">4. ZeRO 优化 (Zero Redundancy Optimizer)</a>
-<a class="depth-3" href="#5-3d-并行">5. 3D 并行</a>
-<a class="depth-2" href="#小结">小结</a></details></aside>
+<a class="depth-3" href="#5-3d-并行">5. 3D 并行</a></details></aside>
     <div class="toc-backdrop" data-sidebar-backdrop></div>
     <main class="page">
       <article class="markdown-body">
@@ -309,10 +308,6 @@ ZeRO-1 (N=4):
 - 流水线并行 → 放在节点间 (InfiniBand, ~200 Gb/s)
 - 数据并行 → 跨所有副本 (Ring-AllReduce)</code></pre>
 <p><strong>Megatron-LM + DeepSpeed 的 3D 并行</strong>是目前训练超大模型的标准方案（GPT-3、Llama 等都用了类似策略）。</p>
-<hr>
-<h2 id="小结">小结</h2>
-<div class="table-wrap"><table><thead><tr><th>策略</th><th>切什么</th><th>通信内容</th><th>适用场景</th></tr></thead><tbody><tr><td>DDP</td><td>数据</td><td>梯度 (AllReduce)</td><td>模型能放下单卡</td></tr><tr><td>张量并行</td><td>层内矩阵</td><td>激活值</td><td>节点内高带宽</td></tr><tr><td>流水线并行</td><td>层间</td><td>激活值 (点对点)</td><td>节点间</td></tr><tr><td>ZeRO-1</td><td>优化器状态</td><td>梯度 (AllReduce)</td><td>省显存但不改代码</td></tr><tr><td>ZeRO-2</td><td>+ 梯度</td><td>梯度 (Reduce-Scatter)</td><td>进一步省显存</td></tr><tr><td>ZeRO-3</td><td>+ 参数</td><td>参数 (All-Gather)</td><td>模型放不下单卡</td></tr><tr><td>3D并行</td><td>以上组合</td><td>混合</td><td>超大模型训练</td></tr></tbody></table></div>
-<blockquote><p><strong>下一节</strong>：<a href="2_%E6%B7%B7%E5%90%88%E7%B2%BE%E5%BA%A6%E4%B8%8E%E6%A1%86%E6%9E%B6.html">混合精度与框架</a> — 学习如何用半精度省显存、加速计算，以及 DeepSpeed/FSDP 的工程配置。</p></blockquote>
       </article>
       <nav class="doc-nav"><a href="README.html">← 07 大模型训练技术</a><a href="2_%E6%B7%B7%E5%90%88%E7%B2%BE%E5%BA%A6%E4%B8%8E%E6%A1%86%E6%9E%B6.html">混合精度与训练框架 →</a></nav>
     </main>

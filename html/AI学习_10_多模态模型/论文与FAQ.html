@@ -161,7 +161,7 @@
 <a class="depth-4" href="#4-openai-2024-sora">4. OpenAI, 2024 — Sora</a>
 <a class="depth-4" href="#5-radford-et-al-2022-whisper">5. Radford et al., 2022 — Whisper</a>
 <a class="depth-3" href="#补充论文">补充论文</a>
-<a class="depth-2" href="#二常见误区与faq">二、常见误区与FAQ</a>
+<a class="depth-2" href="#二faq">二、FAQ</a>
 <a class="depth-3" href="#q1clip-和多模态大模型如-llava有什么区别它们不是都能理解图像吗">Q1：CLIP 和多模态大模型（如 LLaVA）有什么区别？它们不是都能理解图像吗？</a>
 <a class="depth-3" href="#q2为什么-llava-用简单的-mlp-就能对齐视觉和语言不需要更复杂的模块">Q2：为什么 LLaVA 用简单的 MLP 就能对齐视觉和语言，不需要更复杂的模块？</a>
 <a class="depth-3" href="#q3sora-真的理解物理世界吗">Q3：Sora 真的理解物理世界吗？</a>
@@ -181,7 +181,7 @@
       <article class="markdown-body">
 <h1 id="论文与faq">论文与FAQ</h1>
 <blockquote><p>本文件用于论文脉络、误区澄清与延伸阅读，不替代主章节正文。</p></blockquote>
-<blockquote><p>本文件汇总&quot;多模态模型&quot;模块的关键论文、常见误区与延伸资源。<br>
+<blockquote><p>本文件汇总&quot;多模态模型&quot;模块的关键论文与延伸资源。<br>
 <strong>内容时效</strong>：截至 2026 年 4 月。</p></blockquote>
 <hr>
 <h2 id="一关键论文">一、关键论文</h2>
@@ -297,7 +297,7 @@
 <h3 id="补充论文">补充论文</h3>
 <div class="table-wrap"><table><thead><tr><th>年份</th><th>论文</th><th>说明</th></tr></thead><tbody><tr><td>2023</td><td>Zhu et al., <em>MiniGPT-4: Enhancing Vision-Language Understanding with Advanced LLMs</em></td><td>最早的 CLIP+LLM 多模态方案之一</td></tr><tr><td>2023</td><td>Li et al., <em>BLIP-2: Bootstrapping Language-Image Pre-training with Frozen Image Encoders and LLMs</em></td><td>Q-Former 桥接视觉与语言的代表</td></tr><tr><td>2023</td><td>Oquab et al., <em>DINOv2: Learning Robust Visual Features without Supervision</em></td><td>自蒸馏自监督视觉预训练，通用视觉特征</td></tr><tr><td>2023</td><td>Peebles &amp; Xie, <em>Scalable Diffusion Models with Transformers (DiT)</em></td><td>用 Transformer 替代 U-Net，Sora 的架构基础</td></tr><tr><td>2024</td><td>Liu et al., <em>LLaVA-NeXT: Improved reasoning, OCR, and world knowledge</em></td><td>LLaVA 升级版，动态高分辨率 AnyRes</td></tr><tr><td>2024</td><td>Chen et al., <em>InternVL: Scaling up Vision Foundation Models and Aligning for Generic Visual-Linguistic Tasks</em></td><td>6B 参数视觉编码器，开源多模态 SOTA</td></tr><tr><td>2024</td><td>Bertasius et al., <em>Is Space-Time Attention All You Need for Video Understanding? (TimeSformer)</em></td><td>分解时空注意力的视频 Transformer</td></tr><tr><td>2022</td><td>Tong et al., <em>VideoMAE: Masked Autoencoders are Data-Efficient Learners for Self-Supervised Video Pre-Training</em></td><td>视频自监督预训练，90%+ 掩码率</td></tr><tr><td>2024</td><td>Zhai et al., <em>Sigmoid Loss for Language Image Pre-Training (SigLIP)</em></td><td>用 sigmoid 替代 softmax 的对比学习，去掉全局归一化</td></tr><tr><td>2025</td><td>Wan Team, <em>Wan: Open and Advanced Large-Scale Video Generative Models</em></td><td>阿里开源视频生成模型，SOTA 级</td></tr></tbody></table></div>
 <hr>
-<h2 id="二常见误区与faq">二、常见误区与FAQ</h2>
+<h2 id="二faq">二、FAQ</h2>
 <h3 id="q1clip-和多模态大模型如-llava有什么区别它们不是都能理解图像吗">Q1：CLIP 和多模态大模型（如 LLaVA）有什么区别？它们不是都能理解图像吗？</h3>
 <p><strong>CLIP 做&quot;匹配&quot;，多模态大模型做&quot;理解&quot;。</strong></p>
 <p>这是最常被混淆的概念。核心区别：</p>

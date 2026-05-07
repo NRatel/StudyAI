@@ -158,9 +158,7 @@
 <a class="depth-3" href="#1-通用注意力流程">1. 通用注意力流程</a>
 <a class="depth-3" href="#2-qkv-为什么要分开">2. Q、K、V 为什么要分开</a>
 <a class="depth-3" href="#3-缩放点积注意力">3. 缩放点积注意力</a>
-<a class="depth-3" href="#4-注意力和-rnn-的关键区别">4. 注意力和 RNN 的关键区别</a>
-<a class="depth-2" href="#常见误区">常见误区</a>
-<a class="depth-2" href="#本节小结">本节小结</a></details></aside>
+<a class="depth-3" href="#4-注意力和-rnn-的关键区别">4. 注意力和 RNN 的关键区别</a></details></aside>
     <div class="toc-backdrop" data-sidebar-backdrop></div>
     <main class="page">
       <article class="markdown-body">
@@ -217,18 +215,6 @@
 <h3 id="4-注意力和-rnn-的关键区别">4. 注意力和 RNN 的关键区别</h3>
 <div class="table-wrap"><table><thead><tr><th>对比</th><th>RNN</th><th>注意力</th></tr></thead><tbody><tr><td>信息传递</td><td>逐步传递隐藏状态</td><td>任意位置可直接互相查看</td></tr><tr><td>长距离依赖</td><td>路径长，容易梯度消失</td><td>路径短，更容易建立联系</td></tr><tr><td>并行性</td><td>时间步依赖前一步</td><td>训练时各位置可并行计算</td></tr><tr><td>代价</td><td>对长序列较线性</td><td>标准注意力随序列长度平方增长</td></tr></tbody></table></div>
 <p>注意力不是没有代价。标准注意力要计算所有 token 两两关系，所以长序列会变贵。这也是后续长文本模型要重点优化的问题。</p>
-<hr>
-<h2 id="常见误区">常见误区</h2>
-<p><strong>误区 1：注意力就是解释模型为什么这么判断。</strong></p>
-<p>不完全是。注意力权重有一定可解释性，但不能简单等同于模型的全部推理原因。</p>
-<p><strong>误区 2：Value 不重要，关键只看 Query 和 Key。</strong></p>
-<p>Q/K 决定&quot;看哪里&quot;，V 决定&quot;拿什么&quot;。没有 V，注意力只是在打分，没有真正的信息汇总。</p>
-<p><strong>误区 3：注意力一定比 RNN 更适合所有序列。</strong></p>
-<p>不一定。注意力擅长并行和长距离交互，但标准注意力的序列长度平方成本很高。</p>
-<hr>
-<h2 id="本节小结">本节小结</h2>
-<div class="table-wrap"><table><thead><tr><th>概念</th><th>一句话总结</th></tr></thead><tbody><tr><td>Attention</td><td>根据相关性对信息加权汇总</td></tr><tr><td>Query</td><td>当前要找什么</td></tr><tr><td>Key</td><td>每个位置如何被匹配</td></tr><tr><td>Value</td><td>匹配后真正取出的内容</td></tr><tr><td>Softmax</td><td>把相似度变成权重分布</td></tr><tr><td>缩放因子</td><td>防止高维点积让 softmax 饱和</td></tr></tbody></table></div>
-<p><strong>下一篇</strong>：<a href="2_SelfAttention%E4%B8%8EMultiHead.html">Self-Attention 与 Multi-Head</a>——如果 Query、Key、Value 都来自同一个序列，会发生什么？</p>
       </article>
       <nav class="doc-nav"><a href="README.html">← 03 注意力机制与 Transformer</a><a href="2_SelfAttention%E4%B8%8EMultiHead.html">Self-Attention 与 Multi-Head Attention →</a></nav>
     </main>

@@ -278,17 +278,3 @@ $$p'(x) = \text{normalize}\left(\max(0, p(x) - q(x))\right)$$
 | MQA (Multi-Query Attention) | 所有 Q 头共享同 1 组 K/V | 极致压缩 KV Cache，但精度可能下降 |
 | Prefix Caching | 缓存公共系统 prompt 的 KV Cache | 相同系统 prompt 的请求直接复用 |
 | Chunked Prefill | 将长 prompt 的 prefill 分块执行 | 避免长 prompt 阻塞 decode 请求 |
-
----
-
-## 本章小结
-
-| 概念 | 一句话总结 |
-|------|-----------|
-| 自回归瓶颈 | 每步只生成一个 token，且 decode 阶段瓶颈在内存带宽而非算力 |
-| KV Cache | 缓存已计算的 K/V 向量，避免重复计算，从 O(T^2) 降到 O(T) |
-| Prefill vs Decode | Prefill 计算密集、Decode 内存密集，需要针对性优化 |
-| PagedAttention | 用分页管理 KV Cache 显存，消除碎片浪费，提升并发量 2~24x |
-| Continuous Batching | 动态替换完成的请求保持 GPU 满载，吞吐提升 2~5x |
-| 推测解码 | 小模型猜大模型验，拒绝采样保证无损，延迟降低 1.5~3x |
-| GQA/MQA | 减少 KV 头数直接减少 KV Cache 大小，长序列高并发的关键优化 |

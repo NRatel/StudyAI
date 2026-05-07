@@ -161,8 +161,7 @@
 <a class="depth-3" href="#26-因果掩码让模型不偷看答案">2.6 因果掩码：让模型不偷看答案</a>
 <a class="depth-3" href="#27-mlm-与-clm-对比">2.7 MLM 与 CLM 对比</a>
 <a class="depth-3" href="#28-为什么-gpt-路线成为通用大模型主线">2.8 为什么 GPT 路线成为通用大模型主线</a>
-<a class="depth-3" href="#29-encoder-decoder第三条路线">2.9 Encoder-Decoder：第三条路线</a>
-<a class="depth-2" href="#本节小结">本节小结</a></details></aside>
+<a class="depth-3" href="#29-encoder-decoder第三条路线">2.9 Encoder-Decoder：第三条路线</a></details></aside>
     <div class="toc-backdrop" data-sidebar-backdrop></div>
     <main class="page">
       <article class="markdown-body">
@@ -240,10 +239,6 @@ CLM：文字接龙
 <li>解码器自回归生成输出。</li>
 </ul>
 <p>这类模型特别适合“输入一段文本，输出另一段文本”的任务，例如翻译、摘要、改写。它没有消失，只是在通用对话式大模型的浪潮中，Decoder-only 更常被作为主路线。</p>
-<hr>
-<h2 id="本节小结">本节小结</h2>
-<div class="table-wrap"><table><thead><tr><th>概念</th><th>一句话总结</th></tr></thead><tbody><tr><td><strong>自监督学习</strong></td><td>从数据本身构造训练信号，不依赖人工标签</td></tr><tr><td><strong>MLM</strong></td><td>遮住部分 token，让模型根据左右上下文填空</td></tr><tr><td><strong>CLM</strong></td><td>根据前文预测下一个 token</td></tr><tr><td><strong>因果掩码</strong></td><td>限制模型只能看当前位置及之前内容</td></tr><tr><td><strong>BERT 路线</strong></td><td>双向理解强，适合分类、抽取、匹配等任务</td></tr><tr><td><strong>GPT 路线</strong></td><td>自回归生成自然，适合统一多种任务</td></tr><tr><td><strong>Encoder-Decoder</strong></td><td>输入文本到输出文本，适合翻译、摘要等 Seq2Seq 任务</td></tr></tbody></table></div>
-<p><strong>下一节</strong>：<a href="3_BERT%E4%B8%8EGPT.html">BERT 与 GPT</a>——把两种预训练目标放到具体模型架构中比较。</p>
       </article>
       <nav class="doc-nav"><a href="1_%E8%AF%8D%E8%A1%A8%E7%A4%BA%E7%9A%84%E6%BC%94%E8%BF%9B.html">← 词表示的演进</a><a href="3_BERT%E4%B8%8EGPT.html">BERT 与 GPT：两大路线 →</a></nav>
     </main>

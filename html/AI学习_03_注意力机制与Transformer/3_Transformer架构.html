@@ -164,8 +164,7 @@
 <a class="depth-4" href="#掩码自注意力masked-self-attention">掩码自注意力（Masked Self-Attention）</a>
 <a class="depth-4" href="#交叉注意力cross-attention">交叉注意力（Cross-Attention）</a>
 <a class="depth-3" href="#完整数据流">完整数据流</a>
-<a class="depth-3" href="#三种注意力的对比">三种注意力的对比</a>
-<a class="depth-2" href="#本章小结">本章小结</a></details></aside>
+<a class="depth-3" href="#三种注意力的对比">三种注意力的对比</a></details></aside>
     <div class="toc-backdrop" data-sidebar-backdrop></div>
     <main class="page">
       <article class="markdown-body">
@@ -306,10 +305,6 @@
 <h3 id="三种注意力的对比">三种注意力的对比</h3>
 <div class="table-wrap"><table><thead><tr><th>类型</th><th>Q 来自</th><th>K, V 来自</th><th>掩码</th><th>作用</th></tr></thead><tbody><tr><td>编码器 Self-Attention</td><td>输入序列</td><td>输入序列</td><td>无</td><td>输入内部建模依赖</td></tr><tr><td>解码器 Masked Self-Attention</td><td>目标序列</td><td>目标序列</td><td>因果掩码</td><td>已生成序列内部建模依赖</td></tr><tr><td>Cross-Attention</td><td>解码器表示</td><td>编码器输出</td><td>无</td><td>解码器从编码器获取信息</td></tr></tbody></table></div>
 <blockquote><p><strong>建议</strong>：对照完整架构图（本节开头的&quot;整体架构鸟瞰&quot;）再看一遍这张表，把三种注意力在架构中的位置与它们的 Q/K/V 来源对应起来，会更容易形成整体画面。</p></blockquote>
-<hr>
-<h2 id="本章小结">本章小结</h2>
-<div class="table-wrap"><table><thead><tr><th>概念</th><th>一句话总结</th></tr></thead><tbody><tr><td><strong>Transformer</strong></td><td>以注意力为核心的编码器-解码器架构，序列维度可并行训练</td></tr><tr><td><strong>编码器层</strong></td><td>Self-Attention + FFN，各带残差连接和 Layer Norm</td></tr><tr><td><strong>解码器层</strong></td><td>Masked Self-Attention + Cross-Attention + FFN</td></tr><tr><td><strong>残差连接</strong></td><td>$x + F(x)$，保证梯度能跨层直接流动</td></tr><tr><td><strong>Layer Norm</strong></td><td>在特征维度上归一化，稳定训练</td></tr><tr><td><strong>FFN</strong></td><td>位置独立的两层全连接，隐藏维度通常 $4 \times d_{model}$</td></tr><tr><td><strong>因果掩码</strong></td><td>上三角设为 $-\infty$，防止解码器偷看未来 token</td></tr><tr><td><strong>交叉注意力</strong></td><td>Q 来自解码器，K/V 来自编码器，是信息传递的通道</td></tr><tr><td><strong>Pre-LN</strong></td><td>先 Norm 后子层，现代 LLM 的标准选择</td></tr><tr><td><strong>并行优势</strong></td><td>Self-Attention 不依赖时间步顺序，所有位置一次算出</td></tr></tbody></table></div>
-<p><strong>下一章</strong>：<a href="4_%E4%BD%8D%E7%BD%AE%E7%BC%96%E7%A0%81.html">位置编码</a>——Transformer 没有 RNN 的递归结构，如何知道 token 的位置？正弦编码、可学习编码、RoPE 各有什么优劣？</p>
       </article>
       <nav class="doc-nav"><a href="2_SelfAttention%E4%B8%8EMultiHead.html">← Self-Attention 与 Multi-Head Attention</a><a href="4_%E4%BD%8D%E7%BD%AE%E7%BC%96%E7%A0%81.html">位置编码 →</a></nav>
     </main>

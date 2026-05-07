@@ -162,8 +162,7 @@
 <a class="depth-4" href="#ivfinverted-file-index">IVF（Inverted File Index）</a>
 <a class="depth-4" href="#hnswhierarchical-navigable-small-world">HNSW（Hierarchical Navigable Small World）</a>
 <a class="depth-4" href="#pqproduct-quantization">PQ（Product Quantization）</a>
-<a class="depth-3" href="#24-chunking文档分块策略">2.4 Chunking（文档分块）策略</a>
-<a class="depth-2" href="#本节小结">本节小结</a></details></aside>
+<a class="depth-3" href="#24-chunking文档分块策略">2.4 Chunking（文档分块）策略</a></details></aside>
     <div class="toc-backdrop" data-sidebar-backdrop></div>
     <main class="page">
       <article class="markdown-body">
@@ -247,10 +246,6 @@ ANN 搜索: O(log N)  ← 毫秒级返回，精度损失 &lt; 5%</code></pre>
 <li>对话记录：按轮次分块</li>
 <li>代码文件：按函数/类分块</li>
 </ul>
-<hr>
-<h2 id="本节小结">本节小结</h2>
-<div class="table-wrap"><table><thead><tr><th>概念</th><th>一句话总结</th></tr></thead><tbody><tr><td><strong>句子 Embedding</strong></td><td>通过对比学习训练，将整段文本编码为一个稠密向量</td></tr><tr><td><strong>余弦相似度</strong></td><td>归一化后的内积，衡量两个向量方向的一致性</td></tr><tr><td><strong>ANN 搜索</strong></td><td>牺牲少量精度换取数量级的速度提升（IVF / HNSW / PQ）</td></tr><tr><td><strong>Chunking</strong></td><td>分块粒度决定检索精度，递归字符分块是稳健的默认选择</td></tr><tr><td><strong>Parent-Child</strong></td><td>小块检索 + 大块上下文，兼顾精度和完整性</td></tr><tr><td><strong>向量数据库选型</strong></td><td>小规模用 Chroma，中规模用 FAISS，大规模用 Milvus</td></tr></tbody></table></div>
-<p><strong>下一节</strong>：高级 RAG 技术——当 Naive RAG 效果不够时，如何通过 Query 改写、Reranker、混合检索持续提升？</p>
       </article>
       <nav class="doc-nav"><a href="1_RAG%E5%AE%8C%E6%95%B4%E6%B5%81%E7%A8%8B.html">← RAG 完整流程</a><a href="3_%E9%AB%98%E7%BA%A7RAG%E6%8A%80%E6%9C%AF.html">高级 RAG 技术 →</a></nav>
     </main>

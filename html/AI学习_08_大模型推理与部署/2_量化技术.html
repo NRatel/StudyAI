@@ -165,8 +165,7 @@
 <a class="depth-3" href="#4-gptq-逐层最优量化">4. GPTQ — 逐层最优量化</a>
 <a class="depth-3" href="#5-awq-保护重要权重">5. AWQ — 保护重要权重</a>
 <a class="depth-3" href="#6-gguf-cpu-友好的量化格式">6. GGUF — CPU 友好的量化格式</a>
-<a class="depth-3" href="#7-各量化方法对比总览">7. 各量化方法对比总览</a>
-<a class="depth-2" href="#本章小结">本章小结</a></details></aside>
+<a class="depth-3" href="#7-各量化方法对比总览">7. 各量化方法对比总览</a></details></aside>
     <div class="toc-backdrop" data-sidebar-backdrop></div>
     <main class="page">
       <article class="markdown-body">
@@ -332,9 +331,6 @@ Embedding 层:           对量化最敏感 → 保持 FP16 或用 8 bit
 → 整体平均 ~4.5 bit，但精度远好于均匀 4 bit 量化</code></pre>
 <h3 id="7-各量化方法对比总览">7. 各量化方法对比总览</h3>
 <div class="table-wrap"><table><thead><tr><th>方法</th><th>位数</th><th>速度</th><th>精度保持</th><th>硬件</th><th>典型使用场景</th></tr></thead><tbody><tr><td>LLM.int8()</td><td>8+16混合</td><td>中</td><td>极好</td><td>GPU</td><td>首次尝试量化</td></tr><tr><td>GPTQ</td><td>4/3/2</td><td>快</td><td>好</td><td>GPU</td><td>服务器部署</td></tr><tr><td>AWQ</td><td>4</td><td>快</td><td>好+</td><td>GPU</td><td>服务器部署（精度优先）</td></tr><tr><td>GGUF (Q4_K_M)</td><td>4~6混合</td><td>中</td><td>好</td><td>CPU/GPU</td><td>本地部署、边缘设备</td></tr><tr><td>bitsandbytes NF4</td><td>4</td><td>快</td><td>好</td><td>GPU</td><td>QLoRA 训练</td></tr></tbody></table></div>
-<hr>
-<h2 id="本章小结">本章小结</h2>
-<div class="table-wrap"><table><thead><tr><th>概念</th><th>一句话总结</th></tr></thead><tbody><tr><td>量化</td><td>将模型从 FP16 压缩到 INT8/INT4，减少内存并加速推理</td></tr><tr><td>对称量化</td><td>scale = max(\</td><td>x\</td><td>) / qmax，零点为 0，适合权重</td></tr><tr><td>分组量化</td><td>每 group_size 个元素独立计算 scale，精度远优于全张量量化</td></tr><tr><td>PTQ vs QAT</td><td>PTQ 训练后直接量化（主流），QAT 训练中模拟量化（精度更好但成本高）</td></tr><tr><td>LLM.int8()</td><td>混合精度：0.1% 的 outlier 用 FP16，其余用 INT8</td></tr><tr><td>GPTQ</td><td>逐列量化 + Hessian 误差补偿，最小化输出误差</td></tr><tr><td>AWQ</td><td>per-channel scaling 保护重要通道，精度略优于 GPTQ</td></tr><tr><td>GGUF</td><td>llama.cpp 格式，不同层用不同位数，CPU 友好</td></tr><tr><td>INT4</td><td>当前精度与效率的最佳平衡点</td></tr></tbody></table></div>
       </article>
       <nav class="doc-nav"><a href="1_KVCache%E4%B8%8E%E6%8E%A8%E7%90%86%E4%BC%98%E5%8C%96.html">← KV Cache 与推理优化</a><a href="3_%E6%8E%A8%E7%90%86%E6%A1%86%E6%9E%B6%E4%B8%8E%E9%83%A8%E7%BD%B2.html">推理框架与部署 →</a></nav>
     </main>

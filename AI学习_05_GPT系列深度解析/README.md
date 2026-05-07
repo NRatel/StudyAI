@@ -27,7 +27,7 @@
 | 2 | [Scaling Laws与涌现](2_ScalingLaws与涌现.md) | Kaplan/Chinchilla Scaling Laws、In-Context Learning、涌现能力 |
 | 3 | [对齐技术](3_对齐技术.md) | SFT、RLHF、DPO、Constitutional AI |
 | 4 | [GPT4之后的演进](4_GPT4之后的演进.md) | 截至 2026.4 的重要进展 |
-| - | [论文与FAQ](论文与FAQ.md) | 关键论文、常见误区、延伸资源 |
+| - | [论文与FAQ](论文与FAQ.md) | 关键论文、延伸资源 |
 
 ## 读完能解释
 

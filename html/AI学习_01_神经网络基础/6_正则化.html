@@ -161,9 +161,7 @@
 <a class="depth-3" href="#4-batch-normalization按-batch-标准化">4. Batch Normalization：按 batch 标准化</a>
 <a class="depth-3" href="#5-layer-normalization按特征标准化">5. Layer Normalization：按特征标准化</a>
 <a class="depth-3" href="#6-早停early-stopping">6. 早停（Early Stopping）</a>
-<a class="depth-3" href="#7-数据增强data-augmentation">7. 数据增强（Data Augmentation）</a>
-<a class="depth-2" href="#常见误区">常见误区</a>
-<a class="depth-2" href="#本节小结">本节小结</a></details></aside>
+<a class="depth-3" href="#7-数据增强data-augmentation">7. 数据增强（Data Augmentation）</a></details></aside>
     <div class="toc-backdrop" data-sidebar-backdrop></div>
     <main class="page">
       <article class="markdown-body">
@@ -257,18 +255,6 @@ $$</div>
 <p>数据增强不是改模型，而是让训练数据变得更多样。</p>
 <div class="table-wrap"><table><thead><tr><th>领域</th><th>常见增强</th></tr></thead><tbody><tr><td>图像</td><td>随机裁剪、翻转、旋转、颜色扰动、Mixup、CutMix</td></tr><tr><td>文本</td><td>同义替换、回译、随机删词</td></tr><tr><td>音频</td><td>加噪声、变速、变调</td></tr></tbody></table></div>
 <p>核心思想：如果猫的照片翻转、裁剪、稍微变暗后仍然是猫，模型就应该学会&quot;猫的本质特征&quot;，而不是记住某张图片的像素细节。</p>
-<hr>
-<h2 id="常见误区">常见误区</h2>
-<p><strong>误区 1：正则化越强越好。</strong></p>
-<p>不是。正则化太弱会过拟合，太强会欠拟合。它是一个平衡问题。</p>
-<p><strong>误区 2：Dropout 是现代大模型的唯一防过拟合手段。</strong></p>
-<p>不是。大模型还依赖数据规模、权重衰减、归一化、训练策略等。Dropout 在不同架构中的重要性也不同。</p>
-<p><strong>误区 3：BatchNorm 和 LayerNorm 只是为了防过拟合。</strong></p>
-<p>不准确。它们也强烈影响训练稳定性和收敛速度。对 Transformer 来说，LayerNorm 更是架构稳定性的关键部件。</p>
-<hr>
-<h2 id="本节小结">本节小结</h2>
-<div class="table-wrap"><table><thead><tr><th>技术</th><th>核心直觉</th><th>常见位置</th></tr></thead><tbody><tr><td>L2 / 权重衰减</td><td>让权重别太大，模型别太激进</td><td>几乎所有深度模型</td></tr><tr><td>L1</td><td>让部分权重变 0，产生稀疏性</td><td>特征选择、压缩</td></tr><tr><td>Dropout</td><td>随机关神经元，减少依赖</td><td>全连接层、部分 Transformer</td></tr><tr><td>BatchNorm</td><td>按 batch 稳定激活分布</td><td>CNN</td></tr><tr><td>LayerNorm</td><td>按样本特征维度稳定激活分布</td><td>Transformer</td></tr><tr><td>早停</td><td>验证集变差时及时停止</td><td>小数据训练</td></tr><tr><td>数据增强</td><td>制造合理变体，减少死记样本</td><td>图像、语音、文本</td></tr></tbody></table></div>
-<p><strong>下一步</strong>：至此，你已经掌握神经网络的基本闭环：前向传播、激活函数、损失函数、反向传播、优化器和正则化。接下来可以进入 <a href="../AI%E5%AD%A6%E4%B9%A0_02_%E7%BB%8F%E5%85%B8%E7%BD%91%E7%BB%9C%E6%9E%B6%E6%9E%84/README.html">02 经典网络架构</a>，看 CNN、RNN 等架构如何建立在这些基础之上。</p>
       </article>
       <nav class="doc-nav"><a href="5_%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D%E4%B8%8E%E4%BC%98%E5%8C%96%E5%99%A8.html">← 梯度下降与优化器</a><a href="%E8%AE%BA%E6%96%87%E4%B8%8EFAQ.html">论文与FAQ →</a></nav>
     </main>

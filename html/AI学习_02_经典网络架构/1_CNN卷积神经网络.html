@@ -161,9 +161,7 @@
 <a class="depth-3" href="#4-多通道卷积不是只看灰度图">4. 多通道卷积：不是只看灰度图</a>
 <a class="depth-3" href="#5-池化层压缩空间保留强信号">5. 池化层：压缩空间，保留强信号</a>
 <a class="depth-3" href="#6-经典-cnn-演进记思想不背结构">6. 经典 CNN 演进：记思想，不背结构</a>
-<a class="depth-3" href="#7-1-x-1-卷积通道混合器">7. 1 x 1 卷积：通道混合器</a>
-<a class="depth-2" href="#常见误区">常见误区</a>
-<a class="depth-2" href="#本节小结">本节小结</a></details></aside>
+<a class="depth-3" href="#7-1-x-1-卷积通道混合器">7. 1 x 1 卷积：通道混合器</a></details></aside>
     <div class="toc-backdrop" data-sidebar-backdrop></div>
     <main class="page">
       <article class="markdown-body">
@@ -245,18 +243,6 @@
 <li>提升通道数，增加表达能力</li>
 <li>在 Inception、ResNet bottleneck 等结构中做通道变换</li>
 </ul>
-<hr>
-<h2 id="常见误区">常见误区</h2>
-<p><strong>误区 1：CNN 只能用于图像。</strong></p>
-<p>不是。只要数据有局部结构，卷积就可能有用。例如音频、时间序列、文本的局部 n-gram 模式都可以用卷积建模。</p>
-<p><strong>误区 2：卷积核一开始就会识别猫眼睛。</strong></p>
-<p>不会。低层卷积核通常学到边缘、颜色、纹理；更高层才逐渐组合成部件和语义对象。</p>
-<p><strong>误区 3：池化只是为了省计算。</strong></p>
-<p>省计算是一方面，更重要的是引入位置鲁棒性：模式稍微挪一点，模型仍能认出来。</p>
-<hr>
-<h2 id="本节小结">本节小结</h2>
-<div class="table-wrap"><table><thead><tr><th>概念</th><th>一句话总结</th></tr></thead><tbody><tr><td>局部连接</td><td>每个神经元只看局部区域</td></tr><tr><td>权值共享</td><td>同一个卷积核在整张图上复用</td></tr><tr><td>特征图</td><td>某种模式在各位置的响应强度</td></tr><tr><td>感受野</td><td>一个输出能看到的输入范围</td></tr><tr><td>池化</td><td>压缩空间尺寸，保留强信号</td></tr><tr><td>残差连接</td><td>给深层网络提供更容易学习和传梯度的路径</td></tr><tr><td>1 x 1 卷积</td><td>在每个位置上混合通道</td></tr></tbody></table></div>
-<p><strong>下一篇</strong>：<a href="2_RNN%E5%BE%AA%E7%8E%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C.html">RNN 循环神经网络</a>——图像有空间结构，序列则有时间顺序。RNN 要解决的是&quot;如何记住前文&quot;。</p>
       </article>
       <nav class="doc-nav"><a href="README.html">← 02 经典网络架构</a><a href="2_RNN%E5%BE%AA%E7%8E%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C.html">RNN 循环神经网络 →</a></nav>
     </main>

@@ -159,9 +159,7 @@
 <a class="depth-3" href="#2-self-attention-vs-cross-attention">2. Self-Attention vs Cross-Attention</a>
 <a class="depth-3" href="#3-multi-head-attention">3. Multi-Head Attention</a>
 <a class="depth-3" href="#4-因果掩码生成时不能偷看未来">4. 因果掩码：生成时不能偷看未来</a>
-<a class="depth-3" href="#5-self-attention-的代价">5. Self-Attention 的代价</a>
-<a class="depth-2" href="#常见误区">常见误区</a>
-<a class="depth-2" href="#本节小结">本节小结</a></details></aside>
+<a class="depth-3" href="#5-self-attention-的代价">5. Self-Attention 的代价</a></details></aside>
     <div class="toc-backdrop" data-sidebar-backdrop></div>
     <main class="page">
       <article class="markdown-body">
@@ -234,18 +232,6 @@
 <li>超长序列上，成本会迅速升高，因此后续会出现各种高效注意力和长文本优化方法。</li>
 </ul>
 <p>这些优化不改变本章核心概念：<strong>注意力先算相关性，再按相关性汇总信息</strong>。</p>
-<hr>
-<h2 id="常见误区">常见误区</h2>
-<p><strong>误区 1：多头注意力就是多个模型投票。</strong></p>
-<p>不是。多个头是在同一个模型内部学习不同关系，最后融合成一个表示。</p>
-<p><strong>误区 2：Self-Attention 自动知道词序。</strong></p>
-<p>不知道。Self-Attention 本身对顺序不敏感，必须配合位置编码。</p>
-<p><strong>误区 3：因果掩码只在推理时需要。</strong></p>
-<p>训练时也需要。否则模型会学会偷看未来 token。</p>
-<hr>
-<h2 id="本节小结">本节小结</h2>
-<div class="table-wrap"><table><thead><tr><th>概念</th><th>一句话总结</th></tr></thead><tbody><tr><td>Self-Attention</td><td>同一序列内部互相查看</td></tr><tr><td>Cross-Attention</td><td>一个序列读取另一个序列的信息</td></tr><tr><td>Multi-Head</td><td>多组注意力并行关注不同关系</td></tr><tr><td>Causal Mask</td><td>防止生成模型看到未来 token</td></tr><tr><td>二次复杂度</td><td>标准注意力成本随序列长度平方增长</td></tr></tbody></table></div>
-<p><strong>下一篇</strong>：<a href="3_Transformer%E6%9E%B6%E6%9E%84.html">Transformer 架构</a>——把注意力、前馈网络、残差连接和归一化组合起来，就是 Transformer。</p>
       </article>
       <nav class="doc-nav"><a href="1_%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%9C%BA%E5%88%B6.html">← 注意力机制</a><a href="3_Transformer%E6%9E%B6%E6%9E%84.html">Transformer 完整架构 →</a></nav>
     </main>

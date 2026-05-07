@@ -30,7 +30,7 @@
 | 1 | [长文本技术](1_长文本技术.md) | 为什么长文本难（O(n^2) 瓶颈、位置编码外推问题）、RoPE 扩展方案（PI / NTK-Aware / YaRN）、Ring Attention（序列并行）、Infini-Attention（压缩记忆） |
 | 2 | [MoE架构](2_MoE架构.md) | Mixture of Experts 原理（路由机制、稀疏激活）、Switch Transformer、Mixtral、DeepSeekMoE、负载均衡、MoE 的优缺点 |
 | 3 | [高效Transformer](3_高效Transformer.md) | 线性注意力、稀疏注意力、状态空间模型 SSM/Mamba、RWKV，以及它们与标准 Transformer 的核心取舍 |
-| - | [论文与FAQ](论文与FAQ.md) | 关键论文（Reformer / Longformer / Switch / Mamba / Infini-Attention 等）、常见误区、延伸资源 |
+| - | [论文与FAQ](论文与FAQ.md) | 关键论文（Reformer / Longformer / Switch / Mamba / Infini-Attention 等）、延伸资源 |
 
 ## 本模块三条线的关系
 

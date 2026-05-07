@@ -159,8 +159,7 @@
 <a class="depth-3" href="#2-gpt-2-2019-zero-shot-与语言模型即多任务学习器">2. GPT-2 (2019) — Zero-shot 与&quot;语言模型即多任务学习器&quot;</a>
 <a class="depth-3" href="#3-gpt-3-2020-in-context-learning-的突破">3. GPT-3 (2020) — In-Context Learning 的突破</a>
 <a class="depth-3" href="#4-gpt-4-2023-多模态与推理的飞跃">4. GPT-4 (2023) — 多模态与推理的飞跃</a>
-<a class="depth-3" href="#5-代际对比总览">5. 代际对比总览</a>
-<a class="depth-2" href="#本章小结">本章小结</a></details></aside>
+<a class="depth-3" href="#5-代际对比总览">5. 代际对比总览</a></details></aside>
     <div class="toc-backdrop" data-sidebar-backdrop></div>
     <main class="page">
       <article class="markdown-body">
@@ -256,9 +255,6 @@ Few-shot:   &quot;sea otter =&gt; loutre de mer\npeppermint =&gt; menthe poivré
 <div class="table-wrap"><table><thead><tr><th>模型</th><th>年份</th><th>参数量</th><th>上下文</th><th>训练数据</th><th>核心范式</th><th>关键突破</th></tr></thead><tbody><tr><td>GPT-1</td><td>2018</td><td>117M</td><td>512</td><td>5GB</td><td>预训练+微调</td><td>验证范式可行</td></tr><tr><td>GPT-2</td><td>2019</td><td>1.5B</td><td>1024</td><td>40GB</td><td>Zero-shot</td><td>去掉微调</td></tr><tr><td>GPT-3</td><td>2020</td><td>175B</td><td>2048</td><td>570GB</td><td>Few-shot/ICL</td><td>不更新参数学新任务</td></tr><tr><td>GPT-4</td><td>2023</td><td>~1.8T*</td><td>128K</td><td>~13T*</td><td>多模态+对齐</td><td>推理+图像理解</td></tr></tbody></table></div>
 <p>*: 推测值</p>
 <p><strong>参数量增长</strong>：$117M \to 1.5B \to 175B \to \sim 1.8T$，每代增长约 10~100 倍。</p>
-<hr>
-<h2 id="本章小结">本章小结</h2>
-<div class="table-wrap"><table><thead><tr><th>概念</th><th>一句话总结</th></tr></thead><tbody><tr><td>GPT-1</td><td>预训练+微调范式的验证，12 层 117M 参数</td></tr><tr><td>GPT-2</td><td>去掉微调，Zero-shot 直接做任务，1.5B</td></tr><tr><td>GPT-3</td><td>In-Context Learning 突破，Few-shot 不更新参数学新任务，175B</td></tr><tr><td>GPT-4</td><td>多模态+MoE+推理增强，通用AI助手</td></tr><tr><td>核心信念</td><td>架构不变，规模即正义</td></tr><tr><td>ICL</td><td>通过 prompt 示例学习，无需梯度更新</td></tr><tr><td>范式转变</td><td>微调 → Zero-shot → Few-shot → 通用对话</td></tr><tr><td>开源替代</td><td>LLaMA 系列用更好的训练方法复现 GPT-3 级别能力</td></tr></tbody></table></div>
       </article>
       <nav class="doc-nav"><a href="README.html">← 05 GPT 系列深度解析</a><a href="2_ScalingLaws%E4%B8%8E%E6%B6%8C%E7%8E%B0.html">Scaling Laws 与涌现能力 →</a></nav>
     </main>

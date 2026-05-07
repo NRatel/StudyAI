@@ -149,19 +149,3 @@ RAGAS（Retrieval Augmented Generation Assessment）提出四个核心维度：
 | **Answer Relevancy** | 答案是否回答了用户的问题 | 从答案反向生成问题 → 与原始问题比较相似度 |
 | **Context Precision** | 检索到的上下文中相关内容排名是否靠前 | 相关文档在 Top-K 中的加权位置 |
 | **Context Recall** | 回答所需的信息是否都被检索到了 | 将参考答案分解为声明 → 检查每个声明是否在上下文中出现 |
-
----
-
-## 本节小结
-
-| 概念 | 一句话总结 |
-|------|-----------|
-| **Query 改写** | 用 LLM 将模糊查询改写为检索友好形式 |
-| **HyDE** | 用假设性回答的 Embedding 替代查询向量做检索 |
-| **Reranker** | Cross-Encoder 对粗排结果精排，精度高但只能处理少量候选 |
-| **混合检索** | BM25 + 向量检索 + RRF 融合，精确匹配与语义理解互补 |
-| **Agentic RAG** | Agent 自主决策：是否检索、检索什么、结果是否合格 |
-| **RAGAS** | 四维度评估框架：Faithfulness / Relevancy / Precision / Recall |
-| **Self-RAG** | 模型在生成中自判断是否需要检索和检索质量 |
-
-**下一节**：[论文与FAQ](论文与FAQ.md)——系统梳理 RAG 领域的关键论文和实际应用中的常见困惑。

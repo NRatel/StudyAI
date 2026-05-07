@@ -158,8 +158,7 @@
 <a class="depth-3" href="#21-形式化定义">2.1 形式化定义</a>
 <a class="depth-3" href="#22-为什么-rag-有效">2.2 为什么 RAG 有效？</a>
 <a class="depth-3" href="#23-rag-vs-其他方案">2.3 RAG vs 其他方案</a>
-<a class="depth-3" href="#24-naive-rag-vs-advanced-rag-vs-modular-rag">2.4 Naive RAG vs Advanced RAG vs Modular RAG</a>
-<a class="depth-2" href="#本节小结">本节小结</a></details></aside>
+<a class="depth-3" href="#24-naive-rag-vs-advanced-rag-vs-modular-rag">2.4 Naive RAG vs Advanced RAG vs Modular RAG</a></details></aside>
     <div class="toc-backdrop" data-sidebar-backdrop></div>
     <main class="page">
       <article class="markdown-body">
@@ -241,10 +240,6 @@ Modular RAG（2024~）
   │  将 RAG 拆解为可插拔模块，按需组合
   │  Agentic RAG、Graph RAG、Adaptive RAG、Self-RAG</code></pre>
 <div class="table-wrap"><table><thead><tr><th>维度</th><th>Naive RAG</th><th>Advanced RAG</th><th>Modular RAG</th></tr></thead><tbody><tr><td><strong>检索前</strong></td><td>直接用原始查询</td><td>Query 改写 / HyDE</td><td>Agent 决定是否检索、用何策略</td></tr><tr><td><strong>检索</strong></td><td>单一向量相似度</td><td>混合检索（BM25 + 向量）</td><td>多轮检索、知识图谱增强</td></tr><tr><td><strong>检索后</strong></td><td>直接拼接到 Prompt</td><td>Reranker 重排、上下文压缩</td><td>相关性过滤 + 验证 + 自反思</td></tr><tr><td><strong>生成</strong></td><td>单次生成</td><td>带引用/置信度的生成</td><td>迭代生成、自我纠错</td></tr></tbody></table></div>
-<hr>
-<h2 id="本节小结">本节小结</h2>
-<div class="table-wrap"><table><thead><tr><th>概念</th><th>一句话总结</th></tr></thead><tbody><tr><td><strong>RAG</strong></td><td>生成前先检索外部知识，让 LLM &quot;有据可依&quot;地回答</td></tr><tr><td><strong>三阶段</strong></td><td>索引构建（离线）→ 检索（在线）→ 生成（在线）</td></tr><tr><td><strong>为什么需要 RAG</strong></td><td>解决 LLM 的幻觉、时效性缺失、私有数据隔离三大硬伤</td></tr><tr><td><strong>Naive RAG</strong></td><td>最简实现：分块→编码→检索→拼接→生成，有效但粗糙</td></tr><tr><td><strong>Advanced RAG</strong></td><td>在每一步增加优化：Query 改写、混合检索、Reranker</td></tr><tr><td><strong>Modular RAG</strong></td><td>模块化可插拔架构，支持 Agent 驱动的自适应检索</td></tr><tr><td><strong>核心设计决策</strong></td><td>Chunking 策略、Embedding 模型、向量数据库、检索策略</td></tr></tbody></table></div>
-<p><strong>下一节</strong>：深入 Embedding 与向量检索——RAG 系统的&quot;心脏&quot;如何将文本变为可搜索的向量？</p>
       </article>
       <nav class="doc-nav"><a href="README.html">← 09 RAG与应用架构</a><a href="2_Embedding%E4%B8%8E%E5%90%91%E9%87%8F%E6%A3%80%E7%B4%A2.html">Embedding 与向量检索 →</a></nav>
     </main>

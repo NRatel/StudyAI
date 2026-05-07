@@ -161,8 +161,7 @@
 <a class="depth-3" href="#23-感知机不能做什么xor-问题">2.3 感知机不能做什么：XOR 问题</a>
 <a class="depth-3" href="#24-为什么需要多层万能近似定理的直觉">2.4 为什么需要多层：万能近似定理的直觉</a>
 <a class="depth-3" href="#25-多层感知机mlp的结构">2.5 多层感知机（MLP）的结构</a>
-<a class="depth-3" href="#26-前向传播的完整计算过程">2.6 前向传播的完整计算过程</a>
-<a class="depth-2" href="#本节小结">本节小结</a></details></aside>
+<a class="depth-3" href="#26-前向传播的完整计算过程">2.6 前向传播的完整计算过程</a></details></aside>
     <div class="toc-backdrop" data-sidebar-backdrop></div>
     <main class="page">
       <article class="markdown-body">
@@ -296,10 +295,6 @@ x2
 <div class="math-block">$$\mathbf{y} = g\Big(W^{(2)} \cdot f\big(W^{(1)} \mathbf{x} + \mathbf{b}^{(1)}\big) + \mathbf{b}^{(2)}\Big)$$</div>
 <p>展开来看就是一系列矩阵乘法和逐元素非线性变换的交替。<strong>如果去掉激活函数 $f$</strong>，多层的矩阵乘法可以合并成一个矩阵乘法（$W^{(2)} W^{(1)} \mathbf{x}$ 仍然是线性的），网络的表达能力不会比单层强。这就是为什么<strong>激活函数是多层网络的灵魂</strong>——它引入了非线性，让多层不等于单层。</p>
 <blockquote><p><strong>注意</strong>：本节重点是&quot;前向传播&quot;——数据从输入流向输出的过程。&quot;反向传播&quot;（梯度如何回流来更新权重）是第 4 节的内容。</p></blockquote>
-<hr>
-<h2 id="本节小结">本节小结</h2>
-<div class="table-wrap"><table><thead><tr><th>概念</th><th>一句话总结</th></tr></thead><tbody><tr><td>感知机</td><td>最简单的神经网络单元：$y = f(\mathbf{w} \cdot \mathbf{x} + b)$</td></tr><tr><td>线性可分</td><td>能用一条直线（超平面）分开的问题，感知机可以解决</td></tr><tr><td>XOR 问题</td><td>线性不可分，单层感知机无法解决，推动了多层网络的发展</td></tr><tr><td>万能近似定理</td><td>足够宽的单隐藏层网络可以逼近任意连续函数（理论保证）</td></tr><tr><td>多层感知机 (MLP)</td><td>多层全连接 + 非线性激活，实际中比单层效率更高</td></tr><tr><td>前向传播</td><td>数据从输入逐层流向输出的计算过程：矩阵乘法 + 激活函数交替</td></tr><tr><td>全连接层</td><td>每个输入都连接到每个输出，后续很多架构都会把它作为基础部件</td></tr></tbody></table></div>
-<p><strong>下一节</strong>：<a href="2_%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0.html">激活函数</a> —— 为什么 Sigmoid 已经被淘汰？ReLU 为什么能统治十年？GELU 又是怎么回事？</p>
       </article>
       <nav class="doc-nav"><a href="README.html">← 01 神经网络基础</a><a href="2_%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0.html">激活函数 →</a></nav>
     </main>

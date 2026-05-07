@@ -511,19 +511,3 @@ MoE FFN:
 - **工具/API 细节**：模型接口、工具调用和上下文限制可能在 3~6 个月内变化
 
 本文内容截至 **2026 年 4 月**。建议通过 [LMSYS Chatbot Arena](https://chat.lmsys.org/) 和 [HuggingFace Open LLM Leaderboard](https://huggingface.co/spaces/open-llm-leaderboard/open_llm_leaderboard) 查看最新排名。
-
----
-
-## 本章小结
-
-1. **开源追赶**：LLaMA/Mistral/DeepSeek/Qwen 在 2024~2025 接近甚至部分超越闭源
-2. **多模态融合**：GPT-4V(图像输入) → GPT-4o(原生多模态) → LLaMA 4(开源多模态)，趋势是 early fusion
-3. **推理模型**：o1、DeepSeek-R1、o3/o4-mini、QwQ/Qwen3 共同推动 test-time compute scaling 成为主线
-4. **效率创新**：GQA(共享KV头) → MLA(低秩压缩,省93%) → MoE(稀疏激活)
-5. **上下文与工作流能力扩展**：4K → 128K → 1M → 长期任务、工具使用、计算机操作
-
-> **下一步学习**：
-> - 模型训练细节 → [07 大模型训练技术](../AI学习_07_大模型训练技术/README.md)
-> - 推理部署优化 → [08 大模型推理与部署](../AI学习_08_大模型推理与部署/README.md)
-> - 推理模型深入 → [11 推理与思维链](../AI学习_11_推理与思维链/README.md)
-> - 多模态深入 → [10 多模态模型](../AI学习_10_多模态模型/README.md)

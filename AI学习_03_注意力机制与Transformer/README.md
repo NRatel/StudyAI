@@ -32,7 +32,7 @@
 | 2 | [Self-Attention与Multi-Head](2_SelfAttention与MultiHead.md) | 自注意力、多头注意力、掩码注意力 |
 | 3 | [Transformer架构](3_Transformer架构.md) | 完整的编码器和解码器、FFN、残差连接、Layer Norm |
 | 4 | [位置编码](4_位置编码.md) | 正弦位置编码、可学习位置编码、RoPE 旋转位置编码 |
-| - | [论文与FAQ](论文与FAQ.md) | 关键论文、常见误区、延伸资源 |
+| - | [论文与FAQ](论文与FAQ.md) | 关键论文、延伸资源 |
 
 ## 读完能解释
 

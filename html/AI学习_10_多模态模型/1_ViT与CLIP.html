@@ -165,8 +165,7 @@
 <a class="depth-4" href="#221-clip-的训练范式">2.2.1 CLIP 的训练范式</a>
 <a class="depth-4" href="#222-对比学习损失函数">2.2.2 对比学习损失函数</a>
 <a class="depth-4" href="#223-clip-的零样本分类">2.2.3 CLIP 的零样本分类</a>
-<a class="depth-4" href="#224-clip-的关键设计">2.2.4 CLIP 的关键设计</a>
-<a class="depth-2" href="#本节小结">本节小结</a></details></aside>
+<a class="depth-4" href="#224-clip-的关键设计">2.2.4 CLIP 的关键设计</a></details></aside>
     <div class="toc-backdrop" data-sidebar-backdrop></div>
     <main class="page">
       <article class="markdown-body">
@@ -311,12 +310,6 @@ Step 5: 相似度最高的类别即为预测结果</code></pre>
 <p><strong>这为什么有效？</strong> 因为 CLIP 在 4 亿图文对上训练后，已经学会了一个<strong>通用的视觉-语言语义空间</strong>。在这个空间里，&quot;猫的照片&quot;和&quot;a photo of a cat&quot;天然靠近。这意味着任何能用语言描述的视觉概念，都可以被零样本识别。</p>
 <h4 id="224-clip-的关键设计">2.2.4 CLIP 的关键设计</h4>
 <div class="table-wrap"><table><thead><tr><th>设计</th><th>具体做法</th><th>为什么</th></tr></thead><tbody><tr><td><strong>数据</strong></td><td>4 亿网络图文对（WIT-400M）</td><td>网络数据虽然有噪声，但规模弥补了质量</td></tr><tr><td><strong>图像编码器</strong></td><td>ViT-L/14（最优配置）</td><td>ViT 在大规模数据上优于 ResNet</td></tr><tr><td><strong>文本编码器</strong></td><td>12 层 Transformer（63M 参数）</td><td>不需要特别大，能编码语义即可</td></tr><tr><td><strong>Batch Size</strong></td><td>32,768</td><td>对比学习需要大 batch 产生足够负样本</td></tr><tr><td><strong>温度参数 τ</strong></td><td>可学习，初始 0.07</td><td>自适应调节分布尖锐度</td></tr><tr><td><strong>Prompt 设计</strong></td><td>&quot;a photo of a {class}&quot;</td><td>手工 prompt 比裸类别名效果显著提升</td></tr></tbody></table></div>
-<hr>
-<h2 id="本节小结">本节小结</h2>
-<div class="table-wrap"><table><thead><tr><th>概念</th><th>一句话总结</th></tr></thead><tbody><tr><td><strong>ViT</strong></td><td>将图像切为 patch 序列，用标准 Transformer 处理——证明了图像也不需要 CNN</td></tr><tr><td><strong>Patch Embedding</strong></td><td>图像切块 → 展平 → 线性投影 → 位置编码，将 2D 图像转为 1D token 序列</td></tr><tr><td><strong>[CLS] Token</strong></td><td>沿用 BERT 设计，汇聚全局信息，其最终输出作为整图表示</td></tr><tr><td><strong>CLIP</strong></td><td>用 4 亿图文对做对比学习，让图像和文本在共享空间对齐</td></tr><tr><td><strong>对比学习</strong></td><td>最大化匹配图文对的相似度，最小化不匹配对的相似度</td></tr><tr><td><strong>零样本分类</strong></td><td>用文本描述作为分类器，无需标注数据即可分类新类别</td></tr><tr><td><strong>CLIP 的遗产</strong></td><td>其视觉编码器成为几乎所有多模态大模型的&quot;眼睛&quot;</td></tr></tbody></table></div>
-<p><strong>下一节</strong>：基于 ViT/CLIP 这个&quot;眼睛&quot;，多模态大模型如何把视觉能力接入 LLM？</p>
-<hr>
-<blockquote><p><strong>时效性说明</strong>（截至 2026 年 4 月）：ViT 和 CLIP 作为基础架构已相当稳定，核心原理不会过时。但其变体（如 SigLIP、EVA-CLIP、InternViT 等）仍在快速迭代。在选择具体的视觉编码器时，建议查阅最新的 Open CLIP benchmark 和 MMMU/MMBench 等多模态评测排行榜。2025-2026 年的重要趋势包括：(1) 视觉编码器参数量持续增大（InternViT-6B、ViT-22B）；(2) 自监督预训练（DINOv2）与对比学习的融合；(3) SigLIP 逐步替代原始 CLIP 成为新的默认选择。</p></blockquote>
       </article>
       <nav class="doc-nav"><a href="README.html">← 10 多模态模型</a><a href="2_%E5%A4%9A%E6%A8%A1%E6%80%81%E5%A4%A7%E6%A8%A1%E5%9E%8B.html">多模态大模型 →</a></nav>
     </main>

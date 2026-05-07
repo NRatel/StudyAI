@@ -176,8 +176,7 @@
 <a class="depth-3" href="#25-与-transformer-路线的融合">2.5 与 Transformer 路线的融合</a>
 <a class="depth-4" href="#251-趋势两条技术路线正在合流">2.5.1 趋势：两条技术路线正在合流</a>
 <a class="depth-4" href="#252-soradit-用于视频生成">2.5.2 Sora：DiT 用于视频生成</a>
-<a class="depth-4" href="#253-融合趋势的更多证据">2.5.3 融合趋势的更多证据</a>
-<a class="depth-2" href="#本节小结">本节小结</a></details></aside>
+<a class="depth-4" href="#253-融合趋势的更多证据">2.5.3 融合趋势的更多证据</a></details></aside>
     <div class="toc-backdrop" data-sidebar-backdrop></div>
     <main class="page">
       <article class="markdown-body">
@@ -473,10 +472,6 @@ DiT-XL/2     675M         118.6      9.6</code></pre>
 <h4 id="253-融合趋势的更多证据">2.5.3 融合趋势的更多证据</h4>
 <div class="table-wrap"><table><thead><tr><th>模型</th><th>基础架构</th><th>生成方式</th><th>年份</th></tr></thead><tbody><tr><td>DALL-E 1</td><td>Transformer</td><td>自回归</td><td>2021</td></tr><tr><td>Stable Diffusion 1.x/2.x</td><td>U-Net</td><td>扩散</td><td>2022</td></tr><tr><td>DALL-E 2</td><td>U-Net + CLIP</td><td>扩散</td><td>2022</td></tr><tr><td>DALL-E 3</td><td>U-Net</td><td>扩散</td><td>2023</td></tr><tr><td>DiT</td><td>Transformer</td><td>扩散</td><td>2023</td></tr><tr><td>Stable Diffusion 3.0</td><td>MM-DiT (Transformer)</td><td>扩散 + Flow Matching</td><td>2024</td></tr><tr><td>Sora</td><td>DiT (Transformer)</td><td>扩散</td><td>2024</td></tr></tbody></table></div>
 <p>趋势非常清晰：<strong>骨干网络从 U-Net 转向 Transformer</strong>，而生成范式保持扩散（或其变体 Flow Matching）。Transformer 正在成为统一的基础架构——无论是理解（语言模型）还是生成（图像/视频），底层都是 Transformer。</p>
-<hr>
-<h2 id="本节小结">本节小结</h2>
-<div class="table-wrap"><table><thead><tr><th>概念</th><th>一句话总结</th></tr></thead><tbody><tr><td>U-Net 骨干</td><td>编码器-解码器 + 跳跃连接，通过时间步嵌入和 Cross-Attention 适配为扩散去噪网络</td></tr><tr><td>DiT</td><td>用 Transformer 替代 U-Net，通过 Patchify + AdaLN-Zero 实现，与 Scaling Laws 兼容</td></tr><tr><td>Latent Diffusion</td><td>在 VAE 压缩后的潜空间做扩散，维度降低约 48 倍，使高分辨率生成成为可能</td></tr><tr><td>Stable Diffusion</td><td>CLIP（文本编码）+ U-Net/DiT（潜空间去噪）+ VAE（图像还原）的三件套</td></tr><tr><td>ControlNet</td><td>通过冻结原始 U-Net + 训练控制分支，实现边缘/深度/姿态等精细空间控制</td></tr><tr><td>LoRA</td><td>低秩分解的轻量微调方法，用不到 1% 的参数实现风格定制</td></tr><tr><td>Diffusers</td><td>Hugging Face 的扩散模型标准库，提供 Pipeline/Model/Scheduler 三层抽象</td></tr></tbody></table></div>
-<p><strong>前置内容回顾</strong>：<a href="3_%E6%9D%A1%E4%BB%B6%E7%94%9F%E6%88%90%E4%B8%8E%E5%BC%95%E5%AF%BC.html">条件生成与引导</a> | <strong>延伸阅读</strong>：<a href="%E8%AE%BA%E6%96%87%E4%B8%8EFAQ.html">论文与FAQ</a></p>
       </article>
       <nav class="doc-nav"><a href="3_%E6%9D%A1%E4%BB%B6%E7%94%9F%E6%88%90%E4%B8%8E%E5%BC%95%E5%AF%BC.html">← 条件生成与引导</a><a href="%E8%AE%BA%E6%96%87%E4%B8%8EFAQ.html">论文与FAQ →</a></nav>
     </main>

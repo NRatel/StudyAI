@@ -169,8 +169,7 @@
 <a class="depth-4" href="#范式-3perceiver-resamplerflamingo-路线">范式 3：Perceiver Resampler（Flamingo 路线）</a>
 <a class="depth-4" href="#三种范式对比">三种范式对比</a>
 <a class="depth-3" href="#24-多模态对齐的数学理解">2.4 多模态对齐的数学理解</a>
-<a class="depth-3" href="#25-开源多模态大模型全景截至-20264">2.5 开源多模态大模型全景（截至 2026.4）</a>
-<a class="depth-2" href="#本节小结">本节小结</a></details></aside>
+<a class="depth-3" href="#25-开源多模态大模型全景截至-20264">2.5 开源多模态大模型全景（截至 2026.4）</a></details></aside>
     <div class="toc-backdrop" data-sidebar-backdrop></div>
     <main class="page">
       <article class="markdown-body">
@@ -378,12 +377,6 @@ GPT-4o 的路线：         图像 ─┐
 <p>即让模型在给定视觉 token 和之前的文本 token 的条件下，正确预测下一个文本 token。</p>
 <h3 id="25-开源多模态大模型全景截至-20264">2.5 开源多模态大模型全景（截至 2026.4）</h3>
 <div class="table-wrap"><table><thead><tr><th>模型</th><th>机构</th><th>视觉编码器</th><th>LLM</th><th>桥接模块</th><th>特点</th></tr></thead><tbody><tr><td>LLaVA-1.5</td><td>UW-Madison</td><td>CLIP ViT-L/14</td><td>Vicuna-13B</td><td>MLP</td><td>简洁高效的标杆</td></tr><tr><td>LLaVA-NeXT</td><td>UW-Madison</td><td>CLIP ViT-L/14</td><td>多种 LLM</td><td>MLP + AnyRes</td><td>动态分辨率</td></tr><tr><td>InternVL-2.5</td><td>上海 AI Lab</td><td>InternViT-6B</td><td>InternLM2-Chat</td><td>MLP</td><td>超大视觉编码器</td></tr><tr><td>Qwen-VL-2.5</td><td>阿里</td><td>ViT（自训练）</td><td>Qwen2.5</td><td>Cross-Attention</td><td>多语言强</td></tr><tr><td>LLaMA-3.2-Vision</td><td>Meta</td><td>ViT（自训练）</td><td>LLaMA-3.2</td><td>Cross-Attention</td><td>Meta 生态</td></tr><tr><td>DeepSeek-VL2</td><td>DeepSeek</td><td>SigLIP</td><td>DeepSeek-MoE</td><td>MLP</td><td>MoE 架构</td></tr><tr><td>Cambrian-1</td><td>NYU</td><td>多编码器融合</td><td>LLaMA-3</td><td>MLP</td><td>视觉中心设计</td></tr></tbody></table></div>
-<hr>
-<h2 id="本节小结">本节小结</h2>
-<div class="table-wrap"><table><thead><tr><th>概念</th><th>一句话总结</th></tr></thead><tbody><tr><td><strong>多模态大模型</strong></td><td>视觉编码器 + 桥接模块 + LLM 的三段式架构，让 LLM 能&quot;看图说话&quot;</td></tr><tr><td><strong>GPT-4V/4o</strong></td><td>闭源标杆；4o 实现原生多模态，语音延迟降至 320ms</td></tr><tr><td><strong>LLaVA</strong></td><td>开源标杆；证明了 MLP 投影 + 好数据 = 强效果</td></tr><tr><td><strong>两阶段训练</strong></td><td>第一阶段对齐（训练投影层）→ 第二阶段指令微调（训练投影层 + LLM）</td></tr><tr><td><strong>MLP vs Q-Former</strong></td><td>MLP 简单信息保留多（主流），Q-Former 压缩 token 但有信息损失</td></tr><tr><td><strong>多模态对齐</strong></td><td>本质是将视觉特征映射到 LLM 的语义空间，让 LLM 能&quot;理解&quot;视觉 token</td></tr><tr><td><strong>高分辨率</strong></td><td>AnyRes 动态切块是处理高分辨率的主流方案</td></tr></tbody></table></div>
-<p><strong>下一节</strong>：从图像拓展到视频和语音——Sora 如何生成视频，Whisper 如何理解语音？</p>
-<hr>
-<blockquote><p><strong>时效性说明</strong>（截至 2026 年 4 月）：多模态大模型是迭代最快的方向之一。本节描述的 LLaVA 风格架构（视觉编码器 + MLP + LLM）是 2024-2025 的主流范式，但正在出现新趋势：(1) 原生多模态预训练（如 GPT-4o、Gemini）可能取代&quot;拼接式&quot;架构；(2) 视觉编码器从 CLIP ViT 向自训练的更大 ViT 转移（InternViT-6B）；(3) 开源模型（InternVL-2.5、Qwen-VL-2.5）在主要 benchmark 上快速逼近甚至追平闭源模型。具体的模型排名和最佳选择请参考最新的 OpenCompass / LMSYS 评测。</p></blockquote>
       </article>
       <nav class="doc-nav"><a href="1_ViT%E4%B8%8ECLIP.html">← ViT 与 CLIP</a><a href="3_%E8%A7%86%E9%A2%91%E4%B8%8E%E8%AF%AD%E9%9F%B3.html">视频与语音 →</a></nav>
     </main>

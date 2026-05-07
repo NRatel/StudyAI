@@ -32,7 +32,7 @@
 | 1 | [Agent框架原理](1_Agent框架原理.md) | AI Agent 定义、感知→推理→行动循环、ReAct、Tool Use、Planning |
 | 2 | [记忆与状态管理](2_记忆与状态管理.md) | 短期记忆（上下文窗口）、长期记忆（向量存储/摘要压缩）、工作记忆（scratch pad） |
 | 3 | [多Agent与MCP](3_多Agent与MCP.md) | 多 Agent 协作模式、MCP 协议原理、Agent 框架生态 |
-| - | [论文与FAQ](论文与FAQ.md) | 关键论文、常见误区、延伸资源 |
+| - | [论文与FAQ](论文与FAQ.md) | 关键论文、延伸资源 |
 
 ## 模块知识图谱
 

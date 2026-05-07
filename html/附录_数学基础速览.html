@@ -173,7 +173,7 @@
 <a class="depth-3" href="#34-凸函数与凸优化">3.4 凸函数与凸优化</a>
 <a class="depth-3" href="#35-梯度下降的数学视角">3.5 梯度下降的数学视角</a>
 <a class="depth-2" href="#数学符号速查表">数学符号速查表</a>
-<a class="depth-2" href="#常见误区与-faq">常见误区与 FAQ</a>
+<a class="depth-2" href="#faq">FAQ</a>
 <a class="depth-2" href="#关键论文与里程碑延伸阅读">关键论文与里程碑（延伸阅读）</a>
 <a class="depth-2" href="#概念关联图数学---ai-组件">概念关联图：数学 &lt;-&gt; AI 组件</a></details></aside>
     <div class="toc-backdrop" data-sidebar-backdrop></div>
@@ -345,7 +345,7 @@
 <h2 id="数学符号速查表">数学符号速查表</h2>
 <div class="table-wrap"><table><thead><tr><th>符号</th><th>含义</th><th>示例</th></tr></thead><tbody><tr><td>$\mathbf{x}$</td><td>向量（粗体小写）</td><td>输入特征向量</td></tr><tr><td>$W$</td><td>矩阵（大写）</td><td>权重矩阵</td></tr><tr><td>$W^T$</td><td>矩阵转置</td><td>转置后行变列</td></tr><tr><td>$W^{-1}$</td><td>矩阵的逆</td><td>$W W^{-1} = I$</td></tr><tr><td>$\</td><td>\mathbf{x}\</td><td>$</td><td>向量范数</td><td>默认指 L2 范数</td></tr><tr><td>$\nabla f$</td><td>梯度</td><td>所有偏导数组成的向量</td></tr><tr><td>$\frac{\partial f}{\partial x}$</td><td>偏导数</td><td>f 对 x 的偏导</td></tr><tr><td>$\sum$</td><td>求和</td><td>$\sum_{i=1}^n x_i$</td></tr><tr><td>$\prod$</td><td>连乘</td><td>$\prod_{i=1}^n p(x_i)$</td></tr><tr><td>$\arg\max$</td><td>取最大值时的参数</td><td>$\arg\max_\theta L(\theta)$</td></tr><tr><td>$\arg\min$</td><td>取最小值时的参数</td><td>$\arg\min_\theta \text{Loss}(\theta)$</td></tr><tr><td>$\propto$</td><td>正比于</td><td>$P(\theta</td><td>D) \propto P(D</td><td>\theta)P(\theta)$</td></tr><tr><td>$\sim$</td><td>服从某分布</td><td>$x \sim \mathcal{N}(0, 1)$</td></tr><tr><td>$\mathcal{N}(\mu, \sigma^2)$</td><td>高斯分布</td><td>均值 $\mu$，方差 $\sigma^2$</td></tr><tr><td>$\mathbb{E}[X]$</td><td>期望</td><td>随机变量的加权平均</td></tr><tr><td>$\log$</td><td>自然对数（AI 中默认）</td><td>$\log e = 1$</td></tr></tbody></table></div>
 <hr>
-<h2 id="常见误区与-faq">常见误区与 FAQ</h2>
+<h2 id="faq">FAQ</h2>
 <p><strong>误区 1：矩阵乘法满足交换律</strong></p>
 <blockquote><p>AB ≠ BA（一般情况下）。神经网络中矩阵乘法顺序至关重要：<code>Wx + b</code> 和 <code>xW + b</code> 的含义完全不同。做矩阵运算时要注意 shape 对齐方向。</p></blockquote>
 <p><strong>误区 2：KL 散度是&quot;距离&quot;</strong></p>

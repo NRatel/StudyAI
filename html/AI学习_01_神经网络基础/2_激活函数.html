@@ -161,8 +161,7 @@
 <a class="depth-3" href="#24-leaky-relu-prelu">2.4 Leaky ReLU / PReLU</a>
 <a class="depth-3" href="#25-gelu-与-silu">2.5 GELU 与 SiLU</a>
 <a class="depth-3" href="#26-softmax">2.6 Softmax</a>
-<a class="depth-2" href="#3-如何选择激活函数">3. 如何选择激活函数</a>
-<a class="depth-2" href="#本节小结">本节小结</a></details></aside>
+<a class="depth-2" href="#3-如何选择激活函数">3. 如何选择激活函数</a></details></aside>
     <div class="toc-backdrop" data-sidebar-backdrop></div>
     <main class="page">
       <article class="markdown-body">
@@ -244,10 +243,6 @@ $$</div>
 <p>一句话判断：</p>
 <pre><code class="language-text">隐藏层：ReLU / GELU
 输出层：看任务需要什么形式的答案</code></pre>
-<hr>
-<h2 id="本节小结">本节小结</h2>
-<div class="table-wrap"><table><thead><tr><th>概念</th><th>一句话总结</th></tr></thead><tbody><tr><td><strong>激活函数</strong></td><td>给网络加入非线性，让多层网络真正有意义</td></tr><tr><td><strong>Sigmoid</strong></td><td>输出 0 到 1，适合二分类概率</td></tr><tr><td><strong>Tanh</strong></td><td>输出 -1 到 1，常用于循环网络状态</td></tr><tr><td><strong>ReLU</strong></td><td>正数通过、负数截断，简单高效</td></tr><tr><td><strong>Leaky ReLU</strong></td><td>给负半轴一点梯度，减少死神经元</td></tr><tr><td><strong>GELU / SiLU</strong></td><td>平滑门控，常见于 Transformer</td></tr><tr><td><strong>Softmax</strong></td><td>把一组分数变成概率分布</td></tr></tbody></table></div>
-<p><strong>下一节</strong>：<a href="3_%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0.html">损失函数</a> —— 激活函数决定信号怎么流动，损失函数决定模型错得有多离谱。</p>
       </article>
       <nav class="doc-nav"><a href="1_%E6%84%9F%E7%9F%A5%E6%9C%BA%E4%B8%8E%E5%A4%9A%E5%B1%82%E7%BD%91%E7%BB%9C.html">← 感知机与多层网络</a><a href="3_%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0.html">损失函数 →</a></nav>
     </main>

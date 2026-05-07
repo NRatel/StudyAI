@@ -176,7 +176,6 @@
 <a class="depth-3" href="#62-方法选择建议">6.2 方法选择建议</a>
 <a class="depth-3" href="#63-选择决策树">6.3 选择决策树</a>
 <a class="depth-2" href="#七从提示方法到训练方法的转折">七、从提示方法到训练方法的转折</a>
-<a class="depth-2" href="#本节小结">本节小结</a>
 <a class="depth-2" href="#时效性说明">时效性说明</a></details></aside>
     <div class="toc-backdrop" data-sidebar-backdrop></div>
     <main class="page">
@@ -411,9 +410,6 @@ Memory (Reflexion 扩展)      →     Agent 记忆模块</code></pre>
 优点: 通用，不需训练                    优点: 更强，更自然，更可靠
 缺点: 依赖外部编排，开销大              缺点: 需要专门训练，成本高</code></pre>
 <p>下一节将深入探讨这条&quot;训练推理模型&quot;的路线。</p>
-<hr>
-<h2 id="本节小结">本节小结</h2>
-<div class="table-wrap"><table><thead><tr><th>概念</th><th>一句话解释</th></tr></thead><tbody><tr><td>Tree-of-Thought</td><td>把推理变成树形搜索：多路径展开 + LLM 评估 + 剪枝</td></tr><tr><td>Graph-of-Thought</td><td>进一步扩展为图结构：支持分支合并和迭代精炼</td></tr><tr><td>Reflexion</td><td>跨轮次的自我反思：失败后分析原因，下一轮改进</td></tr><tr><td>ReAct</td><td>推理和行动交替：想一步、做一步、看结果、再想再做</td></tr><tr><td>关键局限</td><td>这些方法都不改变模型参数，依赖外部框架编排</td></tr></tbody></table></div>
 <hr>
 <h2 id="时效性说明">时效性说明</h2>
 <blockquote><p>- ToT、GoT 的原始论文发表于 2023 年，方法论已相对稳定<br>

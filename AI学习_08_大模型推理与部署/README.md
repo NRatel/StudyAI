@@ -31,7 +31,7 @@
 | 1 | [KV Cache与推理优化](1_KVCache与推理优化.md) | KV Cache 原理、PagedAttention、Continuous Batching、推测解码 |
 | 2 | [量化技术](2_量化技术.md) | INT8/INT4 量化原理、PTQ vs QAT、GPTQ/AWQ/GGUF 对比 |
 | 3 | [推理框架与部署](3_推理框架与部署.md) | vLLM、TGI、TensorRT-LLM、llama.cpp、Prompt Engineering |
-| - | [论文与FAQ](论文与FAQ.md) | 关键论文、常见误区、延伸资源 |
+| - | [论文与FAQ](论文与FAQ.md) | 关键论文、延伸资源 |
 
 ## 阅读路线建议
 

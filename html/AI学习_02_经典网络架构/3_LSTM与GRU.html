@@ -159,9 +159,7 @@
 <a class="depth-3" href="#2-lstm-的核心公式">2. LSTM 的核心公式</a>
 <a class="depth-3" href="#3-gru更简洁的门控-rnn">3. GRU：更简洁的门控 RNN</a>
 <a class="depth-3" href="#4-lstm-vs-gru">4. LSTM vs GRU</a>
-<a class="depth-3" href="#5-为什么门控能缓解梯度消失">5. 为什么门控能缓解梯度消失</a>
-<a class="depth-2" href="#常见误区">常见误区</a>
-<a class="depth-2" href="#本节小结">本节小结</a></details></aside>
+<a class="depth-3" href="#5-为什么门控能缓解梯度消失">5. 为什么门控能缓解梯度消失</a></details></aside>
     <div class="toc-backdrop" data-sidebar-backdrop></div>
     <main class="page">
       <article class="markdown-body">
@@ -237,18 +235,6 @@
 <li>GRU 用更新门在旧状态和新状态之间插值。</li>
 </ul>
 <p>当模型学到&quot;这段信息很重要&quot;时，门可以接近打开状态，让信息和梯度跨多个时间步保留下来。</p>
-<hr>
-<h2 id="常见误区">常见误区</h2>
-<p><strong>误区 1：LSTM 能无限记住所有历史。</strong></p>
-<p>不能。它只是比普通 RNN 更容易保留长距离信息，仍然受隐藏维度、数据和训练影响。</p>
-<p><strong>误区 2：GRU 是 LSTM 的低配版，所以一定更差。</strong></p>
-<p>不一定。GRU 参数更少，在一些任务上效果接近甚至优于 LSTM。模型越复杂不总是越好。</p>
-<p><strong>误区 3：学了 Transformer 就不用理解 LSTM/GRU。</strong></p>
-<p>仍然值得理解。门控、状态更新、长距离依赖这些思想后来在很多架构中反复出现。</p>
-<hr>
-<h2 id="本节小结">本节小结</h2>
-<div class="table-wrap"><table><thead><tr><th>概念</th><th>一句话总结</th></tr></thead><tbody><tr><td>门控</td><td>用 0~1 的开关控制信息流</td></tr><tr><td>LSTM</td><td>用细胞状态 + 三个门管理长期记忆</td></tr><tr><td>细胞状态</td><td>LSTM 中相对稳定的信息传送带</td></tr><tr><td>GRU</td><td>更简洁的门控 RNN</td></tr><tr><td>更新门</td><td>控制旧状态和新状态的混合比例</td></tr><tr><td>长距离依赖</td><td>门控让重要信息更容易跨时间保留</td></tr></tbody></table></div>
-<p><strong>下一篇</strong>：<a href="4_%E7%BC%96%E7%A0%81%E5%99%A8%E8%A7%A3%E7%A0%81%E5%99%A8%E6%A1%86%E6%9E%B6.html">编码器-解码器框架</a>——如何把一个变长序列转换成另一个变长序列？</p>
       </article>
       <nav class="doc-nav"><a href="2_RNN%E5%BE%AA%E7%8E%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C.html">← RNN 循环神经网络</a><a href="4_%E7%BC%96%E7%A0%81%E5%99%A8%E8%A7%A3%E7%A0%81%E5%99%A8%E6%A1%86%E6%9E%B6.html">编码器-解码器框架（Seq2Seq） →</a></nav>
     </main>

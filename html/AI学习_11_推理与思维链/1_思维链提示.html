@@ -172,7 +172,6 @@
 <a class="depth-3" href="#51-技术对比">5.1 技术对比</a>
 <a class="depth-3" href="#52-实用选择指南">5.2 实用选择指南</a>
 <a class="depth-2" href="#六从-cot-到推理模型的演进">六、从 CoT 到推理模型的演进</a>
-<a class="depth-2" href="#本节小结">本节小结</a>
 <a class="depth-2" href="#时效性说明">时效性说明</a></details></aside>
     <div class="toc-backdrop" data-sidebar-backdrop></div>
     <main class="page">
@@ -333,9 +332,6 @@ Self-Consistency (N=40):  40 × C</code></pre>
 └── 模型训练路线 → 训练模型自动产生长推理链 → o1/o3/R1（→ 第 3 节）
     核心：通过 RL 训练模型主动&quot;慢思考&quot;</code></pre>
 <p>下一节我们将探讨提示工程路线的高级方法：Tree-of-Thought、Reflexion 等。第 3 节将转向模型训练路线。</p>
-<hr>
-<h2 id="本节小结">本节小结</h2>
-<div class="table-wrap"><table><thead><tr><th>概念</th><th>一句话解释</th></tr></thead><tbody><tr><td>Chain-of-Thought</td><td>在示例中展示推理步骤，激活模型的推理能力</td></tr><tr><td>Zero-shot CoT</td><td>一句 &quot;Let&#x27;s think step by step&quot; 即可触发推理</td></tr><tr><td>Self-Consistency</td><td>多次采样 + 多数投票，提升推理可靠性</td></tr><tr><td>CoT 为何有效</td><td>扩展工作记忆 + 分解复杂问题 + 激活预训练知识</td></tr><tr><td>涌现性</td><td>CoT 只在大模型(100B+)上有效，小模型反而可能更差</td></tr></tbody></table></div>
 <hr>
 <h2 id="时效性说明">时效性说明</h2>
 <blockquote><p>本节内容基于 2022-2023 年的经典论文，方法本身已相对稳定。但需注意：<br>

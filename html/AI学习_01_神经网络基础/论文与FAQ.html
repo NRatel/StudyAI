@@ -152,7 +152,7 @@
 <a class="doc-link" href="../%E9%99%84%E5%BD%95_%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%80%E9%80%9F%E8%A7%88.html">附录_数学基础速览<small>附录：数学基础速览</small></a>
 <a class="doc-link" href="../%E9%99%84%E5%BD%95_%E4%BB%A3%E7%A0%81%E7%A4%BA%E4%BE%8B%E9%9B%86.html">附录_代码示例集<small>附录：代码示例集（精选版）</small></a>
 </details></nav><div class="sidebar-rule"></div><details class="page-toc"><summary>当前页目录</summary><a class="depth-2" href="#一关键论文脉络">一、关键论文脉络</a>
-<a class="depth-2" href="#二常见误区与-faq">二、常见误区与 FAQ</a>
+<a class="depth-2" href="#二faq">二、FAQ</a>
 <a class="depth-3" href="#q1神经网络是在模拟人脑吗">Q1：神经网络是在模拟人脑吗？</a>
 <a class="depth-3" href="#q2层数越多参数越多模型一定越好吗">Q2：层数越多、参数越多，模型一定越好吗？</a>
 <a class="depth-3" href="#q3学习率大一点是不是训练更快">Q3：学习率大一点是不是训练更快？</a>
@@ -166,7 +166,7 @@
     <main class="page">
       <article class="markdown-body">
 <h1 id="论文与faq">论文与FAQ</h1>
-<blockquote><p>本文件用于补充论文脉络和常见误区。正文优先建立概念直觉；这里提供“想多看一点”的参考地图。</p></blockquote>
+<blockquote><p>本文件用于补充论文脉络和关键疑问。正文优先建立概念直觉；这里提供“想多看一点”的参考地图。</p></blockquote>
 <hr>
 <h2 id="一关键论文脉络">一、关键论文脉络</h2>
 <div class="table-wrap"><table><thead><tr><th>年份</th><th>论文/方法</th><th>为什么重要</th></tr></thead><tbody><tr><td>1958</td><td>Rosenblatt — Perceptron</td><td>提出可学习权重的人工神经元，神经网络正式起步</td></tr><tr><td>1986</td><td>Rumelhart et al. — Backpropagation</td><td>让多层网络可以高效训练</td></tr><tr><td>1989</td><td>Hornik — Universal Approximation</td><td>说明神经网络有强表达能力，但不保证容易训练</td></tr><tr><td>2014</td><td>Dropout</td><td>用随机丢弃神经元缓解过拟合</td></tr><tr><td>2015</td><td>Kaiming Initialization</td><td>让 ReLU 深层网络更容易稳定启动训练</td></tr><tr><td>2015</td><td>Batch Normalization</td><td>让训练更稳定，也带来一定正则化效果</td></tr><tr><td>2015</td><td>Adam</td><td>结合动量和自适应学习率，成为常见优化器</td></tr><tr><td>2016</td><td>GELU</td><td>后来在 Transformer 中广泛使用的平滑激活函数</td></tr><tr><td>2019</td><td>AdamW</td><td>更清晰地处理权重衰减，现代大模型常用</td></tr></tbody></table></div>
@@ -178,7 +178,7 @@
 </ol>
 <p>不建议初学时逐篇论文啃细节。先把正文里的概念连起来，论文只作为历史坐标。</p>
 <hr>
-<h2 id="二常见误区与-faq">二、常见误区与 FAQ</h2>
+<h2 id="二faq">二、FAQ</h2>
 <h3 id="q1神经网络是在模拟人脑吗">Q1：神经网络是在模拟人脑吗？</h3>
 <p>不是严格模拟。</p>
 <p>“神经网络”这个名字确实来自生物启发：输入信号、加权求和、超过阈值后输出。但现代人工神经网络更准确地说是一类数学函数模型。</p>

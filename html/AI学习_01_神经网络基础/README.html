@@ -174,7 +174,7 @@
 <p><strong>前置知识</strong>：基本函数、向量和求导直觉。数学知识在文中穿插讲解，详细推导见 <a href="../%E9%99%84%E5%BD%95_%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%80%E9%80%9F%E8%A7%88.html">附录：数学基础速览</a>。如果数学基础薄弱，优先查阅附录 1.1（向量与矩阵运算）、3.3（链式法则）、3.5（梯度下降），建立最低限度的数学直觉后再开始正文阅读。</p>
 <p><strong>预估阅读时间</strong>：8~10 小时</p>
 <h2 id="目录">目录</h2>
-<div class="table-wrap"><table><thead><tr><th>序号</th><th>文件</th><th>内容</th></tr></thead><tbody><tr><td>1</td><td><a href="1_%E6%84%9F%E7%9F%A5%E6%9C%BA%E4%B8%8E%E5%A4%9A%E5%B1%82%E7%BD%91%E7%BB%9C.html">感知机与多层网络</a></td><td>从单个神经元到多层感知机，为什么需要多层</td></tr><tr><td>2</td><td><a href="2_%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0.html">激活函数</a></td><td>Sigmoid、Tanh、ReLU、GELU 等，为什么需要非线性</td></tr><tr><td>3</td><td><a href="3_%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0.html">损失函数</a></td><td>MSE、交叉熵，为什么分类用交叉熵而不是 MSE</td></tr><tr><td>4</td><td><a href="4_%E5%8F%8D%E5%90%91%E4%BC%A0%E6%92%AD.html">反向传播</a></td><td>计算图、链式法则、梯度如何一层层传回去</td></tr><tr><td>5</td><td><a href="5_%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D%E4%B8%8E%E4%BC%98%E5%8C%96%E5%99%A8.html">梯度下降与优化器</a></td><td>SGD、Momentum、Adam、AdamW，学习率调度</td></tr><tr><td>6</td><td><a href="6_%E6%AD%A3%E5%88%99%E5%8C%96.html">正则化</a></td><td>Dropout、Batch Normalization、权重衰减、早停</td></tr><tr><td>-</td><td><a href="%E8%AE%BA%E6%96%87%E4%B8%8EFAQ.html">论文与FAQ</a></td><td>关键论文、常见误区、延伸资源</td></tr></tbody></table></div>
+<div class="table-wrap"><table><thead><tr><th>序号</th><th>文件</th><th>内容</th></tr></thead><tbody><tr><td>1</td><td><a href="1_%E6%84%9F%E7%9F%A5%E6%9C%BA%E4%B8%8E%E5%A4%9A%E5%B1%82%E7%BD%91%E7%BB%9C.html">感知机与多层网络</a></td><td>从单个神经元到多层感知机，为什么需要多层</td></tr><tr><td>2</td><td><a href="2_%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0.html">激活函数</a></td><td>Sigmoid、Tanh、ReLU、GELU 等，为什么需要非线性</td></tr><tr><td>3</td><td><a href="3_%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0.html">损失函数</a></td><td>MSE、交叉熵，为什么分类用交叉熵而不是 MSE</td></tr><tr><td>4</td><td><a href="4_%E5%8F%8D%E5%90%91%E4%BC%A0%E6%92%AD.html">反向传播</a></td><td>计算图、链式法则、梯度如何一层层传回去</td></tr><tr><td>5</td><td><a href="5_%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D%E4%B8%8E%E4%BC%98%E5%8C%96%E5%99%A8.html">梯度下降与优化器</a></td><td>SGD、Momentum、Adam、AdamW，学习率调度</td></tr><tr><td>6</td><td><a href="6_%E6%AD%A3%E5%88%99%E5%8C%96.html">正则化</a></td><td>Dropout、Batch Normalization、权重衰减、早停</td></tr><tr><td>-</td><td><a href="%E8%AE%BA%E6%96%87%E4%B8%8EFAQ.html">论文与FAQ</a></td><td>关键论文、延伸资源</td></tr></tbody></table></div>
 <h2 id="读完能解释">读完能解释</h2>
 <ol>
 <li>为什么单个感知机只能解决线性可分问题，而多层网络能表达更复杂的关系？</li>
@@ -183,7 +183,7 @@
 <li>过拟合为什么会发生？Dropout、权重衰减、早停分别在抑制什么？</li>
 </ol>
 <h2 id="阅读建议">阅读建议</h2>
-<p>按序号 1→6 顺序阅读。每个文件都会先用具体问题引入，再给出概念与原理，最后澄清常见误区。遇到数学概念可随时查阅附录。</p>
+<p>按序号 1→6 顺序阅读。每个文件都会先用具体问题引入，再给出概念与原理，最后收束关键疑问。遇到数学概念可随时查阅附录。</p>
       </article>
       <nav class="doc-nav"><a href="../%E6%95%B4%E4%BD%93%E7%9F%A5%E8%AF%86%E4%BD%93%E7%B3%BB%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE.html">← AI 及大模型原理 — 整体知识体系思维导图</a><a href="1_%E6%84%9F%E7%9F%A5%E6%9C%BA%E4%B8%8E%E5%A4%9A%E5%B1%82%E7%BD%91%E7%BB%9C.html">感知机与多层网络 →</a></nav>
     </main>

@@ -159,8 +159,7 @@
 <a class="depth-3" href="#24-gpt-擅长什么">2.4 GPT 擅长什么</a>
 <a class="depth-3" href="#25-核心差异总表">2.5 核心差异总表</a>
 <a class="depth-3" href="#26-为什么-decoder-only-成为通用大模型主流">2.6 为什么 Decoder-only 成为通用大模型主流</a>
-<a class="depth-3" href="#27-但-bert-仍然重要">2.7 但 BERT 仍然重要</a>
-<a class="depth-2" href="#本节小结">本节小结</a></details></aside>
+<a class="depth-3" href="#27-但-bert-仍然重要">2.7 但 BERT 仍然重要</a></details></aside>
     <div class="toc-backdrop" data-sidebar-backdrop></div>
     <main class="page">
       <article class="markdown-body">
@@ -260,10 +259,6 @@ Masked Transformer Decoder × N
 <li>成本、延迟、可控性比开放生成更重要。</li>
 </ul>
 <p>一句话：<strong>GPT 更像通用写作者，BERT 更像高效阅卷老师。</strong></p>
-<hr>
-<h2 id="本节小结">本节小结</h2>
-<div class="table-wrap"><table><thead><tr><th>概念</th><th>一句话总结</th></tr></thead><tbody><tr><td><strong>BERT</strong></td><td>Transformer Encoder + MLM，双向理解能力强</td></tr><tr><td><strong>GPT</strong></td><td>Transformer Decoder + CLM，自回归生成能力强</td></tr><tr><td><strong>双向注意力</strong></td><td>每个位置能看左右上下文，适合理解</td></tr><tr><td><strong>因果注意力</strong></td><td>每个位置只能看前文，适合生成</td></tr><tr><td><strong>任务头微调</strong></td><td>BERT 常通过分类头、标注头适配任务</td></tr><tr><td><strong>Prompt / ICL</strong></td><td>GPT 可通过自然语言提示和示例适配任务</td></tr><tr><td><strong>Decoder-only 主流</strong></td><td>因为生成范式能统一大量任务，并在大规模下表现出强通用性</td></tr><tr><td><strong>BERT 的价值</strong></td><td>在理解、检索、分类等任务中仍然高效实用</td></tr></tbody></table></div>
-<p><strong>下一节</strong>：<a href="4_%E5%BE%AE%E8%B0%83%E4%B8%8E%E8%BF%81%E7%A7%BB%E5%AD%A6%E4%B9%A0.html">微调与迁移学习</a>——预训练模型如何变成能解决具体任务的模型？</p>
       </article>
       <nav class="doc-nav"><a href="2_%E8%87%AA%E7%9B%91%E7%9D%A3%E9%A2%84%E8%AE%AD%E7%BB%83%E8%8C%83%E5%BC%8F.html">← 自监督预训练范式</a><a href="4_%E5%BE%AE%E8%B0%83%E4%B8%8E%E8%BF%81%E7%A7%BB%E5%AD%A6%E4%B9%A0.html">微调与迁移学习 →</a></nav>
     </main>

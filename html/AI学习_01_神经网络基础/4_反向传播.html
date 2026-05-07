@@ -159,9 +159,7 @@
 <a class="depth-3" href="#2-链式法则把沿途影响乘起来">2. 链式法则：把沿途影响乘起来</a>
 <a class="depth-3" href="#3-反向传播的一般流程">3. 反向传播的一般流程</a>
 <a class="depth-3" href="#4-为什么反向传播高效">4. 为什么反向传播高效</a>
-<a class="depth-3" href="#5-梯度消失与梯度爆炸">5. 梯度消失与梯度爆炸</a>
-<a class="depth-2" href="#常见误区">常见误区</a>
-<a class="depth-2" href="#本节小结">本节小结</a></details></aside>
+<a class="depth-3" href="#5-梯度消失与梯度爆炸">5. 梯度消失与梯度爆炸</a></details></aside>
     <div class="toc-backdrop" data-sidebar-backdrop></div>
     <main class="page">
       <article class="markdown-body">
@@ -255,18 +253,6 @@
 <p>这两个问题解释了很多后续设计：</p>
 <div class="table-wrap"><table><thead><tr><th>问题</th><th>常见缓解方式</th></tr></thead><tbody><tr><td>梯度消失</td><td>ReLU / GELU、残差连接、归一化、合适初始化</td></tr><tr><td>梯度爆炸</td><td>梯度裁剪、归一化、较小学习率</td></tr></tbody></table></div>
 <p>后面的 CNN、RNN、Transformer 都会反复遇到这些设计思想。</p>
-<hr>
-<h2 id="常见误区">常见误区</h2>
-<p><strong>误区 1：反向传播就是梯度下降。</strong></p>
-<p>不是。反向传播负责<strong>算梯度</strong>；梯度下降、Adam、AdamW 等优化器负责<strong>用梯度更新参数</strong>。</p>
-<p><strong>误区 2：反向传播会逐个尝试每个参数。</strong></p>
-<p>不会。它通过链式法则一次性算出所有参数的梯度，这正是它高效的原因。</p>
-<p><strong>误区 3：梯度越大越好。</strong></p>
-<p>不一定。梯度太小会学不动，梯度太大可能导致训练发散。训练稳定性来自合适的梯度尺度，而不是越大越好。</p>
-<hr>
-<h2 id="本节小结">本节小结</h2>
-<div class="table-wrap"><table><thead><tr><th>概念</th><th>一句话总结</th></tr></thead><tbody><tr><td>计算图</td><td>把前向传播拆成一串基础运算</td></tr><tr><td>链式法则</td><td>最终影响 = 沿途局部影响相乘</td></tr><tr><td>反向传播</td><td>从损失出发，沿计算图反向计算梯度</td></tr><tr><td>误差项 $\delta$</td><td>某层需要承担的&quot;损失责任&quot;</td></tr><tr><td>梯度消失</td><td>梯度越往前传越小，前层学不动</td></tr><tr><td>梯度爆炸</td><td>梯度越往前传越大，训练不稳定</td></tr></tbody></table></div>
-<p><strong>下一篇</strong>：<a href="5_%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D%E4%B8%8E%E4%BC%98%E5%8C%96%E5%99%A8.html">梯度下降与优化器</a>——有了梯度之后，怎么用它更新参数？</p>
       </article>
       <nav class="doc-nav"><a href="3_%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0.html">← 损失函数</a><a href="5_%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D%E4%B8%8E%E4%BC%98%E5%8C%96%E5%99%A8.html">梯度下降与优化器 →</a></nav>
     </main>

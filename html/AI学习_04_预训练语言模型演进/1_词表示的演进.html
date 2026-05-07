@@ -160,8 +160,7 @@
 <a class="depth-3" href="#25-glove把全局共现也算进去">2.5 GloVe：把全局共现也算进去</a>
 <a class="depth-3" href="#26-静态词向量的根本局限一词多义">2.6 静态词向量的根本局限：一词多义</a>
 <a class="depth-3" href="#27-elmo同一个词按上下文换表示">2.7 ELMo：同一个词，按上下文换表示</a>
-<a class="depth-3" href="#28-词子词与-token">2.8 词、子词与 Token</a>
-<a class="depth-2" href="#本节小结">本节小结</a></details></aside>
+<a class="depth-3" href="#28-词子词与-token">2.8 词、子词与 Token</a></details></aside>
     <div class="toc-backdrop" data-sidebar-backdrop></div>
     <main class="page">
       <article class="markdown-body">
@@ -247,10 +246,6 @@ I sat on the bank of the river.       → bank = 河岸</code></pre>
 <p>现代语言模型通常不是直接按“词”建模，而是按 <strong>token</strong> 建模。token 可以是一个词，也可以是词的一部分。</p>
 <p>为什么要切成子词？因为自然语言里新词太多。如果只按完整词建词表，遇到没见过的词就会 OOV（out-of-vocabulary，词表外词）。子词分词把生词拆成更小片段，能显著缓解这个问题。</p>
 <p>后续 BERT、GPT 里的 Embedding，本质上就是：先把文本切成 token，再把 token 映射成向量。</p>
-<hr>
-<h2 id="本节小结">本节小结</h2>
-<div class="table-wrap"><table><thead><tr><th>概念</th><th>一句话总结</th></tr></thead><tbody><tr><td><strong>One-Hot</strong></td><td>只表示词的身份，不表示语义</td></tr><tr><td><strong>分布式假设</strong></td><td>一个词的意义由它常出现的上下文决定</td></tr><tr><td><strong>Word2Vec</strong></td><td>通过预测中心词或上下文学习静态词向量</td></tr><tr><td><strong>负采样</strong></td><td>用少量负样本替代全词表计算，提高训练效率</td></tr><tr><td><strong>GloVe</strong></td><td>利用全局词共现统计学习静态词向量</td></tr><tr><td><strong>静态词向量局限</strong></td><td>一词一个向量，无法处理一词多义</td></tr><tr><td><strong>ELMo</strong></td><td>根据上下文为同一个词生成不同表示</td></tr><tr><td><strong>Token</strong></td><td>现代语言模型的基本输入单位，常常是子词而非完整词</td></tr></tbody></table></div>
-<p><strong>下一节</strong>：<a href="2_%E8%87%AA%E7%9B%91%E7%9D%A3%E9%A2%84%E8%AE%AD%E7%BB%83%E8%8C%83%E5%BC%8F.html">自监督预训练范式</a>——模型如何不靠人工标注，从海量文本中学习语言能力？</p>
       </article>
       <nav class="doc-nav"><a href="README.html">← 04 预训练语言模型演进</a><a href="2_%E8%87%AA%E7%9B%91%E7%9D%A3%E9%A2%84%E8%AE%AD%E7%BB%83%E8%8C%83%E5%BC%8F.html">自监督预训练范式 →</a></nav>
     </main>

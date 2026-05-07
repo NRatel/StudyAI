@@ -166,8 +166,7 @@
 <a class="depth-4" href="#为什么-icl-有效三种假说">为什么 ICL 有效？三种假说</a>
 <a class="depth-4" href="#实际应用要点">实际应用要点</a>
 <a class="depth-3" href="#涌现能力-emergent-abilities">涌现能力 (Emergent Abilities)</a>
-<a class="depth-4" href="#争议schaeffer-et-al-2023">争议：Schaeffer et al. (2023)</a>
-<a class="depth-2" href="#本章小结">本章小结</a></details></aside>
+<a class="depth-4" href="#争议schaeffer-et-al-2023">争议：Schaeffer et al. (2023)</a></details></aside>
     <div class="toc-backdrop" data-sidebar-backdrop></div>
     <main class="page">
       <article class="markdown-body">
@@ -289,10 +288,6 @@ ICL:       attention(Q, K, V)          ← 等价于隐式梯度下降
 <p><strong>当前共识</strong>：</p>
 <div class="table-wrap"><table><thead><tr><th>观点</th><th>支持者</th><th>要点</th></tr></thead><tbody><tr><td>涌现是真实的</td><td>Wei et al.</td><td>某些能力确实只在大模型中出现</td></tr><tr><td>涌现是指标产物</td><td>Schaeffer et al.</td><td>换连续指标后涌现消失</td></tr><tr><td>综合观点</td><td>多数研究者</td><td>Loss 平滑改进，但某些任务存在有效相变</td></tr></tbody></table></div>
 <p>关键洞察：<strong>语言模型的 Loss 始终平滑下降</strong>（Scaling Laws），但需要组合多种子能力的任务（如多步推理），可能需要每个子能力都超过某个阈值才能成功，导致整体任务表现呈现阶跃——<strong>两者不矛盾</strong>。</p>
-<hr>
-<h2 id="本章小结">本章小结</h2>
-<div class="table-wrap"><table><thead><tr><th>概念</th><th>一句话总结</th></tr></thead><tbody><tr><td><strong>Kaplan Scaling Laws</strong></td><td>Loss 与 N/D/C 各自服从幂律关系，偏向增大模型</td></tr><tr><td><strong>Chinchilla Scaling Laws</strong></td><td>纠正 Kaplan：N 和 D 应等比例增长（D/N $\approx$ 20）</td></tr><tr><td><strong>最优配比</strong></td><td>$N_{\text{opt}} \propto C^{0.5}$, $D_{\text{opt}} \propto C^{0.5}$</td></tr><tr><td><strong>In-Context Learning</strong></td><td>推理时通过 prompt 示例学新任务，不更新参数</td></tr><tr><td><strong>ICL 机制假说</strong></td><td>隐式梯度下降 / 任务识别 / 贝叶斯推理——不互斥</td></tr><tr><td><strong>涌现能力</strong></td><td>小模型不会、大模型突然会——但可能是评估指标的阶跃效应</td></tr><tr><td><strong>工程核心价值</strong></td><td>用小模型实验预测大模型表现，训练前就能做出决策</td></tr><tr><td><strong>过度训练趋势</strong></td><td>D/N &gt;&gt; 20，牺牲训练成本换推理效率（Mistral 策略）</td></tr></tbody></table></div>
-<p><strong>下一章</strong>：<a href="3_%E5%AF%B9%E9%BD%90%E6%8A%80%E6%9C%AF.html">对齐技术</a>——预训练好的大模型虽然能力强大，但并不&quot;听话&quot;。SFT、RLHF、DPO 等对齐技术如何让模型既有能力又安全可控？</p>
       </article>
       <nav class="doc-nav"><a href="1_GPT%E7%B3%BB%E5%88%97%E6%9E%B6%E6%9E%84%E6%BC%94%E8%BF%9B.html">← GPT 系列架构演进</a><a href="3_%E5%AF%B9%E9%BD%90%E6%8A%80%E6%9C%AF.html">对齐技术：从预训练到有用又安全 →</a></nav>
     </main>

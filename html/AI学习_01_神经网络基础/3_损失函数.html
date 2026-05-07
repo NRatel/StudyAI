@@ -159,8 +159,7 @@
 <a class="depth-3" href="#42-多分类交叉熵">4.2 多分类交叉熵</a>
 <a class="depth-2" href="#5-为什么分类通常不用-mse">5. 为什么分类通常不用 MSE</a>
 <a class="depth-2" href="#6-其他常见损失函数">6. 其他常见损失函数</a>
-<a class="depth-2" href="#7-如何选择损失函数">7. 如何选择损失函数</a>
-<a class="depth-2" href="#本节小结">本节小结</a></details></aside>
+<a class="depth-2" href="#7-如何选择损失函数">7. 如何选择损失函数</a></details></aside>
     <div class="toc-backdrop" data-sidebar-backdrop></div>
     <main class="page">
       <article class="markdown-body">
@@ -234,10 +233,6 @@
 <hr>
 <h2 id="7-如何选择损失函数">7. 如何选择损失函数</h2>
 <div class="table-wrap"><table><thead><tr><th>任务类型</th><th>常见选择</th><th>原因</th></tr></thead><tbody><tr><td>回归</td><td>MSE</td><td>连续值误差，简单直接</td></tr><tr><td>有离群值的回归</td><td>Huber / L1</td><td>更不容易被异常值主导</td></tr><tr><td>二分类</td><td>Binary Cross Entropy</td><td>直接优化正类/负类概率</td></tr><tr><td>多分类</td><td>Cross Entropy</td><td>直接惩罚正确类别概率过低</td></tr><tr><td>多标签分类</td><td>多个 BCE</td><td>每个标签都是一个独立二分类</td></tr><tr><td>类别极不均衡</td><td>Focal Loss</td><td>让模型更关注难样本</td></tr></tbody></table></div>
-<hr>
-<h2 id="本节小结">本节小结</h2>
-<div class="table-wrap"><table><thead><tr><th>概念</th><th>一句话总结</th></tr></thead><tbody><tr><td><strong>损失函数</strong></td><td>量化预测和真实答案的差距，为训练提供方向</td></tr><tr><td><strong>MSE</strong></td><td>平方误差，适合连续值回归</td></tr><tr><td><strong>交叉熵</strong></td><td>惩罚正确类别概率过低，适合分类</td></tr><tr><td><strong>BCE</strong></td><td>二分类交叉熵</td></tr><tr><td><strong>CE</strong></td><td>多分类交叉熵</td></tr><tr><td><strong>Huber/L1</strong></td><td>更鲁棒的回归损失</td></tr><tr><td><strong>Focal Loss</strong></td><td>应对类别极不均衡</td></tr></tbody></table></div>
-<p><strong>下一节</strong>：<a href="4_%E5%8F%8D%E5%90%91%E4%BC%A0%E6%92%AD.html">反向传播</a> —— 损失函数给出“错得多严重”，反向传播负责把这份错误分摊回每个参数。</p>
       </article>
       <nav class="doc-nav"><a href="2_%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0.html">← 激活函数</a><a href="4_%E5%8F%8D%E5%90%91%E4%BC%A0%E6%92%AD.html">反向传播 →</a></nav>
     </main>

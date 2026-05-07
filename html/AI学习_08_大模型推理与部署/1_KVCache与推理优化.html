@@ -173,8 +173,7 @@
 <a class="depth-4" href="#核心思路leviathan-et-al-2023-chen-et-al-2023">核心思路（Leviathan et al., 2023; Chen et al., 2023）</a>
 <a class="depth-4" href="#数学保证采样一致性">数学保证——采样一致性</a>
 <a class="depth-4" href="#加速效果">加速效果</a>
-<a class="depth-3" href="#5-其他推理优化技术简述">5. 其他推理优化技术简述</a>
-<a class="depth-2" href="#本章小结">本章小结</a></details></aside>
+<a class="depth-3" href="#5-其他推理优化技术简述">5. 其他推理优化技术简述</a></details></aside>
     <div class="toc-backdrop" data-sidebar-backdrop></div>
     <main class="page">
       <article class="markdown-body">
@@ -347,9 +346,6 @@ PagedAttention（分页分配）:
 </ul>
 <h3 id="5-其他推理优化技术简述">5. 其他推理优化技术简述</h3>
 <div class="table-wrap"><table><thead><tr><th>技术</th><th>核心思路</th><th>效果</th></tr></thead><tbody><tr><td>Flash Attention</td><td>利用 GPU 内存层次（SRAM vs HBM），减少数据搬运</td><td>训练+推理均有效，内存节省 5~20x</td></tr><tr><td>GQA (Grouped Query Attention)</td><td>多个 Q 头共享一组 K/V 头</td><td>减少 KV Cache 大小，LLaMA-2 70B 使用</td></tr><tr><td>MQA (Multi-Query Attention)</td><td>所有 Q 头共享同 1 组 K/V</td><td>极致压缩 KV Cache，但精度可能下降</td></tr><tr><td>Prefix Caching</td><td>缓存公共系统 prompt 的 KV Cache</td><td>相同系统 prompt 的请求直接复用</td></tr><tr><td>Chunked Prefill</td><td>将长 prompt 的 prefill 分块执行</td><td>避免长 prompt 阻塞 decode 请求</td></tr></tbody></table></div>
-<hr>
-<h2 id="本章小结">本章小结</h2>
-<div class="table-wrap"><table><thead><tr><th>概念</th><th>一句话总结</th></tr></thead><tbody><tr><td>自回归瓶颈</td><td>每步只生成一个 token，且 decode 阶段瓶颈在内存带宽而非算力</td></tr><tr><td>KV Cache</td><td>缓存已计算的 K/V 向量，避免重复计算，从 O(T^2) 降到 O(T)</td></tr><tr><td>Prefill vs Decode</td><td>Prefill 计算密集、Decode 内存密集，需要针对性优化</td></tr><tr><td>PagedAttention</td><td>用分页管理 KV Cache 显存，消除碎片浪费，提升并发量 2~24x</td></tr><tr><td>Continuous Batching</td><td>动态替换完成的请求保持 GPU 满载，吞吐提升 2~5x</td></tr><tr><td>推测解码</td><td>小模型猜大模型验，拒绝采样保证无损，延迟降低 1.5~3x</td></tr><tr><td>GQA/MQA</td><td>减少 KV 头数直接减少 KV Cache 大小，长序列高并发的关键优化</td></tr></tbody></table></div>
       </article>
       <nav class="doc-nav"><a href="README.html">← 08 大模型推理与部署</a><a href="2_%E9%87%8F%E5%8C%96%E6%8A%80%E6%9C%AF.html">量化技术 →</a></nav>
     </main>

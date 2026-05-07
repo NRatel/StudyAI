@@ -160,7 +160,7 @@
 <a class="depth-4" href="#4-shinn-et-al-2023-reflexion">4. Shinn et al., 2023 — Reflexion</a>
 <a class="depth-4" href="#5-wang-et-al-2023-a-survey-on-llm-based-autonomous-agents">5. Wang et al., 2023 — A Survey on LLM-based Autonomous Agents</a>
 <a class="depth-3" href="#补充论文">补充论文</a>
-<a class="depth-2" href="#二常见误区与faq">二、常见误区与FAQ</a>
+<a class="depth-2" href="#二faq">二、FAQ</a>
 <a class="depth-3" href="#q1agent-和-rag-有什么区别">Q1：Agent 和 RAG 有什么区别？</a>
 <a class="depth-3" href="#q2agent-系统的最大瓶颈是什么">Q2：Agent 系统的最大瓶颈是什么？</a>
 <a class="depth-3" href="#q3mcp-和-function-calling-是什么关系">Q3：MCP 和 Function Calling 是什么关系？</a>
@@ -178,7 +178,7 @@
       <article class="markdown-body">
 <h1 id="论文与faq">论文与FAQ</h1>
 <blockquote><p>本文件用于论文脉络、误区澄清与延伸阅读，不替代主章节正文。</p></blockquote>
-<blockquote><p>本文件汇总&quot;Agent 与工具使用&quot;模块的关键论文、常见误区与延伸资源。<br>
+<blockquote><p>本文件汇总&quot;Agent 与工具使用&quot;模块的关键论文与延伸资源。<br>
 <strong>内容时效</strong>：截至 2026 年 4 月</p></blockquote>
 <hr>
 <h2 id="一关键论文">一、关键论文</h2>
@@ -250,7 +250,7 @@
 <h3 id="补充论文">补充论文</h3>
 <div class="table-wrap"><table><thead><tr><th>年份</th><th>论文</th><th>说明</th></tr></thead><tbody><tr><td>2023.05</td><td>Yao et al., <em>Tree of Thoughts</em></td><td>将 CoT 扩展为树结构搜索，支持回溯，提升复杂推理能力</td></tr><tr><td>2023.10</td><td>Packer et al., <em>MemGPT</em></td><td>将操作系统虚拟内存概念引入 LLM，自动管理上下文窗口</td></tr><tr><td>2024.03</td><td>Anthropic, <em>Claude 3 Tool Use</em></td><td>原生 Tool Use 能力，支持并行调用，行业标杆实现</td></tr><tr><td>2024.10</td><td>Anthropic, <em>Computer Use</em></td><td>模型直接操作桌面 GUI（点击/输入/截图），Agent 能力边界扩展</td></tr><tr><td>2024.11</td><td>Anthropic, <em>Model Context Protocol</em></td><td>开放协议标准，统一 Agent-工具通信接口</td></tr><tr><td>2025.01</td><td>DeepSeek, <em>DeepSeek-R1</em></td><td>强化学习训练的推理模型，Agent 规划能力显著提升</td></tr><tr><td>2025.03</td><td>OpenAI, <em>Agents SDK</em></td><td>官方 Agent 编排框架，Handoff + Guardrails + Tracing</td></tr></tbody></table></div>
 <hr>
-<h2 id="二常见误区与faq">二、常见误区与FAQ</h2>
+<h2 id="二faq">二、FAQ</h2>
 <h3 id="q1agent-和-rag-有什么区别">Q1：Agent 和 RAG 有什么区别？</h3>
 <p><strong>RAG 是 Agent 的一个子能力，而非替代关系。</strong></p>
 <div class="table-wrap"><table><thead><tr><th>维度</th><th>RAG</th><th>Agent</th></tr></thead><tbody><tr><td><strong>核心能力</strong></td><td>检索外部知识辅助回答</td><td>自主规划、多步执行、工具调用</td></tr><tr><td><strong>交互模式</strong></td><td>单次：查询 → 检索 → 回答</td><td>多次循环：推理 → 行动 → 观察 → ...</td></tr><tr><td><strong>工具使用</strong></td><td>通常只有向量检索</td><td>可调用任意工具（搜索/数据库/API/代码执行）</td></tr><tr><td><strong>适用场景</strong></td><td>知识密集型问答</td><td>复杂任务执行</td></tr></tbody></table></div>

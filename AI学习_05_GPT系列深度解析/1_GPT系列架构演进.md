@@ -162,18 +162,3 @@ Few-shot:   "sea otter => loutre de mer\npeppermint => menthe poivrée\ncheese =
 *: 推测值
 
 **参数量增长**：$117M \to 1.5B \to 175B \to \sim 1.8T$，每代增长约 10~100 倍。
-
----
-
-## 本章小结
-
-| 概念 | 一句话总结 |
-|------|-----------|
-| GPT-1 | 预训练+微调范式的验证，12 层 117M 参数 |
-| GPT-2 | 去掉微调，Zero-shot 直接做任务，1.5B |
-| GPT-3 | In-Context Learning 突破，Few-shot 不更新参数学新任务，175B |
-| GPT-4 | 多模态+MoE+推理增强，通用AI助手 |
-| 核心信念 | 架构不变，规模即正义 |
-| ICL | 通过 prompt 示例学习，无需梯度更新 |
-| 范式转变 | 微调 → Zero-shot → Few-shot → 通用对话 |
-| 开源替代 | LLaMA 系列用更好的训练方法复现 GPT-3 级别能力 |
